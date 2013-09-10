@@ -251,7 +251,8 @@
 
 				_headLs.push('<tr><td><span class="bold">星期</span></td>');
                 _dayLs.push('<tr><td><span class="bold">日期</span></td>'); 
-				_ckLs.push('<tr class="Uchkdate"><td><label><span class="bold">全选</span>&nbsp;<input type="checkbox" value="" class="js_JCCalendarCheckbox" action="all"  /></lable></td>');
+				_ckLs.push('<tr class="Uchkdate"><td><label><span class="bold">全选</span>&nbsp;'
+                            + '<input type="checkbox" class="js_JCCalendarCheckbox" action="all"  /></lable></td>');
 
 				for ( i = 0; i < _maxday; i++ ) {
 					_headClass  = [];
