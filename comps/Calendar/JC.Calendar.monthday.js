@@ -2,40 +2,40 @@
     /**
      * 多先日期弹框的模板HTML
      * @for         JC.Calendar
-     * @property    multiDayTpl
+     * @property    monthdayTpl
      * @type        string
      * @default     empty
      * @static
      */
 
-    JC.Calendar.multiDayTpl = '';
+    JC.Calendar.monthdayTpl = '';
 
-    function MultiDayModel( _selector ){
+    function MonthDayModel( _selector ){
         this._selector = _selector;
         
     }
-    JC.Calendar.MultiDayModel = MultiDayModel;
+    JC.Calendar.MonthDayModel = MonthDayModel;
     
-    function MultiDayView( _model ){
+    function MonthDayView( _model ){
         this._model = _model;
 		
     }
-    JC.Calendar.MultiDayView = MultiDayView;
+    JC.Calendar.MonthDayView = MonthDayView;
 
-    JC.Calendar.clone( MultiDayModel, MultiDayView );
+    JC.Calendar.clone( MonthDayModel, MonthDayView );
 	
-    MultiDayModel.prototype.layout = 
+    MonthDayModel.prototype.layout = 
         function(){
             var _r = $('#UXCCalendar_multi_day');
 
             if( !_r.length ){
-                _r = $( JC.Calendar.multiDayTpl || this.tpl ).hide();
+                _r = $( JC.Calendar.monthdayTpl || this.tpl ).hide();
                 _r.attr('id', 'UXCCalendar_multi_day').hide().appendTo( document.body );
              }
             return _r;
         };
 		
-	MultiDayModel.prototype.tpl =
+	MonthDayModel.prototype.tpl =
         [
         '<div id="UXCCalendar_multi_day" class="UXCCalendar UXCCalendar_multi_day" >'
         ,'    <div class="UHeader">'
@@ -56,13 +56,13 @@
         ,'</div>'
         ].join('');
 
-    MultiDayModel.prototype.multiLayoutDate = 
+    MonthDayModel.prototype.multiLayoutDate = 
     	function () {
     		// var _p = this
     		// 	, _dateo = p.defaultDate()
     		// 	;
 
-    		// JC.log("MultiDayModel.multiLayoutDate:", _dateo);
+    		// JC.log("MonthDayModel.multiLayoutDate:", _dateo);
     		// _dateo.multidate = [];
 
     		// _p.layout().find('td.cur').each(function () {
@@ -74,7 +74,7 @@
     		// return _dateo;
     	}
 
-    MultiDayModel.prototype.defaultMultiselectDate = 
+    MonthDayModel.prototype.defaultMultiselectDate = 
     	function ( _r ) {
 
     		var _p = this
@@ -117,7 +117,7 @@
             return _r;
     	}
 
-    MultiDayModel.prototype.multiselectDate =
+    MonthDayModel.prototype.multiselectDate =
         function(){
             var _p = this
             	, _r = []
@@ -140,7 +140,7 @@
             return _r;
         };
 
-    MultiDayView.prototype.updateSelected = 
+    MonthDayView.prototype.updateSelected = 
         function( _userSelectedItem ){
             var _p = this
             	, _dstart
@@ -186,12 +186,12 @@
             if( !_text ) return;
 
             _p._model.selector().val( _text );
-            $(_p).trigger( 'TriggerEvent', [ JC.Calendar.Model.UPDATE, 'multiday', _tmp ] );
+            $(_p).trigger( 'TriggerEvent', [ JC.Calendar.Model.UPDATE, 'monthday', _tmp ] );
 
             JC.Calendar.hide();
         };
 	
-	MultiDayView.prototype._buildHeader = 
+	MonthDayView.prototype._buildHeader = 
 		function( _dateo ){
 			var _p = this, 
 				_layout = _p._model.layout();
@@ -204,7 +204,7 @@
 				
 		};
 	
-	MultiDayView.prototype._buildBody =
+	MonthDayView.prototype._buildBody =
         function( _dateo ){
 				var _p = this, _layout = _p._model.layout();
                 var _maxday = maxDayOfMonth( _dateo.date ), 
