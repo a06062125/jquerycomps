@@ -40,6 +40,14 @@ div.UXCCalendar a{
     blr:expression(this.onFocus=this.blur());
 }
 
+div.UXCCalendar .red{
+    color: red;
+}
+
+div.UXCCalendar .bold{
+    font-weight: bold!important;
+}
+
 div.UXCCalendar td.weekend a {
     color: #82B341!important;
 }

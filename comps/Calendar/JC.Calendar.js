@@ -25,7 +25,8 @@
      *          <p><b>date:</b> 日期日历</p>
      *          <p><b>week:</b> 周日历</p>
      *          <p><b>month:</b> 月日历</p>
-     *          <p><b>season:</b> 级日历</p>
+     *          <p><b>season:</b> 季日历</p>
+     *          <p><b>monthday:</b> 多选日期日历</p>
      *      </dd>
      *
      *      <dt>multidate</dt>
@@ -854,22 +855,30 @@
                     , _dstart, _dend
                     ;
 
-                if( _tmp = parseISODate( _selector.val() ) ) _r.date = _tmp;
-                else{
-                    if( _selector.val() && (_tmp = _selector.val().replace( /[^\d,]/g, '' ) ).length ){
+                    if( _selector.val() && (_tmp = _selector.val().replace( /[^\d]/g, '' ) ).length ){
                         _tmp = _tmp.split(',');
                         _multidatear = [];
 
                         $.each( _tmp, function( _ix, _item ){
-                            if( _item.length != 16 ) return;
-                            _dstart = parseISODate( _item.slice( 0, 8 ) );
-                            _dend = parseISODate( _item.slice( 8 ) );
+                            if( _item.length == 16 ){
+                                _dstart = parseISODate( _item.slice( 0, 8 ) );
+                                _dend = parseISODate( _item.slice( 8 ) );
 
-                            if( !_ix ){
-                                _r.date = cloneDate( _dstart );
-                                _r.enddate = cloneDate( _dend );
+                                if( !_ix ){
+                                    _r.date = cloneDate( _dstart );
+                                    _r.enddate = cloneDate( _dend );
+                                }
+                                _multidatear.push( { 'start': _dstart, 'end': _dend } );
+                            }else if( _item.length == 8 ){
+                                _dstart = parseISODate( _item.slice( 0, 8 ) );
+                                _dend = cloneDate( _dstart );
+
+                                if( !_ix ){
+                                    _r.date = cloneDate( _dstart );
+                                    _r.enddate = cloneDate( _dend );
+                                }
+                                _multidatear.push( { 'start': _dstart, 'end': _dend } );
                             }
-                            _multidatear.push( { 'start': _dstart, 'end': _dend } );
                         });
 
                         _r.multidate = _multidatear;
@@ -882,7 +891,6 @@
                         _r.multidate = [];
                         _r.multidate.push( {'start': cloneDate( _r.date ), 'end': cloneDate( _r.enddate ) } );
                     }
-                }
                 return _r;
             }
         , layoutDate:

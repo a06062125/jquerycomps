@@ -12,7 +12,7 @@
 <link href='../../../comps/Valid/res/default/style.css' rel='stylesheet' />
 <script src="../../../lib.js"></script>
 <script>
-    JC.debug = true; JC.use( 'Calendar, Valid' );
+    JC.debug = true; JC.use( 'Calendar, Valid, plugins.json2' );
     /**
      * 注意: 如果 input 已经声明了 datatype=date, 那就不需要执行下面的语法
      * 带 datatype=date 的 input 页面加载完毕后都会自动初始化
@@ -28,9 +28,9 @@
     <form action='' method='get'>
         <dl>
             <dt>JC.Calendar 示例</dt>
-            <dd><input type="text" name="date1" multidate="monthday" minvalue="2013-09-10" />monthday</dd>
-            <dd><input type="text" name="date1" multidate="monthday" maxvalue="2013-09-10"  />monthday</dd>
-            <dd><input type="text" name="date1" multidate="monthday" />monthday</dd>
+            <dd><input type="text" name="date1" multidate="monthday" minvalue="2013-09-10" size="80" />monthday</dd>
+            <dd><input type="text" name="date1" multidate="monthday" maxvalue="2013-09-10" size="80" />monthday</dd>
+            <dd><input type="text" name="date1" datatype="monthday" size="80" />monthday</dd>
             <dd>
                 <input type="text" name="date2" datatype="date" value="2013-06-03" />
                 <input type="button" class="UXCCalendar_btn" />
