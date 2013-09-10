@@ -293,6 +293,8 @@
                 _ls = _ls.concat( _headLs, _dayLs, _ckLs );
 				
                 _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) );
+
+                _p._model.fixCheckall();
         };
 	
 	function getClass(_dateo, _tempDate, _today) {
