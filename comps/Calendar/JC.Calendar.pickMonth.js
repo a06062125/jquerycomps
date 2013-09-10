@@ -80,47 +80,6 @@
             return _r;
         };
 
-    MonthModel.prototype.defaultMultiselectDate =
-        function( _r ){
-            var _p = this
-                , _selector = _p.selector()
-                , _tmp
-                , _multidatear
-                , _dstart, _dend
-                ;
-
-            if( _tmp = parseISODate( _selector.val() ) ) _r.date = _tmp;
-            else{
-                if( _selector.val() && (_tmp = _selector.val().replace( /[^\d,]/g, '' ) ).length ){
-                    _tmp = _tmp.split(',');
-                    _multidatear = [];
-
-                    $.each( _tmp, function( _ix, _item ){
-                        if( _item.length != 16 ) return;
-                        _dstart = parseISODate( _item.slice( 0, 8 ) );
-                        _dend = parseISODate( _item.slice( 8 ) );
-
-                        if( !_ix ){
-                            _r.date = cloneDate( _dstart );
-                            _r.enddate = cloneDate( _dend );
-                        }
-                        _multidatear.push( { 'start': _dstart, 'end': _dend } );
-                    });
-
-                    _r.multidate = _multidatear;
-
-                }else{
-                    _tmp = new Date();
-                    _r.date = new Date( _tmp.getFullYear(), _tmp.getMonth(), _tmp.getDate() );
-                    _r.enddate = cloneDate( _r.date );
-                    _r.enddate.setDate( maxDayOfMonth( _r.enddate ) );
-                    _r.multidate = [];
-                    _r.multidate.push( {'start': cloneDate( _r.date ), 'end': cloneDate( _r.enddate ) } );
-                }
-            }
-            return _r;
-        };
-
     MonthModel.prototype.multiLayoutDate = 
         function(){
             var _p = this
