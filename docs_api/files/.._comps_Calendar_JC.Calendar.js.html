@@ -195,7 +195,10 @@
      * | &lt;a href=&#x27;../../comps/Calendar/_demo/&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
      * &lt;h2&gt; 可用的html attribute, (input|button):(datatype|multidate)=(date|week|month|season) &lt;/h2&gt; 
      * &lt;dl&gt;
-     *      &lt;dt&gt;datatype&lt;/dt&gt;
+     *      &lt;dt&gt;defaultdate = ISO Date&lt;/dt&gt;
+     *      &lt;dd&gt;默认显示日期, 如果 value 为空, 则尝试读取 defaultdate 属性&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;datatype = string&lt;/dt&gt;
      *      &lt;dd&gt;
      *          声明日历控件的类型:
      *          &lt;p&gt;&lt;b&gt;date:&lt;/b&gt; 日期日历&lt;/p&gt;
@@ -205,21 +208,21 @@
      *          &lt;p&gt;&lt;b&gt;monthday:&lt;/b&gt; 多选日期日历&lt;/p&gt;
      *      &lt;/dd&gt;
      *
-     *      &lt;dt&gt;multidate&lt;/dt&gt;
+     *      &lt;dt&gt;multidate = string&lt;/dt&gt;
      *      &lt;dd&gt;
      *          与 datatype 一样, 这个是扩展属性, 避免表单验证带来的逻辑冲突
      *      &lt;/dd&gt;
      *
-     *      &lt;dt&gt;calendarshow&lt;/dt&gt;
+     *      &lt;dt&gt;calendarshow = function&lt;/dt&gt;
      *      &lt;dd&gt;显示日历时的回调&lt;/dd&gt;
      *
-     *      &lt;dt&gt;calendarhide&lt;/dt&gt;
+     *      &lt;dt&gt;calendarhide = function&lt;/dt&gt;
      *      &lt;dd&gt;隐藏日历时的回调&lt;/dd&gt;
      *
-     *      &lt;dt&gt;calendarlayoutchange&lt;/dt&gt;
+     *      &lt;dt&gt;calendarlayoutchange = function&lt;/dt&gt;
      *      &lt;dd&gt;用户点击日历控件操作按钮后, 外观产生变化时触发的回调&lt;/dd&gt;
      *
-     *      &lt;dt&gt;calendarupdate&lt;/dt&gt;
+     *      &lt;dt&gt;calendarupdate = function&lt;/dt&gt;
      *      &lt;dd&gt;
      *          赋值后触发的回调
      *          &lt;dl&gt;
@@ -229,22 +232,22 @@
      *          &lt;/dl&gt;
      *      &lt;/dd&gt;
      *
-     *      &lt;dt&gt;calendarclear&lt;/dt&gt;
+     *      &lt;dt&gt;calendarclear = function&lt;/dt&gt;
      *      &lt;dd&gt;清空日期触发的回调&lt;/dd&gt;
      *
-     *      &lt;dt&gt;minvalue&lt;/dt&gt;
+     *      &lt;dt&gt;minvalue = ISO Date&lt;/dt&gt;
      *      &lt;dd&gt;日期的最小时间, YYYY-MM-DD&lt;/dd&gt;
      *
-     *      &lt;dt&gt;maxvalue&lt;/dt&gt;
+     *      &lt;dt&gt;maxvalue = ISO Date&lt;/dt&gt;
      *      &lt;dd&gt;日期的最大时间, YYYY-MM-DD&lt;/dd&gt;
      *
-     *      &lt;dt&gt;currentcanselect&lt;/dt&gt;
-     *      &lt;dd&gt;当前日期是否能选择, bool, default=true&lt;/dd&gt;
+     *      &lt;dt&gt;currentcanselect = bool, default = true&lt;/dt&gt;
+     *      &lt;dd&gt;当前日期是否能选择&lt;/dd&gt;
      *
-     *      &lt;dt&gt;multiselect (目前只对月份日历有效)&lt;/dt&gt;
-     *      &lt;dd&gt;是否为多选日历, bool, default=false&lt;/dd&gt;
+     *      &lt;dt&gt;multiselect = bool (目前支持 month: default=false, monthday: default = treu)&lt;/dt&gt;
+     *      &lt;dd&gt;是否为多选日历&lt;/dd&gt;
      *
-     *      &lt;dt&gt;calendarupdatemultiselect&lt;/dt&gt;
+     *      &lt;dt&gt;calendarupdatemultiselect = function&lt;/dt&gt;
      *      &lt;dd&gt;
      *          多选日历赋值后触发的回调
      *          &lt;dl&gt;
@@ -1017,6 +1020,9 @@
                         _r.enddate = parseISODate( _tmp.slice( 8 ) );
                     }else{
                         _tmp = new Date();
+                        if( Calendar.lastIpt &amp;&amp; Calendar.lastIpt.is(&#x27;[defaultdate]&#x27;) ){
+                            _tmp = parseISODate( Calendar.lastIpt.attr(&#x27;defaultdate&#x27;) ) || _tmp;
+                        }
                         _r.date = new Date( _tmp.getFullYear(), _tmp.getMonth(), _tmp.getDate() );
                     }
                 }
@@ -1025,14 +1031,15 @@
         , defaultMultiselectDate:
             function( _r ){
                 var _p = this
-                    , _selector = _p.selector()
+                    , _selector = Calendar.lastIpt
                     , _tmp
                     , _multidatear
                     , _dstart, _dend
                     ;
 
-                    if( _selector.val() &amp;&amp; (_tmp = _selector.val().replace( /[^\d]/g, &#x27;&#x27; ) ).length ){
-                        _tmp = _tmp.split(&#x27;,&#x27;);
+                    if( _selector.val() ){
+                        //JC.log( &#x27;defaultMultiselectDate:&#x27;, _p.selector().val(), &#x27;, &#x27;, _tmp );
+                        _tmp = _selector.val().trim().replace(/[^\d,]/g, &#x27;&#x27;).split(&#x27;,&#x27;);
                         _multidatear = [];
 
                         $.each( _tmp, function( _ix, _item ){
@@ -1056,11 +1063,15 @@
                                 _multidatear.push( { &#x27;start&#x27;: _dstart, &#x27;end&#x27;: _dend } );
                             }
                         });
+                        //alert( _multidatear + &#x27;, &#x27; + _selector.val() );
 
                         _r.multidate = _multidatear;
 
                     }else{
                         _tmp = new Date();
+                        if( Calendar.lastIpt &amp;&amp; Calendar.lastIpt.is(&#x27;[defaultdate]&#x27;) ){
+                            _tmp = parseISODate( Calendar.lastIpt.attr(&#x27;defaultdate&#x27;) ) || _tmp;
+                        }
                         _r.date = new Date( _tmp.getFullYear(), _tmp.getMonth(), _tmp.getDate() );
                         _r.enddate = cloneDate( _r.date );
                         _r.enddate.setDate( maxDayOfMonth( _r.enddate ) );
@@ -1345,8 +1356,12 @@
         , _buildLayout:
             function( _dateo ){
                 this._model.layout();
+                
+
+                //JC.log( &#x27;_buildBody: \n&#x27;, JSON.stringify( _dateo ) );
 
                 if( !( _dateo &amp;&amp; _dateo.date ) ) return;
+
                 this._buildHeader( _dateo );
                 this._buildBody( _dateo );
                 this._buildFooter( _dateo );

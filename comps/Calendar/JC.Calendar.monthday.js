@@ -230,6 +230,19 @@
 			_layout.find('div.UHeader span.UMonth').html(month);
 				
 		};
+
+    MonthDayModel.prototype.fixedDate =
+        function( _dateo ){
+            var _p = this, _lastIpt = JC.Calendar.lastIpt, _tmpDate;
+            _lastIpt
+                && !_lastIpt.is('[defaultdate]')
+                && (
+                        _tmpDate = cloneDate( _dateo.multidate[0].start )
+                        //, _tmpDate.setDate( 1 )
+                        , _lastIpt.attr('defaultdate', formatISODate( _tmpDate ) )
+                    )
+                ;
+        };
 	
 	MonthDayView.prototype._buildBody =
         function( _dateo ){
@@ -242,6 +255,7 @@
 					_tempDay,
 					_today = new Date();
 
+                _p._model.fixedDate( _dateo );
 				
 				_tempDate = new Date(_dateo.date.getFullYear(), _dateo.date.getMonth(), 1);
 				_tempDay = _tempDate.getDay();

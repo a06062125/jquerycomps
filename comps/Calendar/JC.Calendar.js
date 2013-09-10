@@ -19,7 +19,10 @@
      * | <a href='../../comps/Calendar/_demo/' target='_blank'>demo link</a></p>
      * <h2> 可用的html attribute, (input|button):(datatype|multidate)=(date|week|month|season) </h2> 
      * <dl>
-     *      <dt>datatype</dt>
+     *      <dt>defaultdate = ISO Date</dt>
+     *      <dd>默认显示日期, 如果 value 为空, 则尝试读取 defaultdate 属性</dd>
+     *
+     *      <dt>datatype = string</dt>
      *      <dd>
      *          声明日历控件的类型:
      *          <p><b>date:</b> 日期日历</p>
@@ -29,21 +32,21 @@
      *          <p><b>monthday:</b> 多选日期日历</p>
      *      </dd>
      *
-     *      <dt>multidate</dt>
+     *      <dt>multidate = string</dt>
      *      <dd>
      *          与 datatype 一样, 这个是扩展属性, 避免表单验证带来的逻辑冲突
      *      </dd>
      *
-     *      <dt>calendarshow</dt>
+     *      <dt>calendarshow = function</dt>
      *      <dd>显示日历时的回调</dd>
      *
-     *      <dt>calendarhide</dt>
+     *      <dt>calendarhide = function</dt>
      *      <dd>隐藏日历时的回调</dd>
      *
-     *      <dt>calendarlayoutchange</dt>
+     *      <dt>calendarlayoutchange = function</dt>
      *      <dd>用户点击日历控件操作按钮后, 外观产生变化时触发的回调</dd>
      *
-     *      <dt>calendarupdate</dt>
+     *      <dt>calendarupdate = function</dt>
      *      <dd>
      *          赋值后触发的回调
      *          <dl>
@@ -53,22 +56,22 @@
      *          </dl>
      *      </dd>
      *
-     *      <dt>calendarclear</dt>
+     *      <dt>calendarclear = function</dt>
      *      <dd>清空日期触发的回调</dd>
      *
-     *      <dt>minvalue</dt>
+     *      <dt>minvalue = ISO Date</dt>
      *      <dd>日期的最小时间, YYYY-MM-DD</dd>
      *
-     *      <dt>maxvalue</dt>
+     *      <dt>maxvalue = ISO Date</dt>
      *      <dd>日期的最大时间, YYYY-MM-DD</dd>
      *
-     *      <dt>currentcanselect</dt>
-     *      <dd>当前日期是否能选择, bool, default=true</dd>
+     *      <dt>currentcanselect = bool, default = true</dt>
+     *      <dd>当前日期是否能选择</dd>
      *
-     *      <dt>multiselect (目前只对月份日历有效)</dt>
-     *      <dd>是否为多选日历, bool, default=false</dd>
+     *      <dt>multiselect = bool (目前支持 month: default=false, monthday: default = treu)</dt>
+     *      <dd>是否为多选日历</dd>
      *
-     *      <dt>calendarupdatemultiselect</dt>
+     *      <dt>calendarupdatemultiselect = function</dt>
      *      <dd>
      *          多选日历赋值后触发的回调
      *          <dl>
@@ -841,6 +844,9 @@
                         _r.enddate = parseISODate( _tmp.slice( 8 ) );
                     }else{
                         _tmp = new Date();
+                        if( Calendar.lastIpt && Calendar.lastIpt.is('[defaultdate]') ){
+                            _tmp = parseISODate( Calendar.lastIpt.attr('defaultdate') ) || _tmp;
+                        }
                         _r.date = new Date( _tmp.getFullYear(), _tmp.getMonth(), _tmp.getDate() );
                     }
                 }
@@ -887,6 +893,9 @@
 
                     }else{
                         _tmp = new Date();
+                        if( Calendar.lastIpt && Calendar.lastIpt.is('[defaultdate]') ){
+                            _tmp = parseISODate( Calendar.lastIpt.attr('defaultdate') ) || _tmp;
+                        }
                         _r.date = new Date( _tmp.getFullYear(), _tmp.getMonth(), _tmp.getDate() );
                         _r.enddate = cloneDate( _r.date );
                         _r.enddate.setDate( maxDayOfMonth( _r.enddate ) );
@@ -1048,7 +1057,6 @@
             ,'    </div>'
             ,'</div>'
             ].join('')
-
     };
     
     function View( _model ){

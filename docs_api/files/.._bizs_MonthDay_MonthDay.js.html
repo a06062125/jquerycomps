@@ -207,28 +207,6 @@
     
     !JC.Calendar &amp;&amp; JC.use( &#x27;Calendar&#x27; );
 
-    /**
-     * 处理 form 或者 _selector 的所有form.js_autoMonthDay
-     * @method  init
-     * @param   {selector}  _selector
-     * @return  {Array}     Array of MonthDayInstance
-     * @static
-     */
-    MonthDay.init =
-        function( _selector ){
-            var _r = [];
-            _selector &amp;&amp; ( _selector = $( _selector ) );
-            if( !( _selector &amp;&amp; _selector.length ) ) return;
-            if( _selector.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;form&#x27; ){
-                _r.push( new MonthDay( _selector ) );
-            }else{
-                _selector.find(&#x27;form.js_autoMonthDay&#x27;).each( function(){
-                    _r.push( new MonthDay( this  ) );
-                });
-            }
-            return _r;
-        };
-
     MonthDay.prototype = {
         _beforeInit:
             function(){
@@ -254,13 +232,13 @@
     };
 
     JC.BaseMVC.build( MonthDay, &#x27;Bizs&#x27; );
-
-    $(document).ready( function(){
-        setTimeout( function(){
-            MonthDay.autoInit &amp;&amp; MonthDay.init( $(document) );
-        }, 1 );
+    /**
+     *  初始初始化
+     */
+    $(document).delegate( &#x27;input.js_bizsMonthDay, button.js_bizsMonthDay&#x27;, &#x27;click&#x27;, function( _evt ){
+        var _p = $(this), _ins = MonthDay.getInstance( _p );
+        !_ins &amp;&amp; new MonthDay( _p );
     });
-
 }(jQuery));
 
     </pre>

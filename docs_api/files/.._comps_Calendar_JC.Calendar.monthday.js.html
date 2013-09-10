@@ -417,6 +417,7 @@
 					_tempDate, 
 					_tempDay,
 					_today = new Date();
+
 				
 				_tempDate = new Date(_dateo.date.getFullYear(), _dateo.date.getMonth(), 1);
 				_tempDay = _tempDate.getDay();
@@ -426,7 +427,8 @@
 
 				_headLs.push(&#x27;&lt;tr&gt;&lt;td&gt;&lt;span class=&quot;bold&quot;&gt;星期&lt;/span&gt;&lt;/td&gt;&#x27;);
                 _dayLs.push(&#x27;&lt;tr&gt;&lt;td&gt;&lt;span class=&quot;bold&quot;&gt;日期&lt;/span&gt;&lt;/td&gt;&#x27;); 
-				_ckLs.push(&#x27;&lt;tr class=&quot;Uchkdate&quot;&gt;&lt;td&gt;&lt;label&gt;&lt;span class=&quot;bold&quot;&gt;全选&lt;/span&gt;&amp;nbsp;&lt;input type=&quot;checkbox&quot; value=&quot;&quot; class=&quot;js_JCCalendarCheckbox&quot; action=&quot;all&quot;  /&gt;&lt;/lable&gt;&lt;/td&gt;&#x27;);
+				_ckLs.push(&#x27;&lt;tr class=&quot;Uchkdate&quot;&gt;&lt;td&gt;&lt;label&gt;&lt;span class=&quot;bold&quot;&gt;全选&lt;/span&gt;&amp;nbsp;&#x27;
+                            + &#x27;&lt;input type=&quot;checkbox&quot; class=&quot;js_JCCalendarCheckbox&quot; action=&quot;all&quot;  /&gt;&lt;/lable&gt;&lt;/td&gt;&#x27;);
 
 				for ( i = 0; i &lt; _maxday; i++ ) {
 					_headClass  = [];
@@ -468,6 +470,8 @@
                 _ls = _ls.concat( _headLs, _dayLs, _ckLs );
 				
                 _layout.find(&#x27;table.UTableBorder tbody&#x27; ).html( $( _ls.join(&#x27;&#x27;) ) );
+
+                _p._model.fixCheckall();
         };
 	
 	function getClass(_dateo, _tempDate, _today) {
