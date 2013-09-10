@@ -241,6 +241,7 @@
 					_tempDate, 
 					_tempDay,
 					_today = new Date();
+
 				
 				_tempDate = new Date(_dateo.date.getFullYear(), _dateo.date.getMonth(), 1);
 				_tempDay = _tempDate.getDay();
@@ -314,7 +315,10 @@
 		}
 
         for( var i = 0, j = _dateo.multidate.length; i < j; i++ ){
-            isSameDay( _dateo.multidate[i].start, _tempDate ) && _class.push( 'cur' );
+            if( isSameDay( _dateo.multidate[i].start, _tempDate ) ){ 
+                _class.push( 'cur' );
+                break;
+            }
         }
 
 		return _class;

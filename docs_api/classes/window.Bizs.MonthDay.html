@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>window.Bizs.DisableLogic - jquery components</title>
+    <title>window.Bizs.MonthDay - jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -100,89 +100,39 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>window.Bizs.DisableLogic Class</h1>
+                        <h1>window.Bizs.MonthDay Class</h1>
 <div class="box meta">
+        <div class="extends">
+            Extends <a href="../classes/JC.BaseMVC.html" class="crosslink">JC.BaseMVC</a>
+        </div>
         <div class="foundat">
-            Defined in: <a href="../files/.._bizs_DisableLogic_DisableLogic.js.html#l2"><code>..&#x2F;bizs&#x2F;DisableLogic&#x2F;DisableLogic.js:2</code></a>
+            Defined in: <a href="../files/.._bizs_MonthDay_MonthDay.js.html#l2"><code>..&#x2F;bizs&#x2F;MonthDay&#x2F;MonthDay.js:2</code></a>
         </div>
 </div>
 <div class="box intro">
-    <h2>Form Control禁用启用逻辑</h2>
-<p><br/>应用场景</br>
-<br/>表单操作时, 选择某个 radio 时, 对应的 内容有效,
-<br/>但选择其他 radio 时, 其他的内容无效
-<br/>checkbox / select 也可使用( 带change事件的标签 )</p>
+    <p>多选月份和多选日期 复合使用</p>
 <p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>
-| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.DisableLogic.html' target='_blank'>API docs</a>
-| <a href='../../bizs/DisableLogic/_demo' target='_blank'>demo link</a></p>
-<p>div 需要 添加 class="js_bizsDisableLogic"</p>
-<h2>box 的 HTML 属性</h2>
-<dl>
-     <dt>dltrigger</dt>
-     <dd>触发禁用/起用的control</dd>
-     <dt>dltarget</dt>
-     <dd>需要禁用/起用的control</dd>
-     <dt>dlhidetarget</dt>
-     <dd>需要根据禁用起用隐藏/可见的标签</dd>
-     <dt>dldonecallback = function</dt>
-     <dd>启用/禁用后会触发的回调</dd>
-     <dt>dlenablecallback = function</dt>
-     <dd>启用后的回调</dd>
-     <dt>dldisablecallback = function</dt>
-     <dd>禁用后的回调</dd>
-</dl>
-<h2>trigger 的 HTML 属性</h2>
-<dl>
-     <dt>dldisable = bool, default = false</dt>
-     <dd>
-         指定 dltarget 是否置为无效
-         <br />还可以根据这个属性 指定 dlhidetarget 是否显示
-     </dd>
-     <dt>dldisplay = bool</dt>
-     <dd>指定 dlhidetarget 是否显示</dd>
-</dl>
-<h2>hide target 的 HTML 属性</h2>
-<dl>
-     <dt>dlhidetoggle = bool</dt>
-     <dd>显示或显示的时候, 是否与他项相反</dd>
-</dl>
+| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.MonthDay.html' target='_blank'>API docs</a>
+| <a href='../../bizs/MonthDay/_demo' target='_blank'>demo link</a></p>
+<p>require: <a href='../classes/window.jQuery.html'>jQuery</a>
+<br/>require: <a href='../classes/JC.Calendar.html'>JC.Calendar</a>
+<br/>require: <a href='../classes/Bizs.DisableLogic.html'>Bizs.DisableLogic</a></p>
+<h2>可用的 HTML 属性</h2>
+<dl></dl>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_window.Bizs.DisableLogic" class="method item">
-    <h3 class="name"><code>window.Bizs.DisableLogic</code></h3>
+        <div id="method_window.Bizs.MonthDay" class="method item">
+    <h3 class="name"><code>window.Bizs.MonthDay</code></h3>
         <span class="paren">()</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_DisableLogic_DisableLogic.js.html#l2"><code>..&#x2F;bizs&#x2F;DisableLogic&#x2F;DisableLogic.js:2</code></a>
+        <a href="../files/.._bizs_MonthDay_MonthDay.js.html#l2"><code>..&#x2F;bizs&#x2F;MonthDay&#x2F;MonthDay.js:2</code></a>
         </p>
     </div>
     <div class="description">
     </div>
-        <div class="example">
-            <h4>Example:</h4>
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   &lt;div class="js_bizsDisableLogic"
-       dltrigger="/input[type=radio]"
-       dltarget="/input.js_disableItem"
-       &gt;
-       &lt;label&gt;
-           &lt;input type="radio" name="discount" checked  
-           dldisable="true"
-           /&gt;自本协议签订之日起10日内生效
-       &lt;/label&gt; &lt;br&gt;
-       &lt;label&gt;
-           &lt;input type="radio" name="discount" 
-           dldisable="false"
-           /&gt;生效时间点
-       &lt;/label&gt;
-       &lt;input type="text" class="ipt js_disableItem" datatype="date" value=""
-       /&gt;&lt;input type="button" class="UXCCalendar_btn"&gt;
-   &lt;/div&gt;
-</code></pre>
-            </div>
-        </div>
 </div>
     </div>
 <div id="classdocs" class="tabview">
@@ -195,18 +145,30 @@
             <h2 class="off-left">Item Index</h2>
                 <div class="index-section methods">
                     <h3>Methods</h3>
-                    <ul class="index-list methods">
+                    <ul class="index-list methods extends">
+                            <li class="index-item method private inherited">
+                                <a href="#method__beforeInit">_beforeInit</a>
+                            </li>
+                            <li class="index-item method private inherited">
+                                <a href="#method__init">_init</a>
+                            </li>
+                            <li class="index-item method private inherited">
+                                <a href="#method__inited">_inited</a>
+                            </li>
+                            <li class="index-item method private inherited">
+                                <a href="#method__initHanlderEvent">_initHanlderEvent</a>
+                            </li>
                             <li class="index-item method">
-                                <a href="#method_getInstance">getInstance</a>
+                                <a href="#method_init">init</a>
                                     <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_on">on</a>
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_selector">selector</a>
                             </li>
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_trigger">trigger</a>
                             </li>
                     </ul>
@@ -214,8 +176,81 @@
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-                    <div id="method_getInstance" class="method item">
-    <h3 class="name"><code>getInstance</code></h3>
+                    <div id="method__beforeInit" class="method item private inherited">
+    <h3 class="name"><code>_beforeInit</code></h3>
+        <span class="paren">()</span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method__beforeInit">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l60"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:60</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>初始化之前调用的方法</p>
+    </div>
+</div>
+                    <div id="method__init" class="method item private inherited">
+    <h3 class="name"><code>_init</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method__init">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l31"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:31</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>内部初始化方法</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method__inited" class="method item private inherited">
+    <h3 class="name"><code>_inited</code></h3>
+        <span class="paren">()</span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method__inited">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l76"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:76</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>内部初始化完毕时, 调用的方法</p>
+    </div>
+</div>
+                    <div id="method__initHanlderEvent" class="method item private inherited">
+    <h3 class="name"><code>_initHanlderEvent</code></h3>
+        <span class="paren">()</span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method__initHanlderEvent">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l68"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:68</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>内部事件初始化方法</p>
+    </div>
+</div>
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
@@ -224,17 +259,17 @@
             </ul><span class="paren">)</span>
         </div>
         <span class="returns-inline">
-            <span class="type">DisableLogic instance</span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
         </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_DisableLogic_DisableLogic.js.html#l164"><code>..&#x2F;bizs&#x2F;DisableLogic&#x2F;DisableLogic.js:164</code></a>
+        <a href="../files/.._bizs_MonthDay_MonthDay.js.html#l34"><code>..&#x2F;bizs&#x2F;MonthDay&#x2F;MonthDay.js:34</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取或设置 DisableLogic 的实例</p>
+        <p>处理 form 或者 <em>selector 的所有form.js</em>autoMonthDay</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
@@ -250,11 +285,12 @@
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                        <span class="type">DisableLogic instance</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    Array of MonthDayInstance
             </div>
         </div>
 </div>
-                    <div id="method_on" class="method item">
+                    <div id="method_on" class="method item inherited">
     <h3 class="name"><code>on</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
@@ -270,9 +306,9 @@
             <span class="type"></span>
         </span>
     <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._bizs_DisableLogic_DisableLogic.js.html#l148"><code>..&#x2F;bizs&#x2F;DisableLogic&#x2F;DisableLogic.js:148</code></a>
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method_on">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l90"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:90</code></a>
         </p>
     </div>
     <div class="description">
@@ -298,24 +334,24 @@
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                    DisableLogicInstance
+                    BaseMVCInstance
             </div>
         </div>
 </div>
-                    <div id="method_selector" class="method item">
+                    <div id="method_selector" class="method item inherited">
     <h3 class="name"><code>selector</code></h3>
         <span class="paren">()</span>
         <span class="returns-inline">
             <span class="type"></span>
         </span>
     <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._bizs_DisableLogic_DisableLogic.js.html#l142"><code>..&#x2F;bizs&#x2F;DisableLogic&#x2F;DisableLogic.js:142</code></a>
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method_selector">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l84"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:84</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取 显示 DisableLogic 的触发源选择器, 比如 a 标签</p>
+        <p>获取 显示 BaseMVC 的触发源选择器, 比如 a 标签</p>
     </div>
         <div class="returns">
             <h4>Returns:</h4>
@@ -324,7 +360,7 @@
             </div>
         </div>
 </div>
-                    <div id="method_trigger" class="method item">
+                    <div id="method_trigger" class="method item inherited">
     <h3 class="name"><code>trigger</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
@@ -337,9 +373,9 @@
             <span class="type"></span>
         </span>
     <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._bizs_DisableLogic_DisableLogic.js.html#l156"><code>..&#x2F;bizs&#x2F;DisableLogic&#x2F;DisableLogic.js:156</code></a>
+                <p>Inherited from
+                <a href="../classes/JC.BaseMVC.html#method_trigger">JC.BaseMVC</a>:
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l98"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:98</code></a>
         </p>
     </div>
     <div class="description">
@@ -359,7 +395,7 @@
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                    DisableLogicInstance
+                    BaseMVCInstance
             </div>
         </div>
 </div>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>Open JQuery Components Library - suches</title>
+        <style>
+            body{
+                margin: 20px 40px;
+            }
+
+            dt { font-weight: bold; margin: 10px auto; }
+            dd { line-height: 24px; }
+
+            table
+            {  
+              background-color: #FFFFFF !important;
+              border-collapse: collapse;
+              border: 1px solid #999999;
+            }
+
+            td
+            , th
+            {  
+              border-top: 1px solid #999999;
+              border-right: 1px solid #999999; 
+              border-collapse: collapse;
+              padding: 2px;
+            }
+
+            .green{ color: green; }
+            .red{ color: red; }
+        </style>
+        <script src="../../../lib.js"></script>
+        <link href='../../../comps/Valid/res/default/style.css' rel='stylesheet' />
+        <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
+        <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
+        <script>
+            JC.debug = true;
+
+            JC.use( 'Bizs.FormLogic, Bizs.DisableLogic, Bizs.CommonModify, Bizs.MonthDay' );
+
+            function formBeforeProcess( _evt, _ins ){
+                var _form = $(this);
+                JC.log( 'formBeforeProcess', new Date().getTime() );
+            }
+
+            function formAfterProcess( _evt, _ins ){
+                var _form = $(this);
+                JC.log( 'formAfterProcess', new Date().getTime() );
+                //return false;
+            }
+
+            var TPL_COUNT = 1000;
+            function deleteFilterSubPrice( _tpl ){
+                return printf( _tpl, TPL_COUNT++ );
+            }
+
+        </script>
+    </head>    
+    <body>
+
+        <dl class="defdl">
+            <dt>Bizs.MonthDay, example 1</dt>
+            <dd>
+
+            <form action="./data/handler.php" method="POST" class="js_autoFormLogic" formType="ajax" formAjaxDoneAction="?donetype=ajax" >
+                <div class="tit-1">排期详情：</div>
+                <div class="ht10"></div>
+                <div class="frm-list">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <label><span class="gray">位置：</span></label>
+                                </th>
+                                <td>
+                                    <select class="sel sel-w126" name="">
+                                        <option value="">可选位置</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label><span class="gray">总价：</span></label> 
+                                </th>
+                                <td>
+                                    <input type="text" class="ipt" name="" datatype="n-8.2" maxvalue="99999999.99" minvalue="0.01" errmsg="金额范围0.01~99999999.99" reqmsg="总价"> 
+                                    <em class="error"></em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label><span class="gray">折扣：</span></label>
+                                </th>
+                                <td>
+                                    <input type="text" class="ipt" name="" reqmsg="折扣" errmsg="请填写正确的数值范围" focusmsg="数值范围： 0~100" datatype="n-3.2" minvalue="0" maxvalue="100">&nbsp; %
+
+                                    <em class="error"></em>
+                                    <em class="focusmsg"></em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <span class="gray">折后价格：</span>
+                                    </label>
+                                </th>
+                                <td>
+                                    sdf 元
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <span class="gray">选择月份：</span>
+                                    </label>
+                                </th>
+                                <td>
+                                    <button type="button" value="" multidate="month" multiselect="true" class="btn btn-6 js_autoMonthDay"
+                                        >选择月份</button>
+                                    <div class="js_monthDayLs">
+                                    </div>
+
+                                    <em class="error"></em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <span class="gray">广告形式：</span>
+                                    </label>
+                                </th>
+                                <td>
+                                    <input type="text" class="ipt ipt-w320" name="" reqmsg="广告形式">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <a href="javascript:;" class="green js_autoCommonModify" 
+                                        cmtemplate="#positionTpl" 
+                                        cmitem="<tr" 
+                                        cmtplfiltercallback="deleteFilterSubPrice" 
+                                        cmaction="add"
+                                    >+ 添加位置</a>
+                                    <em class="erro"></em>
+                                </td>
+                            </tr>
+                            <tr><th><label><span class="gray">所有位置总价格：</span></label></th><td>asdff 元</td></tr><tr><th><label><span class="gray">上下线邮件确认：</span></label></th><td><div class="add-list"><p><input type="file" class="file-1">&nbsp;</p></div></td></tr><tr><th></th><td><button type="submit" class="btn btn-1">提交</button>&nbsp;&nbsp;<button type="button" class="btn btn-2">取消</button></td></tr></tbody></table></div></form>
+
+            </dd>
+        </dl>
+
+        <script id="positionTpl" type="text/template" >
+            <tr class="js_item_{0}">
+                <td colspan="2">
+                    <div class="line"></div>
+                </td>
+            </tr>
+            <tr  class="js_item_{0}">
+                <th>
+                    <label><span class="gray">位置：</span></label>
+                </th>
+                <td>
+                    <select class="sel sel-w126" name="">
+                        <option value="">可选位置</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="js_item_{0}" >
+                <th>
+                    <label><span class="gray">总价：</span></label> 
+                </th>
+                <td>
+                    <input type="text" class="ipt" name=""
+                    datatype="n-8.2"
+                    maxvalue="99999999.99"
+                    minvalue="0.01"
+                    errmsg="金额范围0.01~99999999.99"
+                    reqmsg="总价"
+                    >
+                    <em class="error"></em>
+                </td>
+            </tr>
+            <tr class="js_item_{0}" >
+                <th>
+                    <label><span class="gray">折扣：</span></label>
+                </th>
+                <td>
+                    <input type="text" class="ipt" name="" 
+                    reqmsg="折扣" 
+                    errmsg="请填写正确的数值范围" 
+                    focusmsg="数值范围： 0~100" 
+                    datatype="n-3.2" 
+                    minvalue="0" 
+                    maxvalue="100"
+                    reqmsg="折扣">&nbsp; %
+                    <em class="error" ></em>
+                    <em class="focusmsg"></em>
+                </td>
+            </tr>
+            <tr class="js_item_{0}" >
+                <th>
+                    <label>
+                        <span class="gray">折后价格：</span>
+                    </label>
+                </th>
+                <td>
+                    sdf 元
+                </td>
+            </tr>
+            <tr class="js_item_{0}" >
+                <th>
+                    <label>
+                        <span class="gray"></span>
+                    </label>
+                </th>
+                <td >
+                    <button type="button" value="2013-02-02" 
+                        datatype="month" 
+                        multiselect="true" 
+                        class="btn btn-5">
+                        选择月份</button>
+                </td>
+            </tr>
+            <tr class="js_item_{0}">
+                <th>
+                    <label>
+                        <span class="gray">广告形式：</span>
+                    </label>
+                </th>
+                <td >
+                    <input type="text" class="ipt ipt-w320" name=""
+                    reqmsg="广告形式"
+                    errmsg="最大长度120个字符"
+                    maxleng="120">
+                    <em class="error"></em>
+                </td>
+            </tr>
+            <tr class="js_item_{0}">
+                <th></th>
+                <td >
+                    <a href="javascript:;" class="green js_autoCommonModify"
+                        cmtemplate="#positionTpl"
+                        cmitem="<tr"
+                            cmtplfiltercallback="deleteFilterSubPrice"
+                            cmaction="add">+ 添加位置</a> &nbsp;
+                        <a href="javascript:;" class="red js_autoCommonModify"
+                            cmtemplate="#positionTpl"
+                            cmitem="tr.js_item_{0}"
+                            cmaction="del">- 删除位置</a>
+                    </td>
+                </tr>
+            </script>
+
+        </body>
+    </html>
+

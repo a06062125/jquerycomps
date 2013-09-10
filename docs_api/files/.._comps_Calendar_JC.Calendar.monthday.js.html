@@ -121,6 +121,8 @@
             
                 <li><a href="../classes/window.Bizs.KillISPCache.html">window.Bizs.KillISPCache</a></li>
             
+                <li><a href="../classes/window.Bizs.MonthDay.html">window.Bizs.MonthDay</a></li>
+            
                 <li><a href="../classes/window.Bizs.MultiDate.html">window.Bizs.MultiDate</a></li>
             
                 <li><a href="../classes/window.JC.html">window.JC</a></li>
@@ -488,7 +490,10 @@
 		}
 
         for( var i = 0, j = _dateo.multidate.length; i &lt; j; i++ ){
-            isSameDay( _dateo.multidate[i].start, _tempDate ) &amp;&amp; _class.push( &#x27;cur&#x27; );
+            if( isSameDay( _dateo.multidate[i].start, _tempDate ) ){ 
+                _class.push( &#x27;cur&#x27; );
+                break;
+            }
         }
 
 		return _class;

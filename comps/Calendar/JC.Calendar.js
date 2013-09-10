@@ -849,14 +849,15 @@
         , defaultMultiselectDate:
             function( _r ){
                 var _p = this
-                    , _selector = _p.selector()
+                    , _selector = Calendar.lastIpt
                     , _tmp
                     , _multidatear
                     , _dstart, _dend
                     ;
 
-                    if( _selector.val() && (_tmp = _selector.val().replace( /[^\d]/g, '' ) ).length ){
-                        _tmp = _tmp.split(',');
+                    if( _selector.val() ){
+                        //JC.log( 'defaultMultiselectDate:', _p.selector().val(), ', ', _tmp );
+                        _tmp = _selector.val().trim().replace(/[^\d,]/g, '').split(',');
                         _multidatear = [];
 
                         $.each( _tmp, function( _ix, _item ){
@@ -880,6 +881,7 @@
                                 _multidatear.push( { 'start': _dstart, 'end': _dend } );
                             }
                         });
+                        //alert( _multidatear + ', ' + _selector.val() );
 
                         _r.multidate = _multidatear;
 
@@ -1169,8 +1171,12 @@
         , _buildLayout:
             function( _dateo ){
                 this._model.layout();
+                
+
+                //JC.log( '_buildBody: \n', JSON.stringify( _dateo ) );
 
                 if( !( _dateo && _dateo.date ) ) return;
+
                 this._buildHeader( _dateo );
                 this._buildBody( _dateo );
                 this._buildFooter( _dateo );

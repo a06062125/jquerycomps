@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../comps/ExampleClass/ExampleClass.js - jquery components</title>
+    <title>../bizs/MonthDay/MonthDay.js - jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -170,162 +170,96 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../comps/ExampleClass/ExampleClass.js</h1>
+                        <h1 class="file-heading">File: ../bizs/MonthDay/MonthDay.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 ;(function($){
-    window.ExampleClass = JC.ExampleClass = ExampleClass;
     /**
-     * ExampleClass 模板类
-     * &lt;br /&gt;要新建一个组件时, 直接 copy ExampleClass 组件改一下命名就可以开始编码了
-     * &lt;dl&gt;
-     *      &lt;dd&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/dd&gt;
-     * &lt;/dl&gt;
+     * 多选月份和多选日期 复合使用
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
-     * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.ExampleClass.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
-     * | &lt;a href=&#x27;../../comps/ExampleClass/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
-     * @namespace JC
-     * @class ExampleClass
-     * @constructor
-     * @param   {selector|string}   _selector   
-     * @version dev 0.1
+     * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/window.Bizs.MonthDay.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+     * | &lt;a href=&#x27;../../bizs/MonthDay/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+     * require: &lt;a href=&#x27;../classes/window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;
+     * &lt;br/&gt;require: &lt;a href=&#x27;../classes/JC.Calendar.html&#x27;&gt;JC.Calendar&lt;/a&gt;
+     * &lt;br/&gt;require: &lt;a href=&#x27;../classes/Bizs.DisableLogic.html&#x27;&gt;Bizs.DisableLogic&lt;/a&gt;
+     *
+     * &lt;h2&gt;可用的 HTML 属性&lt;/h2&gt;
+     * &lt;dl&gt;&lt;/dl&gt;
+     * @namespace       window.Bizs
+     * @class           MonthDay
+     * @extends         JC.BaseMVC
+     * @constructor 
+     * @version dev 0.1 2013-09-10
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 Team
-     * @date    2013-07-20
-     * @example
      */
-    function ExampleClass( _selector ){
-        if( ExampleClass.getInstance( _selector ) ) return ExampleClass.getInstance( _selector );
-        ExampleClass.getInstance( _selector, this );
+    Bizs.MonthDay = MonthDay;
+    function MonthDay( _selector ){
+        _selector &amp;&amp; ( _selector = $( _selector ) );
+        if( MonthDay.getInstance( _selector ) ) return MonthDay.getInstance( _selector );
+        MonthDay.getInstance( _selector, this );
 
-        this._model = new Model( _selector );
-        this._view = new View( this._model );
+        this._model = new MonthDay.Model( _selector );
+        this._view = new MonthDay.View( this._model );
 
-        this._init();
+        this._init( );
     }
     
-    ExampleClass.prototype = {
-        _init:
-            function(){
-                $( [ this._view, this._model ] ).on(&#x27;BindEvent&#x27;, function( _evt, _evtName, _cb ){
-                    _p.on( _evtName, _cb );
-                });
+    !JC.Calendar &amp;&amp; JC.use( &#x27;Calendar&#x27; );
 
-                $([ this._view, this._model ] ).on(&#x27;TriggerEvent&#x27;, function( _evt, _evtName ){
-                    var _data = sliceArgs( arguments ); _data.shift(); _data.shift();
-                    _p.trigger( _evtName, _data );
-                });
-
-                this._model.init();
-                this._view.init();
-
-                return this;
-            }    
-        /**
-         * 显示 ExampleClass
-         * @method  show
-         * @return  ExampleClassInstance
-         */
-        , show: function(){ this._view.show(); return this; }
-        /**
-         * 隐藏 ExampleClass
-         * @method  hide
-         * @return  ExampleClassInstance
-         */
-        , hide: function(){ this._view.hide(); return this; }
-        /**
-         * 获取 显示 ExampleClass 的触发源选择器, 比如 a 标签
-         * @method  selector
-         * @return  selector
-         */ 
-        , selector: function(){ return this._model.selector(); }
-        /**
-         * 获取 ExampleClass 外观的 选择器
-         * @method  layout
-         * @return  selector
-         */
-        , layout: function(){ return this._model.layout(); }
-        /**
-         * 使用 jquery on 绑定事件
-         * @method  {string}    on
-         * @param   {string}    _evtName
-         * @param   {function}  _cb
-         * @return  ExampleClassInstance
-         */
-        , on: function( _evtName, _cb ){ $(this).on(_evtName, _cb ); return this;}
-        /**
-         * 使用 jquery trigger 绑定事件
-         * @method  {string}    trigger
-         * @param   {string}    _evtName
-         * @return  ExampleClassInstance
-         */
-        , trigger: function( _evtName, _data ){ $(this).trigger( _evtName, _data ); return this;}
-    }
     /**
-     * 获取或设置 ExampleClass 的实例
-     * @method getInstance
-     * @param   {selector}      _selector
+     * 处理 form 或者 _selector 的所有form.js_autoMonthDay
+     * @method  init
+     * @param   {selector}  _selector
+     * @return  {Array}     Array of MonthDayInstance
      * @static
-     * @return  {ExampleClass instance}
      */
-    ExampleClass.getInstance =
-        function( _selector, _setter ){
-            if( typeof _selector == &#x27;string&#x27; &amp;&amp; !/&lt;/.test( _selector ) ) 
-                    _selector = $(_selector);
-            if( !(_selector &amp;&amp; _selector.length ) || ( typeof _selector == &#x27;string&#x27; ) ) return;
-            typeof _setter != &#x27;undefined&#x27; &amp;&amp; _selector.data( &#x27;ExampleClassIns&#x27;, _setter );
-
-            return _selector.data(&#x27;ExampleClassIns&#x27;);
-        };
-    /**
-     * 判断 selector 是否可以初始化 ExampleClass
-     * @method  isExampleClass
-     * @param   {selector}      _selector
-     * @static
-     * @return  bool
-     */
-    ExampleClass.isExampleClass =
+    MonthDay.init =
         function( _selector ){
-            var _r;
-            _selector 
-                &amp;&amp; ( _selector = $(_selector) ).length 
-                &amp;&amp; ( _r = _selector.is( &#x27;[ExampleClasslayout]&#x27; ) );
+            var _r = [];
+            _selector &amp;&amp; ( _selector = $( _selector ) );
+            if( !( _selector &amp;&amp; _selector.length ) ) return;
+            if( _selector.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;form&#x27; ){
+                _r.push( new MonthDay( _selector ) );
+            }else{
+                _selector.find(&#x27;form.js_autoMonthDay&#x27;).each( function(){
+                    _r.push( new MonthDay( this  ) );
+                });
+            }
             return _r;
         };
-    
-    function Model( _selector ){
-        this._selector = _selector;
-    }
-    
-    Model.prototype = {
-        init:
+
+    MonthDay.prototype = {
+        _beforeInit:
             function(){
-                return this;
+                JC.log( &#x27;MonthDay._beforeInit&#x27;, new Date().getTime() );
             }
-
-        , selector: function(){ return this._selector; }
-        , layout: function(){}
-    };
-    
-    function View( _model ){
-        this._model = _model;
-    }
-    
-    View.prototype = {
-        init:
-            function() {
-                return this;
-            }
-
-        , hide:
-            function(){
-            }
-
-        , show:
+        , _initHanlderEvent:
             function(){
             }
     };
 
+    JC.BaseMVC.buildModel( MonthDay );
+
+    MonthDay.Model._instanceName = &#x27;MonthDayIns&#x27;;
+
+    MonthDay.Model.prototype = {
+        init:
+            function(){
+            }
+    };
+
+    JC.BaseMVC.buildView( MonthDay );
+    MonthDay.View.prototype = {
+    };
+
+    JC.BaseMVC.build( MonthDay, &#x27;Bizs&#x27; );
+
+    $(document).ready( function(){
+        setTimeout( function(){
+            MonthDay.autoInit &amp;&amp; MonthDay.init( $(document) );
+        }, 1 );
+    });
 
 }(jQuery));
 
