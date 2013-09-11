@@ -37,7 +37,7 @@
         <script>
             JC.debug = true;
 
-            JC.use( 'Bizs.FormLogic, Bizs.DisableLogic, Bizs.CommonModify, Bizs.MonthDay' );
+            JC.use( 'Calendar, Bizs.FormLogic, Bizs.DisableLogic, Bizs.CommonModify' );
 
             function formBeforeProcess( _evt, _ins ){
                 var _form = $(this);
@@ -53,6 +53,43 @@
             var TPL_COUNT = 1000;
             function deleteFilterSubPrice( _tpl ){
                 return printf( _tpl, TPL_COUNT++ );
+            }
+
+            function addMonthDayCallabck( _ins, _newItem ){
+                var _dl = getJqParent( _newItem, 'dl' ), _items = _dl.find('> dd');
+                JC.log( 'cmaddcallback', new Date().getTime() );
+
+                var _maxDate;
+                _items.length < 2 && ( _maxDate = new Date() );
+
+                _dl.find( 'input[multidate=monthday]' ).each( function(){
+                    var _p = $(this), _date = new Date();
+
+                    _p.is( '[defaultdate]' ) && ( _date = parseISODate( _p.attr('defaultdate') ) );
+                    if( _p.val().trim() ){
+                        _date = parseISODate( _p.val().replace( /[^\d]/g, '' ).slice( 0, 8 ) );
+                    }
+
+                    !_maxDate && ( _maxDate = _date );
+
+                    _date.getTime() > _maxDate.getTime() && ( _maxDate = _date ); 
+                });
+                _maxDate.setMonth( _maxDate.getMonth() + 1 );
+
+                _newItem.find('input[multidate=monthday]')
+                    .attr('defaultdate', formatISODate( _maxDate ) )
+                    .attr('placeholder', printf( '{0}年 {1}月', _maxDate.getFullYear(), _maxDate.getMonth() + 1 ) );
+                    ;
+            }
+
+            function addPositionCallback( _ins, _newItem ){
+                _newItem.each( function(){
+                    var _tmp = $(this), _ipt = _tmp.find('input[multidate=monthday]');
+                    if( !_ipt.length ) return;
+                    addMonthDayCallabck( _ins, getJqParent( _ipt, 'dd' ) );
+                    //alert( getJqParent( _ipt, 'dd' ).html() );
+                    return false;
+                });
             }
 
         </script>
@@ -120,26 +157,21 @@
                                     </label>
                                 </th>
                                 <td>
-                                    <div>
-                                        <button type="button" value="" 
-                                            multidate="month" 
-                                            multiselect="true" 
-                                            class="btn btn-6 js_bizsMonthDay"
-                                            bmdbox="/dl.js_monthDayLs"
-                                            bmdtpl="#monthDayLsTpl"
-                                            >选择月份</button>
-                                    </div>
                                     <dl class="js_monthDayLs">
                                         <dd>
                                         <input type="text" name="monthday" size="80" 
-                                            class="js_minDate" 
+                                            class="ipt" 
                                             multidate="monthday" 
                                             reqmsg=" 请选择日期"
+                                            maxlength="500"
                                             />
-                                            <a href="javascript:;" class="red js_autoCommonModify" 
-                                                cmitem="<dd" 
-                                                cmaction="del"
-                                            >+ 删除</a>
+                                            <a href="javascript:;" class="green js_autoCommonModify" 
+                                                cmitem="<dl" 
+                                                cmappendtype="appendTo"
+                                                cmaction="add"
+                                                cmtemplate="#monthDayLsTpl"
+                                                cmaddcallback="addMonthDayCallabck"
+                                            >+ 添加</a>
                                             <em class="error"></em>
                                         </dd>
                                     </dl>
@@ -164,6 +196,7 @@
                                         cmitem="<tr" 
                                         cmtplfiltercallback="deleteFilterSubPrice" 
                                         cmaction="add"
+                                        cmaddcallback="addPositionCallback"
                                     >+ 添加位置</a>
                                     <em class="erro"></em>
                                 </td>
@@ -175,11 +208,19 @@
 
         <script id="monthDayLsTpl" type="text/template" >
             <dd>
-            <input type="text" name="monthday" size="80" 
-                class="js_minDate" 
-                multidate="monthday" 
-                reqmsg=" 请选择日期"
-                />
+                <input type="text" name="monthday" size="80" 
+                    class="js_minDate" 
+                    multidate="monthday" 
+                    reqmsg=" 请选择日期"
+                    maxlength="500"
+                /><input type="button" class="UXCCalendar_btn" />
+                <a href="javascript:;" class="green js_autoCommonModify" 
+                    cmitem="<dl" 
+                    cmappendtype="appendTo"
+                    cmaction="add"
+                    cmtemplate="#monthDayLsTpl"
+                    cmaddcallback="addMonthDayCallabck"
+                >+ 添加</a>
                 <a href="javascript:;" class="red js_autoCommonModify" 
                     cmitem="<dd" 
                     cmaction="del"
@@ -253,11 +294,29 @@
                     </label>
                 </th>
                 <td >
-                    <button type="button" value="2013-02-02" 
-                        datatype="month" 
-                        multiselect="true" 
-                        class="btn btn-5">
-                        选择月份</button>
+                    <dl>
+                        <dd>
+                        <input type="text" name="monthday" size="80" 
+                            class="js_minDate" 
+                            multidate="monthday" 
+                            reqmsg=" 请选择日期"
+                            maxlength="500"
+                            
+                        /><input type="button" class="UXCCalendar_btn" />
+                        <a href="javascript:;" class="green js_autoCommonModify" 
+                            cmitem="<dl" 
+                            cmappendtype="appendTo"
+                            cmaction="add"
+                            cmtemplate="#monthDayLsTpl"
+                            cmaddcallback="addMonthDayCallabck"
+                        >+ 添加</a>
+                        <a href="javascript:;" class="red js_autoCommonModify" 
+                            cmitem="<dd" 
+                            cmaction="del"
+                        >+ 删除</a>
+                        <em class="error"></em>
+                    </dd>
+                 </dl>
                 </td>
             </tr>
             <tr class="js_item_{0}">
@@ -270,7 +329,7 @@
                     <input type="text" class="ipt ipt-w320" name=""
                     reqmsg="广告形式"
                     errmsg="最大长度120个字符"
-                    maxleng="120">
+                    maxlength="120">
                     <em class="error"></em>
                 </td>
             </tr>

@@ -684,8 +684,8 @@
            _selector.each( function(){
                 var _p = $(this), _nodeName = (_p.prop('nodeName')||'').toLowerCase();
 
-                if( _nodeName != 'input' ){ 
-                    Calendar.initTrigger( _selector.find( $('input[type=text]') ) ); 
+                if( _nodeName != 'input' && _nodeName != 'textarea' ){ 
+                    Calendar.initTrigger( _selector.find( 'input[type=text], textarea' ) ); 
                     return; 
                 }
 
@@ -1458,9 +1458,14 @@
      * @private
      */
     $(document).delegate( 'input.UXCCalendar_btn', 'click', function($evt){
-        $(this).data( Calendar.Model.INPUT ) 
-            && !$(this).data( Calendar.Model.INPUT ).is('[disabled]')
-            && Calendar.pickDate( $(this).data( Calendar.Model.INPUT ) );
+        var _p = $(this), _tmp;
+        if( !_p.data( Calendar.Model.INPUT ) ){
+            _tmp = _p.prev( 'input[type=text], textarea' );
+            _tmp.length && _p.data( Calendar.Model.INPUT, _tmp );
+        }
+        _p.data( Calendar.Model.INPUT ) 
+            && !_p.data( Calendar.Model.INPUT ).is('[disabled]')
+            && Calendar.pickDate( _p.data( Calendar.Model.INPUT ) );
     });
     /**
      * 日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏
@@ -1483,7 +1488,7 @@
          */
         setTimeout( function( $evt ){
             if( !Calendar.autoInit ) return;
-            Calendar.initTrigger( $('input[type=text]') );
+            Calendar.initTrigger( $(document) );
         }, 200 );
         /**
          * 监听窗口滚动和改变大小, 实时变更日历组件显示位置
@@ -1507,7 +1512,10 @@
 
             if( Calendar.isCalendar($evt.target||$evt.targetElement) ) return;
 
-            if( _src && ( _src.nodeName.toLowerCase() != 'input' && _src.nodeName.toLowerCase() != 'button' ) ){
+            if( _src && ( _src.nodeName.toLowerCase() != 'input'
+                    && _src.nodeName.toLowerCase() != 'button' 
+                    && _src.nodeName.toLowerCase() != 'textarea' 
+                    ) ){
                 Calendar.hide(); return;
             }
 
@@ -1531,6 +1539,10 @@
     });
     $(document).delegate( [ 'button[datatype=season]', 'button[datatype=month]', 'button[datatype=week]'
             , 'button[datatype=date]', 'button[datatype=daterange]', 'button[multidate], button[datatype=monthday]' ].join(), 'click' , function($evt){
+            Calendar.pickDate( this );
+    });
+    $(document).delegate( [ 'textarea[datatype=season]', 'textarea[datatype=month]', 'textarea[datatype=week]'
+            , 'textarea[datatype=date]', 'textarea[datatype=daterange]', 'textarea[multidate], textarea[datatype=monthday]' ].join(), 'click' , function($evt){
             Calendar.pickDate( this );
     });
 }(jQuery));
