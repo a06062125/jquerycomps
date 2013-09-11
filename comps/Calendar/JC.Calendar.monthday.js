@@ -125,18 +125,41 @@
             if( !_r.length ){
                 _r = $( printf( JC.Calendar.monthdayTpl || this.tpl, JC.Calendar.monthdayHeadAppendText ) ).hide();
                 _r.attr('id', 'UXCCalendar_monthday').hide().appendTo( document.body );
+
+                var _month = $( [
+                            '<option value="0">一月</option>'
+                            , '<option value="1">二月</option>'
+                            , '<option value="2">三月</option>'
+                            , '<option value="3">四月</option>'
+                            , '<option value="4">五月</option>'
+                            , '<option value="5">六月</option>'
+                            , '<option value="6">七月</option>'
+                            , '<option value="7">八月</option>'
+                            , '<option value="8">九月</option>'
+                            , '<option value="9">十月</option>'
+                            , '<option value="10">十一月</option>'
+                            , '<option value="11">十二月</option>'
+                        ].join('') ).appendTo( _r.find('select.UMonth' ) );
+
              }
             return _r;
         };
 		
 	MonthDayModel.prototype.tpl =
         [
-        '<div id="UXCCalendar_monthday" class="UXCCalendar UXCCalendar_monthday" >'
+        '<div id="UXCCalendar_monthday" class="UXCCalendar UXCCalendar_week UXCCalendar_monthday" >'
         ,'    <div class="UHeader">'
+        ,'        <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>'
+        ,'        <select class="UYear" style=""></select>'
+        ,'        <select class="UMonth"></select>'
+        ,'        {0}'
+        ,'        <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>'
+        /*
         ,'       <span class="UYear">'
         ,'       </span>年'
         ,'       <span class="UMonth">'
         ,'       </span>月{0}'
+        */
         ,'    </div>'
         ,'    <table class="UTable UTableBorder">'
         ,'        <tbody></tbody>'
@@ -150,10 +173,6 @@
         ].join('');
 
     MonthDayModel.prototype.multiselect = function(){ return true; };
-
-    MonthDayModel.prototype.multiLayoutDate = 
-    	function (){
-    	};
 
     MonthDayModel.prototype.multiselectDate =
         function(){
@@ -211,6 +230,10 @@
             }
 
             if( !_text ) return;
+            if( _tmp.length ){
+                _p._model.selector().attr('placeholder', printf( '{0}年 {1}', _tmp[0].getFullYear(), _tmp[0].getMonth() + 1 ) );
+                _p._model.selector().attr('defaultdate', formatISODate( _tmp[0] ) );
+            }
 
             _p._model.selector().val( _text );
             $(_p).trigger( 'TriggerEvent', [ JC.Calendar.Model.UPDATE, 'monthday', _tmp ] );
@@ -218,6 +241,7 @@
             JC.Calendar.hide();
         };
 	
+    /*
 	MonthDayView.prototype._buildHeader = 
 		function( _dateo ){
 			var _p = this, 
@@ -226,10 +250,11 @@
 			var year = _dateo.date.getFullYear(),
 				month = _dateo.date.getMonth() + 1;
 			
-			_layout.find('div.UHeader span.UYear').html(year);
-			_layout.find('div.UHeader span.UMonth').html(month);
+			//_layout.find('div.UHeader span.UYear').html(year);
+			//_layout.find('div.UHeader span.UMonth').html(month);
 				
 		};
+   */
 
     MonthDayModel.prototype.fixedDate =
         function( _dateo ){
@@ -240,6 +265,10 @@
                         _tmpDate = cloneDate( _dateo.multidate[0].start )
                         //, _tmpDate.setDate( 1 )
                         , _lastIpt.attr('defaultdate', formatISODate( _tmpDate ) )
+                        /*
+                        , !_lastIpt.is( '[placeholder]' ) 
+                            && _lastIpt.attr('placeholder', printf( '{0}年 {1}月', _tmpDate.getFullYear(), _tmpDate.getMonth() + 1 ) )
+                       */
                     )
                 ;
         };

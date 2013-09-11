@@ -700,9 +700,33 @@
                 if( !_btn.length ){
                     _p.after( _btn = $('<input type="button" class="UXCCalendar_btn"  />') );
                 }
+
+                if( ( _p.attr('datatype') || '' ).toLowerCase() == 'monthday'
+                    || ( _p.attr('multidate') || '' ).toLowerCase() == 'monthday' ){
+                    if( !_p.is('[placeholder]') ){
+                        var _tmpDate = new Date();
+                        _p.attr('defaultdate') && ( _tmpDate = parseISODate( _p.attr('defaultdate') ) || _tmpDate );
+                        _p.val().trim() && ( _tmpDate = parseISODate( _p.val().replace( /[^d]/g, '').slice( 0, 8 ) ) || _tmpDate );
+                        _tmpDate && _p.attr( 'placeholder', printf( '{0}年 {1}月', _tmpDate.getFullYear(), _tmpDate.getMonth() + 1 ) );
+                    }
+                }
+
                 _btn.data( Calendar.Model.INPUT, _p );
             });
         };
+
+    Calendar.updateMultiYear =
+        function ( _date, _offset ){
+            var _day, _max;
+            _day = _date.getDate();
+            _date.setDate( 1 );
+            _date.setFullYear( _date.getFullYear() + _offset );
+            _max = maxDayOfMonth( _date );
+            _day > _max && ( _day = _max );
+            _date.setDate( _day );
+            return _date;
+        };
+
     /**
      * 克隆 Calendar 默认 Model, View 的原型属性
      * @method  clone
@@ -925,6 +949,43 @@
         , multiLayoutDate:
             function(){
                 JC.log( 'Calendar.Model multiLayoutDate', new Date().getTime() );
+                var _p = this
+                    , _dateo = _p.defaultDate()
+                    , _year = _p.year()
+                    , _month = _p.month()
+                    , _monthSel = _p.layout().find('select.UMonth')
+                    ;
+
+                _dateo.multidate = [];
+
+                _p.layout().find('td.cur').each(function(){
+                    var _sp = $(this);
+                    var _item = _sp.find('> a[dstart]'), _dstart = new Date(), _dend = new Date();
+                    _dstart.setTime( _item.attr('dstart') );
+                    _dend.setTime( _item.attr('dend') );
+                    _dateo.multidate.push( { 'start': _dstart, 'end': _dend } );
+                });
+
+                _dateo.date.setFullYear( _year );
+                _dateo.enddate.setFullYear( _year );
+
+                if( _monthSel.length ){
+                    _dateo.date.setMonth( _month );
+                    _dateo.enddate.setMonth( _month );
+                }
+
+
+                $.each( _dateo.multidate, function( _ix, _item ){
+                    _item.start.setFullYear( _year );
+                    _item.end.setFullYear( _year );
+                    if( _monthSel.length ){
+                        _item.start.setMonth( _month );
+                        _item.end.setMonth( _month );
+                    }
+                });
+
+                return _dateo;
+
             }
         , selectedDate:
             function(){
@@ -1063,6 +1124,7 @@
         this._model = _model;
     }
     Calendar.View = View;
+
     
     View.prototype = {
         init:
@@ -1097,7 +1159,6 @@
                     ? this.updateMultiYear( _offset )
                     : this.updateSingleYear( _offset )
                     ;
-
             }
         , updateSingleYear:
             function( _offset ){
@@ -1112,10 +1173,48 @@
             }
         , updateMultiYear:
             function( _offset ){
+                var _dateo = this._model.layoutDate(), _day, _max;
+
+                JC.Calendar.updateMultiYear( _dateo.date, _offset );
+                JC.Calendar.updateMultiYear( _dateo.enddate, _offset );
+
+                if( _dateo.multidate ){
+                    $.each( _dateo.multidate, function( _ix, _item ){
+                        JC.Calendar.updateMultiYear( _item.start, _offset );
+                        JC.Calendar.updateMultiYear( _item.end, _offset );
+                    });
+                }
+                this._buildLayout( _dateo );
+                this._buildDone();
             }
         , updateMonth:
             function( _offset ){
                 if( typeof _offset == 'undefined' || _offset == 0 ) return;
+
+                this._model.multiselect() 
+                    ? this.updateMultiMonth( _offset )
+                    : this.updateSingleMonth( _offset )
+                    ;
+            }
+        , updateMultiMonth:
+            function( _offset ){
+                var _dateo = this._model.layoutDate(), _day, _max;
+
+                JC.Calendar.updateMultiMonth( _dateo.date, _offset );
+                JC.Calendar.updateMultiMonth( _dateo.enddate, _offset );
+
+                if( _dateo.multidate ){
+                    $.each( _dateo.multidate, function( _ix, _item ){
+                        JC.Calendar.updateMultiMonth( _item.start, _offset );
+                        JC.Calendar.updateMultiMonth( _item.end, _offset );
+                    });
+                }
+                this._buildLayout( _dateo );
+                this._buildDone();
+                alert(22);
+            }
+        , updateSingleMonth:
+            function(){
                 var _dateo = this._model.layoutDate(), _day = _dateo.date.getDate(), _max;
                 _dateo.date.setDate( 1 );
                 _dateo.date.setMonth( _dateo.date.getMonth() + _offset );
@@ -1124,7 +1223,6 @@
                 _dateo.date.setDate( _day );
                 this._buildLayout( _dateo );
                 this._buildDone();
-                //JC.log( 'updateMonth:', _offset, formatISODate( _dateo.date ) );
             }
         , updateSelected:
             function( _userSelectedItem ){
@@ -1259,7 +1357,7 @@
      * @event year change
      * @private
      */
-    $(document).delegate( 'body > div.UXCCalendar select.UYear, #UXCCalendar select.UMonth', 'change', function( $evt ){
+    $(document).delegate( 'body > div.UXCCalendar select.UYear, body > div.UXCCalendar select.UMonth', 'change', function( $evt ){
         Calendar.getInstance( Calendar.lastIpt )
             && Calendar.getInstance( Calendar.lastIpt ).updateLayout();
     });

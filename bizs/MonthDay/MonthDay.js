@@ -26,7 +26,7 @@
         this._model = new MonthDay.Model( _selector );
         this._view = new MonthDay.View( this._model );
 
-        this._init( );
+        this._init();
     }
     
     !JC.Calendar && JC.use( 'Calendar' );
@@ -39,16 +39,39 @@
         , _initHanlderEvent:
             function(){
             }
+        , _inited:
+            function(){
+                var _p = this;
+
+                _p._model.fixCalendarCallback();
+
+                window[ _p._model.calendarCallbackName() ] =
+                    function(){
+                    };
+            }
     };
 
     JC.BaseMVC.buildModel( MonthDay );
 
     MonthDay.Model._instanceName = 'MonthDayIns';
+    MonthDay.Model.INS_COUNT = 1;
 
     MonthDay.Model.prototype = {
         init:
             function(){
+                this._id = 'MonthDayIns_' + MonthDay.Model.INS_COUNT;
             }
+        , fixCalendarCallback:
+            function(){
+                var _p = this;
+
+                if( !_p.selector().is('[calendarupdatemultiselect]') ){
+                }
+
+                _p.selector().attr( 'calendarupdatemultiselect', this.calendarCallbackName() );
+            }
+
+        , calendarCallbackName: function(){ return this._id + '_calendarCb'; }
     };
 
     JC.BaseMVC.buildView( MonthDay );

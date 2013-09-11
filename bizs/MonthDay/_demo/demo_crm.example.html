@@ -63,11 +63,15 @@
             <dt>Bizs.MonthDay, example 1</dt>
             <dd>
 
-            <form action="./data/handler.php" method="POST" class="js_autoFormLogic" formType="ajax" formAjaxDoneAction="?donetype=ajax" >
+            <form action="./data/handler.php" method="POST" 
+                class="js_autoFormLogic" 
+                formType="ajax" 
+                formAjaxDoneAction="?donetype=ajax" 
+                >
                 <div class="tit-1">排期详情：</div>
                 <div class="ht10"></div>
                 <div class="frm-list">
-                    <table border="0" cellspacing="0" cellpadding="0" width="600">
+                    <table border="0" cellspacing="0" cellpadding="0" width="980">
                         <tbody>
                             <tr>
                                 <th width="150px">
@@ -116,11 +120,29 @@
                                     </label>
                                 </th>
                                 <td>
-                                    <button type="button" value="" multidate="month" multiselect="true" class="btn btn-6 js_bizsMonthDay"
-                                        >选择月份</button>
-                                    <div class="js_monthDayLs">
+                                    <div>
+                                        <button type="button" value="" 
+                                            multidate="month" 
+                                            multiselect="true" 
+                                            class="btn btn-6 js_bizsMonthDay"
+                                            bmdbox="/dl.js_monthDayLs"
+                                            bmdtpl="#monthDayLsTpl"
+                                            >选择月份</button>
                                     </div>
-
+                                    <dl class="js_monthDayLs">
+                                        <dd>
+                                        <input type="text" name="monthday" size="80" 
+                                            class="js_minDate" 
+                                            multidate="monthday" 
+                                            reqmsg=" 请选择日期"
+                                            />
+                                            <a href="javascript:;" class="red js_autoCommonModify" 
+                                                cmitem="<dd" 
+                                                cmaction="del"
+                                            >+ 删除</a>
+                                            <em class="error"></em>
+                                        </dd>
+                                    </dl>
                                     <em class="error"></em>
                                 </td>
                             </tr>
@@ -150,6 +172,21 @@
 
             </dd>
         </dl>
+
+        <script id="monthDayLsTpl" type="text/template" >
+            <dd>
+            <input type="text" name="monthday" size="80" 
+                class="js_minDate" 
+                multidate="monthday" 
+                reqmsg=" 请选择日期"
+                />
+                <a href="javascript:;" class="red js_autoCommonModify" 
+                    cmitem="<dd" 
+                    cmaction="del"
+                >+ 删除</a>
+                <em class="error"></em>
+            </dd>
+        </script>
 
         <script id="positionTpl" type="text/template" >
             <tr class="js_item_{0}">
