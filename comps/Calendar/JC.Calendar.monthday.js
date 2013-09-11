@@ -150,10 +150,12 @@
         '<div id="UXCCalendar_monthday" class="UXCCalendar UXCCalendar_week UXCCalendar_monthday" >'
         ,'    <div class="UHeader">'
         ,'        <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>'
+        ,'        <button type="button" class="UButton UPreMonth">&nbsp;&nbsp;&lt;&nbsp;&nbsp;</button>'
         ,'        <select class="UYear" style=""></select>'
         ,'        <select class="UMonth"></select>'
         ,'        {0}'
         ,'        <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>'
+        ,'        <button type="button" class="UButton UNextMonth">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</button>'
         /*
         ,'       <span class="UYear">'
         ,'       </span>年'

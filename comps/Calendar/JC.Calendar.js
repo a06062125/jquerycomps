@@ -727,6 +727,19 @@
             return _date;
         };
 
+    Calendar.updateMultiMonth =
+        function ( _date, _offset ){
+            var _day, _max;
+            _day = _date.getDate();
+            _date.setDate( 1 );
+            _date.setMonth( _date.getMonth() + _offset );
+            _max = maxDayOfMonth( _date );
+            _day > _max && ( _day = _max );
+            _date.setDate( _day );
+            return _date;
+        };
+
+
     /**
      * 克隆 Calendar 默认 Model, View 的原型属性
      * @method  clone
@@ -1211,10 +1224,9 @@
                 }
                 this._buildLayout( _dateo );
                 this._buildDone();
-                alert(22);
             }
         , updateSingleMonth:
-            function(){
+            function( _offset ){
                 var _dateo = this._model.layoutDate(), _day = _dateo.date.getDate(), _max;
                 _dateo.date.setDate( 1 );
                 _dateo.date.setMonth( _dateo.date.getMonth() + _offset );
@@ -1409,6 +1421,27 @@
                 , _p.attr("action").toLowerCase() == 'down' && _ins.updateMonth( -1 )
                );
     });
+    /**
+     * 捕获用户更改月份 
+     * <p>监听 下一月按钮</p>
+     * @event next year
+     * @private
+     */
+    $(document).delegate( 'body > div.UXCCalendar button.UNextMonth', 'click', function( $evt ){
+        Calendar.getInstance( Calendar.lastIpt )
+            && Calendar.getInstance( Calendar.lastIpt ).updateMonth( 1 );
+    });
+    /**
+     * 捕获用户更改月份
+     * <p>监听 上一月按钮</p>
+     * @event previous year
+     * @private
+     */
+    $(document).delegate( 'body > div.UXCCalendar button.UPreMonth', 'click', function( $evt ){
+        Calendar.getInstance( Calendar.lastIpt )
+            && Calendar.getInstance( Calendar.lastIpt ).updateMonth( -1 );
+    });
+
     /**
      * 日期点击事件
      * @event date click

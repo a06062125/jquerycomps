@@ -39,22 +39,78 @@
 
             JC.use( 'Calendar, Bizs.FormLogic, Bizs.DisableLogic, Bizs.CommonModify' );
 
-            function formBeforeProcess( _evt, _ins ){
+            /**
+             * 表单提交时未检查前的回调
+             */
+            function formBeforeProcessMonthDay( _evt, _ins ){
                 var _form = $(this);
                 JC.log( 'formBeforeProcess', new Date().getTime() );
             }
 
-            function formAfterProcess( _evt, _ins ){
+            /**
+             * 表单提交时检查通过后的回调
+             */
+            function formAfterProcessMonthDay( _evt, _ins ){
                 var _form = $(this);
                 JC.log( 'formAfterProcess', new Date().getTime() );
                 //return false;
+                if( checkRepeatMonthDay().length ) {
+                    return false;
+                }
+            }
+            /**
+             * 检查一个位置是否重复添加了相同的位置
+             */
+            function checkRepeatMonthDay( _selector ){
+                var _r = [], _inputLs, _box;
+                _selector = $( _selector || 'dl.js_monthDayLs' );
+                if( !_selector.length ) return _r;
+
+                _selector.each( function(){
+                    _box = $(this);
+                    var _data = {}, _pushed = false;
+                    _inputLs = _box.find('input[multidate=monthday]');
+                    if( _inputLs.length < 2 ) return;
+                    _inputLs.each( function(){
+                        var _date = parseISODate( $(this).val().replace( /[^\d]/g, '' ).slice( 0, 8 ) );
+                        if(  !_date ) return;
+                        var _key = printf('{0}_{1}', _date.getFullYear(), _date.getMonth() );
+                        if( _key in _data ){
+                            _data[ _key ].push( $( this ) );
+                            if( !_pushed ){
+                                _r.push( _data );
+                                _pushed = true;
+                            }
+                        }else{
+                            _data[ _key ] = [ $( this ) ];
+                        }
+                    });
+
+                    if( _pushed ){
+                        for( var k in _data ){
+                            $( _data[k] ).each( function(){
+                                JC.Valid.setError( $(this) );
+                            });
+                        }
+                    }else{
+                        for( var k in _data ){
+                            $( _data[k] ).each( function(){
+                                JC.Valid.setValid( $(this) );
+                            });
+                        }
+                    }
+                });
+
+                return _r;
             }
 
             var TPL_COUNT = 1000;
             function deleteFilterSubPrice( _tpl ){
                 return printf( _tpl, TPL_COUNT++ );
             }
-
+            /**
+             * 添加 多选日期控件的回调
+             */
             function addMonthDayCallabck( _ins, _newItem ){
                 var _dl = getJqParent( _newItem, 'dl' ), _items = _dl.find('> dd');
                 JC.log( 'cmaddcallback', new Date().getTime() );
@@ -81,7 +137,9 @@
                     .attr('placeholder', printf( '{0}年 {1}月', _maxDate.getFullYear(), _maxDate.getMonth() + 1 ) );
                     ;
             }
-
+            /**
+             * 添加位置后的回调 
+             */
             function addPositionCallback( _ins, _newItem ){
                 _newItem.each( function(){
                     var _tmp = $(this), _ipt = _tmp.find('input[multidate=monthday]');
@@ -91,6 +149,17 @@
                     return false;
                 });
             }
+            /**
+             * 多选日期值变更后, 显示正确的状态
+             */
+            function monthdayUpdateFix(){
+                //setTimeout( function(){ checkRepeatMonthDay() }, 200 );
+            }
+
+            $(document).delegate('dl.js_monthDayLs input[multidate=monthday]', 'blur', function(){
+                window.fixMontdayTimeout && clearTimeout( window.fixMontdayTimeout );
+                window.fixMontdayTimeout = setTimeout( function(){ checkRepeatMonthDay() }, 200 );
+            });
 
         </script>
     </head>    
@@ -104,6 +173,8 @@
                 class="js_autoFormLogic" 
                 formType="ajax" 
                 formAjaxDoneAction="?donetype=ajax" 
+                formBeforeProcess="formBeforeProcessMonthDay"
+                formAfterProcess="formAfterProcessMonthDay"
                 >
                 <div class="tit-1">排期详情：</div>
                 <div class="ht10"></div>
@@ -125,7 +196,13 @@
                                     <label><span class="gray">总价：</span></label> 
                                 </th>
                                 <td>
-                                    <input type="text" class="ipt" name="" datatype="n-8.2" maxvalue="99999999.99" minvalue="0.01" errmsg="金额范围0.01~99999999.99" reqmsg="总价"> 
+                                    <input type="text" class="ipt" name="" value="1"
+                                    datatype="n-8.2" 
+                                    maxvalue="99999999.99" 
+                                    minvalue="0.01" 
+                                    errmsg="金额范围0.01~99999999.99" 
+                                    reqmsg="总价"
+                                    /> 
                                     <em class="error"></em>
                                 </td>
                             </tr>
@@ -134,7 +211,14 @@
                                     <label><span class="gray">折扣：</span></label>
                                 </th>
                                 <td>
-                                    <input type="text" class="ipt" name="" reqmsg="折扣" errmsg="请填写正确的数值范围" focusmsg="数值范围： 0~100" datatype="n-3.2" minvalue="0" maxvalue="100">&nbsp; %
+                                    <input type="text" class="ipt" name="" value="1"
+                                    reqmsg="折扣" 
+                                    errmsg="请填写正确的数值范围" 
+                                    focusmsg="数值范围： 0~100" 
+                                    datatype="n-3.2" 
+                                    minvalue="0" 
+                                    maxvalue="100"
+                                    >&nbsp; %
 
                                     <em class="error"></em>
                                     <em class="focusmsg"></em>
@@ -163,7 +247,9 @@
                                             class="ipt" 
                                             multidate="monthday" 
                                             reqmsg=" 请选择日期"
+                                            errmsg="不能选择相同的月份"
                                             maxlength="500"
+                                            calendarupdatemultiselect="monthdayUpdateFix"
                                             />
                                             <a href="javascript:;" class="green js_autoCommonModify" 
                                                 cmitem="<dl" 
@@ -185,7 +271,7 @@
                                     </label>
                                 </th>
                                 <td>
-                                    <input type="text" class="ipt ipt-w320" name="" reqmsg="广告形式">
+                                    <input type="text" class="ipt ipt-w320" name="" value="test" reqmsg="广告形式">
                                 </td>
                             </tr>
                             <tr>
@@ -212,7 +298,9 @@
                     class="js_minDate" 
                     multidate="monthday" 
                     reqmsg=" 请选择日期"
+                    errmsg="不能选择相同的月份"
                     maxlength="500"
+                    calendarupdatemultiselect="monthdayUpdateFix"
                 /><input type="button" class="UXCCalendar_btn" />
                 <a href="javascript:;" class="green js_autoCommonModify" 
                     cmitem="<dl" 
@@ -294,14 +382,15 @@
                     </label>
                 </th>
                 <td >
-                    <dl>
+                    <dl class="js_monthDayLs">
                         <dd>
                         <input type="text" name="monthday" size="80" 
                             class="js_minDate" 
                             multidate="monthday" 
                             reqmsg=" 请选择日期"
+                            errmsg="不能选择相同的月份"
                             maxlength="500"
-                            
+                            calendarupdatemultiselect="monthdayUpdateFix"
                         /><input type="button" class="UXCCalendar_btn" />
                         <a href="javascript:;" class="green js_autoCommonModify" 
                             cmitem="<dl" 
@@ -310,10 +399,6 @@
                             cmtemplate="#monthDayLsTpl"
                             cmaddcallback="addMonthDayCallabck"
                         >+ 添加</a>
-                        <a href="javascript:;" class="red js_autoCommonModify" 
-                            cmitem="<dd" 
-                            cmaction="del"
-                        >+ 删除</a>
                         <em class="error"></em>
                     </dd>
                  </dl>
