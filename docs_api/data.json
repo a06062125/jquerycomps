@@ -51,17 +51,6 @@
                 "window.Bizs": 1
             }
         },
-        "../bizs/MonthDay/MonthDay.js": {
-            "name": "../bizs/MonthDay/MonthDay.js",
-            "modules": {},
-            "classes": {
-                "window.Bizs.MonthDay": 1
-            },
-            "fors": {},
-            "namespaces": {
-                "window.Bizs": 1
-            }
-        },
         "../bizs/MultiDate/MultiDate.js": {
             "name": "../bizs/MultiDate/MultiDate.js",
             "modules": {},
@@ -442,7 +431,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/CommonModify/CommonModify.js",
             "line": 1,
-            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>cmtemplate = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>添加或删除完后会触发的回调</dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>模板内容过滤回调</dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>添加完成的回调</dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>删除完成的回调</dd>\n</dl>",
+            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>cmtemplate = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>添加或删除完后会触发的回调</dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>模板内容过滤回调</dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>添加完成的回调</dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>删除完成的回调</dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: after, appendTo</dd>\n</dl>",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
@@ -505,23 +494,6 @@
             "example": [
                 "\n     <script>\n     //动态添加的内容需要显式调用 process 方法去处理相关逻辑\n     $.get( _url, function( _html ){\n         var _node = $(_html);\n         _node.appendTo( document.body );\n         JC.KillISPCache.getInstance().process( _node );\n     });\n     </script>"
             ]
-        },
-        "window.Bizs.MonthDay": {
-            "name": "window.Bizs.MonthDay",
-            "shortname": "window.Bizs.MonthDay",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "namespace": "window.Bizs",
-            "file": "../bizs/MonthDay/MonthDay.js",
-            "line": 2,
-            "description": "多选月份和多选日期 复合使用\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.MonthDay.html' target='_blank'>API docs</a>\n| <a href='../../bizs/MonthDay/_demo' target='_blank'>demo link</a></p>\nrequire: <a href='../classes/window.jQuery.html'>jQuery</a>\n<br/>require: <a href='../classes/JC.Calendar.html'>JC.Calendar</a>\n<br/>require: <a href='../classes/Bizs.DisableLogic.html'>Bizs.DisableLogic</a>\n\n<h2>可用的 HTML 属性</h2>\n<dl></dl>",
-            "extends": "JC.BaseMVC",
-            "is_constructor": 1,
-            "version": "dev 0.1 2013-09-10",
-            "author": "qiushaowei   <suches@btbtd.org> | 75 Team"
         },
         "window.Bizs.MultiDate": {
             "name": "window.Bizs.MultiDate",
@@ -1556,7 +1528,7 @@
     "classitems": [
         {
             "file": "../bizs/CommonModify/CommonModify.js",
-            "line": 146,
+            "line": 149,
             "description": "获取 显示 CommonModify 的触发源选择器, 比如 a 标签",
             "itemtype": "method",
             "name": "selector",
@@ -1568,7 +1540,7 @@
         },
         {
             "file": "../bizs/CommonModify/CommonModify.js",
-            "line": 152,
+            "line": 155,
             "description": "使用 jquery on 绑定事件",
             "itemtype": "method",
             "name": "on",
@@ -1593,7 +1565,7 @@
         },
         {
             "file": "../bizs/CommonModify/CommonModify.js",
-            "line": 160,
+            "line": 163,
             "description": "使用 jquery trigger 绑定事件",
             "itemtype": "method",
             "name": "trigger",
@@ -1613,14 +1585,14 @@
         },
         {
             "file": "../bizs/CommonModify/CommonModify.js",
-            "line": 171,
+            "line": 174,
             "description": "update current selector",
             "class": "window.Bizs.CommonModify",
             "namespace": "window.Bizs"
         },
         {
             "file": "../bizs/CommonModify/CommonModify.js",
-            "line": 183,
+            "line": 186,
             "description": "获取或设置 CommonModify 的实例",
             "itemtype": "method",
             "name": "getInstance",
@@ -1641,7 +1613,7 @@
         },
         {
             "file": "../bizs/CommonModify/CommonModify.js",
-            "line": 197,
+            "line": 200,
             "description": "判断 selector 是否可以初始化 CommonModify",
             "itemtype": "method",
             "name": "isCommonModify",
@@ -1850,13 +1822,6 @@
             "default": "empty",
             "static": 1,
             "class": "window.Bizs.KillISPCache",
-            "namespace": "window.Bizs"
-        },
-        {
-            "file": "../bizs/MonthDay/MonthDay.js",
-            "line": 59,
-            "description": "初始初始化",
-            "class": "window.Bizs.MonthDay",
             "namespace": "window.Bizs"
         },
         {
@@ -3126,7 +3091,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 706,
+            "line": 743,
             "description": "克隆 Calendar 默认 Model, View 的原型属性",
             "itemtype": "method",
             "name": "clone",
@@ -3147,7 +3112,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1257,
+            "line": 1366,
             "description": "捕获用户更改年份 \n<p>监听 年份下拉框</p>",
             "itemtype": "event",
             "name": "year change",
@@ -3158,7 +3123,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1267,
+            "line": 1376,
             "description": "捕获用户更改年份 \n<p>监听 下一年按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -3169,7 +3134,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1277,
+            "line": 1386,
             "description": "捕获用户更改年份 \n<p>监听 上一年按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -3180,7 +3145,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1287,
+            "line": 1396,
             "description": "增加或者减少一年\n<p>监听 年份map</p>",
             "itemtype": "event",
             "name": "year map click",
@@ -3191,7 +3156,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1301,
+            "line": 1410,
             "description": "增加或者减少一个月\n<p>监听 月份map</p>",
             "itemtype": "event",
             "name": "month map click",
@@ -3202,7 +3167,29 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1315,
+            "line": 1424,
+            "description": "捕获用户更改月份 \n<p>监听 下一月按钮</p>",
+            "itemtype": "event",
+            "name": "next year",
+            "access": "private",
+            "tagname": "",
+            "class": "JC.Calendar",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Calendar/JC.Calendar.js",
+            "line": 1434,
+            "description": "捕获用户更改月份\n<p>监听 上一月按钮</p>",
+            "itemtype": "event",
+            "name": "previous year",
+            "access": "private",
+            "tagname": "",
+            "class": "JC.Calendar",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Calendar/JC.Calendar.js",
+            "line": 1445,
             "description": "日期点击事件",
             "itemtype": "event",
             "name": "date click",
@@ -3213,7 +3200,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1328,
+            "line": 1458,
             "description": "选择当前日期\n<p>监听确定按钮</p>",
             "itemtype": "event",
             "name": "confirm click",
@@ -3224,7 +3211,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1338,
+            "line": 1468,
             "description": "清除文本框内容\n<p>监听 清空按钮</p>",
             "itemtype": "event",
             "name": "clear click",
@@ -3235,7 +3222,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1348,
+            "line": 1478,
             "description": "取消日历组件, 相当于隐藏\n<p>监听 取消按钮</p>",
             "itemtype": "event",
             "name": "cancel click",
@@ -3246,7 +3233,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1358,
+            "line": 1488,
             "description": "日历组件按钮点击事件",
             "itemtype": "event",
             "name": "calendar button click",
@@ -3257,7 +3244,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1368,
+            "line": 1503,
             "description": "日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏",
             "itemtype": "event",
             "name": "UXCCalendar click",
@@ -3268,7 +3255,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1377,
+            "line": 1512,
             "description": "DOM 加载完毕后, 初始化日历组件相关事件",
             "itemtype": "event",
             "name": "dom ready",
@@ -3279,14 +3266,14 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1383,
+            "line": 1518,
             "description": "延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "class": "JC.Calendar",
             "namespace": "JC"
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1391,
+            "line": 1526,
             "description": "监听窗口滚动和改变大小, 实时变更日历组件显示位置",
             "itemtype": "event",
             "name": "window scroll, window resize",
@@ -3297,7 +3284,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1400,
+            "line": 1535,
             "description": "dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件",
             "itemtype": "event",
             "name": "dom click",
@@ -3308,7 +3295,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1426,
+            "line": 1564,
             "description": "日历组件文本框获得焦点",
             "itemtype": "event",
             "name": "input focus",
@@ -12368,6 +12355,24 @@
         {
             "file": "../common.js",
             "line": 282,
+            "description": "获取不带 时分秒的 日期对象",
+            "itemtype": "method",
+            "name": "pureDate",
+            "params": [
+                {
+                    "name": "_d",
+                    "description": "可选参数, 如果为空 = new Date",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "Date"
+            },
+            "class": ".window"
+        },
+        {
+            "file": "../common.js",
+            "line": 294,
             "description": "克隆日期对象",
             "itemtype": "method",
             "name": "cloneDate",
@@ -12387,7 +12392,7 @@
         },
         {
             "file": "../common.js",
-            "line": 290,
+            "line": 302,
             "description": "判断两个日期是否为同一天",
             "itemtype": "method",
             "name": "isSameDay",
@@ -12412,7 +12417,7 @@
         },
         {
             "file": "../common.js",
-            "line": 302,
+            "line": 314,
             "description": "判断两个日期是否为同一月份",
             "itemtype": "method",
             "name": "isSameMonth",
@@ -12437,7 +12442,7 @@
         },
         {
             "file": "../common.js",
-            "line": 314,
+            "line": 326,
             "description": "取得一个月份中最大的一天",
             "itemtype": "method",
             "name": "maxDayOfMonth",
@@ -12457,7 +12462,7 @@
         },
         {
             "file": "../common.js",
-            "line": 327,
+            "line": 339,
             "description": "取当前脚本标签的 src路径",
             "itemtype": "method",
             "name": "scriptPath",
@@ -12470,7 +12475,7 @@
         },
         {
             "file": "../common.js",
-            "line": 341,
+            "line": 353,
             "description": "缓动函数, 动画效果为按时间缓动 \n<br />这个函数只考虑递增, 你如果需要递减的话, 在回调里用 _maxVal - _stepval",
             "itemtype": "method",
             "name": "easyEffect",
@@ -12512,7 +12517,7 @@
         },
         {
             "file": "../common.js",
-            "line": 394,
+            "line": 406,
             "description": "把输入值转换为布尔值",
             "itemtype": "method",
             "name": "parseBool",
@@ -12531,7 +12536,7 @@
         },
         {
             "file": "../common.js",
-            "line": 413,
+            "line": 425,
             "description": "判断是否支持 CSS position: fixed",
             "itemtype": "property",
             "name": "$.support.isFixed",
@@ -12542,7 +12547,7 @@
         },
         {
             "file": "../common.js",
-            "line": 442,
+            "line": 454,
             "description": "绑定或清除 mousewheel 事件",
             "itemtype": "method",
             "name": "mousewheelEvent",
@@ -12563,7 +12568,7 @@
         },
         {
             "file": "../common.js",
-            "line": 464,
+            "line": 476,
             "description": "获取 selector 的指定父级标签",
             "itemtype": "method",
             "name": "getJqParent",
@@ -12588,7 +12593,7 @@
         },
         {
             "file": "../common.js",
-            "line": 490,
+            "line": 502,
             "description": "扩展 jquery 选择器\n<br />扩展起始字符的 '/' 符号为 jquery 父节点选择器\n<br />扩展起始字符的 '|' 符号为 jquery 子节点选择器\n<br />扩展起始字符的 '<' 符号为 jquery 父节点查找识别符( getJqParent )",
             "itemtype": "method",
             "name": "parentSelector",
@@ -12618,7 +12623,7 @@
         },
         {
             "file": "../common.js",
-            "line": 558,
+            "line": 570,
             "description": "获取脚本模板的内容",
             "itemtype": "method",
             "name": "scriptContent",
@@ -12637,7 +12642,7 @@
         },
         {
             "file": "../common.js",
-            "line": 573,
+            "line": 585,
             "description": "取函数名 ( 匿名函数返回空 )",
             "itemtype": "method",
             "name": "funcName",
@@ -12683,10 +12688,6 @@
         {
             "message": "unknown tag: version",
             "line": " ../bizs/KillISPCache/KillISPCache.js:2"
-        },
-        {
-            "message": "unknown tag: version",
-            "line": " ../bizs/MonthDay/MonthDay.js:2"
         },
         {
             "message": "unknown tag: version",
@@ -13062,23 +13063,19 @@
         },
         {
             "message": "unknown tag: require",
-            "line": " ../common.js:413"
+            "line": " ../common.js:425"
         },
         {
             "message": "unknown tag: require",
-            "line": " ../common.js:464"
+            "line": " ../common.js:476"
         },
         {
             "message": "unknown tag: require",
-            "line": " ../common.js:490"
+            "line": " ../common.js:502"
         },
         {
             "message": "Missing item type\nupdate current selector",
-            "line": " ../bizs/CommonModify/CommonModify.js:171"
-        },
-        {
-            "message": "Missing item type\n初始初始化",
-            "line": " ../bizs/MonthDay/MonthDay.js:59"
+            "line": " ../bizs/CommonModify/CommonModify.js:174"
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
@@ -13102,7 +13099,7 @@
         },
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
-            "line": " ../comps/Calendar/JC.Calendar.js:1383"
+            "line": " ../comps/Calendar/JC.Calendar.js:1518"
         },
         {
             "message": "Missing item type\n如果 atd 为空, 那么是 全选按钮触发的事件",

@@ -121,8 +121,6 @@
             
                 <li><a href="../classes/window.Bizs.KillISPCache.html">window.Bizs.KillISPCache</a></li>
             
-                <li><a href="../classes/window.Bizs.MonthDay.html">window.Bizs.MonthDay</a></li>
-            
                 <li><a href="../classes/window.Bizs.MultiDate.html">window.Bizs.MultiDate</a></li>
             
                 <li><a href="../classes/window.JC.html">window.JC</a></li>
@@ -255,67 +253,6 @@
                 ;
             return _r;
         };
-
-    MonthModel.prototype.multiLayoutDate = 
-        function(){
-            var _p = this
-                , _dateo = _p.defaultDate()
-                , _year = _p.year()
-                ;
-
-            JC.log( &#x27;MonthModel.multiLayoutDate:&#x27;, new Date().getTime() );
-            _dateo.multidate = [];
-
-            _p.layout().find(&#x27;td.cur&#x27;).each(function(){
-                var _sp = $(this);
-                var _item = _sp.find(&#x27;&gt; a[dstart]&#x27;), _dstart = new Date(), _dend = new Date();
-                _dstart.setTime( _item.attr(&#x27;dstart&#x27;) );
-                _dend.setTime( _item.attr(&#x27;dend&#x27;) );
-                _dateo.multidate.push( { &#x27;start&#x27;: _dstart, &#x27;end&#x27;: _dend } );
-            });
-
-            _dateo.date.setFullYear( _year );
-            _dateo.enddate.setFullYear( _year );
-
-            $.each( _dateo.multidate, function( _ix, _item ){
-                _item.start.setFullYear( _year );
-                _item.end.setFullYear( _year );
-            });
-
-            return _dateo;
-        };
-
-    MonthView.prototype.updateMultiYear =
-        function( _offset ){
-            var _dateo = this._model.layoutDate(), _day, _max;
-
-            //JC.log( &#x27;xdfsadfasefasf&#x27;, _dateo.multidate == null );
-            JC.log( &#x27;MonthView.updateMultiYear:&#x27;, new Date().getTime() );
-
-            tmpUpdateMultiYear( _dateo.date, _offset );
-            tmpUpdateMultiYear( _dateo.enddate, _offset );
-
-            if( _dateo.multidate ){
-                //JC.log( _dateo.multidate.length );
-                $.each( _dateo.multidate, function( _ix, _item ){
-                    tmpUpdateMultiYear( _item.start, _offset );
-                    tmpUpdateMultiYear( _item.end, _offset );
-                    JC.log(&#x27;xxxxxxxxxxxxxxxxxxxxxxx&#x27;, _item.start, _item.end, _offset );
-                });
-            }
-
-            this._buildLayout( _dateo );
-            this._buildDone();
-        };
-    function tmpUpdateMultiYear( _date, _offset ){
-        var _day, _max;
-        _day = _date.getDate();
-        _date.setDate( 1 );
-        _date.setFullYear( _date.getFullYear() + _offset );
-        _max = maxDayOfMonth( _date );
-        _day &gt; _max &amp;&amp; ( _day = _max );
-        _date.setDate( _day );
-    }
 
     MonthView.prototype._buildBody =
         function( _dateo ){

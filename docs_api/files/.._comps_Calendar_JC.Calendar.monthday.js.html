@@ -121,8 +121,6 @@
             
                 <li><a href="../classes/window.Bizs.KillISPCache.html">window.Bizs.KillISPCache</a></li>
             
-                <li><a href="../classes/window.Bizs.MonthDay.html">window.Bizs.MonthDay</a></li>
-            
                 <li><a href="../classes/window.Bizs.MultiDate.html">window.Bizs.MultiDate</a></li>
             
                 <li><a href="../classes/window.JC.html">window.JC</a></li>
@@ -301,18 +299,43 @@
             if( !_r.length ){
                 _r = $( printf( JC.Calendar.monthdayTpl || this.tpl, JC.Calendar.monthdayHeadAppendText ) ).hide();
                 _r.attr(&#x27;id&#x27;, &#x27;UXCCalendar_monthday&#x27;).hide().appendTo( document.body );
+
+                var _month = $( [
+                            &#x27;&lt;option value=&quot;0&quot;&gt;一月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;1&quot;&gt;二月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;2&quot;&gt;三月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;3&quot;&gt;四月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;4&quot;&gt;五月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;5&quot;&gt;六月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;6&quot;&gt;七月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;7&quot;&gt;八月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;8&quot;&gt;九月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;9&quot;&gt;十月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;10&quot;&gt;十一月&lt;/option&gt;&#x27;
+                            , &#x27;&lt;option value=&quot;11&quot;&gt;十二月&lt;/option&gt;&#x27;
+                        ].join(&#x27;&#x27;) ).appendTo( _r.find(&#x27;select.UMonth&#x27; ) );
+
              }
             return _r;
         };
 		
 	MonthDayModel.prototype.tpl =
         [
-        &#x27;&lt;div id=&quot;UXCCalendar_monthday&quot; class=&quot;UXCCalendar UXCCalendar_monthday&quot; &gt;&#x27;
+        &#x27;&lt;div id=&quot;UXCCalendar_monthday&quot; class=&quot;UXCCalendar UXCCalendar_week UXCCalendar_monthday&quot; &gt;&#x27;
         ,&#x27;    &lt;div class=&quot;UHeader&quot;&gt;&#x27;
+        ,&#x27;        &lt;button type=&quot;button&quot; class=&quot;UButton UPreYear&quot;&gt;&amp;nbsp;&amp;lt;&amp;lt;&amp;nbsp;&lt;/button&gt;&#x27;
+        ,&#x27;        &lt;button type=&quot;button&quot; class=&quot;UButton UPreMonth&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;lt;&amp;nbsp;&amp;nbsp;&lt;/button&gt;&#x27;
+        ,&#x27;        &lt;select class=&quot;UYear&quot; style=&quot;&quot;&gt;&lt;/select&gt;&#x27;
+        ,&#x27;        &lt;select class=&quot;UMonth&quot;&gt;&lt;/select&gt;&#x27;
+        ,&#x27;        {0}&#x27;
+        ,&#x27;        &lt;button type=&quot;button&quot; class=&quot;UButton UNextYear&quot;&gt;&amp;nbsp;&amp;gt;&amp;gt;&amp;nbsp;&lt;/button&gt;&#x27;
+        ,&#x27;        &lt;button type=&quot;button&quot; class=&quot;UButton UNextMonth&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;gt;&amp;nbsp;&amp;nbsp;&lt;/button&gt;&#x27;
+        /*
         ,&#x27;       &lt;span class=&quot;UYear&quot;&gt;&#x27;
         ,&#x27;       &lt;/span&gt;年&#x27;
         ,&#x27;       &lt;span class=&quot;UMonth&quot;&gt;&#x27;
         ,&#x27;       &lt;/span&gt;月{0}&#x27;
+        */
         ,&#x27;    &lt;/div&gt;&#x27;
         ,&#x27;    &lt;table class=&quot;UTable UTableBorder&quot;&gt;&#x27;
         ,&#x27;        &lt;tbody&gt;&lt;/tbody&gt;&#x27;
@@ -326,10 +349,6 @@
         ].join(&#x27;&#x27;);
 
     MonthDayModel.prototype.multiselect = function(){ return true; };
-
-    MonthDayModel.prototype.multiLayoutDate = 
-    	function (){
-    	};
 
     MonthDayModel.prototype.multiselectDate =
         function(){
@@ -387,6 +406,10 @@
             }
 
             if( !_text ) return;
+            if( _tmp.length ){
+                _p._model.selector().attr(&#x27;placeholder&#x27;, printf( &#x27;{0}年 {1}&#x27;, _tmp[0].getFullYear(), _tmp[0].getMonth() + 1 ) );
+                _p._model.selector().attr(&#x27;defaultdate&#x27;, formatISODate( _tmp[0] ) );
+            }
 
             _p._model.selector().val( _text );
             $(_p).trigger( &#x27;TriggerEvent&#x27;, [ JC.Calendar.Model.UPDATE, &#x27;monthday&#x27;, _tmp ] );
@@ -394,6 +417,7 @@
             JC.Calendar.hide();
         };
 	
+    /*
 	MonthDayView.prototype._buildHeader = 
 		function( _dateo ){
 			var _p = this, 
@@ -402,10 +426,28 @@
 			var year = _dateo.date.getFullYear(),
 				month = _dateo.date.getMonth() + 1;
 			
-			_layout.find(&#x27;div.UHeader span.UYear&#x27;).html(year);
-			_layout.find(&#x27;div.UHeader span.UMonth&#x27;).html(month);
+			//_layout.find(&#x27;div.UHeader span.UYear&#x27;).html(year);
+			//_layout.find(&#x27;div.UHeader span.UMonth&#x27;).html(month);
 				
 		};
+   */
+
+    MonthDayModel.prototype.fixedDate =
+        function( _dateo ){
+            var _p = this, _lastIpt = JC.Calendar.lastIpt, _tmpDate;
+            _lastIpt
+                &amp;&amp; !_lastIpt.is(&#x27;[defaultdate]&#x27;)
+                &amp;&amp; (
+                        _tmpDate = cloneDate( _dateo.multidate[0].start )
+                        //, _tmpDate.setDate( 1 )
+                        , _lastIpt.attr(&#x27;defaultdate&#x27;, formatISODate( _tmpDate ) )
+                        /*
+                        , !_lastIpt.is( &#x27;[placeholder]&#x27; ) 
+                            &amp;&amp; _lastIpt.attr(&#x27;placeholder&#x27;, printf( &#x27;{0}年 {1}月&#x27;, _tmpDate.getFullYear(), _tmpDate.getMonth() + 1 ) )
+                       */
+                    )
+                ;
+        };
 	
 	MonthDayView.prototype._buildBody =
         function( _dateo ){
@@ -418,6 +460,7 @@
 					_tempDay,
 					_today = new Date();
 
+                _p._model.fixedDate( _dateo );
 				
 				_tempDate = new Date(_dateo.date.getFullYear(), _dateo.date.getMonth(), 1);
 				_tempDay = _tempDate.getDay();

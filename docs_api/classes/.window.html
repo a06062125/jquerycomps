@@ -64,7 +64,6 @@
                 <li><a href="../classes/window.Bizs.DisableLogic.html">window.Bizs.DisableLogic</a></li>
                 <li><a href="../classes/window.Bizs.FormLogic.html">window.Bizs.FormLogic</a></li>
                 <li><a href="../classes/window.Bizs.KillISPCache.html">window.Bizs.KillISPCache</a></li>
-                <li><a href="../classes/window.Bizs.MonthDay.html">window.Bizs.MonthDay</a></li>
                 <li><a href="../classes/window.Bizs.MultiDate.html">window.Bizs.MultiDate</a></li>
                 <li><a href="../classes/window.JC.html">window.JC</a></li>
                 <li><a href="../classes/window.jQuery.html">window.jQuery</a></li>
@@ -202,6 +201,9 @@
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
+                                <a href="#method_pureDate">pureDate</a>
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_reloadPage">reloadPage</a>
                                     <span class="flag static">static</span>
                             </li>
@@ -303,7 +305,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l282"><code>..&#x2F;common.js:282</code></a>
+        <a href="../files/.._common.js.html#l294"><code>..&#x2F;common.js:294</code></a>
         </p>
     </div>
     <div class="description">
@@ -404,7 +406,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l341"><code>..&#x2F;common.js:341</code></a>
+        <a href="../files/.._common.js.html#l353"><code>..&#x2F;common.js:353</code></a>
         </p>
     </div>
     <div class="description">
@@ -543,7 +545,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l573"><code>..&#x2F;common.js:573</code></a>
+        <a href="../files/.._common.js.html#l585"><code>..&#x2F;common.js:585</code></a>
         </p>
     </div>
     <div class="description">
@@ -586,7 +588,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l464"><code>..&#x2F;common.js:464</code></a>
+        <a href="../files/.._common.js.html#l476"><code>..&#x2F;common.js:476</code></a>
         </p>
     </div>
     <div class="description">
@@ -770,7 +772,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l290"><code>..&#x2F;common.js:290</code></a>
+        <a href="../files/.._common.js.html#l302"><code>..&#x2F;common.js:302</code></a>
         </p>
     </div>
     <div class="description">
@@ -821,7 +823,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l302"><code>..&#x2F;common.js:302</code></a>
+        <a href="../files/.._common.js.html#l314"><code>..&#x2F;common.js:314</code></a>
         </p>
     </div>
     <div class="description">
@@ -869,7 +871,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l314"><code>..&#x2F;common.js:314</code></a>
+        <a href="../files/.._common.js.html#l326"><code>..&#x2F;common.js:326</code></a>
         </p>
     </div>
     <div class="description">
@@ -910,7 +912,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l442"><code>..&#x2F;common.js:442</code></a>
+        <a href="../files/.._common.js.html#l454"><code>..&#x2F;common.js:454</code></a>
         </p>
     </div>
     <div class="description">
@@ -1014,7 +1016,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l490"><code>..&#x2F;common.js:490</code></a>
+        <a href="../files/.._common.js.html#l502"><code>..&#x2F;common.js:502</code></a>
         </p>
     </div>
     <div class="description">
@@ -1069,7 +1071,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l394"><code>..&#x2F;common.js:394</code></a>
+        <a href="../files/.._common.js.html#l406"><code>..&#x2F;common.js:406</code></a>
         </p>
     </div>
     <div class="description">
@@ -1222,6 +1224,46 @@
             </div>
         </div>
 </div>
+                    <div id="method_pureDate" class="method item">
+    <h3 class="name"><code>pureDate</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_d</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._common.js.html#l282"><code>..&#x2F;common.js:282</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取不带 时分秒的 日期对象</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_d</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date" class="crosslink external" target="_blank">Date</a></span>
+                    <div class="param-description">
+                        <p>可选参数, 如果为空 = new Date</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    Date
+            </div>
+        </div>
+</div>
                     <div id="method_reloadPage" class="method item">
     <h3 class="name"><code>reloadPage</code></h3>
         <div class="args">
@@ -1340,7 +1382,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l558"><code>..&#x2F;common.js:558</code></a>
+        <a href="../files/.._common.js.html#l570"><code>..&#x2F;common.js:570</code></a>
         </p>
     </div>
     <div class="description">
@@ -1374,7 +1416,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l327"><code>..&#x2F;common.js:327</code></a>
+        <a href="../files/.._common.js.html#l339"><code>..&#x2F;common.js:339</code></a>
         </p>
     </div>
     <div class="description">
@@ -1438,7 +1480,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l413"><code>..&#x2F;common.js:413</code></a>
+        <a href="../files/.._common.js.html#l425"><code>..&#x2F;common.js:425</code></a>
         </p>
     </div>
     <div class="description">
