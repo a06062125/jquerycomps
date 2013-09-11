@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>JC.BaseMVC.Model - jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -99,10 +100,52 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
+                        <h1>JC.BaseMVC.Model Class</h1>
 <div class="box meta">
+        <div class="foundat">
+            Defined in: <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l205"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:205</code></a>
+        </div>
 </div>
 <div class="box intro">
+    <p>MVC Model 类( <b>仅供扩展用</b> )</p>
+<p>这个类默认已经包含在lib.js里面, 不需要显式引用</p>   
+<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>
+<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>
+| <a href='http://jc.openjavascript.org/docs_api/classes/JC.BaseMVC.Model.html' target='_blank'>API docs</a>
+| <a href='../../comps/BaseMVC/_demo' target='_blank'>demo link</a></p>
 </div>
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_JC.BaseMVC.Model" class="method item">
+    <h3 class="name"><code>JC.BaseMVC.Model</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l205"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:205</code></a>
+        </p>
+    </div>
+    <div class="description">
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+    </div>
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
@@ -115,38 +158,23 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
                     <ul class="index-list methods">
-                            <li class="index-item method private">
-                                <a href="#method__init">_init</a>
+                            <li class="index-item method">
+                                <a href="#method_boolProp">boolProp</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_center">center</a>
+                                <a href="#method_callbackProp">callbackProp</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_close">close</a>
+                                <a href="#method_floatProp">floatProp</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_focus button">focus button</a>
+                                <a href="#method_intProp">intProp</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getBody">getBody</a>
+                                <a href="#method_selector">selector</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getFooter">getFooter</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getHeader">getHeader</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getPanel">getPanel</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_hide">hide</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_positionWith">positionWith</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_show">show</a>
+                                <a href="#method_stringProp">stringProp</a>
                             </li>
                     </ul>
                 </div>
@@ -154,92 +182,108 @@
                     <h3>Properties</h3>
                     <ul class="index-list properties">
                             <li class="index-item property private">
-                                <a href="#property__model">_model</a>
+                                <a href="#property__instanceName">_instanceName</a>
+                                    <span class="flag static">static</span>
                             </li>
                     </ul>
                 </div>
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-                    <div id="method__init" class="method item private">
-    <h3 class="name"><code>_init</code></h3>
-        <span class="paren">()</span>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l716"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:716</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>View 的初始方法</p>
-    </div>
-</div>
-                    <div id="method_center" class="method item">
-    <h3 class="name"><code>center</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l870"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:870</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>居中显示 Panel</p>
-    </div>
-</div>
-                    <div id="method_close" class="method item">
-    <h3 class="name"><code>close</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l793"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:793</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>关闭 Panel</p>
-    </div>
-</div>
-                    <div id="method_focus button" class="method item">
-    <h3 class="name"><code>focus button</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l774"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:774</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>focus button</p>
-    </div>
-</div>
-                    <div id="method_getBody" class="method item">
-    <h3 class="name"><code>getBody</code></h3>
+                    <div id="method_boolProp" class="method item">
+    <h3 class="name"><code>boolProp</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_udata</code>
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
+                </li>
+                <li class="arg">
+                        <code>_defalut</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">Bool | Undefined</span>
         </span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l834"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:834</code></a>
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l308"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:308</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取或设置Panel的 body 内容, see <a href='JC.Panel.html#method_body'>Panel.body</a></p>
+        <p>读取 boolean 属性的值</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_udata</code>
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Bool</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_defalut</code>
+                        <span class="type">Bool</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                        <span class="type">Bool | Undefined</span>:
+            </div>
+        </div>
+</div>
+                    <div id="method_callbackProp" class="method item">
+    <h3 class="name"><code>callbackProp</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | Undefined</span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l334"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:334</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>读取 callback 属性的值</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
                     </div>
@@ -249,16 +293,19 @@
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                    string
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | Undefined</span>:
             </div>
         </div>
 </div>
-                    <div id="method_getFooter" class="method item">
-    <h3 class="name"><code>getFooter</code></h3>
+                    <div id="method_floatProp" class="method item">
+    <h3 class="name"><code>floatProp</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_udata</code>
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -268,17 +315,24 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l850"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:850</code></a>
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l266"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:266</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取或设置Panel的 footer 内容, see <a href='JC.Panel.html#method_footer'>Panel.footer</a></p>
+        <p>读取 float 属性的值</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_udata</code>
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
                     </div>
@@ -288,16 +342,19 @@
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                    string
+                    float
             </div>
         </div>
 </div>
-                    <div id="method_getHeader" class="method item">
-    <h3 class="name"><code>getHeader</code></h3>
+                    <div id="method_intProp" class="method item">
+    <h3 class="name"><code>intProp</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_udata</code>
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -307,17 +364,24 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l814"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:814</code></a>
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l245"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:245</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取或设置Panel的 header 内容, see <a href='JC.Panel.html#method_header'>Panel.header</a></p>
+        <p>读取 int 属性的值</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_udata</code>
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
                     </div>
@@ -327,25 +391,42 @@
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                    string
+                    int
             </div>
         </div>
 </div>
-                    <div id="method_getPanel" class="method item">
-    <h3 class="name"><code>getPanel</code></h3>
-        <span class="paren">()</span>
+                    <div id="method_selector" class="method item">
+    <h3 class="name"><code>selector</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_setter</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
         <span class="returns-inline">
             <span class="type"></span>
         </span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l802"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:802</code></a>
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l234"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:234</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取 Panel 的 selector 对象</p>
+        <p>初始化的 jq 选择器</p>
     </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_setter</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
@@ -353,76 +434,73 @@
             </div>
         </div>
 </div>
-                    <div id="method_hide" class="method item">
-    <h3 class="name"><code>hide</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l785"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:785</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>隐藏 Panel</p>
-    </div>
-</div>
-                    <div id="method_positionWith" class="method item">
-    <h3 class="name"><code>positionWith</code></h3>
+                    <div id="method_stringProp" class="method item">
+    <h3 class="name"><code>stringProp</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_src</code>
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l739"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:739</code></a>
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l287"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:287</code></a>
         </p>
     </div>
     <div class="description">
-        <p>设置Panel的显示位置基于 _src 的左右上下</p>
+        <p>读取 string 属性的值</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_src</code>
-                        <span class="type">Selector</span>
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
                     </div>
                 </li>
             </ul>
         </div>
-</div>
-                    <div id="method_show" class="method item">
-    <h3 class="name"><code>show</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l765"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:765</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>显示 Panel</p>
-    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    string
+            </div>
+        </div>
 </div>
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
-                    <div id="property__model" class="property item private">
-    <h3 class="name"><code>_model</code></h3>
+                    <div id="property__instanceName" class="property item private">
+    <h3 class="name"><code>_instanceName</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
         <span class="flag private">private</span>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l697"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:697</code></a>
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l220"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:220</code></a>
         </p>
     </div>
     <div class="description">
+        <p>设置 selector 实例引用的 data 属性名</p>
     </div>
+        <p><strong>Default:</strong> BaseMVCIns</p>
 </div>
             </div>
     </div>

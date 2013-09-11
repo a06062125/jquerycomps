@@ -49,6 +49,8 @@
             
                 <li><a href="../classes/JC.BaseMVC.html">JC.BaseMVC</a></li>
             
+                <li><a href="../classes/JC.BaseMVC.Model.html">JC.BaseMVC.Model</a></li>
+            
                 <li><a href="../classes/JC.Calendar.html">JC.Calendar</a></li>
             
                 <li><a href="../classes/JC.confirm.html">JC.confirm</a></li>
@@ -476,7 +478,9 @@
      */
     JC.PATH = script_path_f();
     //dev开发时因为脚本没合并, IE找不到库的正确路径, 这个判断仅针对dev开发分支
-    /\/JQueryComps_dev\//i.test( location.href ) &amp;&amp; ( JC.PATH = &#x27;/ignore/JQueryComps_dev/&#x27; );
+    /\/JQueryComps_dev\//i.test( location.href ) 
+        &amp;&amp; !( /file\:/.test( location.href ) || /\\/.test( location.href ) )
+        &amp;&amp; ( JC.PATH = &#x27;/ignore/JQueryComps_dev/&#x27; );
     /**
      * &lt;h2&gt;业务逻辑命名空间&lt;/h2&gt;
      * &lt;br /&gt;这个命名空间的组件主要为满足业务需求, 不是通用组件~

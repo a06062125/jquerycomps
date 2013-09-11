@@ -4,6 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         ".window",
         "JC.AutoSelect",
         "JC.BaseMVC",
+        "JC.BaseMVC.Model",
         "JC.Calendar",
         "JC.Dialog",
         "JC.Dialog.alert",
