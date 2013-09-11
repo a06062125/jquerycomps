@@ -38,6 +38,7 @@
                 <li><a href="../classes/JC.alert.html">JC.alert</a></li>
                 <li><a href="../classes/JC.AutoSelect.html">JC.AutoSelect</a></li>
                 <li><a href="../classes/JC.BaseMVC.html">JC.BaseMVC</a></li>
+                <li><a href="../classes/JC.BaseMVC.Model.html">JC.BaseMVC.Model</a></li>
                 <li><a href="../classes/JC.Bizs.html">JC.Bizs</a></li>
                 <li><a href="../classes/JC.Calendar.html">JC.Calendar</a></li>
                 <li><a href="../classes/JC.confirm.html">JC.confirm</a></li>
@@ -120,7 +121,6 @@
 <br/>require: <a href='../classes/JC.Valid.html'>JC.Valid</a>
 <br/>require: <a href='../classes/JC.Form.html'>JC.Form</a>
 <br/>require: <a href='../classes/JC.Panel.html'>JC.Panel</a></p>
-<p>extend: <a href='../classes/JC.BaseMVC.html'>JC.BaseMVC</a></p>
 <h2>页面只要引用本文件, 默认会自动初始化 from class="js_autoFormLogic" 的表单</h2>
 <h2>Form 可用的 HTML 属性</h2>
 <dl>
@@ -129,6 +129,10 @@
          form 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性
          <br/> 类型有: get, post, ajax 
      </dd>
+     <dt>formSubmitDisable = bool, default = true</dt>
+     <dd>表单提交后, 是否禁用提交按钮</dd>
+     <dt>formResetAfterSubmit = bool, default = true</dt>
+     <dd>表单提交后, 是否重置内容</dd>
      <dt>formBeforeProcess = function</dt>
      <dd>表单开始提交时且没开始验证时, 触发的回调</dd>
      <dt>formAfterProcess = function</dt>
@@ -143,10 +147,16 @@
      <dd>重置表单时进行二次确认的提示信息</dt>
      <dt>formPopupCloseMs = int, default = 2000</dt>
      <dd>msgbox 弹框的显示时间</dd>
+     <dt>ajaxSubmitType = string, default = plugins</dt>
+     <dd>
+         类型: plugins, form
+         <br/>plugins 支持 AJAX 文件上传, 但是在 弹框里 捕获不到提交事件
+         <br/>form 不支持 ajax 文件上传, 但可以在 popup 里捕获到提交事件
+     </dd>
      <dt>formAjaxMethod = string, default = get</dt>
      <dd>
-         ajax 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性
-         <br/> 类型有: get, post
+         类型有: get, post
+         <br/>ajax 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性
      </dd>
      <dt>formAjaxAction = url</dt>
      <dd>ajax 的提交URL, 如果没有显式声明, 将视为 form 的 action 属性</dd>
@@ -179,6 +189,11 @@
      <dt>formPopupCloseMs = int, default = 2000</dt>
      <dd>msgbox 弹框的显示时间</dd>
 </dl>
+<h2>普通 button 可用的 html 属性</h2>
+<dl>
+     <dt>buttonReturnUrl</dt>
+     <dd>点击button时, 返回的URL</dd>
+</dl>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
@@ -193,11 +208,6 @@
     </div>
     <div class="description">
     </div>
-        <div class="example">
-            <h4>Example:</h4>
-            <div class="example-content">
-            </div>
-        </div>
 </div>
     </div>
 <div id="classdocs" class="tabview">
@@ -246,6 +256,18 @@
                                 <a href="#property_popupCloseMs">popupCloseMs</a>
                                     <span class="flag static">static</span>
                             </li>
+                            <li class="index-item property">
+                                <a href="#property_popupCloseMs">popupCloseMs</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_resetAfterSubmit">resetAfterSubmit</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_submitDisable">submitDisable</a>
+                                    <span class="flag static">static</span>
+                            </li>
                     </ul>
                 </div>
         </div>
@@ -258,7 +280,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__beforeInit">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l996"><code>..&#x2F;lib.js:996</code></a>
+        <a href="../files/.._lib.js.html#l1009"><code>..&#x2F;lib.js:1009</code></a>
         </p>
     </div>
     <div class="description">
@@ -278,7 +300,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__init">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l967"><code>..&#x2F;lib.js:967</code></a>
+        <a href="../files/.._lib.js.html#l980"><code>..&#x2F;lib.js:980</code></a>
         </p>
     </div>
     <div class="description">
@@ -303,7 +325,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__inited">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1012"><code>..&#x2F;lib.js:1012</code></a>
+        <a href="../files/.._lib.js.html#l1025"><code>..&#x2F;lib.js:1025</code></a>
         </p>
     </div>
     <div class="description">
@@ -317,7 +339,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__initHanlderEvent">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1004"><code>..&#x2F;lib.js:1004</code></a>
+        <a href="../files/.._lib.js.html#l1017"><code>..&#x2F;lib.js:1017</code></a>
         </p>
     </div>
     <div class="description">
@@ -340,7 +362,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l113"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:113</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l132"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:132</code></a>
         </p>
     </div>
     <div class="description">
@@ -383,7 +405,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method_on">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1026"><code>..&#x2F;lib.js:1026</code></a>
+        <a href="../files/.._lib.js.html#l1039"><code>..&#x2F;lib.js:1039</code></a>
         </p>
     </div>
     <div class="description">
@@ -422,7 +444,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method_selector">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1020"><code>..&#x2F;lib.js:1020</code></a>
+        <a href="../files/.._lib.js.html#l1033"><code>..&#x2F;lib.js:1033</code></a>
         </p>
     </div>
     <div class="description">
@@ -450,7 +472,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method_trigger">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1034"><code>..&#x2F;lib.js:1034</code></a>
+        <a href="../files/.._lib.js.html#l1047"><code>..&#x2F;lib.js:1047</code></a>
         </p>
     </div>
     <div class="description">
@@ -484,13 +506,60 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l134"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:134</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l153"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:153</code></a>
         </p>
     </div>
     <div class="description">
         <p>msgbox 提示框的自动关闭时间</p>
     </div>
         <p><strong>Default:</strong> 2000</p>
+</div>
+                    <div id="property_popupCloseMs" class="property item">
+    <h3 class="name"><code>popupCloseMs</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l161"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:161</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>AJAX 表单的提交类型
+<br />plugins, form
+<br />plugins 可以支持文件上传</p>
+    </div>
+        <p><strong>Default:</strong> empty</p>
+</div>
+                    <div id="property_resetAfterSubmit" class="property item">
+    <h3 class="name"><code>resetAfterSubmit</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l179"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:179</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>表单提交后, 是否重置表单内容</p>
+    </div>
+        <p><strong>Default:</strong> true</p>
+</div>
+                    <div id="property_submitDisable" class="property item">
+    <h3 class="name"><code>submitDisable</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l171"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:171</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>表单提交后, 是否禁用提交按钮</p>
+    </div>
+        <p><strong>Default:</strong> true</p>
 </div>
             </div>
     </div>

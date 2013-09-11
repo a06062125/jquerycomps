@@ -9,7 +9,6 @@
      * | <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.KillISPCache.html' target='_blank'>API docs</a>
      * | <a href='../../bizs/KillISPCache/_demo' target='_blank'>demo link</a></p>
      * require: <a href='../classes/window.jQuery.html'>jQuery</a>
-     * <p>extend: <a href='../classes/JC.BaseMVC.html'>JC.BaseMVC</a></p>
      *
      * <h2>页面只要引用本文件, 默认会自动初始化 KillISPCache 逻辑</h2>
      * <dl>
@@ -22,7 +21,8 @@
      * @class           KillISPCache
      * @extends         JC.BaseMVC
      * @constructor 
-     * @author  qiushaowei  .1  2013-09-07
+     * @version dev 0.1 2013-09-07
+     * @author  qiushaowei   <suches@btbtd.org> | 75 Team
      * @example
      *      <script>
      *      //动态添加的内容需要显式调用 process 方法去处理相关逻辑

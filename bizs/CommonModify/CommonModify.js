@@ -31,12 +31,16 @@
  *
  *      <dt>cmdelcallback = function</dt>
  *      <dd>删除完成的回调</dd>
+ *
+ *      <dt>cmappendtype = string, default = after</dt>
+ *      <dd>指定 node 添加 dom 的方法, 可选类型: after, appendTo</dd>
  * </dl>
  *
  * @namespace   window.Bizs
  * @class       CommonModify
  * @constructor
- * @author  qiushaowei  .1  2013-09-04
+ * @version dev 0.1 2013-09-04
+ * @author  qiushaowei   <suches@btbtd.org> | 75 Team
  *
  * @example
  *       <table>
@@ -79,8 +83,6 @@
             </td>
         </tr>
         </script>
-
- * @qiushaowei 2013-08-29
  */
 ;(function($){
     window.Bizs.CommonModify = CommonModify;
@@ -311,6 +313,12 @@
                     ;
                 return _r;
             }
+
+        , cmappendtype:
+            function(){
+                var _r = this.selector().attr('cmappendtype') || 'after';
+                return _r;
+            }
     };
     
     function View( _model ){
@@ -339,7 +347,11 @@
 
                 if( !( _tpl && _item && _item.length ) ) return;
                 _newItem = $( _tpl );
-                _item.after( _newItem );
+
+                switch( _p._model.cmappendtype() ){
+                    case 'appendTo': _newItem.appendTo( _item ); break;
+                    default: _item.after( _newItem ); break;
+                }
 
                 $( _p ).trigger( 'TriggerEvent', [ 'add', _newItem ] );
                 $( _p ).trigger( 'TriggerEvent', [ 'done', _newItem ] );
