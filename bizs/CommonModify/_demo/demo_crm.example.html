@@ -68,39 +68,40 @@
 
                 _selector.each( function(){
                     _box = $(this);
-                    var _data = {}, _pushed = false;
+                    var _data = {}, _pushed = false, _errKey = {}, _corKey = {};
                     _inputLs = _box.find('input[multidate=monthday]');
                     if( _inputLs.length < 2 ) return;
                     _inputLs.each( function( _ix ){
                         var _date = parseISODate( $(this).val().replace( /[^\d]/g, '' ).slice( 0, 8 ) ), _err = false;
                         if(  !_date ) return;
                         var _key = printf('{0}_{1}', _date.getFullYear(), _date.getMonth() );
+
                         if( _key in _data ){
                             _err = true;
                             _data[ _key ].push( $( this ) );
+                            _errKey[ _key ] = _data[ _key ];
                             if( !_pushed ){
                                 _r.push( _data );
                                 _pushed = true;
                             }
                         }else{
                             _data[ _key ] = [ $( this ) ];
-                        }
-
-                        if( _ix == _inputLs.length -1 ){
-                            if( _err ){
-                                $( _data[ _key ] ).each( function(){
-                                    JC.Valid.setError( $(this) );
-                                });
-                            }else{
-                                $( _data[_key]).each( function(){
-                                    JC.Valid.setValid( $(this) );
-                                });
-                            }
-
+                            _corKey[ _key ] = _data[ _key ];
                         }
                     });
-                    /*
-                    */
+
+                    for( var _key in _corKey ){
+                        $( _corKey[_key]).each( function(){
+                            JC.Valid.setValid( $(this) );
+                        });
+                    }
+
+                    for( var _key in _errKey ){
+                        $( _errKey[ _key ] ).each( function(){
+                            JC.Valid.setError( $(this) );
+                        });
+                    }
+
                 });
 
                 return _r;
