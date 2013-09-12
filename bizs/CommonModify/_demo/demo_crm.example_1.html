@@ -107,9 +107,14 @@
 
                         $.each( _data, function( _ix, _compaItem ){
                             var _isSame = false;
+
                             if( _compaItem.startTime >= _subData.startTime && _compaItem.startTime <= _subData.endTime ){
                                 _isSame = true;
-                                }else if( _compaItem.endTime >= _subData.startTime && _compaItem.endTime <= _subData.endTime ){
+                            }else if( _compaItem.endTime >= _subData.startTime && _compaItem.endTime <= _subData.endTime ){
+                                _isSame = true;
+                            }else if( _subData.startTime >= _compaItem.startTime && _subData.startTime <= _compaItem.endTime ){
+                                _isSame = true;
+                            }else if( _subData.endTime >= _compaItem.startTime && _subData.endTime <= _compaItem.endTime ){
                                 _isSame = true;
                             }
 
