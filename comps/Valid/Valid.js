@@ -240,6 +240,7 @@
             function(){
                 var _p = this, _r = true, _items = sliceArgs( arguments );
 
+
                 $.each( _items, function( _ix, _item ){
                     _item = $( _item );
                     _item.each( function(){
@@ -247,6 +248,7 @@
                         if( !_p._model.isAvalible( _sitem ) ) return;
                         if( !_p._model.isValid( _sitem ) ) return;
                         if( _p._model.isIgnoreProcess( _sitem ) ) return;
+
 
                         var _dt = _p._model.parseDatatype( _sitem )
                             , _subdt = _p._model.parseSubdatatype( _sitem )
@@ -279,6 +281,7 @@
                         _p.trigger( Model.CORRECT, _sitem ); 
                     });
                 });
+                
                 return _r;
             }
 
@@ -1812,11 +1815,11 @@
                     _items = $( _items );
                }
 
-               _items.length && $( _items[ _items.length - 1 ] ).data('LastCheckbox', true);
+               _items.length && $( _item = _items[ _items.length - 1 ] ).data('LastCheckbox', true);
 
-               if( _item.data('LastCheckbox' ) ){
+               if( _items.length ){
                     _item.is( '[datatype]' )
-                        && _item.attr('datatype').replace( /[^\-]+?\-([\d]+)/, function( $0, $1 ){ _ckLen = parseInt( $1 ) || _ckLen; } );
+                        && _item.attr('datatype').replace( /[^\-]+?\-([\d]+)/, function( $0, $1 ){ _ckLen = parseInt( $1, 10 ) || _ckLen; } );
 
                     if( _items.length >= _ckLen ){
                         _items.each( function(){
@@ -1830,6 +1833,7 @@
 
                     !_r && $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item ] );
                }
+               //alert( _items.length + ', ' + _ckLen + ', ' + _count );
 
                 return _r;
             }
@@ -2001,22 +2005,23 @@
      * 响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果
      * @private
      */
-    $(document).delegate( 'select, input[type=file]', 'change', function($evt){
+    $(document).delegate( 'select, input[type=file], input[type=checkbox]', 'change', function($evt){
         Valid.check( $(this) );
     });
     /**
      * 响应表单子对象的 focus 事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息
      * @private
      */
-    $(document).delegate( 'input[type=text], input[type=password], textarea, select, input[type=file]', 'focus', function($evt){
+    $(document).delegate( 'input[type=text], input[type=password], textarea, select, input[type=file], input[type=checkbox]', 'focus', function($evt){
         Valid.getInstance().trigger( 'FocusMsg',  [ $(this) ] );
     });
     /**
      * 响应表单子对象的 blur事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息
      * @private
      */
-    $(document).delegate( 'select, input[type=file]', 'blur', function($evt){
+    $(document).delegate( 'select, input[type=file], input[type=checkbox]', 'blur', function($evt){
         Valid.getInstance().trigger( 'FocusMsg',  [ $(this), true ] );
     });
+
 
 }(jQuery))

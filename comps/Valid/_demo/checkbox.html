@@ -58,6 +58,8 @@
                         $evt.preventDefault();
                         return false;
                     }
+
+                    JC.log( 'form process valid', new Date().getTime() );
                 });
 
                 $( 'dl.fm-items > dd:odd').addClass( 'odd' );
@@ -125,6 +127,37 @@
                         <em class="validmsg"></em>
                     </div>
                 </dd>
+
+                <dd>
+                    <div class="f-l label">
+                        <label>checkbox:</label> 需要至少选中1个, disabled 
+                    </div>
+                    <div class="f-l">
+                        <input type="checkbox" datatype="checkbox" disabled />
+                        <input type="checkbox" datatype="checkbox" disabled />
+                        <input type="checkbox" datatype="checkbox" errmsg="请至少选择1复选框" disabled />
+                        <em class="error"></em>
+                        <em class="focusmsg"></em>
+                        <em class="validmsg"></em>
+                    </div>
+                </dd>
+
+                <dd>
+                    <div class="f-l label">
+                        <label>checkbox:</label> 需要至少选中1个, display = none
+                    </div>
+                    <div class="f-l">
+                        <div style="display:none" >
+                            <input type="checkbox" datatype="checkbox" />
+                            <input type="checkbox" datatype="checkbox" />
+                            <input type="checkbox" datatype="checkbox" errmsg="请至少选择1复选框" />
+                            <em class="error"></em>
+                            <em class="focusmsg"></em>
+                            <em class="validmsg"></em>
+                        </div>
+                    </div>
+                </dd>
+
 
             </dl>
 
