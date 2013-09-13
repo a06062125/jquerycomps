@@ -138,6 +138,17 @@
      *      <dd><b>email:</b> 电子邮件</dd>
      *      <dd><b>zipcode:</b> 邮政编码, 0~6位数字</dd>
      *
+     *      <dd>
+     *          <dl>
+     *              <dt>checkbox: 默认需要至少选中N 个 checkbox</dt>
+     *              <dd>
+     *                  默认必须选中一个 checkbox
+     *                  <br > 如果需要选中N个, 用这种格式 checkbox-n, checkbox-3 = 必须选中三个
+     *                  <br > datatarget: 声明所有 checkbox 的选择器
+     *              </dd>
+     *          </dl>
+     *      </dd>
+     *
      *      <dt>subdatatype: 特殊数据类型</dt>
      *      <dd>
      *          <dl>
