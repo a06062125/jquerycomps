@@ -187,7 +187,7 @@
  *
  * &lt;h2&gt;可用的 HTML 属性&lt;/h2&gt;
  * &lt;dl&gt;
- *      &lt;dt&gt;cmtemplate = script selector&lt;/dt&gt;
+ *      &lt;dt&gt;[cmtpl | cmtemplate] = script selector&lt;/dt&gt;
  *      &lt;dd&gt;指定保存模板的 script 标签&lt;/dd&gt;
  *
  *      &lt;dt&gt;cmitem = selector&lt;/dt&gt;
@@ -422,7 +422,7 @@
             function(){
                 var _r = &#x27;&#x27;, _tmp;
                 this.selector() 
-                    &amp;&amp; ( _tmp = this.selector().attr(&#x27;cmtemplate&#x27;) )
+                    &amp;&amp; ( _tmp = this.selector().attr(&#x27;cmtemplate&#x27;) || this.selector().attr(&#x27;cmtpl&#x27;) )
                     &amp;&amp; ( _r = scriptContent( _tmp ) )
                     ;
                 return _r;

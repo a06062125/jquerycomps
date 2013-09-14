@@ -608,7 +608,7 @@ function funcName(_func){
  * <dl>
  *      <dt>可识别的组件</dt>
  *      <dd>
- *          JC.AutoSelect, JC.Calendar 
+ *          JC.AutoSelect, JC.Calendar, JC.Form.initCheckAll 
  *      </dd>
  * </d>
  * @method  jcAutoInitComps
@@ -617,14 +617,18 @@ function funcName(_func){
 function jcAutoInitComps( _selector ){
     _selector = $( _selector || document );
     
-    if( !( _selector && _selector.length ) ) return;
+    if( !( _selector && _selector.length && window.JC ) ) return;
     /**
-     * 自动初始化联动下拉框
+     * 联动下拉框
      */
-    window.JC && JC.AutoSelect && JC.AutoSelect( _selector );
+    JC.AutoSelect && JC.AutoSelect( _selector );
     /**
-     * 自动初始化日历组件
+     * 日历组件
      */
-    window.JC && JC.Calendar && JC.Calendar.initTrigger( _selector );
+    JC.Calendar && JC.Calendar.initTrigger( _selector );
+    /**
+     * 全选反选
+     */
+    JC.Form && JC.Form.initCheckAll && JC.Form.initCheckAll( _selector );
 }
 

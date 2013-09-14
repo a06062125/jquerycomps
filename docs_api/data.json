@@ -432,7 +432,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/CommonModify/CommonModify.js",
             "line": 1,
-            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>cmtemplate = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>添加或删除完后会触发的回调</dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>模板内容过滤回调</dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>添加完成的回调</dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>删除完成的回调</dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: after, appendTo</dd>\n</dl>",
+            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>[cmtpl | cmtemplate] = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>添加或删除完后会触发的回调</dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>模板内容过滤回调</dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>添加完成的回调</dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>删除完成的回调</dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: after, appendTo</dd>\n</dl>",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
@@ -12909,7 +12909,7 @@
         {
             "file": "../common.js",
             "line": 600,
-            "description": "动态添加内容时, 初始化可识别的组件\n<dl>\n     <dt>目前会自动识别的组件</dt>\n     <dd>\n         Bizs.CommonModify, JC.Panel, JC.Dialog\n     </dd>\n</d>\n<dl>\n     <dt>可识别的组件</dt>\n     <dd>\n         JC.AutoSelect, JC.Calendar \n     </dd>\n</d>",
+            "description": "动态添加内容时, 初始化可识别的组件\n<dl>\n     <dt>目前会自动识别的组件</dt>\n     <dd>\n         Bizs.CommonModify, JC.Panel, JC.Dialog\n     </dd>\n</d>\n<dl>\n     <dt>可识别的组件</dt>\n     <dd>\n         JC.AutoSelect, JC.Calendar, JC.Form.initCheckAll \n     </dd>\n</d>",
             "itemtype": "method",
             "name": "jcAutoInitComps",
             "params": [
@@ -12924,13 +12924,19 @@
         {
             "file": "../common.js",
             "line": 621,
-            "description": "自动初始化联动下拉框",
+            "description": "联动下拉框",
             "class": ".window"
         },
         {
             "file": "../common.js",
             "line": 625,
-            "description": "自动初始化日历组件",
+            "description": "日历组件",
+            "class": ".window"
+        },
+        {
+            "file": "../common.js",
+            "line": 629,
+            "description": "全选反选",
             "class": ".window"
         },
         {
@@ -13968,12 +13974,16 @@
             "line": " ../common.js:14"
         },
         {
-            "message": "Missing item type\n自动初始化联动下拉框",
+            "message": "Missing item type\n联动下拉框",
             "line": " ../common.js:621"
         },
         {
-            "message": "Missing item type\n自动初始化日历组件",
+            "message": "Missing item type\n日历组件",
             "line": " ../common.js:625"
+        },
+        {
+            "message": "Missing item type\n全选反选",
+            "line": " ../common.js:629"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",

@@ -11,7 +11,7 @@
  *
  * <h2>可用的 HTML 属性</h2>
  * <dl>
- *      <dt>cmtemplate = script selector</dt>
+ *      <dt>[cmtpl | cmtemplate] = script selector</dt>
  *      <dd>指定保存模板的 script 标签</dd>
  *
  *      <dt>cmitem = selector</dt>
@@ -246,7 +246,7 @@
             function(){
                 var _r = '', _tmp;
                 this.selector() 
-                    && ( _tmp = this.selector().attr('cmtemplate') )
+                    && ( _tmp = this.selector().attr('cmtemplate') || this.selector().attr('cmtpl') )
                     && ( _r = scriptContent( _tmp ) )
                     ;
                 return _r;
