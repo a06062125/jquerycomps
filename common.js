@@ -600,15 +600,17 @@ function funcName(_func){
 /**
  * 动态添加内容时, 初始化可识别的组件
  * <dl>
- *      <dt>目前会自动识别的组件</dt>
+ *      <dt>目前会自动识别的组件,  </dt>
  *      <dd>
  *          Bizs.CommonModify, JC.Panel, JC.Dialog
+ *          <br /><b>自动识别的组件不用显式调用  jcAutoInitComps 去识别可识别的组件</b>
  *      </dd>
  * </d>
  * <dl>
  *      <dt>可识别的组件</dt>
  *      <dd>
  *          JC.AutoSelect, JC.Calendar, JC.Form.initCheckAll 
+ *          <br />Bizs.DisableLogic
  *      </dd>
  * </d>
  * @method  jcAutoInitComps
@@ -630,5 +632,11 @@ function jcAutoInitComps( _selector ){
      * 全选反选
      */
     JC.Form && JC.Form.initCheckAll && JC.Form.initCheckAll( _selector );
+
+    if( !window.Bizs ) return;
+    /**
+     * disable / enable
+     */
+    Bizs.DisableLogic && Bizs.DisableLogic.init( _selector );
 }
 

@@ -551,44 +551,6 @@
         }
     };
     /**
-     * 从 HTML 属性 自动执行 JC.alert / JC.confirm
-     * @attr    {string}    paneltype           弹框类型, alert | confirm
-     * @attr    {string}    panelmsg            弹框提示
-     * @attr    {string}    panelstatus         弹框状态, 0|1|2
-     * @attr    {function}  panelcallback       confirm 回调
-     * @attr    {function}  panelcancelcallback cancel  回调
-     */
-    $(document).on( 'click', function( _evt ){
-        var _p = $(_evt.target||_evt.srcElement)
-            , _paneltype = _p.attr('paneltype')
-            , _panelmsg = _p.attr('panelmsg')
-            , _panel
-        ;
-        if( !(_paneltype && _panelmsg ) ) return;
-        _paneltype = _paneltype.toLowerCase();
-
-        _p.prop('nodeName') && _p.prop('nodeName').toLowerCase() == 'a' && _evt.preventDefault();
-
-        var  _panelstatus = ( parseInt( _p.attr('panelstatus'), 10 ) || 0 )
-           , _callback = _p.attr('panelcallback')
-           , _cancelcallback = _p.attr('panelcancelcallback');
-        
-        _callback && ( _callback = window[ _callback ] );
-        _cancelcallback && ( _cancelcallback = window[ _cancelcallback ] );
-
-        if( !(_paneltype in JC) ) return;
-        _panel = JC[ _paneltype ]( _panelmsg, _p, _panelstatus );
-        _p.is('[panelclickclose]') && _panel.clickClose( !parseBool( _p.attr('panelclickclose') ) );
-        parseBool( _p.attr('panelclickclose') ) &&  _evt.stopPropagation();
-
-        if( _paneltype == 'msgbox' ){
-            _callback && _panel.on( 'close', _callback );
-        }else{
-            _callback && _panel.on( 'confirm', _callback );
-        }
-        if( _cancelcallback ) _panel.on( 'cancel', _cancelcallback );
-    });
-    /**
      * 响应窗口改变大小 
      */
     $(window).on('resize', function( _evt ){

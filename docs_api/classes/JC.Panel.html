@@ -112,10 +112,8 @@
 <p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>
 | <a href='http://jc.openjavascript.org/docs_api/classes/JC.Panel.html' target='_blank'>API docs</a>
 | <a href='../../comps/Panel/_demo' target='_blank'>demo link</a></p>
-<h2>可用的 html attribute</h2>
+<h2>Panel Layout 可用的 html attribute</h2>
 <dl>
-     <dt>panelfocusbutton = bool, default = true</dt>
-     <dd>显示 Panel 时, 是否自动 foucs 到按钮上</dd>
      <dt>panelclickclose = bool</dt>
      <dd>点击 Panel 外时, 是否关闭 panel</dd>
      <dt>panelautoclose = bool</dt>
@@ -223,6 +221,14 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
                     <ul class="index-list methods">
+                            <li class="index-item method private">
+                                <a href="#method__fixWidth">_fixWidth</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__getButton">_getButton</a>
+                                    <span class="flag static">static</span>
+                            </li>
                             <li class="index-item method private">
                                 <a href="#method__init">_init</a>
                             </li>
@@ -350,6 +356,99 @@
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
+                    <div id="method__fixWidth" class="method item private">
+    <h3 class="name"><code>_fixWidth</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_msg</code>
+                </li>
+                <li class="arg">
+                        <code>_panel</code>
+                </li>
+                <li class="arg">
+                        <code>_minWidth</code>
+                </li>
+                <li class="arg">
+                        <code>_maxWidth</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag private">private</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l111"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:111</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>修正弹框的默认显示宽度</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_msg</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>查显示的文本</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_panel</code>
+                        <span class="type"><a href="../classes/JC.Panel.html" class="crosslink">JC.Panel</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_minWidth</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_maxWidth</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method__getButton" class="method item private">
+    <h3 class="name"><code>_getButton</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag private">private</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l134"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:134</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 显示的 BUTTON</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_type</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                        <p>0: 没有 BUTTON, 1: confirm, 2: confirm + cancel</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
                     <div id="method__init" class="method item private">
     <h3 class="name"><code>_init</code></h3>
         <span class="paren">()</span>
@@ -357,7 +456,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l116"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:116</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l158"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:158</code></a>
         </p>
     </div>
     <div class="description">
@@ -376,7 +475,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l291"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:291</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l334"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:334</code></a>
         </p>
     </div>
     <div class="description">
@@ -409,7 +508,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l417"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:417</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l460"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:460</code></a>
         </p>
     </div>
     <div class="description">
@@ -440,7 +539,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l335"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:335</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l378"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:378</code></a>
         </p>
     </div>
     <div class="description">
@@ -459,7 +558,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l271"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:271</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l314"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:314</code></a>
         </p>
     </div>
     <div class="description">
@@ -483,7 +582,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l250"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:250</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l293"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:293</code></a>
         </p>
     </div>
     <div class="description">
@@ -497,7 +596,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l324"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:324</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l367"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:367</code></a>
         </p>
     </div>
     <div class="description">
@@ -520,7 +619,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l359"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:359</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l402"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:402</code></a>
         </p>
     </div>
     <div class="description">
@@ -551,7 +650,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l317"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:317</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l360"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:360</code></a>
         </p>
     </div>
     <div class="description">
@@ -575,7 +674,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l430"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:430</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l473"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:473</code></a>
         </p>
     </div>
     <div class="description">
@@ -617,7 +716,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l73"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:73</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l70"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:70</code></a>
         </p>
     </div>
     <div class="description">
@@ -657,7 +756,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l403"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:403</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l446"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:446</code></a>
         </p>
     </div>
     <div class="description">
@@ -689,7 +788,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l239"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:239</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l282"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:282</code></a>
         </p>
     </div>
     <div class="description">
@@ -706,7 +805,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l262"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:262</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l305"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:305</code></a>
         </p>
     </div>
     <div class="description">
@@ -728,7 +827,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l353"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:353</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l396"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:396</code></a>
         </p>
     </div>
     <div class="description">
@@ -756,7 +855,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l149"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:149</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l191"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:191</code></a>
         </p>
     </div>
     <div class="description">
@@ -816,7 +915,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l444"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:444</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l487"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:487</code></a>
         </p>
     </div>
     <div class="description">
@@ -848,12 +947,15 @@
                 <li class="arg">
                         <code>_src</code>
                 </li>
+                <li class="arg">
+                        <code>_selectorDiretion</code>
+                </li>
             </ul><span class="paren">)</span>
         </div>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l228"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:228</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l270"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:270</code></a>
         </p>
     </div>
     <div class="description">
@@ -868,6 +970,13 @@
                     <div class="param-description">
                     </div>
                 </li>
+                <li class="param">
+                        <code class="param-name">_selectorDiretion</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _src 为 selector, _selectorDiretion 可以指定 top, 显示在上方</p>
+                    </div>
+                </li>
             </ul>
         </div>
 </div>
@@ -880,7 +989,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l346"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:346</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l389"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:389</code></a>
         </p>
     </div>
     <div class="description">
@@ -906,7 +1015,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l175"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:175</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l217"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:217</code></a>
         </p>
     </div>
     <div class="description">
@@ -952,7 +1061,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l367"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:367</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l410"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:410</code></a>
         </p>
     </div>
     <div class="description">
@@ -997,7 +1106,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l58"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:58</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l55"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:55</code></a>
         </p>
     </div>
     <div class="description">
@@ -1010,7 +1119,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l64"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:64</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l61"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:61</code></a>
         </p>
     </div>
     <div class="description">
@@ -1023,7 +1132,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l105"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:105</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l102"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:102</code></a>
         </p>
     </div>
     <div class="description">
@@ -1039,7 +1148,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l97"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:97</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l94"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:94</code></a>
         </p>
     </div>
     <div class="description">
@@ -1054,7 +1163,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l88"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:88</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l85"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:85</code></a>
         </p>
     </div>
     <div class="description">
@@ -1072,7 +1181,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l510"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:510</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l553"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:553</code></a>
         </p>
     </div>
     <div class="description">
@@ -1093,7 +1202,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l489"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:489</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l532"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:532</code></a>
         </p>
     </div>
     <div class="description">
@@ -1117,7 +1226,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l473"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:473</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l516"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:516</code></a>
         </p>
     </div>
     <div class="description">
@@ -1138,7 +1247,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l458"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:458</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l501"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:501</code></a>
         </p>
     </div>
     <div class="description">
@@ -1159,7 +1268,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l535"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:535</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l578"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:578</code></a>
         </p>
     </div>
     <div class="description">
@@ -1182,7 +1291,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l518"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:518</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l561"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:561</code></a>
         </p>
     </div>
     <div class="description">
@@ -1202,7 +1311,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l500"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:500</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l543"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:543</code></a>
         </p>
     </div>
     <div class="description">
@@ -1225,7 +1334,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l525"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:525</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l568"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:568</code></a>
         </p>
     </div>
     <div class="description">
@@ -1248,7 +1357,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l481"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:481</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l524"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:524</code></a>
         </p>
     </div>
     <div class="description">
@@ -1269,7 +1378,7 @@ focusButton</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_JC.Panel.js.html#l466"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:466</code></a>
+        <a href="../files/.._comps_Panel_JC.Panel.js.html#l509"><code>..&#x2F;comps&#x2F;Panel&#x2F;JC.Panel.js:509</code></a>
         </p>
     </div>
     <div class="description">

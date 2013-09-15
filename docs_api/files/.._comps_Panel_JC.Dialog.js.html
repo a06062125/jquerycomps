@@ -608,47 +608,6 @@
         }
     };
     /**
-     * 从 HTML 属性 自动执行 JC.Dialog.alert / JC.Dialog.confirm
-     * @attr    {string}    paneltype           弹框类型, Dialog.alert | Dialog.confirm
-     * @attr    {string}    panelmsg            弹框提示
-     * @attr    {string}    panelstatus         弹框状态, 0|1|2
-     * @attr    {function}  panelcallback       confirm 回调
-     * @attr    {function}  panelcancelcallback cancel  回调
-     */
-    $(document).on( &#x27;click&#x27;, function( _evt ){
-        var _p = $(_evt.target||_evt.srcElement)
-            , _paneltype = _p.attr(&#x27;paneltype&#x27;)
-            , _panelmsg = _p.attr(&#x27;panelmsg&#x27;)
-            , _panel
-        ;
-        if( !(_paneltype &amp;&amp; _panelmsg ) ) return;
-        _paneltype = _paneltype.toLowerCase();
-        if( !/dialog\./.test( _paneltype ) ) return;
-        _paneltype = _paneltype.replace( /.*?\./, &#x27;&#x27;);
-
-        _p.prop(&#x27;nodeName&#x27;) &amp;&amp; _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
-
-        var  _panelstatus = ( parseInt( _p.attr(&#x27;panelstatus&#x27;), 10 ) || 0 )
-           , _callback = _p.attr(&#x27;panelcallback&#x27;)
-           , _cancelcallback = _p.attr(&#x27;panelcancelcallback&#x27;);
-        
-        _callback &amp;&amp; ( _callback = window[ _callback ] );
-        _cancelcallback &amp;&amp; ( _cancelcallback = window[ _cancelcallback ] );
-
-        if( !(_paneltype in JC.Dialog) ) return;
-
-        _panel = JC.Dialog[ _paneltype ]( _panelmsg, _panelstatus );
-        _p.is(&#x27;[panelclickclose]&#x27;) &amp;&amp; _panel.clickClose( !parseBool( _p.attr(&#x27;panelclickclose&#x27;) ) );
-        parseBool( _p.attr(&#x27;panelclickclose&#x27;) ) &amp;&amp; _evt.stopPropagation();
-            
-        if( _paneltype == &#x27;msgbox&#x27; ){
-            _callback &amp;&amp; _panel.on( &#x27;close&#x27;, _callback );
-        }else{
-            _callback &amp;&amp; _panel.on( &#x27;confirm&#x27;, _callback );
-        }
-        if( _cancelcallback ) _panel.on( &#x27;cancel&#x27;, _cancelcallback );
-    });
-    /**
      * 响应窗口改变大小和滚动 
      */
     $(window).on(&#x27;resize scroll&#x27;, function( _evt ){
@@ -661,7 +620,6 @@
             }
         });
     });
-
 
 }(jQuery));
 

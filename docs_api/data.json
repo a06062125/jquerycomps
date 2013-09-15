@@ -432,7 +432,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/CommonModify/CommonModify.js",
             "line": 1,
-            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>[cmtpl | cmtemplate] = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>添加或删除完后会触发的回调</dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>模板内容过滤回调</dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>添加完成的回调</dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>删除完成的回调</dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: after, appendTo</dd>\n</dl>",
+            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>[cmtpl | cmtemplate] = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>添加或删除完后会触发的回调, <b>window 变量域</b></dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>模板内容过滤回调, <b>window 变量域</b></dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>添加完成的回调, <b>window 变量域</b></dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>删除完成的回调, <b>window 变量域</b></dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: after, appendTo</dd>\n</dl>",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
@@ -451,7 +451,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/DisableLogic/DisableLogic.js",
             "line": 2,
-            "description": "<h2>Form Control禁用启用逻辑</h2>\n<br/>应用场景</br>\n<br/>表单操作时, 选择某个 radio 时, 对应的 内容有效,\n<br/>但选择其他 radio 时, 其他的内容无效\n<br/>checkbox / select 也可使用( 带change事件的标签 )\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.DisableLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/DisableLogic/_demo' target='_blank'>demo link</a></p>\n\ndiv 需要 添加 class=\"js_bizsDisableLogic\"\n\n<h2>box 的 HTML 属性</h2>\n<dl>\n     <dt>dltrigger</dt>\n     <dd>触发禁用/起用的control</dd>\n\n     <dt>dltarget</dt>\n     <dd>需要禁用/起用的control</dd>\n\n     <dt>dlhidetarget</dt>\n     <dd>需要根据禁用起用隐藏/可见的标签</dd>\n\n     <dt>dldonecallback = function</dt>\n     <dd>启用/禁用后会触发的回调</dd>\n\n     <dt>dlenablecallback = function</dt>\n     <dd>启用后的回调</dd>\n\n     <dt>dldisablecallback = function</dt>\n     <dd>禁用后的回调</dd>\n</dl>\n\n<h2>trigger 的 HTML 属性</h2>\n<dl>\n     <dt>dldisable = bool, default = false</dt>\n     <dd>\n         指定 dltarget 是否置为无效\n         <br />还可以根据这个属性 指定 dlhidetarget 是否显示\n     </dd>\n\n     <dt>dldisplay = bool</dt>\n     <dd>指定 dlhidetarget 是否显示</dd>\n</dl>\n\n<h2>hide target 的 HTML 属性</h2>\n<dl>\n     <dt>dlhidetoggle = bool</dt>\n     <dd>显示或显示的时候, 是否与他项相反</dd>\n</dl>",
+            "description": "<h2>Form Control禁用启用逻辑</h2>\n<br/>应用场景</br>\n<br/>表单操作时, 选择某个 radio 时, 对应的 内容有效,\n<br/>但选择其他 radio 时, 其他的内容无效\n<br/>checkbox / select 也可使用( 带change事件的标签 )\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.DisableLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/DisableLogic/_demo' target='_blank'>demo link</a></p>\n\ndiv 需要 添加 class=\"js_bizsDisableLogic\"\n\n<h2>box 的 HTML 属性</h2>\n<dl>\n     <dt>dltrigger</dt>\n     <dd>触发禁用/起用的control</dd>\n\n     <dt>dltarget</dt>\n     <dd>需要禁用/起用的control</dd>\n\n     <dt>dlhidetarget</dt>\n     <dd>需要根据禁用起用隐藏/可见的标签</dd>\n\n     <dt>dldonecallback = function</dt>\n     <dd>启用/禁用后会触发的回调, <b>window 变量域</b></dd>\n\n     <dt>dlenablecallback = function</dt>\n     <dd>启用后的回调, <b>window 变量域</b></dd>\n\n     <dt>dldisablecallback = function</dt>\n     <dd>禁用后的回调, <b>window 变量域</b></dd>\n</dl>\n\n<h2>trigger 的 HTML 属性</h2>\n<dl>\n     <dt>dldisable = bool, default = false</dt>\n     <dd>\n         指定 dltarget 是否置为无效\n         <br />还可以根据这个属性 指定 dlhidetarget 是否显示\n     </dd>\n\n     <dt>dldisplay = bool</dt>\n     <dd>指定 dlhidetarget 是否显示</dd>\n</dl>\n\n<h2>hide target 的 HTML 属性</h2>\n<dl>\n     <dt>dlhidetoggle = bool</dt>\n     <dd>显示或显示的时候, 是否与他项相反</dd>\n</dl>",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
@@ -470,7 +470,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/FormLogic/FormLogic.js",
             "line": 2,
-            "description": "应用场景\n<br />get 查询表单\n<br />post 提交表单\n<br />ajax 提交表单\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.FormLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/FormLogic/_demo' target='_blank'>demo link</a></p>\nrequire: <a href='../classes/window.jQuery.html'>jQuery</a>\n<br/>require: <a href='../classes/JC.Valid.html'>JC.Valid</a>\n<br/>require: <a href='../classes/JC.Form.html'>JC.Form</a>\n<br/>require: <a href='../classes/JC.Panel.html'>JC.Panel</a>\n\n<h2>页面只要引用本文件, 默认会自动初始化 from class=\"js_autoFormLogic\" 的表单</h2>\n<h2>Form 可用的 HTML 属性</h2>\n<dl>\n     <dt>formType = string, default = get</dt>\n     <dd>\n         form 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n         <br/> 类型有: get, post, ajax \n     </dd>\n\n     <dt>formSubmitDisable = bool, default = true</dt>\n     <dd>表单提交后, 是否禁用提交按钮</dd>\n\n     <dt>formResetAfterSubmit = bool, default = true</dt>\n     <dd>表单提交后, 是否重置内容</dd>\n\n     <dt>formBeforeProcess = function</dt>\n     <dd>表单开始提交时且没开始验证时, 触发的回调</dd>\n\n     <dt>formAfterProcess = function</dt>\n     <dd>表单开始提交时且验证通过后, 触发的回调</dd>\n\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formSubmitConfirm = string</dt>\n     <dd>提交表单时进行二次确认的提示信息</dt>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n\n     <dt>ajaxSubmitType = string, default = plugins</dt>\n     <dd>\n         类型: plugins, form\n         <br/>plugins 支持 AJAX 文件上传, 但是在 弹框里 捕获不到提交事件\n         <br/>form 不支持 ajax 文件上传, 但可以在 popup 里捕获到提交事件\n     </dd>\n\n     <dt>formAjaxMethod = string, default = get</dt>\n     <dd>\n         类型有: get, post\n         <br/>ajax 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n     </dd>\n\n     <dt>formAjaxAction = url</dt>\n     <dd>ajax 的提交URL, 如果没有显式声明, 将视为 form 的 action 属性</dd>\n\n     <dt>formAjaxDone = function, default = system defined</dt>\n     <dd>\n         AJAX 提交完成后的回调\n         <br />如果没有显式声明, FormLogic将自行处理\n     </dd>\n\n     <dt>formAjaxDoneAction = url</dt>\n     <dd>声明 ajax 提交完成后的返回路径, 如果没有, 提交完成后将不继续跳转操作</dd>\n</dl>\n\n<h2>submit button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         基本上 form 可用的 html 属性, submit 就可用, 区别在于 submit 优化级更高\n         <br/> formResetConfirm 属性除外\n     </dd>\n</dl>\n\n<h2>reset button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         如果 form 和 reset 定义了相同属性, reset 优先级更高\n     </dd>\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n</dl>\n\n<h2>普通 button 可用的 html 属性</h2>\n<dl>\n     <dt>buttonReturnUrl</dt>\n     <dd>点击button时, 返回的URL</dd>\n</dl>",
+            "description": "应用场景\n<br />get 查询表单\n<br />post 提交表单\n<br />ajax 提交表单\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.FormLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/FormLogic/_demo' target='_blank'>demo link</a></p>\nrequire: <a href='../classes/window.jQuery.html'>jQuery</a>\n<br/>require: <a href='../classes/JC.Valid.html'>JC.Valid</a>\n<br/>require: <a href='../classes/JC.Form.html'>JC.Form</a>\n<br/>require: <a href='../classes/JC.Panel.html'>JC.Panel</a>\n\n<h2>页面只要引用本文件, 默认会自动初始化 from class=\"js_autoFormLogic\" 的表单</h2>\n<h2>Form 可用的 HTML 属性</h2>\n<dl>\n     <dt>formType = string, default = get</dt>\n     <dd>\n         form 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n         <br/> 类型有: get, post, ajax \n     </dd>\n\n     <dt>formSubmitDisable = bool, default = true</dt>\n     <dd>表单提交后, 是否禁用提交按钮</dd>\n\n     <dt>formResetAfterSubmit = bool, default = true</dt>\n     <dd>表单提交后, 是否重置内容</dd>\n\n     <dt>formBeforeProcess = function</dt>\n     <dd>表单开始提交时且没开始验证时, 触发的回调, <b>window 变量域</b></dd>\n\n     <dt>formAfterProcess = function</dt>\n     <dd>表单开始提交时且验证通过后, 触发的回调, <b>window 变量域</b></dd>\n\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formSubmitConfirm = string</dt>\n     <dd>提交表单时进行二次确认的提示信息</dt>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n\n     <dt>ajaxSubmitType = string, default = plugins</dt>\n     <dd>\n         类型: plugins, form\n         <br/>plugins 支持 AJAX 文件上传, 但是在 弹框里 捕获不到提交事件\n         <br/>form 不支持 ajax 文件上传, 但可以在 popup 里捕获到提交事件\n     </dd>\n\n     <dt>formAjaxMethod = string, default = get</dt>\n     <dd>\n         类型有: get, post\n         <br/>ajax 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n     </dd>\n\n     <dt>formAjaxAction = url</dt>\n     <dd>ajax 的提交URL, 如果没有显式声明, 将视为 form 的 action 属性</dd>\n\n     <dt>formAjaxDone = function, default = system defined</dt>\n     <dd>\n         AJAX 提交完成后的回调\n         <br />如果没有显式声明, FormLogic将自行处理\n     </dd>\n\n     <dt>formAjaxDoneAction = url</dt>\n     <dd>声明 ajax 提交完成后的返回路径, 如果没有, 提交完成后将不继续跳转操作</dd>\n</dl>\n\n<h2>submit button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         基本上 form 可用的 html 属性, submit 就可用, 区别在于 submit 优化级更高\n         <br/> formResetConfirm 属性除外\n     </dd>\n</dl>\n\n<h2>reset button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         如果 form 和 reset 定义了相同属性, reset 优先级更高\n     </dd>\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n</dl>\n\n<h2>普通 button 可用的 html 属性</h2>\n<dl>\n     <dt>buttonReturnUrl</dt>\n     <dd>点击button时, 返回的URL</dd>\n</dl>",
             "extends": "JC.BaseMVC",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-08",
@@ -932,7 +932,7 @@
             "namespace": "JC",
             "file": "../comps/Panel/JC.Panel.js",
             "line": 3,
-            "description": "弹出层基础类 JC.Panel\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Panel.html' target='_blank'>API docs</a>\n| <a href='../../comps/Panel/_demo' target='_blank'>demo link</a></p>\n<h2>可用的 html attribute</h2>\n<dl>\n     <dt>panelfocusbutton = bool, default = true</dt>\n     <dd>显示 Panel 时, 是否自动 foucs 到按钮上</dd>\n\n     <dt>panelclickclose = bool</dt>\n     <dd>点击 Panel 外时, 是否关闭 panel</dd>\n\n     <dt>panelautoclose = bool</dt>\n     <dd>Panel 是否自动关闭, 默认关闭时间间隔 = 2000 ms</dd>\n\n     <dt>panelautoclosems = int, default = 2000 ms</dt>\n     <dd>自动关闭 Panel 的时间间隔</dd>\n</dl>",
+            "description": "弹出层基础类 JC.Panel\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Panel.html' target='_blank'>API docs</a>\n| <a href='../../comps/Panel/_demo' target='_blank'>demo link</a></p>\n<h2>Panel Layout 可用的 html attribute</h2>\n<dl>\n     <dt>panelclickclose = bool</dt>\n     <dd>点击 Panel 外时, 是否关闭 panel</dd>\n\n     <dt>panelautoclose = bool</dt>\n     <dd>Panel 是否自动关闭, 默认关闭时间间隔 = 2000 ms</dd>\n\n     <dt>panelautoclosems = int, default = 2000 ms</dt>\n     <dd>自动关闭 Panel 的时间间隔</dd>\n</dl>",
             "is_constructor": 1,
             "params": [
                 {
@@ -973,7 +973,7 @@
             "extension_for": [],
             "namespace": "JC.Panel",
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 546,
+            "line": 589,
             "description": "存储 Panel 的基础数据类\n<br /><b>这个类为 Panel 的私有类</b>",
             "is_constructor": 1,
             "params": [
@@ -1019,7 +1019,7 @@
             "extension_for": [],
             "namespace": "JC",
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 917,
+            "line": 971,
             "description": "隐藏或者清除所有 Panel\n<h2>使用这个方法应当谨慎, 容易为DOM造成垃圾Panel</h2>\n<br /><b>注意</b>: 这是个方法, 写成class是为了方便生成文档",
             "is_constructor": 1,
             "static": 1,
@@ -1044,7 +1044,7 @@
             "extension_for": [],
             "namespace": "JC",
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 940,
+            "line": 994,
             "description": "隐藏 或 从DOM清除所有 JC.alert/JC.confirm\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>",
             "static": 1,
             "is_constructor": 1,
@@ -1464,7 +1464,7 @@
             "namespace": "JC",
             "file": "../comps/Valid/Valid.js",
             "line": 3,
-            "description": "<b>表单验证</b> (单例模式)\n<br />全局访问请使用 JC.Valid 或 Valid\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Valid.html' target='_blank'>API docs</a>\n| <a href='../../comps/Valid/_demo/' target='_blank'>demo link</a></p>\n<h2>Form 的可用 html attribute</h2>\n<dl>\n     <dt>errorabort = bool, default = true</dt>\n     <dd>查检Form Control时, 如果发生错误是否继续检查下一个</dd>\n\n     <dt>validmsg = bool | string</dt>\n     <dd>\n         内容填写正确时显示的 提示信息, class=validmsg\n         <br />如果 = 0, false, 将不显示提示信息\n         <br />如果 = 1, true, 将不显示提示文本\n     </dd>\n\n     <dt>validemdisplaytype = string, default = inline</dt>\n     <dd>\n         设置 表单所有控件的 em  CSS display 显示类型\n     </dd>\n</dl>\n<h2>Form Control的可用 html attribute</h2>\n<dl>\n     <dt>reqmsg = 错误提示</dt>\n     <dd>值不能为空, class=error errormsg</dd>\n\n     <dt>errmsg = 错误提示</dt>\n     <dd>格式错误, 但不验证为空的值, class=error errormsg</dd>\n\n     <dt>focusmsg = 控件获得焦点的提示信息</dt>\n     <dd>\n         这个只作提示用, class=focusmsg\n     </dd>\n\n     <dt>validmsg = bool | string</dt>\n     <dd>\n         内容填写正确时显示的 提示信息, class=validmsg\n         <br />如果 = 0, false, 将不显示提示信息\n         <br />如果 = 1, true, 将不显示提示文本\n     </dd>\n\n     <dt>emel = selector</dt>\n     <dd>显示错误的selector</dd>\n\n     <dt>validemdisplaytype = string, default = inline</dt>\n     <dd>\n         设置 em 的 CSS display 显示类型\n     </dd>\n\n     <dt>ignoreprocess = bool</dt>\n     <dd>验证表单时, 是否忽略</dd>\n     <dd>default = false</dd>\n\n     <dt>minlength = int(最小长度)</dt>\n     <dd>验证内容的最小长度, 但不验证为空的值</dd>\n\n     <dt>maxlength = int(最大长度)</dt>\n     <dd>验证内容的最大长度, 但不验证为空的值</dd>\n\n     <dt>minvalue = [number|ISO date](最小值)</dt>\n     <dd>验证内容的最小值, 但不验证为空的值</dd>\n\n     <dt>maxvalue = [number|ISO date](最大值)</dt>\n     <dd>验证内容的最大值, 但不验证为空的值</dd>\n\n     <dt>validitemcallback = function name</dt>\n     <dd>对一个 control 作检查后的回调, 无论正确与否都会触发</dt>\n\n     <dt>datatype: 常用数据类型</dt>\n     <dd><b>n:</b> 检查是否为正确的数字</dd>\n     <dd><b>n-i.f:</b> 检查数字格式是否附件要求, i[整数位数], f[浮点数位数], n-7.2 = 0.00 ~ 9999999.99</dd>\n     <dd>\n         <b>nrange:</b> 检查两个control的数值范围\n         <dl>\n             <dd>html attr <b>fromNEl:</b> 指定开始的 control</dd>\n             <dd>html attr <b>toNEl:</b> 指定结束的 control</dd>\n             <dd>如果不指定 fromNEl, toNEl, 默认是从父节点下面找到 nrange, 按顺序定为 fromNEl, toNEl</dd>\n         </dl>\n     </dd>\n     <dd><b>d:</b> 检查是否为正确的日期, YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD</dd>\n     <dd>\n         <b>daterange:</b> 检查两个control的日期范围\n         <dl>\n             <dd>html attr <b>fromDateEl:</b> 指定开始的 control</dd>\n             <dd>html attr <b>toDateEl:</b> 指定结束的 control</dd>\n             <dd>如果不指定 fromDateEl, toDateEl, 默认是从父节点下面找到 daterange, 按顺序定为 fromDateEl, toDateEl</dd>\n         </dl>\n     </dd>\n     <dd><b>time:</b> 是否为正确的时间, hh:mm:ss</dd>\n     <dd><b>minute:</b> 是否为正确的时间, hh:mm</dd>\n     <dd>\n         <b>bankcard:</b> 是否为正确的银行卡\n         <br />  格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111\n     </dd>\n     <dd>\n         <b>cnname:</b> 中文姓名\n         <br>格式: 汉字和大小写字母\n         <br>规则: 长度 2-32个字节, 非 ASCII 算2个字节\n     </dd>\n     <dd>\n         <b>username:</b> 注册用户名\n         <br>格式: a-zA-Z0-9_-\n         <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30\n     </dd>\n     <dd><b>idnumber:</b> 身份证号码, 15~18 位</dd>\n     <dd><b>mobilecode:</b> 手机号码, 11位, (13|14|15|16|18|19)[\\d]{9}</dd>\n     <dd><b>mobile:</b> mobilecode 的别名</dd>\n     <dd><b>mobilezonecode:</b> 带 国家代码的手机号码, [+国家代码] [零]11位数字</dd>\n     <dd><b>phonecode:</b> 电话号码, 7~8 位数字, [1-9][0-9]{6,7}</dd>\n     <dd><b>phone:</b> 带区号的电话号码, [区号][空格|空白|-]7~8位电话号码</dd>\n     <dd><b>phoneall:</b> 带国家代码, 区号, 分机号的电话号码, [+国家代码][区号][空格|空白|-]7~8位电话号码#1~6位</dd>\n     <dd><b>phonezone:</b> 电话区号, 3~4位数字. phonezone-n,m 可指定位数长度</dd>\n     <dd><b>phoneext:</b> 电话分机号, 1~6位数字</dd>\n     <dd><b>countrycode:</b> 地区代码, [+]1~6位数字</dd>\n     <dd><b>mobilephone:</b> mobilecode | phone</dd>\n     <dd><b>mobilephoneall:</b> mobilezonecode | phoneall</dd>\n     <dd><b>reg:</b> 自定义正则校验, /正则规则/[igm]</dd>\n     <dd>\n         <b>vcode:</b> 验证码, 0-9a-zA-Z, 长度 默认为4\n         <br />可通过 vcode-[\\d], 指定验证码长度\n     </dd>\n     <dd>\n         <b>text:</b> 显示声明检查的内容为文本类型\n         <br />默认就是 text, 没有特殊原因其实不用显示声明\n     </dd>\n     <dd>\n         <b>bytetext:</b> 声明按字节检查文本长度\n         <br /> ASCII 算一个字符, 非 ASCII 算两个字符\n     </dd>\n     <dd><b>url:</b> URL 格式, ftp, http, https</dd>\n     <dd><b>domain:</b> 匹配域名, 宽松模式, 允许匹配 http(s), 且结尾允许匹配反斜扛(/)</dd>\n     <dd><b>stricdomain:</b> 匹配域名, 严格模式, 不允许匹配 http(s), 且结尾不允许匹配反斜扛(/)</dd>\n     <dd><b>email:</b> 电子邮件</dd>\n     <dd><b>zipcode:</b> 邮政编码, 0~6位数字</dd>\n\n     <dd>\n         <dl>\n             <dt>checkbox: 默认需要至少选中N 个 checkbox</dt>\n             <dd>\n                 默认必须选中一个 checkbox\n                 <br > 如果需要选中N个, 用这种格式 checkbox-n, checkbox-3 = 必须选中三个\n                 <br > datatarget: 声明所有 checkbox 的选择器\n             </dd>\n         </dl>\n     </dd>\n\n     <dt>subdatatype: 特殊数据类型</dt>\n     <dd>\n         <dl>\n             <dt>alternative: N 个 Control 必须至少有一个非空的值</dt>\n             <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=alternative]</dd>\n             <dd><b>alternativemsg:</b> N 选一的错误提示</dd>\n         </dl>\n     </dd>\n     <dd>\n         <dl>\n             <dt>reconfirm: N 个 Control 的值必须保持一致</dt>\n             <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=reconfirm]</dd>\n             <dd><b>reconfirmmsg:</b> 值不一致时的错误提示</dd>\n         </dl>\n     </dd>\n</dl>",
+            "description": "<b>表单验证</b> (单例模式)\n<br />全局访问请使用 JC.Valid 或 Valid\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Valid.html' target='_blank'>API docs</a>\n| <a href='../../comps/Valid/_demo/' target='_blank'>demo link</a></p>\n<h2>Form 的可用 html attribute</h2>\n<dl>\n     <dt>errorabort = bool, default = true</dt>\n     <dd>查检Form Control时, 如果发生错误是否继续检查下一个</dd>\n\n     <dt>validmsg = bool | string</dt>\n     <dd>\n         内容填写正确时显示的 提示信息, class=validmsg\n         <br />如果 = 0, false, 将不显示提示信息\n         <br />如果 = 1, true, 将不显示提示文本\n     </dd>\n\n     <dt>validemdisplaytype = string, default = inline</dt>\n     <dd>\n         设置 表单所有控件的 em  CSS display 显示类型\n     </dd>\n</dl>\n<h2>Form Control的可用 html attribute</h2>\n<dl>\n     <dt>reqmsg = 错误提示</dt>\n     <dd>值不能为空, class=error errormsg</dd>\n\n     <dt>errmsg = 错误提示</dt>\n     <dd>格式错误, 但不验证为空的值, class=error errormsg</dd>\n\n     <dt>focusmsg = 控件获得焦点的提示信息</dt>\n     <dd>\n         这个只作提示用, class=focusmsg\n     </dd>\n\n     <dt>validmsg = bool | string</dt>\n     <dd>\n         内容填写正确时显示的 提示信息, class=validmsg\n         <br />如果 = 0, false, 将不显示提示信息\n         <br />如果 = 1, true, 将不显示提示文本\n     </dd>\n\n     <dt>emel = selector</dt>\n     <dd>显示错误信息的selector</dd>\n\n     <dt>validel = selector</dt>\n     <dd>显示正确信息的selector</dd>\n\n     <dt>focusel = selector</dt>\n     <dd>显示提示信息的selector</dd>\n\n     <dt>validemdisplaytype = string, default = inline</dt>\n     <dd>\n         设置 em 的 CSS display 显示类型\n     </dd>\n\n     <dt>ignoreprocess = bool</dt>\n     <dd>验证表单时, 是否忽略</dd>\n     <dd>default = false</dd>\n\n     <dt>minlength = int(最小长度)</dt>\n     <dd>验证内容的最小长度, 但不验证为空的值</dd>\n\n     <dt>maxlength = int(最大长度)</dt>\n     <dd>验证内容的最大长度, 但不验证为空的值</dd>\n\n     <dt>minvalue = [number|ISO date](最小值)</dt>\n     <dd>验证内容的最小值, 但不验证为空的值</dd>\n\n     <dt>maxvalue = [number|ISO date](最大值)</dt>\n     <dd>验证内容的最大值, 但不验证为空的值</dd>\n\n     <dt>validitemcallback = function name</dt>\n     <dd>对一个 control 作检查后的回调, 无论正确与否都会触发</dt>\n\n     <dt>datatype: 常用数据类型</dt>\n     <dd><b>n:</b> 检查是否为正确的数字</dd>\n     <dd><b>n-i.f:</b> 检查数字格式是否附件要求, i[整数位数], f[浮点数位数], n-7.2 = 0.00 ~ 9999999.99</dd>\n     <dd>\n         <b>nrange:</b> 检查两个control的数值范围\n         <dl>\n             <dd>html attr <b>fromNEl:</b> 指定开始的 control</dd>\n             <dd>html attr <b>toNEl:</b> 指定结束的 control</dd>\n             <dd>如果不指定 fromNEl, toNEl, 默认是从父节点下面找到 nrange, 按顺序定为 fromNEl, toNEl</dd>\n         </dl>\n     </dd>\n     <dd><b>d:</b> 检查是否为正确的日期, YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD</dd>\n     <dd>\n         <b>daterange:</b> 检查两个control的日期范围\n         <dl>\n             <dd>html attr <b>fromDateEl:</b> 指定开始的 control</dd>\n             <dd>html attr <b>toDateEl:</b> 指定结束的 control</dd>\n             <dd>如果不指定 fromDateEl, toDateEl, 默认是从父节点下面找到 daterange, 按顺序定为 fromDateEl, toDateEl</dd>\n         </dl>\n     </dd>\n     <dd><b>time:</b> 是否为正确的时间, hh:mm:ss</dd>\n     <dd><b>minute:</b> 是否为正确的时间, hh:mm</dd>\n     <dd>\n         <b>bankcard:</b> 是否为正确的银行卡\n         <br />  格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111\n     </dd>\n     <dd>\n         <b>cnname:</b> 中文姓名\n         <br>格式: 汉字和大小写字母\n         <br>规则: 长度 2-32个字节, 非 ASCII 算2个字节\n     </dd>\n     <dd>\n         <b>username:</b> 注册用户名\n         <br>格式: a-zA-Z0-9_-\n         <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30\n     </dd>\n     <dd><b>idnumber:</b> 身份证号码, 15~18 位</dd>\n     <dd><b>mobilecode:</b> 手机号码, 11位, (13|14|15|16|18|19)[\\d]{9}</dd>\n     <dd><b>mobile:</b> mobilecode 的别名</dd>\n     <dd><b>mobilezonecode:</b> 带 国家代码的手机号码, [+国家代码] [零]11位数字</dd>\n     <dd><b>phonecode:</b> 电话号码, 7~8 位数字, [1-9][0-9]{6,7}</dd>\n     <dd><b>phone:</b> 带区号的电话号码, [区号][空格|空白|-]7~8位电话号码</dd>\n     <dd><b>phoneall:</b> 带国家代码, 区号, 分机号的电话号码, [+国家代码][区号][空格|空白|-]7~8位电话号码#1~6位</dd>\n     <dd><b>phonezone:</b> 电话区号, 3~4位数字. phonezone-n,m 可指定位数长度</dd>\n     <dd><b>phoneext:</b> 电话分机号, 1~6位数字</dd>\n     <dd><b>countrycode:</b> 地区代码, [+]1~6位数字</dd>\n     <dd><b>mobilephone:</b> mobilecode | phone</dd>\n     <dd><b>mobilephoneall:</b> mobilezonecode | phoneall</dd>\n     <dd><b>reg:</b> 自定义正则校验, /正则规则/[igm]</dd>\n     <dd>\n         <b>vcode:</b> 验证码, 0-9a-zA-Z, 长度 默认为4\n         <br />可通过 vcode-[\\d], 指定验证码长度\n     </dd>\n     <dd>\n         <b>text:</b> 显示声明检查的内容为文本类型\n         <br />默认就是 text, 没有特殊原因其实不用显示声明\n     </dd>\n     <dd>\n         <b>bytetext:</b> 声明按字节检查文本长度\n         <br /> ASCII 算一个字符, 非 ASCII 算两个字符\n     </dd>\n     <dd><b>url:</b> URL 格式, ftp, http, https</dd>\n     <dd><b>domain:</b> 匹配域名, 宽松模式, 允许匹配 http(s), 且结尾允许匹配反斜扛(/)</dd>\n     <dd><b>stricdomain:</b> 匹配域名, 严格模式, 不允许匹配 http(s), 且结尾不允许匹配反斜扛(/)</dd>\n     <dd><b>email:</b> 电子邮件</dd>\n     <dd><b>zipcode:</b> 邮政编码, 0~6位数字</dd>\n\n     <dd>\n         <dl>\n             <dt>checkbox: 默认需要至少选中N 个 checkbox</dt>\n             <dd>\n                 默认必须选中一个 checkbox\n                 <br > 如果需要选中N个, 用这种格式 checkbox-n, checkbox-3 = 必须选中三个\n                 <br > datatarget: 声明所有 checkbox 的选择器\n             </dd>\n         </dl>\n     </dd>\n\n     <dt>subdatatype: 特殊数据类型</dt>\n     <dd>\n         <dl>\n             <dt>alternative: N 个 Control 必须至少有一个非空的值</dt>\n             <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=alternative]</dd>\n             <dd><b>alternativemsg:</b> N 选一的错误提示</dd>\n         </dl>\n     </dd>\n     <dd>\n         <dl>\n             <dt>reconfirm: N 个 Control 的值必须保持一致</dt>\n             <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=reconfirm]</dd>\n             <dd><b>reconfirmmsg:</b> 值不一致时的错误提示</dd>\n         </dl>\n     </dd>\n</dl>",
             "static": 1,
             "version": "0.1,  2013-05-22",
             "author": "qiushaowei   <suches@btbtd.org> | 75 team"
@@ -1727,6 +1727,23 @@
                 "description": "",
                 "type": "DisableLogic instance"
             },
+            "class": "window.Bizs.DisableLogic",
+            "namespace": "window.Bizs"
+        },
+        {
+            "file": "../bizs/DisableLogic/DisableLogic.js",
+            "line": 184,
+            "description": "初始化 _selector | document 可识别的 DisableLogic HTML属性",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "_selector,",
+                    "description": "default = document",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
             "class": "window.Bizs.DisableLogic",
             "namespace": "window.Bizs"
         },
@@ -5322,21 +5339,13 @@
         {
             "file": "../comps/Panel/JC.Dialog.js",
             "line": 434,
-            "description": "从 HTML 属性 自动执行 JC.Dialog.alert / JC.Dialog.confirm",
-            "attr": "{function}  panelcancelcallback cancel  回调",
-            "class": "JC.Dialog",
-            "namespace": "JC.Dialog"
-        },
-        {
-            "file": "../comps/Panel/JC.Dialog.js",
-            "line": 475,
             "description": "响应窗口改变大小和滚动",
             "class": "JC.Dialog",
             "namespace": "JC.Dialog"
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 58,
+            "line": 55,
             "description": "存放数据的model层, see <a href='JC.Panel.Model.html'>Panel.Model</a>",
             "itemtype": "property",
             "name": "_model",
@@ -5347,7 +5356,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 64,
+            "line": 61,
             "description": "控制视图的view层, see <a href='JC.Panel.View.html'>Panel.View</a>",
             "itemtype": "property",
             "name": "_view",
@@ -5358,7 +5367,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 73,
+            "line": 70,
             "description": "从 selector 获取 Panel 的实例\n<br /><b>如果从DOM初始化, 不进行判断的话, 会重复初始化多次</b>",
             "itemtype": "method",
             "name": "getInstance",
@@ -5379,7 +5388,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 88,
+            "line": 85,
             "description": "显示Panel时, 是否 focus 到 按钮上\nfocusButton",
             "itemtype": "property",
             "name": "focusButton",
@@ -5391,7 +5400,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 97,
+            "line": 94,
             "description": "页面点击时, 是否自动关闭 Panel",
             "itemtype": "property",
             "name": "clickClose",
@@ -5403,7 +5412,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 105,
+            "line": 102,
             "description": "自动关闭的时间间隔, 单位毫秒\n<br />调用 ins.autoClose() 时生效",
             "itemtype": "property",
             "name": "autoCloseMs",
@@ -5415,7 +5424,60 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 116,
+            "line": 111,
+            "description": "修正弹框的默认显示宽度",
+            "itemtype": "method",
+            "name": "_fixWidth",
+            "params": [
+                {
+                    "name": "_msg",
+                    "description": "查显示的文本",
+                    "type": "String"
+                },
+                {
+                    "name": "_panel",
+                    "description": "",
+                    "type": "JC.Panel"
+                },
+                {
+                    "name": "_minWidth",
+                    "description": "",
+                    "type": "Int"
+                },
+                {
+                    "name": "_maxWidth",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "JC.Panel",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Panel/JC.Panel.js",
+            "line": 134,
+            "description": "获取 显示的 BUTTON",
+            "itemtype": "method",
+            "name": "_getButton",
+            "params": [
+                {
+                    "name": "_type",
+                    "description": "0: 没有 BUTTON, 1: confirm, 2: confirm + cancel",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "JC.Panel",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Panel/JC.Panel.js",
+            "line": 158,
             "description": "初始化Panel",
             "itemtype": "method",
             "name": "_init",
@@ -5426,7 +5488,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 126,
+            "line": 168,
             "description": "初始化Panel 默认事件",
             "access": "private",
             "tagname": "",
@@ -5435,7 +5497,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 149,
+            "line": 191,
             "description": "为Panel绑定事件\n<br /> 内置事件类型有 show, hide, close, center, confirm, cancel\n, beforeshow, beforehide, beforeclose, beforecenter\n<br /> 用户可通过 HTML eventtype 属性自定义事件类型",
             "itemtype": "method",
             "name": "on",
@@ -5459,7 +5521,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 175,
+            "line": 217,
             "description": "显示 Panel\n<br /> Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法",
             "itemtype": "method",
             "name": "show",
@@ -5478,7 +5540,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 228,
+            "line": 270,
             "description": "设置Panel的显示位置基于 _src 的左右上下",
             "itemtype": "method",
             "name": "positionWith",
@@ -5487,6 +5549,11 @@
                     "name": "_src",
                     "description": "",
                     "type": "Selector"
+                },
+                {
+                    "name": "_selectorDiretion",
+                    "description": "如果 _src 为 selector, _selectorDiretion 可以指定 top, 显示在上方",
+                    "type": "String"
                 }
             ],
             "class": "JC.Panel",
@@ -5494,7 +5561,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 239,
+            "line": 282,
             "description": "隐藏 Panel\n<br /> 隐藏 Panel 设置 css display:none, 不会从DOM 删除 Panel",
             "itemtype": "method",
             "name": "hide",
@@ -5503,7 +5570,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 250,
+            "line": 293,
             "description": "关闭 Panel\n<br /> <b>关闭 Panel 是直接从 DOM 中删除 Panel</b>",
             "itemtype": "method",
             "name": "close",
@@ -5512,7 +5579,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 262,
+            "line": 305,
             "description": "判断点击页面时, 是否自动关闭 Panel",
             "itemtype": "method",
             "name": "isClickClose",
@@ -5524,7 +5591,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 271,
+            "line": 314,
             "description": "点击页面时, 添加自动隐藏功能",
             "itemtype": "method",
             "name": "clickClose",
@@ -5540,14 +5607,14 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 282,
+            "line": 325,
             "description": "clickClose 的别名\n<br />这个方法的存在是为了向后兼容, 请使用 clickClose",
             "class": "JC.Panel",
             "namespace": "JC"
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 291,
+            "line": 334,
             "description": "添加自动关闭功能",
             "itemtype": "method",
             "name": "autoClose",
@@ -5563,7 +5630,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 317,
+            "line": 360,
             "description": "focus 到 button\n<br />优先查找 input[eventtype=confirm], input[type=submit], button[eventtype=confirm], button[type=submit]\n<br />input[eventtype=cancel], input[type=buton], button[eventtype=cancel], button[type=button]",
             "itemtype": "method",
             "name": "focusButton",
@@ -5572,7 +5639,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 324,
+            "line": 367,
             "description": "从DOM清除Panel\n<br /> <b>close 方法清除 Panel可以被用户阻止, 该方法不会被用户阻止</b>",
             "itemtype": "method",
             "name": "dispose",
@@ -5581,7 +5648,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 335,
+            "line": 378,
             "description": "把 Panel 位置设为屏幕居中",
             "itemtype": "method",
             "name": "center",
@@ -5590,7 +5657,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 346,
+            "line": 389,
             "description": "返回 Panel 的 jquery dom选择器对象\n<br />这个方法以后将会清除, 请使用 layout 方法",
             "itemtype": "method",
             "name": "selector",
@@ -5603,7 +5670,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 353,
+            "line": 396,
             "description": "返回 Panel 的 jquery dom选择器对象",
             "itemtype": "method",
             "name": "layout",
@@ -5616,7 +5683,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 359,
+            "line": 402,
             "description": "从 Panel 选择器中查找内容\n<br />添加这个方法是为了方便jquery 使用者的习惯",
             "itemtype": "method",
             "name": "find",
@@ -5635,7 +5702,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 367,
+            "line": 410,
             "description": "触发 Panel 已绑定的事件\n<br />用户可以使用该方法主动触发绑定的事件",
             "itemtype": "method",
             "name": "trigger",
@@ -5659,7 +5726,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 403,
+            "line": 446,
             "description": "获取或者设置 Panel Header 的HTML内容\n<br />如果 Panel默认没有 Header的话, 使用该方法 _html 非空可动态创建一个Header",
             "itemtype": "method",
             "name": "header",
@@ -5679,7 +5746,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 417,
+            "line": 460,
             "description": "获取或者设置 Panel body 的HTML内容",
             "itemtype": "method",
             "name": "body",
@@ -5699,7 +5766,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 430,
+            "line": 473,
             "description": "获取或者设置 Panel footer 的HTML内容\n<br />如果 Panel默认没有 footer的话, 使用该方法 _html 非空可动态创建一个footer",
             "itemtype": "method",
             "name": "footer",
@@ -5719,7 +5786,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 444,
+            "line": 487,
             "description": "获取或者设置 Panel 的HTML内容",
             "itemtype": "method",
             "name": "panel",
@@ -5739,7 +5806,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 458,
+            "line": 501,
             "description": "Panel 显示前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.show() 时触发",
             "itemtype": "event",
             "name": "beforeshow",
@@ -5752,7 +5819,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 466,
+            "line": 509,
             "description": "显示Panel时会触发的事件",
             "itemtype": "event",
             "name": "show",
@@ -5765,7 +5832,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 473,
+            "line": 516,
             "description": "Panel 隐藏前会触发的事件<br/>\n<br />这个事件在用户调用 _panelInstance.hide() 时触发",
             "itemtype": "event",
             "name": "beforehide",
@@ -5778,7 +5845,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 481,
+            "line": 524,
             "description": "Panel 隐藏时会触发的事件<br/>\n<br />这个事件在用户调用 _panelInstance.hide() 时触发",
             "itemtype": "event",
             "name": "hide",
@@ -5791,7 +5858,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 489,
+            "line": 532,
             "description": "Panel 关闭前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.close() 时触发",
             "itemtype": "event",
             "name": "beforeclose",
@@ -5804,7 +5871,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 500,
+            "line": 543,
             "description": "关闭事件",
             "itemtype": "event",
             "name": "close",
@@ -5817,7 +5884,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 510,
+            "line": 553,
             "description": "Panel 居中显示前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.center() 时触发",
             "itemtype": "event",
             "name": "beforecenter",
@@ -5830,7 +5897,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 518,
+            "line": 561,
             "description": "Panel 居中后会触发的事件",
             "itemtype": "event",
             "name": "center",
@@ -5843,7 +5910,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 525,
+            "line": 568,
             "description": "Panel 点击确认按钮触发的事件",
             "itemtype": "event",
             "name": "confirm",
@@ -5856,7 +5923,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 535,
+            "line": 578,
             "description": "Panel 点击确取消按钮触发的事件",
             "itemtype": "event",
             "name": "cancel",
@@ -5869,7 +5936,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 558,
+            "line": 601,
             "description": "panel 的 HTML 对象或者字符串\n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "selector",
@@ -5879,7 +5946,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 565,
+            "line": 608,
             "description": "header 内容 \n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "headers",
@@ -5889,7 +5956,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 572,
+            "line": 615,
             "description": "body 内容\n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "bodys",
@@ -5899,7 +5966,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 579,
+            "line": 622,
             "description": "footers 内容\n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "footers",
@@ -5909,7 +5976,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 586,
+            "line": 629,
             "description": "panel 初始化后的 selector 对象",
             "itemtype": "property",
             "name": "panel",
@@ -5919,7 +5986,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 592,
+            "line": 635,
             "description": "存储用户事件和默认事件的对象",
             "itemtype": "property",
             "name": "_events",
@@ -5931,7 +5998,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 603,
+            "line": 646,
             "description": "Model 初始化方法",
             "itemtype": "method",
             "name": "_init",
@@ -5946,7 +6013,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 629,
+            "line": 672,
             "description": "添加事件方法",
             "itemtype": "method",
             "name": "addEvent",
@@ -5967,7 +6034,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 645,
+            "line": 688,
             "description": "获取事件方法",
             "itemtype": "method",
             "name": "getEvent",
@@ -5987,7 +6054,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 698,
+            "line": 741,
             "description": "Panel的基础数据类, see <a href='JC.Panel.Model.html'>Panel.Model</a>",
             "itemtype": "property",
             "name": "_model",
@@ -5999,7 +6066,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 705,
+            "line": 748,
             "description": "默认模板",
             "prototype": "_tpl",
             "type": "string",
@@ -6010,7 +6077,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 717,
+            "line": 760,
             "description": "View 的初始方法",
             "itemtype": "method",
             "name": "_init",
@@ -6020,7 +6087,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 741,
+            "line": 784,
             "description": "设置Panel的显示位置基于 _src 的左右上下",
             "itemtype": "method",
             "name": "positionWith",
@@ -6035,7 +6102,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 767,
+            "line": 821,
             "description": "显示 Panel",
             "itemtype": "method",
             "name": "show",
@@ -6043,7 +6110,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 776,
+            "line": 830,
             "description": "focus button",
             "itemtype": "method",
             "name": "focus button",
@@ -6051,7 +6118,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 787,
+            "line": 841,
             "description": "隐藏 Panel",
             "itemtype": "method",
             "name": "hide",
@@ -6059,7 +6126,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 795,
+            "line": 849,
             "description": "关闭 Panel",
             "itemtype": "method",
             "name": "close",
@@ -6067,7 +6134,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 804,
+            "line": 858,
             "description": "获取 Panel 的 selector 对象",
             "itemtype": "method",
             "name": "getPanel",
@@ -6078,7 +6145,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 816,
+            "line": 870,
             "description": "获取或设置Panel的 header 内容, see <a href='JC.Panel.html#method_header'>Panel.header</a>",
             "itemtype": "method",
             "name": "getHeader",
@@ -6096,7 +6163,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 836,
+            "line": 890,
             "description": "获取或设置Panel的 body 内容, see <a href='JC.Panel.html#method_body'>Panel.body</a>",
             "itemtype": "method",
             "name": "getBody",
@@ -6114,7 +6181,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 852,
+            "line": 906,
             "description": "获取或设置Panel的 footer 内容, see <a href='JC.Panel.html#method_footer'>Panel.footer</a>",
             "itemtype": "method",
             "name": "getFooter",
@@ -6132,7 +6199,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 872,
+            "line": 926,
             "description": "居中显示 Panel",
             "itemtype": "method",
             "name": "center",
@@ -6140,7 +6207,7 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 904,
+            "line": 958,
             "description": "Panel 的默认模板",
             "access": "private",
             "tagname": "",
@@ -6148,12 +6215,20 @@
         },
         {
             "file": "../comps/Panel/JC.Panel.js",
-            "line": 962,
+            "line": 1016,
             "description": "监听Panel的所有点击事件\n<br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型",
             "itemtype": "event",
             "name": "Panel click",
             "access": "private",
             "tagname": "",
+            "class": "JC.hideAllPopup",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Panel/JC.Panel.js",
+            "line": 1069,
+            "description": "从 HTML 属性 自动执行 popup",
+            "attr": "{function}  panelcancelcallback cancel  回调",
             "class": "JC.hideAllPopup",
             "namespace": "JC"
         },
@@ -6554,14 +6629,6 @@
         {
             "file": "../comps/Panel/JC.Popup.js",
             "line": 553,
-            "description": "从 HTML 属性 自动执行 JC.alert / JC.confirm",
-            "attr": "{function}  panelcancelcallback cancel  回调",
-            "class": "JC.alert",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/Panel/JC.Popup.js",
-            "line": 591,
             "description": "响应窗口改变大小",
             "class": "JC.alert",
             "namespace": "JC"
@@ -9510,14 +9577,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 178,
+            "line": 184,
             "description": "兼容函数式使用",
             "class": "JC.Valid",
             "namespace": "JC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 227,
+            "line": 233,
             "description": "使用 jquery on 绑定事件",
             "itemtype": "method",
             "name": "on",
@@ -9544,7 +9611,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 236,
+            "line": 242,
             "description": "使用 jquery trigger 绑定事件",
             "itemtype": "method",
             "name": "trigger",
@@ -9566,7 +9633,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 244,
+            "line": 250,
             "description": "分析_item是否附合规则要求",
             "itemtype": "method",
             "name": "parse",
@@ -9584,7 +9651,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 377,
+            "line": 383,
             "description": "验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域",
             "itemtype": "method",
             "name": "check",
@@ -9608,7 +9675,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 395,
+            "line": 401,
             "description": "这个方法是 <a href='JC.Valid.html#method_check'>Valid.check</a> 的别名",
             "itemtype": "method",
             "name": "checkAll",
@@ -9628,7 +9695,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 402,
+            "line": 408,
             "description": "获取 Valid 的实例 ( <b>Valid 是单例模式</b> )",
             "itemtype": "method",
             "name": "getInstance",
@@ -9649,7 +9716,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 410,
+            "line": 416,
             "description": "判断 selector 是否 Valid 的处理对象",
             "itemtype": "method",
             "name": "isValid",
@@ -9669,7 +9736,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 418,
+            "line": 424,
             "description": "把一个表单项的状态设为正确状态",
             "itemtype": "method",
             "name": "setValid",
@@ -9691,7 +9758,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 426,
+            "line": 432,
             "description": "把一个表单项的状态设为错误状态",
             "itemtype": "method",
             "name": "setError",
@@ -9718,7 +9785,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 436,
+            "line": 442,
             "description": "显示 focusmsg 属性的提示信息( 如果有的话 )",
             "itemtype": "method",
             "name": "focusmsg",
@@ -9740,7 +9807,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 445,
+            "line": 451,
             "description": "focus 时,是否总是显示 focusmsg 提示信息",
             "itemtype": "property",
             "name": "focusmsgEverytime",
@@ -9752,7 +9819,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 453,
+            "line": 459,
             "description": "设置 em 的 css display 属性",
             "itemtype": "property",
             "name": "emDisplayType",
@@ -9764,7 +9831,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 462,
+            "line": 468,
             "description": "验证正确时, 是否显示正确的样式",
             "itemtype": "property",
             "name": "showValidStatus",
@@ -9776,7 +9843,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 470,
+            "line": 476,
             "description": "清除Valid生成的错误样式",
             "itemtype": "method",
             "name": "clearError",
@@ -9796,7 +9863,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 481,
+            "line": 487,
             "description": "验证发生错误时, 是否终止继续验证\n<br /> 为真终止继续验证, 为假将验证表单的所有项, 默认为 false",
             "itemtype": "property",
             "name": "errorAbort",
@@ -9811,7 +9878,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 494,
+            "line": 500,
             "description": "是否自动清除两边的空格",
             "itemtype": "property",
             "name": "autoTrim",
@@ -9826,7 +9893,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 506,
+            "line": 512,
             "description": "对一个 control 作检查后的回调, 无论正确与否都会触发",
             "itemtype": "property",
             "name": "itemCallback",
@@ -9841,7 +9908,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 522,
+            "line": 528,
             "description": "检查一个表单是否有内容",
             "itemtype": "method",
             "name": "formHasValue",
@@ -9869,7 +9936,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 568,
+            "line": 574,
             "description": "获取 _item 的检查类型",
             "itemtype": "method",
             "name": "parseDatatype",
@@ -9888,7 +9955,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 579,
+            "line": 585,
             "description": "获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象",
             "itemtype": "method",
             "name": "parseSubdatatype",
@@ -9907,7 +9974,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 713,
+            "line": 719,
             "description": "检查内容的长度",
             "itemtype": "method",
             "name": "lengthValid",
@@ -9930,14 +9997,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 740,
+            "line": 746,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "JC.Valid",
             "namespace": "JC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 766,
+            "line": 772,
             "description": "检查是否为正确的数字<br />\n<br>默认范围 0 - Math.pow(10, 10)",
             "itemtype": "method",
             "name": "n",
@@ -9960,7 +10027,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 832,
+            "line": 838,
             "description": "检查两个输入框的数值\n<br /> 数字格式为 0-pow(10,10)\n<br /> 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2\n<br /> <b>注意:</b> 如果不显示指定 fromNEl, toNEl, \n             将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "nrange",
@@ -9983,7 +10050,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 906,
+            "line": 912,
             "description": "检查是否为合法的日期,\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "itemtype": "method",
             "name": "d",
@@ -10006,7 +10073,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 941,
+            "line": 947,
             "description": "检查两个输入框的日期\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD\n<br /> <b>注意:</b> 如果不显示指定 fromDateEl, toDateEl, \n             将会从父级查找 datatype=daterange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "daterange",
@@ -10029,7 +10096,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1012,
+            "line": 1018,
             "description": "检查时间格式, 格式为 hh:mm:ss",
             "itemtype": "method",
             "name": "time",
@@ -10051,7 +10118,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1029,
+            "line": 1035,
             "description": "检查时间格式, 格式为 hh:mm",
             "itemtype": "method",
             "name": "minute",
@@ -10073,7 +10140,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1046,
+            "line": 1052,
             "description": "检查银行卡号码\n<br />格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
             "itemtype": "method",
             "name": "bankcard",
@@ -10095,7 +10162,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1066,
+            "line": 1072,
             "description": "检查中文姓名\n<br>格式: 汉字和大小写字母\n<br>规则: 长度 2-32个字节, 非 ASCII 算2个字节",
             "itemtype": "method",
             "name": "cnname",
@@ -10117,7 +10184,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1087,
+            "line": 1093,
             "description": "检查注册用户名\n<br>格式: a-zA-Z0-9_-\n<br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30",
             "itemtype": "method",
             "name": "username",
@@ -10139,7 +10206,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1107,
+            "line": 1113,
             "description": "检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
             "itemtype": "method",
             "name": "idnumber",
@@ -10161,7 +10228,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1126,
+            "line": 1132,
             "description": "检查手机号码<br />",
             "itemtype": "method",
             "name": "mobilecode",
@@ -10188,7 +10255,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1146,
+            "line": 1152,
             "description": "检查手机号码\n<br />这个方法是 mobilecode 的别名",
             "itemtype": "method",
             "name": "mobile",
@@ -10212,7 +10279,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1159,
+            "line": 1165,
             "description": "检查手机号码加强方法\n<br>格式: [+国家代码] [零]11位数字",
             "itemtype": "method",
             "name": "mobilezonecode",
@@ -10239,7 +10306,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1180,
+            "line": 1186,
             "description": "检查电话号码\n<br>格式: 7/8位数字",
             "itemtype": "method",
             "name": "phonecode",
@@ -10261,7 +10328,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1199,
+            "line": 1205,
             "description": "检查电话号码\n<br>格式: [区号]7/8位电话号码",
             "itemtype": "method",
             "name": "phone",
@@ -10288,7 +10355,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1220,
+            "line": 1226,
             "description": "检查电话号码\n<br>格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
             "itemtype": "method",
             "name": "phoneall",
@@ -10315,7 +10382,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1242,
+            "line": 1248,
             "description": "检查电话区号",
             "itemtype": "method",
             "name": "phonezone",
@@ -10337,7 +10404,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1265,
+            "line": 1271,
             "description": "检查电话分机号码",
             "itemtype": "method",
             "name": "phoneext",
@@ -10359,7 +10426,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1283,
+            "line": 1289,
             "description": "检查手机号码/电话号码\n<br />这个方法是原有方法的混合验证 mobilecode + phone",
             "itemtype": "method",
             "name": "mobilephone",
@@ -10381,7 +10448,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1307,
+            "line": 1313,
             "description": "检查手机号码/电话号码, 泛匹配\n<br />这个方法是原有方法的混合验证 mobilezonecode + phoneall",
             "itemtype": "method",
             "name": "mobilephoneall",
@@ -10403,7 +10470,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1330,
+            "line": 1336,
             "description": "自定义正则校验",
             "itemtype": "method",
             "name": "reg",
@@ -10426,7 +10493,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1356,
+            "line": 1362,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "itemtype": "method",
             "name": "vcode",
@@ -10449,7 +10516,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1382,
+            "line": 1388,
             "description": "检查文本长度",
             "itemtype": "method",
             "name": "text",
@@ -10465,7 +10532,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1391,
+            "line": 1397,
             "description": "检查文本的字节长度",
             "itemtype": "method",
             "name": "bytetext",
@@ -10481,7 +10548,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1400,
+            "line": 1406,
             "description": "检查富文本的字节\n<br />TODO: 完成富文本长度检查",
             "itemtype": "method",
             "name": "richtext",
@@ -10497,7 +10564,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1410,
+            "line": 1416,
             "description": "计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节",
             "itemtype": "method",
             "name": "bytelen",
@@ -10516,7 +10583,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1421,
+            "line": 1427,
             "description": "检查URL",
             "itemtype": "method",
             "name": "url",
@@ -10538,7 +10605,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1439,
+            "line": 1445,
             "description": "检查域名",
             "itemtype": "method",
             "name": "domain",
@@ -10557,7 +10624,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1457,
+            "line": 1463,
             "description": "检查域名",
             "itemtype": "method",
             "name": "stricdomain",
@@ -10576,7 +10643,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1474,
+            "line": 1480,
             "description": "检查电子邮件",
             "itemtype": "method",
             "name": "email",
@@ -10598,7 +10665,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1491,
+            "line": 1497,
             "description": "检查地区代码",
             "itemtype": "method",
             "name": "countrycode",
@@ -10620,7 +10687,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1508,
+            "line": 1514,
             "description": "检查邮政编码",
             "itemtype": "method",
             "name": "zipcode",
@@ -10642,7 +10709,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1525,
+            "line": 1531,
             "description": "此类型检查 2|N个对象必须至少有一个是有输入内容的, \n<br> 常用于 手机/电话 二填一",
             "itemtype": "method",
             "name": "alternative",
@@ -10664,7 +10731,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1590,
+            "line": 1596,
             "description": "此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
             "itemtype": "method",
             "name": "reconfirm",
@@ -10686,7 +10753,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1669,
+            "line": 1674,
             "description": "获取 _selector 对象\n<br />这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
             "itemtype": "method",
             "name": "getElement",
@@ -10705,7 +10772,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1692,
+            "line": 1697,
             "description": "获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
             "itemtype": "method",
             "name": "errorMsg",
@@ -10734,7 +10801,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1725,
+            "line": 1730,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "reqmsg",
@@ -10756,14 +10823,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1805,
+            "line": 1810,
             "description": "这里需要优化检查, 目前会重复检查",
             "class": "JC.Valid",
             "namespace": "JC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1868,
+            "line": 1898,
             "description": "显示正确的视觉效果",
             "itemtype": "method",
             "name": "valid",
@@ -10792,7 +10859,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1922,
+            "line": 1955,
             "description": "显示错误的视觉效果",
             "itemtype": "method",
             "name": "error",
@@ -10821,7 +10888,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2005,
+            "line": 2050,
             "description": "解析错误时触发的时件",
             "itemtype": "event",
             "name": "ValidError",
@@ -10830,7 +10897,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2009,
+            "line": 2054,
             "description": "解析正确时触发的时件",
             "itemtype": "event",
             "name": "ValidCorrect",
@@ -10839,7 +10906,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2013,
+            "line": 2058,
             "description": "响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -10848,7 +10915,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2021,
+            "line": 2066,
             "description": "响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -10857,7 +10924,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2028,
+            "line": 2073,
             "description": "响应表单子对象的 focus 事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
             "access": "private",
             "tagname": "",
@@ -10866,7 +10933,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2035,
+            "line": 2080,
             "description": "响应表单子对象的 blur事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
             "access": "private",
             "tagname": "",
@@ -12909,7 +12976,7 @@
         {
             "file": "../common.js",
             "line": 600,
-            "description": "动态添加内容时, 初始化可识别的组件\n<dl>\n     <dt>目前会自动识别的组件</dt>\n     <dd>\n         Bizs.CommonModify, JC.Panel, JC.Dialog\n     </dd>\n</d>\n<dl>\n     <dt>可识别的组件</dt>\n     <dd>\n         JC.AutoSelect, JC.Calendar, JC.Form.initCheckAll \n     </dd>\n</d>",
+            "description": "动态添加内容时, 初始化可识别的组件\n<dl>\n     <dt>目前会自动识别的组件,  </dt>\n     <dd>\n         Bizs.CommonModify, JC.Panel, JC.Dialog\n         <br /><b>自动识别的组件不用显式调用  jcAutoInitComps 去识别可识别的组件</b>\n     </dd>\n</d>\n<dl>\n     <dt>可识别的组件</dt>\n     <dd>\n         JC.AutoSelect, JC.Calendar, JC.Form.initCheckAll \n         <br />Bizs.DisableLogic\n     </dd>\n</d>",
             "itemtype": "method",
             "name": "jcAutoInitComps",
             "params": [
@@ -12923,20 +12990,26 @@
         },
         {
             "file": "../common.js",
-            "line": 621,
+            "line": 623,
             "description": "联动下拉框",
             "class": ".window"
         },
         {
             "file": "../common.js",
-            "line": 625,
+            "line": 627,
             "description": "日历组件",
             "class": ".window"
         },
         {
             "file": "../common.js",
-            "line": 629,
+            "line": 631,
             "description": "全选反选",
+            "class": ".window"
+        },
+        {
+            "file": "../common.js",
+            "line": 637,
+            "description": "disable / enable",
             "class": ".window"
         },
         {
@@ -13058,26 +13131,6 @@
             "line": " ../comps/LunarCalendar/JC.LunarCalendar.js:6"
         },
         {
-            "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Dialog.js:434"
-        },
-        {
-            "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Dialog.js:434"
-        },
-        {
-            "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Dialog.js:434"
-        },
-        {
-            "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Dialog.js:434"
-        },
-        {
-            "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Dialog.js:434"
-        },
-        {
             "message": "unknown tag: version",
             "line": " ../comps/Panel/JC.Panel.js:3"
         },
@@ -13087,27 +13140,27 @@
         },
         {
             "message": "unknown tag: prototype",
-            "line": " ../comps/Panel/JC.Panel.js:705"
+            "line": " ../comps/Panel/JC.Panel.js:748"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Popup.js:553"
+            "line": " ../comps/Panel/JC.Panel.js:1069"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Popup.js:553"
+            "line": " ../comps/Panel/JC.Panel.js:1069"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Popup.js:553"
+            "line": " ../comps/Panel/JC.Panel.js:1069"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Popup.js:553"
+            "line": " ../comps/Panel/JC.Panel.js:1069"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/JC.Popup.js:553"
+            "line": " ../comps/Panel/JC.Panel.js:1069"
         },
         {
             "message": "unknown tag: version",
@@ -13159,99 +13212,99 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:719"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:719"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:719"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:766"
+            "line": " ../comps/Valid/Valid.js:772"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:766"
+            "line": " ../comps/Valid/Valid.js:772"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:766"
+            "line": " ../comps/Valid/Valid.js:772"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:832"
+            "line": " ../comps/Valid/Valid.js:838"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:832"
+            "line": " ../comps/Valid/Valid.js:838"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:832"
+            "line": " ../comps/Valid/Valid.js:838"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:832"
+            "line": " ../comps/Valid/Valid.js:838"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:832"
+            "line": " ../comps/Valid/Valid.js:838"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:906"
+            "line": " ../comps/Valid/Valid.js:912"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:906"
+            "line": " ../comps/Valid/Valid.js:912"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:906"
+            "line": " ../comps/Valid/Valid.js:912"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:941"
+            "line": " ../comps/Valid/Valid.js:947"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:941"
+            "line": " ../comps/Valid/Valid.js:947"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:941"
+            "line": " ../comps/Valid/Valid.js:947"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:941"
+            "line": " ../comps/Valid/Valid.js:947"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:941"
+            "line": " ../comps/Valid/Valid.js:947"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1330"
+            "line": " ../comps/Valid/Valid.js:1336"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1356"
+            "line": " ../comps/Valid/Valid.js:1362"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1382"
+            "line": " ../comps/Valid/Valid.js:1388"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1391"
+            "line": " ../comps/Valid/Valid.js:1397"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1400"
+            "line": " ../comps/Valid/Valid.js:1406"
         },
         {
             "message": "unknown tag: ignore",
@@ -13462,36 +13515,32 @@
             "line": " ../comps/LunarCalendar/LunarCalendar.js:2"
         },
         {
-            "message": "Missing item type\n从 HTML 属性 自动执行 JC.Dialog.alert / JC.Dialog.confirm",
+            "message": "Missing item type\n响应窗口改变大小和滚动",
             "line": " ../comps/Panel/JC.Dialog.js:434"
         },
         {
-            "message": "Missing item type\n响应窗口改变大小和滚动",
-            "line": " ../comps/Panel/JC.Dialog.js:475"
-        },
-        {
             "message": "Missing item type\n初始化Panel 默认事件",
-            "line": " ../comps/Panel/JC.Panel.js:126"
+            "line": " ../comps/Panel/JC.Panel.js:168"
         },
         {
             "message": "Missing item type\nclickClose 的别名\n<br />这个方法的存在是为了向后兼容, 请使用 clickClose",
-            "line": " ../comps/Panel/JC.Panel.js:282"
+            "line": " ../comps/Panel/JC.Panel.js:325"
         },
         {
             "message": "Missing item type\n默认模板",
-            "line": " ../comps/Panel/JC.Panel.js:705"
+            "line": " ../comps/Panel/JC.Panel.js:748"
         },
         {
             "message": "Missing item type\nPanel 的默认模板",
-            "line": " ../comps/Panel/JC.Panel.js:904"
+            "line": " ../comps/Panel/JC.Panel.js:958"
         },
         {
-            "message": "Missing item type\n从 HTML 属性 自动执行 JC.alert / JC.confirm",
-            "line": " ../comps/Panel/JC.Popup.js:553"
+            "message": "Missing item type\n从 HTML 属性 自动执行 popup",
+            "line": " ../comps/Panel/JC.Panel.js:1069"
         },
         {
             "message": "Missing item type\n响应窗口改变大小",
-            "line": " ../comps/Panel/JC.Popup.js:591"
+            "line": " ../comps/Panel/JC.Popup.js:553"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
@@ -13543,31 +13592,31 @@
         },
         {
             "message": "Missing item type\n兼容函数式使用",
-            "line": " ../comps/Valid/Valid.js:178"
+            "line": " ../comps/Valid/Valid.js:184"
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../comps/Valid/Valid.js:740"
+            "line": " ../comps/Valid/Valid.js:746"
         },
         {
             "message": "Missing item type\n这里需要优化检查, 目前会重复检查",
-            "line": " ../comps/Valid/Valid.js:1805"
+            "line": " ../comps/Valid/Valid.js:1810"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:2013"
+            "line": " ../comps/Valid/Valid.js:2058"
         },
         {
             "message": "Missing item type\n响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:2021"
+            "line": " ../comps/Valid/Valid.js:2066"
         },
         {
             "message": "Missing item type\n响应表单子对象的 focus 事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
-            "line": " ../comps/Valid/Valid.js:2028"
+            "line": " ../comps/Valid/Valid.js:2073"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
-            "line": " ../comps/Valid/Valid.js:2035"
+            "line": " ../comps/Valid/Valid.js:2080"
         },
         {
             "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",
@@ -13975,15 +14024,19 @@
         },
         {
             "message": "Missing item type\n联动下拉框",
-            "line": " ../common.js:621"
+            "line": " ../common.js:623"
         },
         {
             "message": "Missing item type\n日历组件",
-            "line": " ../common.js:625"
+            "line": " ../common.js:627"
         },
         {
             "message": "Missing item type\n全选反选",
-            "line": " ../common.js:629"
+            "line": " ../common.js:631"
+        },
+        {
+            "message": "Missing item type\ndisable / enable",
+            "line": " ../common.js:637"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",

@@ -28,10 +28,10 @@
      *      <dd>表单提交后, 是否重置内容</dd>
      *
      *      <dt>formBeforeProcess = function</dt>
-     *      <dd>表单开始提交时且没开始验证时, 触发的回调</dd>
+     *      <dd>表单开始提交时且没开始验证时, 触发的回调, <b>window 变量域</b></dd>
      *
      *      <dt>formAfterProcess = function</dt>
-     *      <dd>表单开始提交时且验证通过后, 触发的回调</dd>
+     *      <dd>表单开始提交时且验证通过后, 触发的回调, <b>window 变量域</b></dd>
      *
      *      <dt>formConfirmPopupType = string, default = dialog</dt>
      *      <dd>定义提示框的类型: dialog, popup</dd>
