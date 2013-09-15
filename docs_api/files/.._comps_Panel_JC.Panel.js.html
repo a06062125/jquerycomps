@@ -178,10 +178,10 @@
     window.Panel = JC.Panel = Panel;
     /**
      * 弹出层基础类 JC.Panel
-     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.Panel.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
      * | &lt;a href=&#x27;../../comps/Panel/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
      * &lt;h2&gt;Panel Layout 可用的 html attribute&lt;/h2&gt;
      * &lt;dl&gt;
      *      &lt;dt&gt;panelclickclose = bool&lt;/dt&gt;
@@ -192,6 +192,67 @@
      *
      *      &lt;dt&gt;panelautoclosems = int, default = 2000 ms&lt;/dt&gt;
      *      &lt;dd&gt;自动关闭 Panel 的时间间隔&lt;/dd&gt;
+     * &lt;/dl&gt;
+     * &lt;h2&gt;a, button 可用的 html attribute( 自动生成弹框)&lt;/h2&gt;
+     * &lt;dl&gt;
+     *      &lt;dt&gt;paneltype = string, require&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          弹框类型: alert, confirm, msgbox, panel 
+     *          &lt;br /&gt;dialog.alert, dialog.confirm, dialog.msgbox, dialog
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelmsg = string&lt;/dt&gt;
+     *      &lt;dd&gt;要显示的内容&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelmsgBox = script selector&lt;/dt&gt;
+     *      &lt;dd&gt;要显示的脚本模板, 如果需要显示大量 HTML, 应该使用这个属性&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelstatus = int, default = 0&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          弹框状态: 0: 成功, 1: 失败, 2: 警告 
+     *          &lt;br /&gt;&lt;b&gt;类型不为 panel, dialog 时生效&lt;/b&gt;
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelcallback = function&lt;/dt&gt;
+     *      &lt;dd&gt;点击确定按钮的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelcancelcallback = function&lt;/dt&gt;
+     *      &lt;dd&gt;点击取消按钮的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelclosecallback = function&lt;/dt&gt;
+     *      &lt;dd&gt;弹框关闭时的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelbutton = int, default = 0&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          要显示的按钮, 0: 无, 1: 确定, 2: 确定, 取消
+     *          &lt;br /&gt;&lt;b&gt;类型为 panel, dialog 时生效&lt;/b&gt;
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelheader = string&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          panel header 的显示内容
+     *          &lt;br /&gt;&lt;b&gt;类型为 panel, dialog 时生效&lt;/b&gt;
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelheaderBox = script selector&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          panel header 的显示内容
+     *          &lt;br /&gt;要显示的脚本模板, 如果需要显示大量 HTML, 应该使用这个属性
+     *          &lt;br /&gt;&lt;b&gt;类型为 panel, dialog 时生效&lt;/b&gt;
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;panelfooterbox = script selector&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          panel footer 的显示内容
+     *          &lt;br /&gt;要显示的脚本模板, 如果需要显示大量 HTML, 应该使用这个属性
+     *          &lt;br /&gt;&lt;b&gt;类型为 panel, dialog 时生效&lt;/b&gt;
+     *      &lt;/dd&gt;
+    *
+     *      &lt;dt&gt;panelhideclose = bool, default = false&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          是否隐藏关闭按钮
+     *          &lt;br /&gt;&lt;b&gt;类型为 panel, dialog 时生效&lt;/b&gt;
+     *      &lt;/dd&gt;
      * &lt;/dl&gt;
      * @namespace JC
      * @class Panel
@@ -1244,7 +1305,7 @@
     };
     /**
      * 从 HTML 属性 自动执行 popup 
-     * @attr    {string}    paneltype           弹框类型, alert, confirm, msgbox, Dialog.alert, Dialog.confirm, Dialog.msgbox
+     * @attr    {string}    paneltype           弹框类型, 
      * @attr    {string}    panelmsg            弹框提示
      * @attr    {string}    panelstatus         弹框状态, 0|1|2
      * @attr    {function}  panelcallback       confirm 回调
@@ -1253,12 +1314,26 @@
     $(document).on( &#x27;click&#x27;, function( _evt ){
         var _p = $(_evt.target||_evt.srcElement)
             , _paneltype = _p.attr(&#x27;paneltype&#x27;)
-            , _panelbutton = parseInt( _p.attr(&#x27;panelbutton&#x27;), 10 ) || 0
 
             , _panelmsg = _p.attr(&#x27;panelmsg&#x27;)
             , _panelmsgBox = _p.is(&#x27;[panelmsgbox]&#x27;) 
                 ? parentSelector( _p, _p.attr(&#x27;panelmsgbox&#x27;) ) 
                 : null
+            ;
+        _p.prop(&#x27;nodeName&#x27;) &amp;&amp; _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
+
+        if( !(_paneltype &amp;&amp; ( _panelmsg || ( _panelmsgBox &amp;&amp; _panelmsgBox.length ) ) ) ) return;
+
+        _paneltype = _paneltype.toLowerCase();
+        if( !_paneltype in PANEL_ATTR_TYPE ) return;
+
+        var _panel
+            , _panelstatus = ( parseInt( _p.attr(&#x27;panelstatus&#x27;), 10 ) || 0 )
+            , _callback = _p.attr(&#x27;panelcallback&#x27;)
+            , _cancelcallback = _p.attr(&#x27;panelcancelcallback&#x27;)
+            , _closecallback= _p.attr(&#x27;panelclosecallback&#x27;)
+
+            , _panelbutton = parseInt( _p.attr(&#x27;panelbutton&#x27;), 10 ) || 0
 
             , _panelheader = _p.attr(&#x27;panelheader&#x27;) || &#x27;&#x27;
             , _panelheaderBox = _p.is(&#x27;[panelheaderbox]&#x27;) 
@@ -1269,32 +1344,26 @@
             , _panelfooterBox = _p.is(&#x27;[panelfooterbox]&#x27;) 
                 ? parentSelector( _p, _p.attr(&#x27;panelfooterbox&#x27;) ) 
                 : null
-
+            /**
+             * 隐藏关闭按钮
+             */
             , _hideclose = _p.is(&#x27;[panelhideclose]&#x27;) 
                 ? parseBool( _p.attr(&#x27;panelhideclose&#x27;) )
                 : false
-            , _panel
-        ;
-        _p.prop(&#x27;nodeName&#x27;) &amp;&amp; _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
+            ;
 
-        if( !(_paneltype &amp;&amp; ( _panelmsg || ( _panelmsgBox &amp;&amp; _panelmsgBox.length ) ) ) ) return;
-
-        _panelmsgBox &amp;&amp; ( _panelmsg = scriptContent( _panelmsgBox ) );
-        _panelheaderBox &amp;&amp; _panelheaderBox &amp;&amp; ( _panelmsg = scriptContent( _panelheaderBox ) );
-        _panelfooterBox &amp;&amp; _panelfooterBox &amp;&amp; ( _panelmsg = scriptContent( _panelfooterBox ) );
-
-        _paneltype = _paneltype.toLowerCase();
-
-        if( !_paneltype in PANEL_ATTR_TYPE ) return;
+        _panelmsgBox &amp;&amp; ( _panelmsg = scriptContent( _panelmsgBox ) || _panelmsg );
+        _panelheaderBox &amp;&amp; _panelheaderBox.length 
+            &amp;&amp; ( _panelheader = scriptContent( _panelheaderBox ) || _panelfooter );
+        _panelfooterBox &amp;&amp; _panelfooterBox.length 
+            &amp;&amp; ( _panelfooter = scriptContent( _panelfooterBox ) || _panelfooter );
 
         _p.prop(&#x27;nodeName&#x27;) &amp;&amp; _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
 
-        var  _panelstatus = ( parseInt( _p.attr(&#x27;panelstatus&#x27;), 10 ) || 0 )
-           , _callback = _p.attr(&#x27;panelcallback&#x27;)
-           , _cancelcallback = _p.attr(&#x27;panelcancelcallback&#x27;);
+           ;
         
         _callback &amp;&amp; ( _callback = window[ _callback ] );
-        _cancelcallback &amp;&amp; ( _cancelcallback = window[ _cancelcallback ] );
+        _closecallback &amp;&amp; ( _closecallback = window[ _closecallback ] );
 
         switch( _paneltype ){
             case &#x27;alert&#x27;: JC.alert &amp;&amp; ( _panel = JC.alert( _panelmsg, _p, _panelstatus ) ); break;
@@ -1325,6 +1394,7 @@
                        if( _paneltype == &#x27;panel&#x27; ){
                            _panel = new Panel( _panelheader, _panelmsg + Panel._getButton( _panelbutton ), _panelfooter );
                        }else{
+                           if( !JC.Dialog ) return;
                            _panel = JC.Dialog( _panelheader,  _panelmsg + Panel._getButton( _panelbutton ), _panelfooter );
                        }
                        _panel.on( &#x27;beforeshow&#x27;, function( _evt, _ins ){
@@ -1345,7 +1415,8 @@
         }else{
             _callback &amp;&amp; _panel.on( &#x27;confirm&#x27;, _callback );
         }
-        if( _cancelcallback ) _panel.on( &#x27;cancel&#x27;, _cancelcallback );
+        _closecallback &amp;&amp; _panel.on( &#x27;close&#x27;, _closecallback );
+        _cancelcallback &amp;&amp; _panel.on( &#x27;cancel&#x27;, _cancelcallback );
     });
 
 }(jQuery));

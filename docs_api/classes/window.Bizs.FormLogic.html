@@ -110,7 +110,8 @@
         </div>
 </div>
 <div class="box intro">
-    <p>应用场景
+    <h2>提交表单控制逻辑</h2>
+<p>应用场景
 <br />get 查询表单
 <br />post 提交表单
 <br />ajax 提交表单</p>
@@ -121,7 +122,7 @@
 <br/>require: <a href='../classes/JC.Valid.html'>JC.Valid</a>
 <br/>require: <a href='../classes/JC.Form.html'>JC.Form</a>
 <br/>require: <a href='../classes/JC.Panel.html'>JC.Panel</a></p>
-<h2>页面只要引用本文件, 默认会自动初始化 from class="js_autoFormLogic" 的表单</h2>
+<h2>页面只要引用本文件, 默认会自动初始化 from class="js_bizsFormLogic" 的表单</h2>
 <h2>Form 可用的 HTML 属性</h2>
 <dl>
      <dt>formType = string, default = get</dt>
@@ -208,6 +209,80 @@
     </div>
     <div class="description">
     </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>       &lt;script&gt;
+           JC.debug = true;
+           JC.use( 'Bizs.FormLogic, Calendar, plugins.json2' );
+           function formBeforeProcess( _evt, _ins ){
+               var _form = $(this);
+               JC.log( 'formBeforeProcess', new Date().getTime() );
+           }
+           function formAfterProcess( _evt, _ins ){
+               var _form = $(this);
+               JC.log( 'formAfterProcess', new Date().getTime() );
+               //return false;
+           }
+           function formAjaxDone( _json, _submitButton, _ins ){
+               var _form = $(this);
+               JC.log( 'custom formAjaxDone', new Date().getTime() );
+               if( _json.errorno ){
+                   _panel = JC.Dialog.alert( _json.errmsg || '操作失败, 请重新尝试!', 1 );
+               }else{
+                   _panel = JC.msgbox( _json.errmsg || '操作成功', _submitButton, 0, function(){
+                       reloadPage( "?donetype=custom" );
+                   });
+               }
+           };
+       &lt;/script&gt;
+       &lt;dl class="defdl"&gt;
+           &lt;dt&gt;Bizs.FormLogic, get form example 3, nothing at done&lt;/dt&gt;
+           &lt;dd&gt;
+               &lt;dl&gt;
+                   &lt;form action="./data/handler.php" method="POST"
+                       class="js_bizsFormLogic"
+                       formType="ajax"
+                       formAjaxMethod="POST"
+                       formBeforeProcess="formBeforeProcess"
+                       formAfterProcess="formAfterProcess"
+                       formAjaxDone="formAjaxDone"                            
+                       formAjaxDoneAction="?donetype=system"
+                       &gt;
+                       &lt;dl&gt;
+                           &lt;dd&gt;
+                               文件框: &lt;input type="text" name="text" reqmsg="文本框" value="test3" /&gt;
+                           &lt;/dd&gt;
+                           &lt;dd&gt;
+                               日期: &lt;input type="text" name="date" datatype="date" reqmsg="日期" value="2015-02-20" /&gt;
+                               &lt;em class="error"&gt;&lt;/em&gt;
+                           &lt;/dd&gt;
+                           &lt;dd&gt;
+                               下拉框:
+                                   &lt;select name="dropdown" reqmsg="下拉框" &gt;
+                                       &lt;option value=""&gt;请选择&lt;/option&gt;
+                                       &lt;option value="1"&gt;条件1&lt;/option&gt;
+                                       &lt;option value="2"&gt;条件2&lt;/option&gt;
+                                       &lt;option value="3" selected&gt;条件3&lt;/option&gt;
+                                   &lt;/select&gt;
+                           &lt;/dd&gt;
+                           &lt;dd&gt;
+                               &lt;input type="hidden" name="getform" value="1" /&gt;
+                               &lt;button type="submit" formSubmitConfirm="确定要提交吗?" &gt;submit - dialog&lt;/button&gt;
+                               &lt;button type="submit" formConfirmPopupType="dialog" 
+                                                       formSubmitConfirm="确定要提交吗?" &gt;submit - popup&lt;/button&gt;
+                               &lt;button type="reset" formResetConfirm="确定要重置吗?"  &gt;reset&lt;/button&gt;
+                               &lt;button type="reset" formResetConfirm="确定要重置吗?" formResetUrl="?"  &gt;reset - url&lt;/button&gt;
+                               &lt;a href="?"&gt;back&lt;/a&gt;
+                           &lt;/dd&gt;
+                       &lt;/dl&gt;
+                   &lt;/form&gt;
+               &lt;/dl&gt;
+           &lt;/dd&gt;
+       &lt;/dl&gt;     
+</code></pre>
+            </div>
+        </div>
 </div>
     </div>
 <div id="classdocs" class="tabview">
@@ -362,11 +437,11 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l132"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:132</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l208"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:208</code></a>
         </p>
     </div>
     <div class="description">
-        <p>处理 form 或者 <em>selector 的所有form.js</em>autoFormLogic</p>
+        <p>处理 form 或者 <em>selector 的所有form.js</em>bizsFormLogic</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
@@ -506,7 +581,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l153"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:153</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l229"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:229</code></a>
         </p>
     </div>
     <div class="description">
@@ -521,7 +596,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l161"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:161</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l237"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:237</code></a>
         </p>
     </div>
     <div class="description">
@@ -538,7 +613,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l179"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:179</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l255"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:255</code></a>
         </p>
     </div>
     <div class="description">
@@ -553,7 +628,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l171"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:171</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l247"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:247</code></a>
         </p>
     </div>
     <div class="description">
