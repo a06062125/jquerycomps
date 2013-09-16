@@ -75,7 +75,7 @@ function recursive_compress( $sourceRoot, $outputRoot, $fs ){
             if( fl[i] == ".git" 
                     || fl[i] == 'docs_api' 
                     || fl[i] == 'tools' 
-                    || fl[i] == 'bizs' 
+                    //|| fl[i] == 'bizs' 
             ) continue;
             /*console.log('directory');*/
         }else if( fstat.isFile ){

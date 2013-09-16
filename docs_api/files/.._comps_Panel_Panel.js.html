@@ -1320,12 +1320,13 @@
                 ? parentSelector( _p, _p.attr(&#x27;panelmsgbox&#x27;) ) 
                 : null
             ;
-        _p.prop(&#x27;nodeName&#x27;) &amp;&amp; _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
 
         if( !(_paneltype &amp;&amp; ( _panelmsg || ( _panelmsgBox &amp;&amp; _panelmsgBox.length ) ) ) ) return;
 
         _paneltype = _paneltype.toLowerCase();
         if( !_paneltype in PANEL_ATTR_TYPE ) return;
+
+        _p.prop(&#x27;nodeName&#x27;) &amp;&amp; _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
 
         var _panel
             , _panelstatus = ( parseInt( _p.attr(&#x27;panelstatus&#x27;), 10 ) || 0 )
@@ -1420,8 +1421,9 @@
     });
 
 }(jQuery));
+;
 
-(function($){
+;(function($){
     /**
      * msgbox 提示 popup
      * &lt;br /&gt; 这个是不带蒙板 不带按钮的 popup 弹框
@@ -1983,8 +1985,9 @@
         });
     });
 }(jQuery));
+;
 
-(function($){
+;(function($){
     var isIE6 = !!window.ActiveXObject &amp;&amp; !window.XMLHttpRequest;
     /**
      * 带蒙板的会话弹框
