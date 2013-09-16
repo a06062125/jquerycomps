@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     JC.LunarCalendar.getFestivals = getFestivals;
     /**
      * 返回农历和国历的所在日期的所有节日

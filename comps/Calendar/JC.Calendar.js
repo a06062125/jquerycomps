@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     /**
      * 日期选择组件
      * <br />全局访问请使用 JC.Calendar 或 Calendar

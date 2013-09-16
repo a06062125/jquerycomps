@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     /**
      * 自定义周弹框的模板HTML
      * @for         JC.Calendar

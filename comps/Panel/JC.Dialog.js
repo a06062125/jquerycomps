@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     var isIE6 = !!window.ActiveXObject && !window.XMLHttpRequest;
     /**
      * 带蒙板的会话弹框

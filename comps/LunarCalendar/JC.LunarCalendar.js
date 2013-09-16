@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     ///
     /// TODO: 添加事件响应机制
     ///

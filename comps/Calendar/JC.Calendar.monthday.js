@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     /**
      * 多选日期弹框的模板HTML
      * @for         JC.Calendar
