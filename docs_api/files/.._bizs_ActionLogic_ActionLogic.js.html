@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../comps/Form/JC.Form.js - jquery components</title>
+    <title>../bizs/ActionLogic/ActionLogic.js - jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -172,52 +172,183 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../comps/Form/JC.Form.js</h1>
+                        <h1 class="file-heading">File: ../bizs/ActionLogic/ActionLogic.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
+/**
+ * &lt;h2&gt;node 点击操作逻辑&lt;/h2&gt;
+ * &lt;br/&gt;应用场景
+ * &lt;br/&gt;点击后弹框 
+ * &lt;br/&gt;点击后执行 AJAX 操作
+ * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
+ * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/window.Bizs.ActionLogic.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+ * | &lt;a href=&#x27;../../bizs/ActionLogic/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+ *
+ * a|button 需要 添加 class=&quot;js_bizsActionLogic&quot;
+ *
+ * &lt;h2&gt;可用的 HTML 属性&lt;/h2&gt;
+ * &lt;dl&gt;
+ * &lt;/dl&gt;
+ *
+ * @namespace   window.Bizs
+ * @class       ActionLogic
+ * @extends         JC.BaseMVC
+ * @constructor
+ * @version dev 0.1 2013-09-17
+ * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 Team
+ */
 ;(function($){
+    window.Bizs.ActionLogic = ActionLogic;
+
+    function ActionLogic( _selector ){
+        _selector &amp;&amp; ( _selector = $( _selector ) );
+        if( ActionLogic.getInstance( _selector ) ) return ActionLogic.getInstance( _selector );
+        ActionLogic.getInstance( _selector, this );
+
+        this._model = new ActionLogic.Model( _selector );
+        this._view = new ActionLogic.View( this._model );
+
+        this._init();
+    }
+
+    !JC.Panel &amp;&amp; JC.use( &#x27;Panel&#x27; );
+
     /**
-     * 表单常用功能类 JC.Form
-     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
-     * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
-     * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.Form.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
-     * | &lt;a href=&#x27;../../comps/Form/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
-     * @namespace JC
-     * @class Form
+     * 获取或设置 ActionLogic 的实例
+     * @method getInstance
+     * @param   {selector}      _selector
      * @static
-     * @version dev 0.1
-     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 team
-     * @date    2013-06-11
+     * @return  {ActionLogic instance}
      */
-    window.JCForm = JC.Form = {
-        /**
-         * 禁用按钮一定时间, 默认为1秒
-         * @method  disableButton
-         * @static
-         * @param   {selector}  _selector   要禁用button的选择器
-         * @param   {int}       _durationMs 禁用多少时间, 单位毫秒, 默认1秒
-         */
-        &#x27;disableButton&#x27;:
-            function( _selector, _durationMs ){
-                if( !_selector ) return;
-                _selector = $(_selector);
-                _durationMs = _durationMs || 1000;
-                _selector.attr(&#x27;disabled&#x27;, true);
-                setTimeout( function(){
-                    _selector.attr(&#x27;disabled&#x27;, false);
-                }, _durationMs);
+    ActionLogic.getInstance =
+        function( _selector, _setter ){
+            if( typeof _selector == &#x27;string&#x27; &amp;&amp; !/&lt;/.test( _selector ) ) 
+                    _selector = $(_selector);
+            if( !(_selector &amp;&amp; _selector.length ) || ( typeof _selector == &#x27;string&#x27; ) ) return;
+            typeof _setter != &#x27;undefined&#x27; &amp;&amp; _selector.data( &#x27;ActionLogicIns&#x27;, _setter );
+
+            return _selector.data(&#x27;ActionLogicIns&#x27;);
+        };
+    /**
+     * 判断 selector 是否可以初始化 ActionLogic
+     * @method  isActionLogic
+     * @param   {selector}      _selector
+     * @static
+     * @return  bool
+     */
+    ActionLogic.isActionLogic =
+        function( _selector ){
+            var _r;
+            _selector 
+                &amp;&amp; ( _selector = $(_selector) ).length 
+                &amp;&amp; ( _r = _selector.is( &#x27;[baltype]&#x27; ) );
+            return _r;
+        };
+    /**
+     * 批量初始化 ActionLogic
+     * &lt;br /&gt;页面加载完毕时, 已使用 事件代理 初始化
+     * &lt;br /&gt;如果是弹框中的 ActionLogic, 由于事件冒泡被阻止了, 需要显示调用  init 方法
+     * @method  init
+     * @param   {selector}  _selector
+     */
+    ActionLogic.init =
+        function( _selector ){
+            _selector &amp;&amp;
+                $( _selector ).find( &#x27;a.js_bizsActionLogic, button.js_bizsActionLogic&#x27; ).on( &#x27;click&#x27;, function( _evt ){
+                    var _p = $(this);
+                    ActionLogic.process( _p ) &amp;&amp; ( _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault() );
+                });
+        };
+    /**
+     * 初始化 ActionLogic, 并执行
+     * @method  process
+     * @param   {selector}  _selector
+     * @return  {instance|null}
+     */
+    ActionLogic.process =
+        function( _selector ){
+            _selector = $( _selector );
+            if( !( _selector &amp;&amp; _selector.length ) ) return null;
+            if( !ActionLogic.isActionLogic( _selector ) ) return;
+            var _ins = ActionLogic.getInstance( _selector );
+                !_ins &amp;&amp; ( _ins = new ActionLogic( _selector ) );
+                _ins &amp;&amp; _ins.process();
+           return _ins;
+        };
+
+    ActionLogic.prototype = {
+        _beforeInit:
+            function(){
+                //JC.log( &#x27;ActionLogic._beforeInit&#x27;, new Date().getTime() );
+            }
+        , _initHanlderEvent:
+            function(){
+                var _p = this;
+
+                _p.on(&#x27;StaticPanel&#x27;, function( _evt, _item ){
+                    var _pins = JC.Dialog( scriptContent( _item ) );
+                        _pins.on(&#x27;confirm&#x27;, function(){
+                            if( _p._model.balPanelInitCb() 
+                                &amp;&amp; _p._model.balPanelInitCb().call( _p._model.selector(), _pins, _p ) 
+                            ) return true;
+                            return false;
+                        });
+                });
+            }
+        , process:
+            function(){
+                var _p = this;
+
+                switch( _p._model.baltype() ){
+                    case &#x27;panel&#x27;:
+                        {
+                            var _panelTpl = _p._model.balPanelTpl();
+                            if( _panelTpl ){
+                                _p.trigger(&#x27;StaticPanel&#x27;, [ _panelTpl ] );
+                            }
+                            break;
+                        }
+                }
             }
     };
-    JC.AutoSelect &amp;&amp; ( JC.Form.initAutoSelect = JC.AutoSelect );
-    /**
-     * select 级联下拉框无限联动
-     * &lt;br /&gt;这个方法已经摘取出来, 单独成为一个类.
-     * &lt;br /&gt;详情请见: &lt;a href=&quot;../../docs_api/classes/JC.AutoSelect.html&quot;&gt;JC.AutoSelect.html&lt;/a&gt;
-     * &lt;br /&gt;目前摘出去的类与之前的逻辑保持向后兼容, 但在不久的将来将会清除这个方法
-     * @method  JC.Form.initAutoSelect
-     * @static
-     */
+
+    JC.BaseMVC.buildModel( ActionLogic );
+    ActionLogic.Model.prototype = {
+        init:
+            function(){
+            }
+        
+        , baltype: function(){ return this.stringProp( &#x27;baltype&#x27; ); }
+        , balPanelTpl: 
+            function(){ 
+                var _r, _p = this;;
+                _r = _p.selectorProp( &#x27;balPanelTpl&#x27; ) || _r;
+                return _r;
+            }
+        , balPanelInitCb: 
+            function(){ 
+                var _r, _p = this;;
+                _r = _p.callbackProp( &#x27;balPanelInitCb&#x27; ) || _r;
+                return _r;
+            }
+    }
+
+    JC.BaseMVC.buildView( ActionLogic );
+    ActionLogic.View.prototype = {
+        init:
+            function(){
+            }
+    };
+    JC.BaseMVC.build( ActionLogic );
+
+    $(document).ready( function(){
+        $( document ).delegate( &#x27;a.js_bizsActionLogic, button.js_bizsActionLogic&#x27;, &#x27;click&#x27;, function( _evt ){
+            var _p = $(this);
+            ActionLogic.process( _p ) &amp;&amp; ( _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault() );
+        });
+    });
+
 }(jQuery));
 
     </pre>

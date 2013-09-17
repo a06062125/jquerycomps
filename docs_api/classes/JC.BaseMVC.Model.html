@@ -61,6 +61,7 @@
                 <li><a href="../classes/JC.Tree.html">JC.Tree</a></li>
                 <li><a href="../classes/JC.Valid.html">JC.Valid</a></li>
                 <li><a href="../classes/window.Bizs.html">window.Bizs</a></li>
+                <li><a href="../classes/window.Bizs.ActionLogic.html">window.Bizs.ActionLogic</a></li>
                 <li><a href="../classes/window.Bizs.CommonModify.html">window.Bizs.CommonModify</a></li>
                 <li><a href="../classes/window.Bizs.DisableLogic.html">window.Bizs.DisableLogic</a></li>
                 <li><a href="../classes/window.Bizs.FormLogic.html">window.Bizs.FormLogic</a></li>
@@ -165,6 +166,9 @@
                                 <a href="#method_callbackProp">callbackProp</a>
                             </li>
                             <li class="index-item method">
+                                <a href="#method_callbackProp">callbackProp</a>
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_floatProp">floatProp</a>
                             </li>
                             <li class="index-item method">
@@ -172,6 +176,9 @@
                             </li>
                             <li class="index-item method">
                                 <a href="#method_selector">selector</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_selectorProp">selectorProp</a>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_stringProp">stringProp</a>
@@ -294,6 +301,55 @@
             <h4>Returns:</h4>
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a> | Undefined</span>:
+            </div>
+        </div>
+</div>
+                    <div id="method_callbackProp" class="method item">
+    <h3 class="name"><code>callbackProp</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l384"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:384</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>判断 _selector 是否具体某种特征</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    bool
             </div>
         </div>
 </div>
@@ -431,6 +487,55 @@
             <h4>Returns:</h4>
             <div class="returns-description">
                     selector
+            </div>
+        </div>
+</div>
+                    <div id="method_selectorProp" class="method item">
+    <h3 class="name"><code>selectorProp</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_BaseMVC_BaseMVC.js.html#l361"><code>..&#x2F;comps&#x2F;BaseMVC&#x2F;BaseMVC.js:361</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 selector 属性的 jquery 选择器</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    bool
             </div>
         </div>
 </div>

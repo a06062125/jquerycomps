@@ -7,6 +7,17 @@
         "logo": "jc_logo.png"
     },
     "files": {
+        "../bizs/ActionLogic/ActionLogic.js": {
+            "name": "../bizs/ActionLogic/ActionLogic.js",
+            "modules": {},
+            "classes": {
+                "window.Bizs.ActionLogic": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "window.Bizs": 1
+            }
+        },
         "../bizs/CommonModify/CommonModify.js": {
             "name": "../bizs/CommonModify/CommonModify.js",
             "modules": {},
@@ -421,6 +432,23 @@
     },
     "modules": {},
     "classes": {
+        "window.Bizs.ActionLogic": {
+            "name": "window.Bizs.ActionLogic",
+            "shortname": "window.Bizs.ActionLogic",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "window.Bizs",
+            "file": "../bizs/ActionLogic/ActionLogic.js",
+            "line": 1,
+            "description": "<h2>node 点击操作逻辑</h2>\n<br/>应用场景\n<br/>点击后弹框 \n<br/>点击后执行 AJAX 操作\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.ActionLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/ActionLogic/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_bizsActionLogic\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n</dl>",
+            "extends": "JC.BaseMVC",
+            "is_constructor": 1,
+            "version": "dev 0.1 2013-09-17",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 Team"
+        },
         "window.Bizs.CommonModify": {
             "name": "window.Bizs.CommonModify",
             "shortname": "window.Bizs.CommonModify",
@@ -470,7 +498,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/FormLogic/FormLogic.js",
             "line": 2,
-            "description": "<h2>提交表单控制逻辑</h2>\n应用场景\n<br />get 查询表单\n<br />post 提交表单\n<br />ajax 提交表单\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.FormLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/FormLogic/_demo' target='_blank'>demo link</a></p>\nrequire: <a href='../classes/window.jQuery.html'>jQuery</a>\n<br/>require: <a href='../classes/JC.Valid.html'>JC.Valid</a>\n<br/>require: <a href='../classes/JC.Form.html'>JC.Form</a>\n<br/>require: <a href='../classes/JC.Panel.html'>JC.Panel</a>\n\n<h2>页面只要引用本文件, 默认会自动初始化 from class=\"js_bizsFormLogic\" 的表单</h2>\n<h2>Form 可用的 HTML 属性</h2>\n<dl>\n     <dt>formType = string, default = get</dt>\n     <dd>\n         form 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n         <br/> 类型有: get, post, ajax \n     </dd>\n\n     <dt>formSubmitDisable = bool, default = true</dt>\n     <dd>表单提交后, 是否禁用提交按钮</dd>\n\n     <dt>formResetAfterSubmit = bool, default = true</dt>\n     <dd>表单提交后, 是否重置内容</dd>\n\n     <dt>formBeforeProcess = function</dt>\n     <dd>表单开始提交时且没开始验证时, 触发的回调, <b>window 变量域</b></dd>\n\n     <dt>formAfterProcess = function</dt>\n     <dd>表单开始提交时且验证通过后, 触发的回调, <b>window 变量域</b></dd>\n\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formSubmitConfirm = string</dt>\n     <dd>提交表单时进行二次确认的提示信息</dt>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n\n     <dt>ajaxSubmitType = string, default = plugins</dt>\n     <dd>\n         类型: plugins, form\n         <br/>plugins 支持 AJAX 文件上传, 但是在 弹框里 捕获不到提交事件\n         <br/>form 不支持 ajax 文件上传, 但可以在 popup 里捕获到提交事件\n     </dd>\n\n     <dt>formAjaxMethod = string, default = get</dt>\n     <dd>\n         类型有: get, post\n         <br/>ajax 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n     </dd>\n\n     <dt>formAjaxAction = url</dt>\n     <dd>ajax 的提交URL, 如果没有显式声明, 将视为 form 的 action 属性</dd>\n\n     <dt>formAjaxDone = function, default = system defined</dt>\n     <dd>\n         AJAX 提交完成后的回调\n         <br />如果没有显式声明, FormLogic将自行处理\n     </dd>\n\n     <dt>formAjaxDoneAction = url</dt>\n     <dd>声明 ajax 提交完成后的返回路径, 如果没有, 提交完成后将不继续跳转操作</dd>\n</dl>\n\n<h2>submit button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         基本上 form 可用的 html 属性, submit 就可用, 区别在于 submit 优化级更高\n         <br/> formResetConfirm 属性除外\n     </dd>\n</dl>\n\n<h2>reset button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         如果 form 和 reset 定义了相同属性, reset 优先级更高\n     </dd>\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n</dl>\n\n<h2>普通 button 可用的 html 属性</h2>\n<dl>\n     <dt>buttonReturnUrl</dt>\n     <dd>点击button时, 返回的URL</dd>\n</dl>",
+            "description": "<h2>提交表单控制逻辑</h2>\n应用场景\n<br />get 查询表单\n<br />post 提交表单\n<br />ajax 提交表单\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.FormLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/FormLogic/_demo' target='_blank'>demo link</a></p>\nrequire: <a href='../classes/window.jQuery.html'>jQuery</a>\n<br/>require: <a href='../classes/JC.Valid.html'>JC.Valid</a>\n<br/>require: <a href='../classes/JC.Form.html'>JC.Form</a>\n<br/>require: <a href='../classes/JC.Panel.html'>JC.Panel</a>\n\n<h2>页面只要引用本文件, 默认会自动初始化 from class=\"js_bizsFormLogic\" 的表单</h2>\n<h2>Form 可用的 HTML 属性</h2>\n<dl>\n     <dt>formType = string, default = get</dt>\n     <dd>\n         form 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n         <br/> 类型有: get, post, ajax \n     </dd>\n\n     <dt>formSubmitDisable = bool, default = true</dt>\n     <dd>表单提交后, 是否禁用提交按钮</dd>\n\n     <dt>formResetAfterSubmit = bool, default = true</dt>\n     <dd>表单提交后, 是否重置内容</dd>\n\n     <dt>formBeforeProcess = function</dt>\n     <dd>表单开始提交时且没开始验证时, 触发的回调, <b>window 变量域</b></dd>\n\n     <dt>formAfterProcess = function</dt>\n     <dd>表单开始提交时且验证通过后, 触发的回调, <b>window 变量域</b></dd>\n\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formSubmitConfirm = string</dt>\n     <dd>提交表单时进行二次确认的提示信息</dt>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n\n     <dt>formSubmitType = string, default = plugins</dt>\n     <dd>\n         类型: plugins, form\n         <br/>plugins 支持 AJAX 文件上传, 但是在 弹框里 捕获不到提交事件\n         <br/>form 不支持 ajax 文件上传, 但可以在 popup 里捕获到提交事件\n     </dd>\n\n     <dt>formAjaxMethod = string, default = get</dt>\n     <dd>\n         类型有: get, post\n         <br/>ajax 的提交类型, 如果没有显式声明, 将视为 form 的 method 属性\n     </dd>\n\n     <dt>formAjaxAction = url</dt>\n     <dd>ajax 的提交URL, 如果没有显式声明, 将视为 form 的 action 属性</dd>\n\n     <dt>formAjaxDone = function, default = system defined</dt>\n     <dd>\n         AJAX 提交完成后的回调\n         <br />如果没有显式声明, FormLogic将自行处理\n     </dd>\n\n     <dt>formAjaxDoneAction = url</dt>\n     <dd>声明 ajax 提交完成后的返回路径, 如果没有, 提交完成后将不继续跳转操作</dd>\n</dl>\n\n<h2>submit button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         基本上 form 可用的 html 属性, submit 就可用, 区别在于 submit 优化级更高\n         <br/> formResetConfirm 属性除外\n     </dd>\n</dl>\n\n<h2>reset button 可用的 html 属性</h2>\n<dl>\n     <dd>\n         如果 form 和 reset 定义了相同属性, reset 优先级更高\n     </dd>\n     <dt>formConfirmPopupType = string, default = dialog</dt>\n     <dd>定义提示框的类型: dialog, popup</dd>\n\n     <dt>formResetUrl = url</dt>\n     <dd>表单重置时, 返回的URL</dd>\n\n     <dt>formResetConfirm = string</dt>\n     <dd>重置表单时进行二次确认的提示信息</dt>\n\n     <dt>formPopupCloseMs = int, default = 2000</dt>\n     <dd>msgbox 弹框的显示时间</dd>\n</dl>\n\n<h2>普通 button 可用的 html 属性</h2>\n<dl>\n     <dt>buttonReturnUrl</dt>\n     <dd>点击button时, 返回的URL</dd>\n</dl>",
             "extends": "JC.BaseMVC",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-08",
@@ -1551,6 +1579,83 @@
     },
     "classitems": [
         {
+            "file": "../bizs/ActionLogic/ActionLogic.js",
+            "line": 39,
+            "description": "获取或设置 ActionLogic 的实例",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "ActionLogic instance"
+            },
+            "class": "window.Bizs.ActionLogic",
+            "namespace": "window.Bizs"
+        },
+        {
+            "file": "../bizs/ActionLogic/ActionLogic.js",
+            "line": 55,
+            "description": "判断 selector 是否可以初始化 ActionLogic",
+            "itemtype": "method",
+            "name": "isActionLogic",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "bool"
+            },
+            "class": "window.Bizs.ActionLogic",
+            "namespace": "window.Bizs"
+        },
+        {
+            "file": "../bizs/ActionLogic/ActionLogic.js",
+            "line": 70,
+            "description": "批量初始化 ActionLogic\n<br />页面加载完毕时, 已使用 事件代理 初始化\n<br />如果是弹框中的 ActionLogic, 由于事件冒泡被阻止了, 需要显示调用  init 方法",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "window.Bizs.ActionLogic",
+            "namespace": "window.Bizs"
+        },
+        {
+            "file": "../bizs/ActionLogic/ActionLogic.js",
+            "line": 85,
+            "description": "初始化 ActionLogic, 并执行",
+            "itemtype": "method",
+            "name": "process",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Instance|null"
+            },
+            "class": "window.Bizs.ActionLogic",
+            "namespace": "window.Bizs"
+        },
+        {
             "file": "../bizs/CommonModify/CommonModify.js",
             "line": 149,
             "description": "获取 显示 CommonModify 的触发源选择器, 比如 a 标签",
@@ -1856,21 +1961,21 @@
         },
         {
             "file": "../bizs/FormLogic/FormLogic.js",
-            "line": 329,
+            "line": 330,
             "description": "表单内容验证通过后, 开始提交前的处理事件",
             "class": "window.Bizs.FormLogic",
             "namespace": "window.Bizs"
         },
         {
             "file": "../bizs/FormLogic/FormLogic.js",
-            "line": 340,
+            "line": 341,
             "description": "jquery.form plugins 提交处理设置\n这个可以 AJAX 上传文件",
             "class": "window.Bizs.FormLogic",
             "namespace": "window.Bizs"
         },
         {
             "file": "../bizs/FormLogic/FormLogic.js",
-            "line": 377,
+            "line": 378,
             "description": "默认 form 提交处理事件\n这个如果是 AJAX 的话, 无法上传 文件",
             "class": "window.Bizs.FormLogic",
             "namespace": "window.Bizs"
@@ -2814,6 +2919,54 @@
             "return": {
                 "description": "",
                 "type": "Function|undefined"
+            },
+            "class": "JC.BaseMVC.Model",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/BaseMVC/BaseMVC.js",
+            "line": 361,
+            "description": "获取 selector 属性的 jquery 选择器",
+            "itemtype": "method",
+            "name": "selectorProp",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()",
+                    "type": "Selector|string"
+                },
+                {
+                    "name": "_key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "class": "JC.BaseMVC.Model",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/BaseMVC/BaseMVC.js",
+            "line": 384,
+            "description": "判断 _selector 是否具体某种特征",
+            "itemtype": "method",
+            "name": "callbackProp",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()",
+                    "type": "Selector|string"
+                },
+                {
+                    "name": "_key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "bool"
             },
             "class": "JC.BaseMVC.Model",
             "namespace": "JC"
@@ -13066,6 +13219,12 @@
             "class": ".window"
         },
         {
+            "file": "../common.js",
+            "line": 642,
+            "description": "表单提交逻辑",
+            "class": ".window"
+        },
+        {
             "file": "../lib.js",
             "line": 2,
             "description": "取当前脚本标签的 src路径",
@@ -13079,6 +13238,10 @@
         }
     ],
     "warnings": [
+        {
+            "message": "unknown tag: version",
+            "line": " ../bizs/ActionLogic/ActionLogic.js:1"
+        },
         {
             "message": "unknown tag: version",
             "line": " ../bizs/CommonModify/CommonModify.js:1"
@@ -13477,15 +13640,15 @@
         },
         {
             "message": "Missing item type\n表单内容验证通过后, 开始提交前的处理事件",
-            "line": " ../bizs/FormLogic/FormLogic.js:329"
+            "line": " ../bizs/FormLogic/FormLogic.js:330"
         },
         {
             "message": "Missing item type\njquery.form plugins 提交处理设置\n这个可以 AJAX 上传文件",
-            "line": " ../bizs/FormLogic/FormLogic.js:340"
+            "line": " ../bizs/FormLogic/FormLogic.js:341"
         },
         {
             "message": "Missing item type\n默认 form 提交处理事件\n这个如果是 AJAX 的话, 无法上传 文件",
-            "line": " ../bizs/FormLogic/FormLogic.js:377"
+            "line": " ../bizs/FormLogic/FormLogic.js:378"
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
@@ -14094,6 +14257,10 @@
         {
             "message": "Missing item type\ndisable / enable",
             "line": " ../common.js:638"
+        },
+        {
+            "message": "Missing item type\n表单提交逻辑",
+            "line": " ../common.js:642"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
