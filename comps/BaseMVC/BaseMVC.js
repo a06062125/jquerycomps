@@ -383,7 +383,7 @@
             }
         /**
          * 判断 _selector 是否具体某种特征
-         * @method  callbackProp
+         * @method  is
          * @param   {selector|string}  _selector    如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()
          * @param   {string}           _key
          * @return  bool
