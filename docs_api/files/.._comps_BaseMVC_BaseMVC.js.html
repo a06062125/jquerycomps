@@ -285,6 +285,7 @@
      * @static
      * @return  {BaseMVCInstance}
      */
+    /*
     BaseMVC.getInstance =
         function( _selector, _setter ){
             if( typeof _selector == &#x27;string&#x27; &amp;&amp; !/&lt;/.test( _selector ) ) 
@@ -294,6 +295,7 @@
 
             return _selector.data( BaseMVC.Model._instanceName );
         };
+    */
     /**
      * 是否自动初始化
      * @property    autoInit
@@ -330,21 +332,23 @@
             if( !( _inClass &amp;&amp; _outClass ) ) return;
             var _k
                 , _fStr, _tmp
-                , _inName = funcName( _inClass )
-                , _outName = funcName( _outClass )
-                , _inRe = _inName &amp;&amp; _outName ? new RegExp( _inName, &#x27;g&#x27; ) : null
-                , _namespace = _namespace ? _namespace + &#x27;.&#x27; : &#x27;JC.&#x27;
+                //, _inName = funcName( _inClass )
+                //, _outName = funcName( _outClass )
+                //, _inRe = _inName &amp;&amp; _outName ? new RegExp( _inName, &#x27;g&#x27; ) : null
+                //, _namespace = _namespace ? _namespace + &#x27;.&#x27; : &#x27;JC.&#x27;
                 ;
 
-            _inName &amp;&amp; _outName &amp;&amp; JC.log( &#x27;BaseMVC.buildClass:&#x27;, _inName, &#x27;to&#x27;, _outName );
+            //_inName &amp;&amp; _outName &amp;&amp; JC.log( &#x27;BaseMVC.buildClass:&#x27;, _inName, &#x27;to&#x27;, _outName );
             if( _outClass ){
                 for( _k in _inClass ){ 
                     if( !_outClass[_k] ){//clone static function
-                        if( _inName &amp;&amp; _outName &amp;&amp; _inClass[_k].constructor == Function ){
+                        if( _inClass[_k].constructor == Function ){
+                            /*
                             _fStr = _inClass[ _k ].toString();
                             _fStr = _fStr.replace( _inRe, _namespace + _outName );
                             _tmp = printf( &#x27;( {0}{1}.{2} = {3})&#x27;, _namespace, _outName, _k, _fStr );
                             eval( _tmp  );
+                            */
                         }else{//clone static property
                             _outClass[_k] = _inClass[_k];
                         }
