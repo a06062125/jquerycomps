@@ -1,7 +1,9 @@
 /**
  * <h2>node 点击操作逻辑</h2>
  * <br/>应用场景
- * <br/>点击后弹框 
+ * <br/>点击后弹框( 脚本模板 )
+ * <br/>点击后弹框( AJAX )
+ * <br/>点击后弹框( Dom 模板 )
  * <br/>点击后执行 AJAX 操作
  * <p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>
  * | <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.ActionLogic.html' target='_blank'>API docs</a>
