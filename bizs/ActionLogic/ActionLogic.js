@@ -1,6 +1,6 @@
 /**
  * <h2>node 点击操作逻辑</h2>
- * <br/>应用场景
+ * 应用场景
  * <br/>点击后弹框( 脚本模板 )
  * <br/>点击后弹框( AJAX )
  * <br/>点击后弹框( Dom 模板 )
@@ -79,7 +79,11 @@
     ActionLogic.init =
         function( _selector ){
             _selector &&
-                $( _selector ).find( 'a.js_bizsActionLogic, button.js_bizsActionLogic' ).on( 'click', function( _evt ){
+                $( _selector ).find( [  
+                                        'a.js_bizsActionLogic'
+                                        , 'input.js_bizsActionLogic'
+                                        , 'button.js_bizsActionLogic'
+                                    ].join() ).on( 'click', function( _evt ){
                     var _p = $(this);
                     ActionLogic.process( _p ) && ( _p.prop('nodeName').toLowerCase() == 'a' && _evt.preventDefault() );
                 });
@@ -102,6 +106,8 @@
            return _ins;
         };
 
+    ActionLogic.random = true;
+
     ActionLogic.prototype = {
         _beforeInit:
             function(){
@@ -112,25 +118,80 @@
                 var _p = this;
 
                 _p.on('StaticPanel', function( _evt, _item ){
-                    var _pins = JC.Dialog( scriptContent( _item ) );
-                        _pins.on('confirm', function(){
-                            if( _p._model.balPanelInitCb() 
-                                && _p._model.balPanelInitCb().call( _p._model.selector(), _pins, _p ) 
-                            ) return true;
-                            return false;
-                        });
+                    _p.trigger( 'ShowPanel', [ scriptContent( _item ) ] );
+                });
+
+                _p.on(ActionLogic.Model.SHOW_PANEL, function( _evt, _html){
+                    var _pins = JC.Dialog( _html );
+                    _pins.on('confirm', function(){
+                        if( _p._model.balPanelInitCb() 
+                            && _p._model.balPanelInitCb().call( _p._model.selector(), _pins, _p ) 
+                        ) return true;
+                        return false;
+                    });
+                });
+
+                _p.on('AjaxPanel', function( _evt, _type, _url ){
+                    if( !( _type && _url ) ) return;
+                    _p._model.balRandom() 
+                        && ( _url = addUrlParams( _url, { 'rnd': new Date().getTime() } ) );
+
+                    $.get( _url ).done( function( _d ){
+                        switch( _type ){
+                            case ActionLogic.Model.SHOW_PANEL:
+                                {
+                                    _p.trigger( 'ShowPanel', [ _d ] );
+                                    break;
+                                }
+                            case ActionLogic.Model.DATA_PANEL:
+                                {
+                                    try{ _d = $.parseJSON( _d ); }catch(ex){}
+                                    if( _d ){
+                                        if( _d.errorno ){
+                                            JC.Dialog && JC.Dialog.alert( _d.errmsg || '操作失败, 请重试!' );
+                                        }else{
+                                            _p.trigger( 'ShowPanel', [ _d.data ] );
+                                        }
+                                    }
+                                    break;
+                                }
+                        }
+                    });
+                });
+
+                _p.on( 'Go', function( _evt, _url ){
+                    if( !_url ) return;
+                    _p._model.balRandom() 
+                        && ( _url = addUrlParams( _url, { 'rnd': new Date().getTime() } ) );
+                    reloadPage( _url );
                 });
             }
         , process:
             function(){
                 var _p = this;
+                JC.hideAllPopup( 1 );
 
                 switch( _p._model.baltype() ){
                     case 'panel':
                         {
-                            var _panelTpl = _p._model.balPanelTpl();
-                            if( _panelTpl ){
-                                _p.trigger('StaticPanel', [ _panelTpl ] );
+                            if( _p._model.is('[balPanelTpl]') ){
+                                _p.trigger('StaticPanel', [  _p._model.balPanelTpl() ] );
+                            }else if( _p._model.is('[balAjaxHtml]') ){
+                                _p.trigger('AjaxPanel', [ ActionLogic.Model.SHOW_PANEL, _p._model.balAjaxHtml() ] );
+                            }else if( _p._model.is('[balAjaxData]') ){
+                                _p.trigger('AjaxPanel', [ ActionLogic.Model.DATA_PANEL, _p._model.balAjaxData() ] );
+                            }
+                            break;
+                        }
+                    case 'link':
+                        {
+                            if( _p._model.is( '[balConfirmMsg]' ) ){
+                                var _panel = JC.confirm( _p._model.balConfirmMsg(), _p.selector(), 2 );
+                                    _panel.on('confirm', function(){
+                                        _p.trigger( 'Go', _p._model.balUrl() );
+                                    });
+                            }else{
+                                _p.trigger( 'Go', _p._model.balUrl() );
                             }
                             break;
                         }
@@ -139,6 +200,8 @@
     };
 
     JC.BaseMVC.buildModel( ActionLogic );
+    ActionLogic.Model.SHOW_PANEL = 'ShowPanel';
+    ActionLogic.Model.DATA_PANEL = 'DataPanel';
     ActionLogic.Model.prototype = {
         init:
             function(){
@@ -157,6 +220,28 @@
                 _r = _p.callbackProp( 'balPanelInitCb' ) || _r;
                 return _r;
             }
+        , balAjaxHtml: function(){ return this.selector().attr('balAjaxHtml'); }
+        , balAjaxData: function(){ return this.selector().attr('balAjaxData'); }
+        , balRandom: 
+            function(){
+                var _r = ActionLogic.random, _p = this;
+                _p.is('[balRandom]') && ( _r = parseBool( _p.stringProp( 'balRandom' ) ) );
+                return _r;
+            }
+        , balUrl:
+            function(){
+                var _r = '?', _p = this;
+                _p.selector().prop('nodeName').toLowerCase() == 'a'
+                    && ( _r = _p.selector().attr('href') );
+                _p.is( '[balUrl]' ) && ( _r = _p.selector().attr('balUrl') );
+                return _r;
+            }
+        , balConfirmMsg:
+            function(){
+                var _r = '确定要执行吗?';
+                _r = this.selector().attr('balConfirmMsg') || _r;
+                return _r;
+            }
     }
 
     JC.BaseMVC.buildView( ActionLogic );
@@ -168,7 +253,11 @@
     JC.BaseMVC.build( ActionLogic );
 
     $(document).ready( function(){
-        $( document ).delegate( 'a.js_bizsActionLogic, button.js_bizsActionLogic', 'click', function( _evt ){
+        $( document ).delegate( [
+                                    'a.js_bizsActionLogic'
+                                    , 'input.js_bizsActionLogic'
+                                    , 'button.js_bizsActionLogic'
+                                ].join(), 'click', function( _evt ){
             var _p = $(this);
             ActionLogic.process( _p ) && ( _p.prop('nodeName').toLowerCase() == 'a' && _evt.preventDefault() );
         });

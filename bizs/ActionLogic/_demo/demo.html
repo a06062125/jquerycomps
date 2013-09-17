@@ -36,14 +36,88 @@
 <body>
 
 <dl class="defdl">
-    <dt> ActionLogic 示例1, 弹框 </dt>
+    <dt>ActionLogic 示例1, 弹框</dt>
     <dd>
         <button type="button" 
             class="js_bizsActionLogic"
             balType="panel" 
             balPanelTpl="#scriptPanel" 
             balPanelInitCb="balPanelInitCb"
-        >弹框操作</button>
+        >script tpl</button>
+        <a href="#"
+            class="js_bizsActionLogic"
+            balType="panel" 
+            balPanelTpl="#scriptPanel" 
+            balPanelInitCb="balPanelInitCb"
+        >script tpl</a>
+    </dd>
+    <dd>
+        <button type="button" 
+            class="js_bizsActionLogic"
+            balType="panel" 
+            balAjaxHtml="./data/htmlPanel.php" 
+            balPanelInitCb="balPanelInitCb"
+        >ajax html</button>
+        <a href="#"
+            class="js_bizsActionLogic"
+            balType="panel" 
+            balAjaxHtml="./data/htmlPanel.php" 
+            balPanelInitCb="balPanelInitCb"
+        >ajax html</a>
+    </dd>
+    <dd>
+        <button type="button" 
+            class="js_bizsActionLogic"
+            balType="panel" 
+            balAjaxData="./data/dataPanel.php" 
+            balPanelInitCb="balPanelInitCb"
+        >ajax data html</button>
+        <a  href="#"
+            class="js_bizsActionLogic"
+            balType="panel" 
+            balAjaxData="./data/dataPanel.php" 
+            balPanelInitCb="balPanelInitCb"
+        >ajax data html</a>
+
+    </dd>
+</dl>
+
+<dl>
+    <dt>ActionLogic 示例2, 点击跳转</dt>
+    <dd>
+        <button type="button" 
+            class="js_bizsActionLogic"
+            balType="link" 
+            balUrl="?type=direct1"
+        >直接跳转, balUrl</button>
+        , <a href="#"
+            class="js_bizsActionLogic"
+            balType="link" 
+            balUrl="?type=direct2"
+        >属性跳转 balUrl</a>
+        , <a href="?type=direct3"
+            class="js_bizsActionLogic"
+            balType="link" 
+        >href 跳转</a>
+    </dd>
+    <dd>
+        <button type="button" 
+            class="js_bizsActionLogic"
+            balType="link" 
+            balUrl="?type=direct2_1"
+            balConfirmMsg="确认要跳转吗?"
+        >确认后跳转, balUrl</button>
+        , <a href="#"
+            class="js_bizsActionLogic"
+            balType="link" 
+            balUrl="?type=direct2_2"
+            balConfirmMsg="确认要跳转吗?"
+        >确认后跳转 balUrl</a>
+        , <a href="?type=direct2_3"
+            class="js_bizsActionLogic"
+            balConfirmMsg="确认要跳转吗?"
+            balType="link" 
+        >确认后跳转 href</a>
     </dd>
 </dl>
 
@@ -74,19 +148,7 @@
                                 <td>
                                     <label class="gray">甲方主体：</label>
                                 </td>
-                                <td>
-                                    <input type="text" name="test[0]" class="ipt ipt-w320" reqmsg="甲方主体" value="test" />&nbsp;
-                                        <a href="javascript:" 
-                                        class="green js_autoCommonModify" 
-                                        cmtemplate="#addMainFirstPartyTpl"
-                                        cmitem="<dd"
-                                        cmappendtype="appendTo"
-                                        cmaction="add"
-                                        cmdonecallback="cmdonecallback"
-                                        cmtplfiltercallback="cmtplfiltercallback"
-                                    >+ 添加</a>
-                                    <em class="error"></em>
-                                </td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>日期</td>

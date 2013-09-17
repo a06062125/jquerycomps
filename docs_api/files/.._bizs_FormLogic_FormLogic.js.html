@@ -489,13 +489,20 @@
                 _p.on(&#x27;AjaxDone&#x27;, function( _evt, _data ){
 
                     _p._model.formResetAfterSubmit() 
-                        &amp;&amp; !_p._model.formAjaxDone()
+                        &amp;&amp; !_p._model.userFormAjaxDone()
                         &amp;&amp; _p.selector().trigger(&#x27;reset&#x27;);
 
                     _p._model.formSubmitDisable() &amp;&amp; _p.trigger( &#x27;EnableSubmit&#x27; );
 
                     var _json;
                     try{ _json = $.parseJSON( _data ); }catch(ex){}
+
+                    _json 
+                    &amp;&amp; &#x27;errorno&#x27; in _json 
+                    &amp;&amp; !parseInt( _json.errorno, 10 )
+                    &amp;&amp; _p.selector().trigger(&#x27;reset&#x27;)
+                    ;
+
                     _json = _json || _data || {};
                     _p._model.formAjaxDone()
                         &amp;&amp; _p._model.formAjaxDone().call( 
@@ -736,6 +743,14 @@
                 var _p = this, _r = _p._innerAjaxDone
                     , _btn = _p.selector().data( FormLogic.Model.GENERIC_SUBMIT_BUTTON )
                     ;
+                _r = _p.userFormAjaxDone() || _r;
+                return _r;
+            }
+        , userFormAjaxDone:
+            function(){
+                var _p = this, _r
+                    , _btn = _p.selector().data( FormLogic.Model.GENERIC_SUBMIT_BUTTON )
+                    ;
 
                 _p.selector().is(&#x27;[formAjaxDone]&#x27;)
                     &amp;&amp; ( _r = this.callbackProp( &#x27;formAjaxDone&#x27; ) || _r );
@@ -743,7 +758,6 @@
                 _btn &amp;&amp; ( _btn = $( _btn ) ).length
                     &amp;&amp; ( _r = _p.callbackProp( _btn, &#x27;formAjaxDone&#x27; ) || _r )
                     ;
-
                 return _r;
             }
 
