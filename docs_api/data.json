@@ -443,7 +443,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/ActionLogic/ActionLogic.js",
             "line": 1,
-            "description": "<h2>node 点击操作逻辑</h2>\n<br/>应用场景\n<br/>点击后弹框 \n<br/>点击后执行 AJAX 操作\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.ActionLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/ActionLogic/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_bizsActionLogic\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n</dl>",
+            "description": "<h2>node 点击操作逻辑</h2>\n<br/>应用场景\n<br/>点击后弹框( 脚本模板 )\n<br/>点击后弹框( AJAX )\n<br/>点击后弹框( Dom 模板 )\n<br/>点击后执行 AJAX 操作\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.ActionLogic.html' target='_blank'>API docs</a>\n| <a href='../../bizs/ActionLogic/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_bizsActionLogic\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n</dl>",
             "extends": "JC.BaseMVC",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-17",
@@ -1580,7 +1580,7 @@
     "classitems": [
         {
             "file": "../bizs/ActionLogic/ActionLogic.js",
-            "line": 39,
+            "line": 41,
             "description": "获取或设置 ActionLogic 的实例",
             "itemtype": "method",
             "name": "getInstance",
@@ -1601,7 +1601,7 @@
         },
         {
             "file": "../bizs/ActionLogic/ActionLogic.js",
-            "line": 55,
+            "line": 57,
             "description": "判断 selector 是否可以初始化 ActionLogic",
             "itemtype": "method",
             "name": "isActionLogic",
@@ -1621,7 +1621,7 @@
         },
         {
             "file": "../bizs/ActionLogic/ActionLogic.js",
-            "line": 70,
+            "line": 72,
             "description": "批量初始化 ActionLogic\n<br />页面加载完毕时, 已使用 事件代理 初始化\n<br />如果是弹框中的 ActionLogic, 由于事件冒泡被阻止了, 需要显示调用  init 方法",
             "itemtype": "method",
             "name": "init",
@@ -1637,7 +1637,7 @@
         },
         {
             "file": "../bizs/ActionLogic/ActionLogic.js",
-            "line": 85,
+            "line": 87,
             "description": "初始化 ActionLogic, 并执行",
             "itemtype": "method",
             "name": "process",
@@ -1652,6 +1652,7 @@
                 "description": "",
                 "type": "Instance|null"
             },
+            "static": 1,
             "class": "window.Bizs.ActionLogic",
             "namespace": "window.Bizs"
         },
@@ -2952,7 +2953,7 @@
             "line": 384,
             "description": "判断 _selector 是否具体某种特征",
             "itemtype": "method",
-            "name": "callbackProp",
+            "name": "is",
             "params": [
                 {
                     "name": "_selector",

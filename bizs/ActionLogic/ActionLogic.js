@@ -89,6 +89,7 @@
      * @method  process
      * @param   {selector}  _selector
      * @return  {instance|null}
+     * @static
      */
     ActionLogic.process =
         function( _selector ){
