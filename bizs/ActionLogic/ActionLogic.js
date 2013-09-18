@@ -191,7 +191,7 @@
                                     JC.Dialog.alert( _d.errmsg || '操作失败, 请重试!', 1 );
                                 }else{
                                     JC.msgbox( _d.errmsg || '操作完成', _p.selector(), 0, function(){
-                                        reloadPage( _p._model.balDoneUrl() || '?' );
+                                        reloadPage( _p._model.balDoneUrl() || location.href );
                                     });
                                 }
                             }else{
