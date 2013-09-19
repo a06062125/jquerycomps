@@ -441,7 +441,14 @@
      * @static
      */
     Valid.setError = 
-        function(_item, _msgAttr, _fullMsg){ return Valid.getInstance().trigger( Model.ERROR, sliceArgs( arguments) ); };
+        function(_item, _msgAttr, _fullMsg){ 
+            if( _msgAttr && _msgAttr.trim() && /^[\s]/.test( _msgAttr ) ){
+                var _autoKey = 'autoGenerateErrorMsg';
+                _item.attr( _autoKey, _msgAttr );
+                _msgAttr = _autoKey;
+            }
+            return Valid.getInstance().trigger( Model.ERROR, sliceArgs( arguments) ); 
+        };
     /**
      * 显示 focusmsg 属性的提示信息( 如果有的话 )
      * @method  focusmsg
@@ -1987,14 +1994,9 @@
         , error: 
             function( _item, _msgAttr, _fullMsg ){
                 _item && ( _item = $(_item) );
-                var _p = this, arg = arguments, _autoKey = 'autoGenerateErrorMsg';
+                var _p = this, arg = arguments; 
                 if( !_p._model.isValid( _item ) ) return true;
                 if( _item.is( '[validnoerror]' ) ) return true;
-
-                if( _msgAttr.trim() && /^[\s]/.test( _msgAttr ) ){
-                    _item.attr( _autoKey, _msgAttr );
-                    _msgAttr = _autoKey;
-                }
 
                 setTimeout(function(){
                     var _msg = _p._model.errorMsg.apply( _p._model, sliceArgs( arg ) )
