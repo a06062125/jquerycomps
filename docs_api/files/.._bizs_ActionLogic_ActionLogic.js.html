@@ -369,7 +369,7 @@
                                     JC.Dialog.alert( _d.errmsg || &#x27;操作失败, 请重试!&#x27;, 1 );
                                 }else{
                                     JC.msgbox( _d.errmsg || &#x27;操作完成&#x27;, _p.selector(), 0, function(){
-                                        reloadPage( _p._model.balDoneUrl() || &#x27;?&#x27; );
+                                        reloadPage( _p._model.balDoneUrl() || location.href );
                                     });
                                 }
                             }else{

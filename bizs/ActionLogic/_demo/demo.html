@@ -163,6 +163,29 @@
             balCallback="ajaxDelCallback"
         >delete with callback</a>
     </dd>
+    <dd>
+        <button type="button" 
+            class="js_bizsActionLogic"
+            balType="ajaxaction" 
+            balUrl="./data/handler.php"
+            balConfirmMsg="确认要删除吗?"
+        >delete(删除确认)</button>
+        <button type="button" 
+            class="js_bizsActionLogic"
+            balType="ajaxaction" 
+            balUrl="./data/handler.php"
+            balDoneUrl="?baldone=test"
+            balConfirmMsg="确认要删除吗?"
+        >delete(删除确认)</button>
+        <a href="#"
+            class="js_bizsActionLogic"
+            balType="ajaxaction" 
+            balUrl="./data/handler.php"
+            balCallback="ajaxDelCallback"
+            balConfirmMsg="确认要删除吗?"
+        >delete with callback(删除确认)</a>
+    </dd>
+
 </dl>
 
 
