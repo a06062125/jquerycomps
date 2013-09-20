@@ -29,6 +29,30 @@
                 });
             });
 
+            window.ITEM_COUNT = 10;
+
+            $(document).delegate( 'button.js_dynAdd', 'click', function( _evt ){
+                var _p = $(this)
+                    , _quantity = parseInt( _p.attr('daquantity'), 10 ) || 1
+                    , _dabox = parentSelector( _p, _p.attr('dabox') )
+                    , _daboxitem = parentSelector( _p, _p.attr('daboxitem') )
+                    , _ix = ITEM_COUNT
+                    , _tpl = scriptContent( '#itemTpl' )
+                    , _ls = []
+                    ;
+
+                if( !( _quantity && _dabox && _dabox.length ) ) return;
+
+                for( var i = 0; i < _quantity; i++ ){
+                    _ls.push( printf( _tpl, _ix++ ) );
+                }
+
+                var _new = $( _ls.join('') );
+                _new.appendTo( _daboxitem );
+
+                JC.AutoChecked( _dabox );
+            });
+
         </script>
     </head>    
     <body>
@@ -44,110 +68,135 @@
         <dl class="def">
             <dt>checkall example 1</dt>
             <dd>
-            <label>
-                <input type="checkbox"  checktype="all" checkfor="///input[type=checkbox]"> 
-                全选
-            </label>
-            <label>
-                <input type="checkbox" checktype="inverse" checkfor="<dl input[type=checkbox]" checkall="<dl input[checktype=all]">
-                反选
-            </label>
+                <label>
+                    <input type="checkbox"  checktype="all" checkfor="///input[type=checkbox]"> 
+                    全选
+                </label>
+                <label>
+                    <input type="checkbox" checktype="inverse" checkfor="<dl input[type=checkbox]" checkall="<dl input[checktype=all]">
+                    反选
+                </label>
+                <button type="button" 
+                    class="js_dynAdd" 
+                    daquantity="1" 
+                    dabox="<dl" 
+                    daboxitem="<dl > dd:last" 
+                    >add 1</label>
+                <button type="button" 
+                    class="js_dynAdd" 
+                    daquantity="4" 
+                    dabox="<dl" 
+                    daboxitem="<dl > dd:last" 
+                    >add 4</label>
+                <button type="button" 
+                    class="js_dynAdd" 
+                    daquantity="5" 
+                    dabox="<dl" 
+                    daboxitem="<dl > dd:last" 
+                    >add 5</label>
             </dd>
             <dd>
-            <label >
-                <input type='checkbox' value='' name='' />
-                checkall1_1
-            </label>
-            <label >
-                <input type='checkbox' value='' name='' checked />
-                checkall1_2
-            </label>
-            <label >
-                <input type='checkbox'value='' name='' />
-                checkall1_3
-            </label>
-            <label >
-                <input type='checkbox' value='' name='' checked />
-                checkall1_4
-            </label>
-            <label >
-                <input type='checkbox' value='' name='' />
-                checkall1_5
-            </label>
+                <label >
+                    <input type='checkbox' value='' name='' checked />
+                    checkall1_1
+                </label>
+                <label >
+                    <input type='checkbox' value='' name='' checked />
+                    checkall1_2
+                </label>
+                <label >
+                    <input type='checkbox'value='' name='' checked />
+                    checkall1_3
+                </label>
+                <label >
+                    <input type='checkbox' value='' name='' checked />
+                    checkall1_4
+                </label>
+                <label >
+                    <input type='checkbox' value='' name='' checked />
+                    checkall1_5
+                </label>
             </dd>
         </dl>
         <hr />
         <dl class="def example2">
             <dt>checkall example 2</dt>
             <dd>
-            <label>
-                <input type="checkbox" checktype="all" checkfor="dl.example2 input[type=checkbox]">
-                全选
-            </label>
-            <label>
-                <input type="checkbox" checktype="inverse" checkfor="dl.example2 input[type=checkbox]" checkall="dl.example2 input[checktype=all]">
-                反选
-            </label>
+                <label>
+                    <input type="checkbox" checktype="all" checkfor="dl.example2 input[type=checkbox]">
+                    全选
+                </label>
+                <label>
+                    <input type="checkbox" checktype="inverse" checkfor="dl.example2 input[type=checkbox]" checkall="dl.example2 input[checktype=all]">
+                    反选
+                </label>
             </dd>
             <dd>
-            <label>
-                <input type='checkbox' value='' name='' checked />
-                checkall2_1
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' checked />
-                checkall2_2
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' checked />
-                checkall2_3
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' checked />
-                checkall2_4
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' checked />
-                checkall2_5
-            </label>
+                <label>
+                    <input type='checkbox' value='' name='' checked />
+                    checkall2_1
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' checked />
+                    checkall2_2
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' checked />
+                    checkall2_3
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' checked />
+                    checkall2_4
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' checked />
+                    checkall2_5
+                </label>
             </dd>
         </dl>
         <hr />
         <dl class="def example3">
             <dt>checkall example 3</dt>
             <dd>
-            <label>
-                <input type="checkbox" checked checktype="all" checkfor="dl.example3 input[type=checkbox]">
-                全选
-            </label>
-            <label>
-                <input type="checkbox" checktype="inverse" checkfor="dl.example3 input[type=checkbox]" checkall="dl.example3 input[checktype=all]">
-                反选
-            </label>
+                <label>
+                    <input type="checkbox" checked checktype="all" checkfor="dl.example3 input[type=checkbox]">
+                    全选
+                </label>
+                <label>
+                    <input type="checkbox" checktype="inverse" checkfor="dl.example3 input[type=checkbox]" checkall="dl.example3 input[checktype=all]">
+                    反选
+                </label>
             </dd>
             <dd>
-            <label>
-                <input type='checkbox' value='' name='' />
-                checkall3_1
-            </label>
-            <label >
-                <input type='checkbox' value='' name='' checked />
-                checkall3_2
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' />
-                checkall3_3
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' checked />
-                checkall3_4
-            </label>
-            <label>
-                <input type='checkbox' value='' name='' />
-                checkall3_5
-            </label>
+                <label>
+                    <input type='checkbox' value='' name='' />
+                    checkall3_1
+                </label>
+                <label >
+                    <input type='checkbox' value='' name='' checked />
+                    checkall3_2
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' />
+                    checkall3_3
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' checked />
+                    checkall3_4
+                </label>
+                <label>
+                    <input type='checkbox' value='' name='' />
+                    checkall3_5
+                </label>
             </dd>
         </dl>
+
+        <script type='text/template' id="itemTpl" >
+            <label >
+                <input type='checkbox' value='{0}' name='test_{0}' />
+                name_{0}
+            </label>
+        </script>
     </body>
 </html>
 

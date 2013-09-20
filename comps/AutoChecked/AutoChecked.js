@@ -86,7 +86,12 @@
 
         this._init();
     }
-
+    /**
+     * 初始化 _selector 的所有 input[checktype][checkfor]
+     * @method  init
+     * @param   {selector}  _selector
+     * @static
+     */
     AutoChecked.init = 
         function( _selector ){
             _selector = $( _selector );
@@ -95,7 +100,10 @@
             _ls.each( function(){
                 _p = $(this);
                 if( !AutoChecked.isAutoChecked( _p ) ) return;
-                if( AutoChecked.getInstance( _p ) ) return;
+                if( AutoChecked.getInstance( _p ) ) {
+                    AutoChecked.getInstance( _p ).update();
+                    return;
+                }
                 new AutoChecked( _p );
             });
         };
@@ -148,7 +156,15 @@
                         _p._view.itemChange();
                     });
                 }
-
+            }
+        /**
+         * 更新 全选状态
+         * @method  update
+         */ 
+        , update:
+            function(){
+                this._view.itemChange();
+                return this;
             }
         /**
          * 获取 显示 AutoChecked 的触发源选择器, 比如 a 标签
