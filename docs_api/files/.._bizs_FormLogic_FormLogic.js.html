@@ -278,7 +278,7 @@
      *      &lt;dd&gt;msgbox 弹框的显示时间&lt;/dd&gt;
      * &lt;/dl&gt;
      *
-     * &lt;h2&gt;普通 button 可用的 html 属性&lt;/h2&gt;
+     * &lt;h2&gt;普通 [a | button] 可用的 html 属性&lt;/h2&gt;
      * &lt;dl&gt;
      *      &lt;dt&gt;buttonReturnUrl&lt;/dt&gt;
      *      &lt;dd&gt;点击button时, 返回的URL&lt;/dd&gt;
@@ -930,7 +930,7 @@
             ;
     });
 
-    $(document).delegate( &#x27;a.buttonReturnUrl, input[buttonReturnUrl], button[buttonReturnUrl]&#x27;, &#x27;click&#x27;, function( _evt ){
+    $(document).delegate( &#x27;a[buttonReturnUrl], input[buttonReturnUrl], button[buttonReturnUrl]&#x27;, &#x27;click&#x27;, function( _evt ){
         var _p = $(this)
             , _url = _p.attr(&#x27;buttonReturnUrl&#x27;).trim()
             , _msg = _p.is(&#x27;[returnConfirm]&#x27;) ? _p.attr(&#x27;returnConfirm&#x27;) : &#x27;&#x27;

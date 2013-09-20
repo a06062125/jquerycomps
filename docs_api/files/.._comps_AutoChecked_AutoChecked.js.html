@@ -185,16 +185,25 @@
      * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.AutoChecked.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
      * | &lt;a href=&#x27;../../comps/AutoChecked/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
      * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
-     * &lt;h2&gt;可用的 HTML 属性&lt;/h2&gt;
+     * &lt;h2&gt;input[type=checkbox] 可用的 HTML 属性&lt;/h2&gt;
      * &lt;dl&gt;
-     *      &lt;dd&gt;&lt;/dd&gt;
+     *      &lt;dt&gt;checktype = string&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          类型: all(全选), inverse(反选)
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;checkfor = selector&lt;/dt&gt;
+     *      &lt;dd&gt;需要全选/反选的 checkbox&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;checkall = selector&lt;/dt&gt;
+     *      &lt;dd&gt;声明 checkall input, 仅在 checktype = inverse 时才需要&lt;/dd&gt;
      * &lt;/dl&gt;
      * @class       AutoChecked
      * @namespace   JC
      * @constructor
      * @version dev 0.1 2013-06-11
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 team
-     * @param   {selector}  _selector   要初始化的全选反选的父级节点
+     * @param   {selector}  _selector   要初始化的全选反选的父级节点 或 input[checktype][checkfor]
      * @example
             &lt;h2&gt;AJAX data:&lt;/h2&gt;
             &lt;dl class=&quot;def example24&quot;&gt;
@@ -266,7 +275,12 @@
 
         this._init();
     }
-
+    /**
+     * 初始化 _selector 的所有 input[checktype][checkfor]
+     * @method  init
+     * @param   {selector}  _selector
+     * @static
+     */
     AutoChecked.init = 
         function( _selector ){
             _selector = $( _selector );
@@ -275,7 +289,10 @@
             _ls.each( function(){
                 _p = $(this);
                 if( !AutoChecked.isAutoChecked( _p ) ) return;
-                if( AutoChecked.getInstance( _p ) ) return;
+                if( AutoChecked.getInstance( _p ) ) {
+                    AutoChecked.getInstance( _p ).update();
+                    return;
+                }
                 new AutoChecked( _p );
             });
         };
@@ -328,7 +345,15 @@
                         _p._view.itemChange();
                     });
                 }
-
+            }
+        /**
+         * 更新 全选状态
+         * @method  update
+         */ 
+        , update:
+            function(){
+                this._view.itemChange();
+                return this;
             }
         /**
          * 获取 显示 AutoChecked 的触发源选择器, 比如 a 标签

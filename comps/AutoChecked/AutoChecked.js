@@ -5,16 +5,25 @@
      * | <a href='http://jc.openjavascript.org/docs_api/classes/JC.AutoChecked.html' target='_blank'>API docs</a>
      * | <a href='../../comps/AutoChecked/_demo' target='_blank'>demo link</a></p>
      * <p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>
-     * <h2>可用的 HTML 属性</h2>
+     * <h2>input[type=checkbox] 可用的 HTML 属性</h2>
      * <dl>
-     *      <dd></dd>
+     *      <dt>checktype = string</dt>
+     *      <dd>
+     *          类型: all(全选), inverse(反选)
+     *      </dd>
+     *
+     *      <dt>checkfor = selector</dt>
+     *      <dd>需要全选/反选的 checkbox</dd>
+     *
+     *      <dt>checkall = selector</dt>
+     *      <dd>声明 checkall input, 仅在 checktype = inverse 时才需要</dd>
      * </dl>
      * @class       AutoChecked
      * @namespace   JC
      * @constructor
      * @version dev 0.1 2013-06-11
      * @author  qiushaowei   <suches@btbtd.org> | 75 team
-     * @param   {selector}  _selector   要初始化的全选反选的父级节点
+     * @param   {selector}  _selector   要初始化的全选反选的父级节点 或 input[checktype][checkfor]
      * @example
             <h2>AJAX data:</h2>
             <dl class="def example24">

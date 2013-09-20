@@ -114,9 +114,16 @@
 | <a href='http://jc.openjavascript.org/docs_api/classes/JC.AutoChecked.html' target='_blank'>API docs</a>
 | <a href='../../comps/AutoChecked/_demo' target='_blank'>demo link</a></p>
 <p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>
-<h2>可用的 HTML 属性</h2>
+<h2>input[type=checkbox] 可用的 HTML 属性</h2>
 <dl>
-     <dd></dd>
+     <dt>checktype = string</dt>
+     <dd>
+         类型: all(全选), inverse(反选)
+     </dd>
+     <dt>checkfor = selector</dt>
+     <dd>需要全选/反选的 checkbox</dd>
+     <dt>checkall = selector</dt>
+     <dd>声明 checkall input, 仅在 checktype = inverse 时才需要</dd>
 </dl>
 </div>
     <div class="constructor">
@@ -145,7 +152,7 @@
                         <code class="param-name">_selector</code>
                         <span class="type">Selector</span>
                     <div class="param-description">
-                        <p>要初始化的全选反选的父级节点</p>
+                        <p>要初始化的全选反选的父级节点 或 input[checktype][checkfor]</p>
                     </div>
                 </li>
             </ul>
@@ -222,6 +229,10 @@
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
+                                <a href="#method_init">init</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_isAutoChecked">isAutoChecked</a>
                                     <span class="flag static">static</span>
                             </li>
@@ -233,6 +244,9 @@
                             </li>
                             <li class="index-item method">
                                 <a href="#method_trigger">trigger</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_update">update</a>
                             </li>
                     </ul>
                 </div>
@@ -255,7 +269,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l175"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:175</code></a>
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l200"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:200</code></a>
         </p>
     </div>
     <div class="description">
@@ -279,6 +293,37 @@
             </div>
         </div>
 </div>
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l98"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:98</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>初始化 _selector 的所有 input[checktype][checkfor]</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
                     <div id="method_isAutoChecked" class="method item">
     <h3 class="name"><code>isAutoChecked</code></h3>
         <div class="args">
@@ -295,7 +340,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l191"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:191</code></a>
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l216"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:216</code></a>
         </p>
     </div>
     <div class="description">
@@ -337,7 +382,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l159"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:159</code></a>
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l184"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:184</code></a>
         </p>
     </div>
     <div class="description">
@@ -376,7 +421,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l153"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:153</code></a>
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l178"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:178</code></a>
         </p>
     </div>
     <div class="description">
@@ -404,7 +449,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l167"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:167</code></a>
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l192"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:192</code></a>
         </p>
     </div>
     <div class="description">
@@ -427,6 +472,19 @@
                     AutoCheckedInstance
             </div>
         </div>
+</div>
+                    <div id="method_update" class="method item">
+    <h3 class="name"><code>update</code></h3>
+        <span class="paren">()</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_AutoChecked_AutoChecked.js.html#l169"><code>..&#x2F;comps&#x2F;AutoChecked&#x2F;AutoChecked.js:169</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>更新 全选状态</p>
+    </div>
 </div>
             </div>
     </div>
