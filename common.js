@@ -632,7 +632,7 @@ function jcAutoInitComps( _selector ){
     /**
      * 全选反选
      */
-    JC.Form && JC.Form.initCheckAll && JC.Form.initCheckAll( _selector );
+    JC.AutoChecked && JC.AutoChecked( _selector );
 
     if( !window.Bizs ) return;
     /**

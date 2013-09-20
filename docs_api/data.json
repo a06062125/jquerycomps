@@ -73,6 +73,17 @@
                 "window.Bizs": 1
             }
         },
+        "../comps/AutoChecked/AutoChecked.js": {
+            "name": "../comps/AutoChecked/AutoChecked.js",
+            "modules": {},
+            "classes": {
+                "JC.AutoChecked": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "JC": 1
+            }
+        },
         "../comps/AutoSelect/AutoSelect.js": {
             "name": "../comps/AutoSelect/AutoSelect.js",
             "modules": {},
@@ -174,15 +185,6 @@
         },
         "../comps/Form/JC.Form.initAutoFill.js": {
             "name": "../comps/Form/JC.Form.initAutoFill.js",
-            "modules": {},
-            "classes": {},
-            "fors": {
-                "JC.Form": 1
-            },
-            "namespaces": {}
-        },
-        "../comps/Form/JC.Form.initCheckAll.js": {
-            "name": "../comps/Form/JC.Form.initCheckAll.js",
             "modules": {},
             "classes": {},
             "fors": {
@@ -544,6 +546,32 @@
             "tagname": "",
             "version": "dev 0.1 2013-09-03",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team"
+        },
+        "JC.AutoChecked": {
+            "name": "JC.AutoChecked",
+            "shortname": "JC.AutoChecked",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "JC",
+            "file": "../comps/AutoChecked/AutoChecked.js",
+            "line": 2,
+            "description": "全选/反选\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.AutoChecked.html' target='_blank'>API docs</a>\n| <a href='../../comps/AutoChecked/_demo' target='_blank'>demo link</a></p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dd></dd>\n</dl>",
+            "is_constructor": 1,
+            "version": "dev 0.1 2013-06-11",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 team",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "要初始化的全选反选的父级节点",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n           <h2>AJAX data:</h2>\n           <dl class=\"def example24\">\n               <dt>checkall example 24</dt>\n               <dd>\n                   <label>\n                       <input type=\"checkbox\" checktype=\"all\" checkfor=\"dl.example24 input[type=checkbox]\">\n                       全选\n                   </label>\n                   <label>\n                       <input type=\"checkbox\" checktype=\"inverse\" checkfor=\"dl.example24 input[type=checkbox]\" checkall=\"dl.example24 input[checktype=all]\">\n                       反选\n                   </label>\n               </dd>\n               <dd>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_1\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_2\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_3\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_4\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_5\n                   </label>\n               </dd>\n           </dl>\n\n           <script>\n           $(document).delegate( 'button.js_ajaxTest', 'click', function(){\n               var _p = $(this);\n               _p.prop('disabled', true);\n               setTimeout( function(){ _p.prop('disabled', false); }, 1000 );\n\n               $.get( './data/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){\n                   var _selector = $(_r);\n                   $( $( 'body' ).children().first() ).before( _selector );\n                   JC.AutoChecked( _selector );\n               });\n           });\n           </script>"
+            ]
         },
         "JC.AutoSelect": {
             "name": "JC.AutoSelect",
@@ -1529,7 +1557,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../JC.js",
-            "line": 289,
+            "line": 290,
             "description": "UXC 是 JC 的别名\n<br />存在这个变量是为了向后兼容\n<br />20130804 之前的命名空间是 UXC, 这个命名空间在一段时间后将会清除, 请使用 JC 命名空间\n<p><b>see</b>: <a href='window.JC.html'>JC</a></p>",
             "static": 1,
             "date": "2013-05-22"
@@ -1544,7 +1572,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../JC.js",
-            "line": 308,
+            "line": 309,
             "description": "<h2>业务逻辑命名空间</h2>\n<br />这个命名空间的组件主要为满足业务需求, 不是通用组件~\n<br />但在某个项目中应该是常用组件~\n<dl>\n     <dt>业务组件的存放位置:</dt>\n     <dd>libpath/bizs/</dd>\n\n     <dt>使用业务组件</dt>\n     <dd> JC.use( 'Bizs.BizComps' ); //  libpath/bizs/BizComps/BizComps.js </dd>\n\n     <dt>使用业务文件</dt>\n     <dd> JC.use( 'bizs.BizFile' ); //   libpath/bizs/BizFile.js </dd>\n</dl>",
             "static": 1
         },
@@ -2217,6 +2245,104 @@
             },
             "class": "window.Bizs.MultiDate",
             "namespace": "window.Bizs"
+        },
+        {
+            "file": "../comps/AutoChecked/AutoChecked.js",
+            "line": 153,
+            "description": "获取 显示 AutoChecked 的触发源选择器, 比如 a 标签",
+            "itemtype": "method",
+            "name": "selector",
+            "return": {
+                "description": "selector"
+            },
+            "class": "JC.AutoChecked",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/AutoChecked/AutoChecked.js",
+            "line": 159,
+            "description": "使用 jquery on 绑定事件",
+            "itemtype": "method",
+            "name": "on",
+            "type": "String",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "_cb",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "AutoCheckedInstance"
+            },
+            "class": "JC.AutoChecked",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/AutoChecked/AutoChecked.js",
+            "line": 167,
+            "description": "使用 jquery trigger 绑定事件",
+            "itemtype": "method",
+            "name": "trigger",
+            "type": "String",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "AutoCheckedInstance"
+            },
+            "class": "JC.AutoChecked",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/AutoChecked/AutoChecked.js",
+            "line": 175,
+            "description": "获取或设置 AutoChecked 的实例",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "AutoChecked instance"
+            },
+            "class": "JC.AutoChecked",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/AutoChecked/AutoChecked.js",
+            "line": 191,
+            "description": "判断 selector 是否可以初始化 AutoChecked",
+            "itemtype": "method",
+            "name": "isAutoChecked",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "bool"
+            },
+            "class": "JC.AutoChecked",
+            "namespace": "JC"
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
@@ -4309,127 +4435,6 @@
             "namespace": "JC"
         },
         {
-            "file": "../comps/Form/JC.Form.initCheckAll.js",
-            "line": 2,
-            "description": "初始化 checkbox 全选反选功能\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化全选反选功能\n<br /><br />动态添加的 DOM 需要显式调用 JC.Form.initCheckAll( domSelector ) 进行初始化\n<br /><br />要使页面上的全选反选功能能够自动初始化, 需要在全选反选按钮上加入一些HTML 属性\n<br /><b>checktype</b>: all | inverse, all=全选/全不选, inverse=反选\n<br /><b>checkfor</b>: selector, 要全选/反选的 checkbox 选择器语法\n<br /><b>checkall</b>: selector, 全选按钮的选择器, 这个只有反选按钮需要, 反选时变更全选按钮的状态",
-            "itemtype": "method",
-            "name": "initCheckAll",
-            "static": 1,
-            "version": "dev 0.1",
-            "author": "qiushaowei   <suches@btbtd.org> | 75 team",
-            "date": "2013-06-11",
-            "params": [
-                {
-                    "name": "_selector",
-                    "description": "要初始化的全选反选的父级节点",
-                    "type": "Selector"
-                }
-            ],
-            "example": [
-                "\n           <h2>AJAX data:</h2>\n           <dl class=\"def example24\">\n               <dt>checkall example 24</dt>\n               <dd>\n                   <label>\n                       <input type=\"checkbox\" checktype=\"all\" checkfor=\"dl.example24 input[type=checkbox]\">\n                       全选\n                   </label>\n                   <label>\n                       <input type=\"checkbox\" checktype=\"inverse\" checkfor=\"dl.example24 input[type=checkbox]\" checkall=\"dl.example24 input[checktype=all]\">\n                       反选\n                   </label>\n               </dd>\n               <dd>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_1\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_2\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_3\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_4\n                   </label>\n                   <label>\n                       <input type='checkbox' value='' name='' checked />\n                       checkall24_5\n                   </label>\n               </dd>\n           </dl>\n\n           <script>\n           $(document).delegate( 'button.js_ajaxTest', 'click', function(){\n               var _p = $(this);\n               _p.prop('disabled', true);\n               setTimeout( function(){ _p.prop('disabled', false); }, 1000 );\n\n               $.get( './data/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){\n                   var _selector = $(_r);\n                   $( $( 'body' ).children().first() ).before( _selector );\n                   JC.Form.initCheckAll( _selector );\n               });\n           });\n           </script>"
-            ],
-            "class": "JC.Form",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/Form/JC.Form.initCheckAll.js",
-            "line": 144,
-            "description": "获取 显示 AutoChecked 的触发源选择器, 比如 a 标签",
-            "itemtype": "method",
-            "name": "selector",
-            "return": {
-                "description": "selector"
-            },
-            "class": "JC.Form",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/Form/JC.Form.initCheckAll.js",
-            "line": 150,
-            "description": "使用 jquery on 绑定事件",
-            "itemtype": "method",
-            "name": "on",
-            "type": "String",
-            "params": [
-                {
-                    "name": "_evtName",
-                    "description": "",
-                    "type": "String"
-                },
-                {
-                    "name": "_cb",
-                    "description": "",
-                    "type": "Function"
-                }
-            ],
-            "return": {
-                "description": "AutoCheckedInstance"
-            },
-            "class": "JC.Form",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/Form/JC.Form.initCheckAll.js",
-            "line": 158,
-            "description": "使用 jquery trigger 绑定事件",
-            "itemtype": "method",
-            "name": "trigger",
-            "type": "String",
-            "params": [
-                {
-                    "name": "_evtName",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "AutoCheckedInstance"
-            },
-            "class": "JC.Form",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/Form/JC.Form.initCheckAll.js",
-            "line": 166,
-            "description": "获取或设置 AutoChecked 的实例",
-            "itemtype": "method",
-            "name": "getInstance",
-            "params": [
-                {
-                    "name": "_selector",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "static": 1,
-            "return": {
-                "description": "",
-                "type": "AutoChecked instance"
-            },
-            "class": "JC.Form",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/Form/JC.Form.initCheckAll.js",
-            "line": 182,
-            "description": "判断 selector 是否可以初始化 AutoChecked",
-            "itemtype": "method",
-            "name": "isAutoChecked",
-            "params": [
-                {
-                    "name": "_selector",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "static": 1,
-            "return": {
-                "description": "bool"
-            },
-            "class": "JC.Form",
-            "namespace": "JC"
-        },
-        {
             "file": "../comps/Form/JC.Form.initNumericStepper.js",
             "line": 2,
             "description": "文本框 值增减 应用\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化 NumericStepper\n<br />所有带 class js_NStepperPlus, js_NStepperMinus 视为值加减按钮\n<br /><br />目标文本框可以添加一些HTML属性自己的规则, \n<br />nsminvalue=最小值(默认=0), nsmaxvalue=最大值(默认=100), nsstep=步长(默认=1), nsfixed=小数点位数(默认=0)\n<br />nschangecallback=值变改后的回调",
@@ -4487,10 +4492,20 @@
         },
         {
             "file": "../comps/Form/JC.Form.js",
-            "line": 35,
+            "line": 34,
             "description": "select 级联下拉框无限联动\n<br />这个方法已经摘取出来, 单独成为一个类.\n<br />详情请见: <a href=\"../../docs_api/classes/JC.AutoSelect.html\">JC.AutoSelect.html</a>\n<br />目前摘出去的类与之前的逻辑保持向后兼容, 但在不久的将来将会清除这个方法",
             "itemtype": "method",
-            "name": "JC.Form.initAutoSelect",
+            "name": "initAutoSelect",
+            "static": 1,
+            "class": "JC.Form",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Form/JC.Form.js",
+            "line": 43,
+            "description": "全选/反选\n<br />这个方法已经摘取出来, 单独成为一个类.\n<br />详情请见: <a href=\"../../docs_api/classes/JC.AutoChecked.html\">JC.AutoChecked.html</a>\n<br />目前摘出去的类与之前的逻辑保持向后兼容, 但在不久的将来将会清除这个方法",
+            "itemtype": "method",
+            "name": "initCheckAll",
             "static": 1,
             "class": "JC.Form",
             "namespace": "JC"
@@ -12497,7 +12512,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 142,
+            "line": 143,
             "description": "调用依赖的类\n<br />这个方法的存在是因为有一些类调整了结构, 但是原有的引用因为向后兼容的需要, 暂时不能去掉",
             "itemtype": "method",
             "name": "_usePatch",
@@ -12526,7 +12541,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 164,
+            "line": 165,
             "description": "输出调试信息, 可通过 JC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -12543,7 +12558,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 171,
+            "line": 172,
             "description": "定义输出路径的 v 参数, 以便控制缓存",
             "itemtype": "property",
             "name": "pathPostfix",
@@ -12555,7 +12570,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 179,
+            "line": 180,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
@@ -12567,7 +12582,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 187,
+            "line": 188,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
@@ -12579,7 +12594,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 196,
+            "line": 197,
             "description": "资源路径映射对象\n<br />设置 JC.use 逗号(',') 分隔项的 对应URL路径",
             "itemtype": "property",
             "name": "FILE_MAP",
@@ -12594,7 +12609,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 234,
+            "line": 235,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -12613,7 +12628,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 262,
+            "line": 263,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -12632,7 +12647,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 279,
+            "line": 280,
             "description": "保存 use 过的资源路径, 以便进行唯一性判断, 避免重复加载",
             "itemtype": "property",
             "name": "_USE_CACHE",
@@ -12646,7 +12661,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 300,
+            "line": 301,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -13365,6 +13380,10 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../comps/AutoChecked/AutoChecked.js:2"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../comps/AutoSelect/AutoSelect.js:2"
         },
         {
@@ -13414,14 +13433,6 @@
         {
             "message": "unknown tag: date",
             "line": " ../comps/Form/JC.Form.initAutoFill.js:2"
-        },
-        {
-            "message": "unknown tag: version",
-            "line": " ../comps/Form/JC.Form.initCheckAll.js:2"
-        },
-        {
-            "message": "unknown tag: date",
-            "line": " ../comps/Form/JC.Form.initCheckAll.js:2"
         },
         {
             "message": "unknown tag: version",
@@ -13713,7 +13724,7 @@
         },
         {
             "message": "unknown tag: date",
-            "line": " ../JC.js:289"
+            "line": " ../JC.js:290"
         },
         {
             "message": "unknown tag: require",
@@ -14369,7 +14380,7 @@
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../JC.js:300"
+            "line": " ../JC.js:301"
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",

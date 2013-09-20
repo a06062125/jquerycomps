@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../comps/Form/JC.Form.initCheckAll.js - jquery components</title>
+    <title>../comps/AutoChecked/AutoChecked.js - jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/.window.html">.window</a></li>
             
                 <li><a href="../classes/JC.alert.html">JC.alert</a></li>
+            
+                <li><a href="../classes/JC.AutoChecked.html">JC.AutoChecked</a></li>
             
                 <li><a href="../classes/JC.AutoSelect.html">JC.AutoSelect</a></li>
             
@@ -172,25 +174,26 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../comps/Form/JC.Form.initCheckAll.js</h1>
+                        <h1 class="file-heading">File: ../comps/AutoChecked/AutoChecked.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
  ;(function($){
     /**
-     * 初始化 checkbox 全选反选功能
-     * &lt;br /&gt;只要引用本脚本, 页面加载完毕时就会自动初始化全选反选功能
-     * &lt;br /&gt;&lt;br /&gt;动态添加的 DOM 需要显式调用 JC.Form.initCheckAll( domSelector ) 进行初始化
-     * &lt;br /&gt;&lt;br /&gt;要使页面上的全选反选功能能够自动初始化, 需要在全选反选按钮上加入一些HTML 属性
-     * &lt;br /&gt;&lt;b&gt;checktype&lt;/b&gt;: all | inverse, all=全选/全不选, inverse=反选
-     * &lt;br /&gt;&lt;b&gt;checkfor&lt;/b&gt;: selector, 要全选/反选的 checkbox 选择器语法
-     * &lt;br /&gt;&lt;b&gt;checkall&lt;/b&gt;: selector, 全选按钮的选择器, 这个只有反选按钮需要, 反选时变更全选按钮的状态
-     * @method  initCheckAll
-     * @static
-     * @for JC.Form
-     * @version dev 0.1
+     * 全选/反选
+     * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
+     * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.AutoChecked.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+     * | &lt;a href=&#x27;../../comps/AutoChecked/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+     * &lt;h2&gt;可用的 HTML 属性&lt;/h2&gt;
+     * &lt;dl&gt;
+     *      &lt;dd&gt;&lt;/dd&gt;
+     * &lt;/dl&gt;
+     * @class       AutoChecked
+     * @namespace   JC
+     * @constructor
+     * @version dev 0.1 2013-06-11
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 team
-     * @date    2013-06-11
      * @param   {selector}  _selector   要初始化的全选反选的父级节点
      * @example
             &lt;h2&gt;AJAX data:&lt;/h2&gt;
@@ -239,25 +242,20 @@
                 $.get( &#x27;./data/initCheckAll.php?rnd=&#x27;+new Date().getTime(), function( _r ){
                     var _selector = $(_r);
                     $( $( &#x27;body&#x27; ).children().first() ).before( _selector );
-                    JC.Form.initCheckAll( _selector );
+                    JC.AutoChecked( _selector );
                 });
             });
             &lt;/script&gt;
      */
-    AutoChecked.initCheckAll = 
-        function( _selector ){
-            _selector = $( _selector );
-            var _ls = _selector.find( &#x27;input[type=checkbox][checktype][checkfor]&#x27; ), _p;
-            _ls.each( function(){
-                _p = $(this);
-                if( !AutoChecked.isAutoChecked( _p ) ) return;
-                if( AutoChecked.getInstance( _p ) ) return;
-                new AutoChecked( _p );
-            });
-        };
-    JC.Form.initCheckAll = AutoChecked.initCheckAll;
+    JC.Form &amp;&amp; ( JC.Form.initCheckAll = AutoChecked );
+    JC.AutoChecked = AutoChecked;
 
     function AutoChecked( _selector ){
+        _selector = $( _selector );
+        if( !( _selector &amp;&amp; _selector.length ) ) return;
+        if( _selector.prop(&#x27;nodeName&#x27;).toLowerCase() != &#x27;input&#x27; ){
+            return AutoChecked.init( _selector );
+        }
         if( AutoChecked.getInstance( _selector ) ) return AutoChecked.getInstance( _selector );
         AutoChecked.getInstance( _selector, this );
 
@@ -268,6 +266,19 @@
 
         this._init();
     }
+
+    AutoChecked.init = 
+        function( _selector ){
+            _selector = $( _selector );
+            if( !( _selector &amp;&amp; _selector.length ) ) return;
+            var _ls = _selector.find( &#x27;input[type=checkbox][checktype][checkfor]&#x27; ), _p;
+            _ls.each( function(){
+                _p = $(this);
+                if( !AutoChecked.isAutoChecked( _p ) ) return;
+                if( AutoChecked.getInstance( _p ) ) return;
+                new AutoChecked( _p );
+            });
+        };
     
     AutoChecked.prototype = {
         _init:
@@ -513,9 +524,11 @@
     };
  
     $(document).ready( function( _evt ){
-        JC.Form.initCheckAll( $(document) );
+        AutoChecked.init( $(document) );
     });
+
 }(jQuery));
+
 
     </pre>
 </div>
