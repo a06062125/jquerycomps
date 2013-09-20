@@ -78,6 +78,7 @@
                                 <input type="hidden" name="getform" value="1" />
                                 <button type="submit">submit</button>
                                 <button type="reset">reset</button>
+                                <button type="button" buttonReturnUrl="?btntest=1" >cancel</button>
                                 <a href="?">back</a>
                             </dd>
                         </dl>
@@ -123,6 +124,7 @@
 
                                 <button type="reset" formResetConfirm="确定要重置吗?"  >reset</button>
                                 <button type="reset" formResetConfirm="确定要重置吗?" formResetUrl="?"  >reset - url</button>
+                                <button type="button" returnConfirm="确定要取消吗?" buttonReturnUrl="?btntest=1" >cancel</button>
                                 <a href="?">back</a>
                             </dd>
                         </dl>
@@ -166,6 +168,12 @@
 
                                 <button type="reset" formResetConfirm="确定要重置吗?"  >reset</button>
                                 <button type="reset" formResetConfirm="确定要重置吗?" formResetUrl="?"  >reset - url</button>
+                                <button type="button" 
+                                    returnConfirm="确定要取消吗?" 
+                                    buttonReturnUrl="?btntest=1" 
+                                    popupType="dialog.confirm" 
+                                    popupstatus="1" 
+                                    >cancel</button>
                                 <a href="?">back</a>
                             </dd>
                         </dl>

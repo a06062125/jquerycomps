@@ -280,6 +280,15 @@
      * &lt;dl&gt;
      *      &lt;dt&gt;buttonReturnUrl&lt;/dt&gt;
      *      &lt;dd&gt;点击button时, 返回的URL&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;returnConfirm = string&lt;/dt&gt;
+     *      &lt;dd&gt;二次确认提示信息&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;popupType = string, default = confirm&lt;/dt&gt;
+     *      &lt;dd&gt;弹框类型: confirm, dialog.confirm&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;popupstatus = int, default = 2&lt;/dt&gt;
+     *      &lt;dd&gt;提示状态: 0: 成功, 1: 失败, 2: 警告&lt;/dd&gt;
      * &lt;/dl&gt;
      * @namespace       window.Bizs
      * @class           FormLogic
@@ -643,7 +652,7 @@
                     var _popup;
 
                     if( _p._model.formConfirmPopupType( _btn ) == &#x27;dialog&#x27; ){
-                        _popup = JC.Dialog.confirm( _p._model.formResetConfirm(), 2 );
+                        _popup = JC.Dialog.confirm( _p._model.formResetConfirm( _btn ), 2 );
                     }else{
                         _popup = JC.confirm( _p._model.formResetConfirm( _btn ), _btn, 2 );
                     }
@@ -919,9 +928,38 @@
             ;
     });
 
-    $(document).delegate( &#x27;input[buttonReturnUrl], button[buttonReturnUrl]&#x27;, &#x27;click&#x27;, function( _evt ){
-        var _p = $(this), _url = _p.attr(&#x27;buttonReturnUrl&#x27;).trim();
-        _url &amp;&amp; reloadPage( _url );
+    $(document).delegate( &#x27;a.buttonReturnUrl, input[buttonReturnUrl], button[buttonReturnUrl]&#x27;, &#x27;click&#x27;, function( _evt ){
+        var _p = $(this)
+            , _url = _p.attr(&#x27;buttonReturnUrl&#x27;).trim()
+            , _msg = _p.is(&#x27;[returnConfirm]&#x27;) ? _p.attr(&#x27;returnConfirm&#x27;) : &#x27;&#x27;
+            , _popupType = _p.is(&#x27;[popuptype]&#x27;) ? _p.attr(&#x27;popuptype&#x27;) : &#x27;confirm&#x27;
+            , _popupstatus = parseInt( _p.is(&#x27;[popupstatus]&#x27;) ? _p.attr(&#x27;popupstatus&#x27;) : &quot;2&quot;, 10 )
+            , _panel
+            ;
+
+        if( !_url ) return;
+
+        _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
+
+        if( _msg ){
+            switch( _popupType ){
+                case &#x27;dialog.confirm&#x27;:
+                    {
+                        _panel = JC.Dialog.confirm( _msg, _popupstatus );
+                        break;
+                    }
+                default:
+                    {
+                        _panel = JC.confirm( _msg, _p, _popupstatus );
+                        break;
+                    }
+            }
+            _panel.on(&#x27;confirm&#x27;, function(){
+                reloadPage( _url );
+            });
+        }else{
+            reloadPage( _url );
+        }
     });
 
     $(document).ready( function(){

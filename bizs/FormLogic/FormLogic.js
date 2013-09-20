@@ -102,6 +102,15 @@
      * <dl>
      *      <dt>buttonReturnUrl</dt>
      *      <dd>点击button时, 返回的URL</dd>
+     *
+     *      <dt>returnConfirm = string</dt>
+     *      <dd>二次确认提示信息</dd>
+     *
+     *      <dt>popupType = string, default = confirm</dt>
+     *      <dd>弹框类型: confirm, dialog.confirm</dd>
+     *
+     *      <dt>popupstatus = int, default = 2</dt>
+     *      <dd>提示状态: 0: 成功, 1: 失败, 2: 警告</dd>
      * </dl>
      * @namespace       window.Bizs
      * @class           FormLogic
@@ -465,7 +474,7 @@
                     var _popup;
 
                     if( _p._model.formConfirmPopupType( _btn ) == 'dialog' ){
-                        _popup = JC.Dialog.confirm( _p._model.formResetConfirm(), 2 );
+                        _popup = JC.Dialog.confirm( _p._model.formResetConfirm( _btn ), 2 );
                     }else{
                         _popup = JC.confirm( _p._model.formResetConfirm( _btn ), _btn, 2 );
                     }
@@ -741,9 +750,38 @@
             ;
     });
 
-    $(document).delegate( 'input[buttonReturnUrl], button[buttonReturnUrl]', 'click', function( _evt ){
-        var _p = $(this), _url = _p.attr('buttonReturnUrl').trim();
-        _url && reloadPage( _url );
+    $(document).delegate( 'a.buttonReturnUrl, input[buttonReturnUrl], button[buttonReturnUrl]', 'click', function( _evt ){
+        var _p = $(this)
+            , _url = _p.attr('buttonReturnUrl').trim()
+            , _msg = _p.is('[returnConfirm]') ? _p.attr('returnConfirm') : ''
+            , _popupType = _p.is('[popuptype]') ? _p.attr('popuptype') : 'confirm'
+            , _popupstatus = parseInt( _p.is('[popupstatus]') ? _p.attr('popupstatus') : "2", 10 )
+            , _panel
+            ;
+
+        if( !_url ) return;
+
+        _p.prop('nodeName').toLowerCase() == 'a' && _evt.preventDefault();
+
+        if( _msg ){
+            switch( _popupType ){
+                case 'dialog.confirm':
+                    {
+                        _panel = JC.Dialog.confirm( _msg, _popupstatus );
+                        break;
+                    }
+                default:
+                    {
+                        _panel = JC.confirm( _msg, _p, _popupstatus );
+                        break;
+                    }
+            }
+            _panel.on('confirm', function(){
+                reloadPage( _url );
+            });
+        }else{
+            reloadPage( _url );
+        }
     });
 
     $(document).ready( function(){
