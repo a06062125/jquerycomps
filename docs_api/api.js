@@ -2,6 +2,7 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         ".window",
+        "JC.AutoChecked",
         "JC.AutoSelect",
         "JC.BaseMVC",
         "JC.BaseMVC.Model",
@@ -28,6 +29,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "JC.hideAllPanel",
         "JC.hideAllPopup",
         "JC.msgbox",
+        "window.Bizs.ActionLogic",
         "window.Bizs.CommonModify",
         "window.Bizs.DisableLogic",
         "window.Bizs.FormLogic",

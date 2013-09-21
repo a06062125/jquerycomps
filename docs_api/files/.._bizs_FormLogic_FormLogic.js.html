@@ -45,6 +45,8 @@
             
                 <li><a href="../classes/JC.alert.html">JC.alert</a></li>
             
+                <li><a href="../classes/JC.AutoChecked.html">JC.AutoChecked</a></li>
+            
                 <li><a href="../classes/JC.AutoSelect.html">JC.AutoSelect</a></li>
             
                 <li><a href="../classes/JC.BaseMVC.html">JC.BaseMVC</a></li>
@@ -114,6 +116,8 @@
                 <li><a href="../classes/JC.Tree.Model.html">JC.Tree.Model</a></li>
             
                 <li><a href="../classes/JC.Valid.html">JC.Valid</a></li>
+            
+                <li><a href="../classes/window.Bizs.ActionLogic.html">window.Bizs.ActionLogic</a></li>
             
                 <li><a href="../classes/window.Bizs.CommonModify.html">window.Bizs.CommonModify</a></li>
             
@@ -205,10 +209,24 @@
      *      &lt;dd&gt;表单提交后, 是否重置内容&lt;/dd&gt;
      *
      *      &lt;dt&gt;formBeforeProcess = function&lt;/dt&gt;
-     *      &lt;dd&gt;表单开始提交时且没开始验证时, 触发的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *      &lt;dd&gt;
+     *          表单开始提交时且没开始验证时, 触发的回调, &lt;b&gt;window 变量域&lt;/b&gt;
+&lt;xmp&gt;function formBeforeProcess( _evt, _ins ){
+    var _form = $(this);
+    JC.log( &#x27;formBeforeProcess&#x27;, new Date().getTime() );
+    //return false;
+}&lt;/xmp&gt;
+     *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;formAfterProcess = function&lt;/dt&gt;
-     *      &lt;dd&gt;表单开始提交时且验证通过后, 触发的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *      &lt;dd&gt;
+     *          表单开始提交时且验证通过后, 触发的回调, &lt;b&gt;window 变量域&lt;/b&gt;
+&lt;xmp&gt;function formAfterProcess( _evt, _ins ){
+    var _form = $(this);
+    JC.log( &#x27;formAfterProcess&#x27;, new Date().getTime() );
+    //return false;
+}&lt;/xmp&gt;
+     *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;formConfirmPopupType = string, default = dialog&lt;/dt&gt;
      *      &lt;dd&gt;定义提示框的类型: dialog, popup&lt;/dd&gt;
@@ -216,16 +234,10 @@
      *      &lt;dt&gt;formResetUrl = url&lt;/dt&gt;
      *      &lt;dd&gt;表单重置时, 返回的URL&lt;/dd&gt;
      *
-     *      &lt;dt&gt;formSubmitConfirm = string&lt;/dt&gt;
-     *      &lt;dd&gt;提交表单时进行二次确认的提示信息&lt;/dt&gt;
-     *
-     *      &lt;dt&gt;formResetConfirm = string&lt;/dt&gt;
-     *      &lt;dd&gt;重置表单时进行二次确认的提示信息&lt;/dt&gt;
-     *
      *      &lt;dt&gt;formPopupCloseMs = int, default = 2000&lt;/dt&gt;
      *      &lt;dd&gt;msgbox 弹框的显示时间&lt;/dd&gt;
      *
-     *      &lt;dt&gt;ajaxSubmitType = string, default = plugins&lt;/dt&gt;
+     *      &lt;dt&gt;formSubmitType = string, default = plugins&lt;/dt&gt;
      *      &lt;dd&gt;
      *          类型: plugins, form
      *          &lt;br/&gt;plugins 支持 AJAX 文件上传, 但是在 弹框里 捕获不到提交事件
@@ -245,6 +257,18 @@
      *      &lt;dd&gt;
      *          AJAX 提交完成后的回调
      *          &lt;br /&gt;如果没有显式声明, FormLogic将自行处理
+&lt;xmp&gt;function formAjaxDone( _json, _submitButton, _ins ){
+    var _form = $(this);
+    JC.log( &#x27;custom formAjaxDone&#x27;, new Date().getTime() );
+
+    if( _json.errorno ){
+        _panel = JC.Dialog.alert( _json.errmsg || &#x27;操作失败, 请重新尝试!&#x27;, 1 );
+    }else{
+        _panel = JC.msgbox( _json.errmsg || &#x27;操作成功&#x27;, _submitButton, 0, function(){
+            reloadPage( &quot;?donetype=custom&quot; );
+        });
+    }
+};&lt;/xmp&gt;
      *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;formAjaxDoneAction = url&lt;/dt&gt;
@@ -255,8 +279,10 @@
      * &lt;dl&gt;
      *      &lt;dd&gt;
      *          基本上 form 可用的 html 属性, submit 就可用, 区别在于 submit 优化级更高
-     *          &lt;br/&gt; formResetConfirm 属性除外
      *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;formSubmitConfirm = string&lt;/dt&gt;
+     *      &lt;dd&gt;提交表单时进行二次确认的提示信息&lt;/dt&gt;
      * &lt;/dl&gt;
      *
      * &lt;h2&gt;reset button 可用的 html 属性&lt;/h2&gt;
@@ -277,10 +303,19 @@
      *      &lt;dd&gt;msgbox 弹框的显示时间&lt;/dd&gt;
      * &lt;/dl&gt;
      *
-     * &lt;h2&gt;普通 button 可用的 html 属性&lt;/h2&gt;
+     * &lt;h2&gt;普通 [a | button] 可用的 html 属性&lt;/h2&gt;
      * &lt;dl&gt;
      *      &lt;dt&gt;buttonReturnUrl&lt;/dt&gt;
      *      &lt;dd&gt;点击button时, 返回的URL&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;returnConfirm = string&lt;/dt&gt;
+     *      &lt;dd&gt;二次确认提示信息&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;popupType = string, default = confirm&lt;/dt&gt;
+     *      &lt;dd&gt;弹框类型: confirm, dialog.confirm&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;popupstatus = int, default = 2&lt;/dt&gt;
+     *      &lt;dd&gt;提示状态: 0: 成功, 1: 失败, 2: 警告&lt;/dd&gt;
      * &lt;/dl&gt;
      * @namespace       window.Bizs
      * @class           FormLogic
@@ -373,7 +408,7 @@
         this._model = new FormLogic.Model( _selector );
         this._view = new FormLogic.View( this._model );
 
-        this._init( );
+        this._init();
     }
     /**
      * 获取或设置 FormLogic 的实例
@@ -435,7 +470,7 @@
      * @default     empty
      * @static
      */
-    FormLogic.ajaxSubmitType = &#x27;&#x27;;
+    FormLogic.formSubmitType = &#x27;&#x27;;
     /**
      * 表单提交后, 是否禁用提交按钮
      * @property    submitDisable
@@ -487,12 +522,20 @@
                 _p.on(&#x27;AjaxDone&#x27;, function( _evt, _data ){
 
                     _p._model.formResetAfterSubmit() 
+                        &amp;&amp; !_p._model.userFormAjaxDone()
                         &amp;&amp; _p.selector().trigger(&#x27;reset&#x27;);
 
                     _p._model.formSubmitDisable() &amp;&amp; _p.trigger( &#x27;EnableSubmit&#x27; );
 
                     var _json;
                     try{ _json = $.parseJSON( _data ); }catch(ex){}
+
+                    _json 
+                    &amp;&amp; &#x27;errorno&#x27; in _json 
+                    &amp;&amp; !parseInt( _json.errorno, 10 )
+                    &amp;&amp; _p.selector().trigger(&#x27;reset&#x27;)
+                    ;
+
                     _json = _json || _data || {};
                     _p._model.formAjaxDone()
                         &amp;&amp; _p._model.formAjaxDone().call( 
@@ -512,7 +555,7 @@
                         });
                 });
 
-                if( _p._model.formType() == &#x27;ajax&#x27; &amp;&amp; _p._model.ajaxSubmitType() == &#x27;plugins&#x27; ){
+                if( _p._model.formType() == &#x27;ajax&#x27; &amp;&amp; _p._model.formSubmitType() == &#x27;plugins&#x27; ){
                     /**
                      * jquery.form plugins 提交处理设置
                      * 这个可以 AJAX 上传文件
@@ -636,7 +679,7 @@
                     var _popup;
 
                     if( _p._model.formConfirmPopupType( _btn ) == &#x27;dialog&#x27; ){
-                        _popup = JC.Dialog.confirm( _p._model.formResetConfirm(), 2 );
+                        _popup = JC.Dialog.confirm( _p._model.formResetConfirm( _btn ), 2 );
                     }else{
                         _popup = JC.confirm( _p._model.formResetConfirm( _btn ), _btn, 2 );
                     }
@@ -685,9 +728,13 @@
                 _r = this.stringProp( &#x27;formType&#x27; ) || _r;
                 return _r.toLowerCase();
            }
-        , ajaxSubmitType: 
+        , formSubmitType: 
             function(){ 
-                var _r = this.stringProp( &#x27;ajaxSubmitType&#x27; ) || FormLogic.ajaxSubmitType || &#x27;plugins&#x27;;
+                var _r = this.stringProp( &#x27;ajaxSubmitType&#x27; ) 
+                        || this.stringProp( &#x27;formSubmitType&#x27; ) 
+                        || FormLogic.formSubmitType 
+                        || &#x27;plugins&#x27;
+                        ;
                 return _r.toLowerCase();
            }
         , formAjaxMethod:
@@ -699,7 +746,7 @@
         , formAjaxAction:
             function(){
                 var _r = this.stringProp( &#x27;formAjaxAction&#x27; ) || this.stringProp( &#x27;action&#x27; ) || &#x27;?&#x27;;
-                return _r;
+                return urlDetect( _r );
             }
         , formSubmitDisable:
             function(){
@@ -729,6 +776,14 @@
                 var _p = this, _r = _p._innerAjaxDone
                     , _btn = _p.selector().data( FormLogic.Model.GENERIC_SUBMIT_BUTTON )
                     ;
+                _r = _p.userFormAjaxDone() || _r;
+                return _r;
+            }
+        , userFormAjaxDone:
+            function(){
+                var _p = this, _r
+                    , _btn = _p.selector().data( FormLogic.Model.GENERIC_SUBMIT_BUTTON )
+                    ;
 
                 _p.selector().is(&#x27;[formAjaxDone]&#x27;)
                     &amp;&amp; ( _r = this.callbackProp( &#x27;formAjaxDone&#x27; ) || _r );
@@ -736,7 +791,6 @@
                 _btn &amp;&amp; ( _btn = $( _btn ) ).length
                     &amp;&amp; ( _r = _p.callbackProp( _btn, &#x27;formAjaxDone&#x27; ) || _r )
                     ;
-
                 return _r;
             }
 
@@ -781,7 +835,7 @@
                     &amp;&amp; ( _r = _p.stringProp( _btn, &#x27;formAjaxDoneAction&#x27; ) || _r )
                     ;
 
-                return _r;
+                return urlDetect( _r );
             }
 
 
@@ -810,7 +864,7 @@
                     &amp;&amp; ( _r = _p.stringProp( _btn, &#x27;formResetUrl&#x27; ) || _r )
                     ;
 
-                return _r;
+                return urlDetect( _r );
             }
         , formSubmitConfirm:
             function( _btn ){
@@ -862,6 +916,13 @@
                             if( cs.length &gt; 1 ){
                                 sp.val( $(cs[0]).val() );
                             }
+                            //for JC.Valid
+                            var _hasIgnore = sp.is(&#x27;[ignoreprocess]&#x27;);
+                            sp.attr(&#x27;ignoreprocess&#x27;, true);
+                            sp.trigger( &#x27;change&#x27; );
+                            setTimeout( function(){
+                                !_hasIgnore &amp;&amp; sp.removeAttr(&#x27;ignoreprocess&#x27;);
+                            }, 500 );
                         });
 
                         JC.Valid &amp;&amp; JC.Valid.clearError( _form );
@@ -901,9 +962,39 @@
             ;
     });
 
-    $(document).delegate( &#x27;input[buttonReturnUrl], button[buttonReturnUrl]&#x27;, &#x27;click&#x27;, function( _evt ){
-        var _p = $(this), _url = _p.attr(&#x27;buttonReturnUrl&#x27;).trim();
-        _url &amp;&amp; reloadPage( _url );
+    $(document).delegate( &#x27;a[buttonReturnUrl], input[buttonReturnUrl], button[buttonReturnUrl]&#x27;, &#x27;click&#x27;, function( _evt ){
+        var _p = $(this)
+            , _url = _p.attr(&#x27;buttonReturnUrl&#x27;).trim()
+            , _msg = _p.is(&#x27;[returnConfirm]&#x27;) ? _p.attr(&#x27;returnConfirm&#x27;) : &#x27;&#x27;
+            , _popupType = _p.is(&#x27;[popuptype]&#x27;) ? _p.attr(&#x27;popuptype&#x27;) : &#x27;confirm&#x27;
+            , _popupstatus = parseInt( _p.is(&#x27;[popupstatus]&#x27;) ? _p.attr(&#x27;popupstatus&#x27;) : &quot;2&quot;, 10 )
+            , _panel
+            ;
+
+        if( !_url ) return;
+        _url = urlDetect( _url );
+
+        _p.prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27; &amp;&amp; _evt.preventDefault();
+
+        if( _msg ){
+            switch( _popupType ){
+                case &#x27;dialog.confirm&#x27;:
+                    {
+                        _panel = JC.Dialog.confirm( _msg, _popupstatus );
+                        break;
+                    }
+                default:
+                    {
+                        _panel = JC.confirm( _msg, _p, _popupstatus );
+                        break;
+                    }
+            }
+            _panel.on(&#x27;confirm&#x27;, function(){
+                reloadPage( _url );
+            });
+        }else{
+            reloadPage( _url );
+        }
     });
 
     $(document).ready( function(){

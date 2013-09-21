@@ -45,6 +45,8 @@
             
                 <li><a href="../classes/JC.alert.html">JC.alert</a></li>
             
+                <li><a href="../classes/JC.AutoChecked.html">JC.AutoChecked</a></li>
+            
                 <li><a href="../classes/JC.AutoSelect.html">JC.AutoSelect</a></li>
             
                 <li><a href="../classes/JC.BaseMVC.html">JC.BaseMVC</a></li>
@@ -114,6 +116,8 @@
                 <li><a href="../classes/JC.Tree.Model.html">JC.Tree.Model</a></li>
             
                 <li><a href="../classes/JC.Valid.html">JC.Valid</a></li>
+            
+                <li><a href="../classes/window.Bizs.ActionLogic.html">window.Bizs.ActionLogic</a></li>
             
                 <li><a href="../classes/window.Bizs.CommonModify.html">window.Bizs.CommonModify</a></li>
             
@@ -807,12 +811,13 @@ function funcName(_func){
  * &lt;dl&gt;
  *      &lt;dt&gt;可识别的组件&lt;/dt&gt;
  *      &lt;dd&gt;
- *          JC.AutoSelect, JC.Calendar, JC.Form.initCheckAll 
- *          &lt;br /&gt;Bizs.DisableLogic
+ *          JC.AutoSelect, JC.Calendar, JC.AutoChecked
+ *          &lt;br /&gt;Bizs.DisableLogic, Bizs.FormLogic
  *      &lt;/dd&gt;
  * &lt;/d&gt;
  * @method  jcAutoInitComps
  * @param   {selector}  _selector
+ * @static
  */
 function jcAutoInitComps( _selector ){
     _selector = $( _selector || document );
@@ -829,15 +834,57 @@ function jcAutoInitComps( _selector ){
     /**
      * 全选反选
      */
-    JC.Form &amp;&amp; JC.Form.initCheckAll &amp;&amp; JC.Form.initCheckAll( _selector );
+    JC.AutoChecked &amp;&amp; JC.AutoChecked( _selector );
 
     if( !window.Bizs ) return;
     /**
      * disable / enable
      */
     Bizs.DisableLogic &amp;&amp; Bizs.DisableLogic.init( _selector );
+    /**
+     * 表单提交逻辑
+     */
+    Bizs.FormLogic &amp;&amp; Bizs.FormLogic.init( _selector );
 }
-
+/**
+ * URL 占位符识别功能
+ * @method  urlDetect
+ * @param   {String}    _url    如果 起始字符为 URL, 那么 URL 将祝为本页的URL
+ * @return  string
+ * @static
+ * @example
+ *      urlDetect( &#x27;?test&#x27; ); //output: ?test
+ *
+ *      urlDetect( &#x27;URL,a=1&amp;b=2&#x27; ); //output: your.com?a=1&amp;b=2
+ *      urlDetect( &#x27;URL,a=1,b=2&#x27; ); //output: your.com?a=1&amp;b=2
+ *      urlDetect( &#x27;URLa=1&amp;b=2&#x27; ); //output: your.com?a=1&amp;b=2
+ */
+function urlDetect( _url ){
+    _url = _url || &#x27;&#x27;;
+    var _r = _url, _tmp, i, j;
+    if( /^URL/.test( _url ) ){
+        _tmp = _url.replace( /^URL/, &#x27;&#x27; ).replace( /[\s]*,[\s]*/g, &#x27;,&#x27; ).trim().split(&#x27;,&#x27;);
+        _url = location.href;
+        var _d = {}, _concat = [];
+        if( _tmp.length ){
+            for( i = 0, j = _tmp.length; i &lt; j; i ++ ){
+                 /\&amp;/.test( _tmp[i] )
+                     ? ( _concat = _concat.concat( _tmp[i].split(&#x27;&amp;&#x27;) ) )
+                     : ( _concat = _concat.concat( _tmp[i] ) )
+                     ;
+            }
+            _tmp = _concat;
+        }
+        for( i = 0, j = _tmp.length; i &lt; j; i++ ){
+            _items = _tmp[i].replace(/[\s]+/g, &#x27;&#x27;).split( &#x27;=&#x27; );
+            if( !_items[0] ) continue;
+            _d[ _items[0] ] = _items[1] || &#x27;&#x27;;
+        }
+        _url = addUrlParams( _url, _d );
+        _r = _url;
+    }
+    return _r;
+}
 ;
 
 ;(function( $ ){
@@ -931,6 +978,7 @@ function jcAutoInitComps( _selector ){
                     ;
 
                 _parts = JC._usePatch( _parts, &#x27;Form&#x27;, &#x27;AutoSelect&#x27; );
+                _parts = JC._usePatch( _parts, &#x27;Form&#x27;, &#x27;AutoChecked&#x27; );
 
                 $.each( _parts, function( _ix, _part ){
                     var _isComps = !_compRe.test( _part )
@@ -1475,12 +1523,32 @@ function jcAutoInitComps( _selector ){
                 }else{
                     _selector &amp;&amp; ( _selector = $( _selector ) );
                 }
+                var _r = ( this.attrProp( _selector, _key ) || &#x27;&#x27; ).toLowerCase();
+                return _r;
+            }
+        /**
+         * 读取 html 属性值
+         * &lt;br /&gt;这个跟 stringProp 的区别是不会强制转换为小写
+         * @method  attrProp
+         * @param   {selector|string}  _selector    如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()
+         * @param   {string}           _key
+         * @return  string
+         */
+        , attrProp:
+            function( _selector, _key ){
+                if( typeof _key == &#x27;undefined&#x27; ){
+                    _key = _selector;
+                    _selector = this.selector();
+                }else{
+                    _selector &amp;&amp; ( _selector = $( _selector ) );
+                }
                 var _r = &#x27;&#x27;;
                 _selector
                     &amp;&amp; _selector.is( &#x27;[&#x27; + _key + &#x27;]&#x27; ) 
-                    &amp;&amp; ( _r = _selector.attr( _key ).trim().toLowerCase() );
+                    &amp;&amp; ( _r = _selector.attr( _key ).trim() );
                 return _r;
             }
+
         /**
          * 读取 boolean 属性的值
          * @method  boolProp
@@ -1529,6 +1597,47 @@ function jcAutoInitComps( _selector ){
                     &amp;&amp; ( _r = _tmp )
                     ;
                 return _r;
+            }
+        /**
+         * 获取 selector 属性的 jquery 选择器
+         * @method  selectorProp
+         * @param   {selector|string}  _selector    如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()
+         * @param   {string}           _key
+         * @return  bool
+         */
+        , selectorProp:
+            function( _selector, _key ){
+                var _r;
+                if( typeof _key == &#x27;undefined&#x27; ){
+                    _key = _selector;
+                    _selector = this.selector();
+                }else{
+                    _selector &amp;&amp; ( _selector = $( _selector ) );
+                }
+
+                _selector
+                    &amp;&amp; _selector.is( &#x27;[&#x27; + _key + &#x27;]&#x27; ) 
+                    &amp;&amp; ( _r = parentSelector( _selector, _selector.attr( _key ) ) );
+
+                return _r;
+            }
+        /**
+         * 判断 _selector 是否具体某种特征
+         * @method  is
+         * @param   {selector|string}  _selector    如果 _key 为空将视 _selector 为 _key, _selector 为 this.selector()
+         * @param   {string}           _key
+         * @return  bool
+         */
+        , is:
+            function( _selector, _key ){
+                if( typeof _key == &#x27;undefined&#x27; ){
+                    _key = _selector;
+                    _selector = this.selector();
+                }else{
+                    _selector &amp;&amp; ( _selector = $( _selector ) );
+                }
+
+                return _selector &amp;&amp; _selector.is( _key );
             }
     };
     
