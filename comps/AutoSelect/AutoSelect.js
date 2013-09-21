@@ -356,43 +356,38 @@
         /**
          * 更新默认选中列表
          * @method  update
-         * @param   {array}     id of selected
+         * @param   {array|string}     _ls  ids for selected, (string with "," or array of ids );
          * @return  AutoSelectInstance
          */
         , update:
             function( _ls ){
                 if( !( _ls && _ls.length ) ) return this;
+                if( typeof _ls == 'string' ){
+                    var _tmp = _ls.replace( /[\s]+/g, '').trim();
+                    if( !_tmp ) return this;
+                    _ls = _tmp.split(',');
+                }
                 var _p = this, _items = _p._model.items();
                 if( !( _items && _items.length ) ) return;
 
                 $.each( _ls, function( _ix, _item ){
                     if( !_items[ _ix ] ) return;
-                    $( _items[ _ix ] ).attr('selectvalue', _item );
+                    $( _items[ _ix ] ).attr('selectvalue', (_item.toString()||'').trim() );
                 });
 
-                _p._update( _p._model.first(), _p._firstInitCb );
+                _p._update( _p._model.first(), _p._changeCb );
 
                 return this;
             }
 
         , _responeChange:
-            function( _evt ){
+            function( _evt, _ignoreAction ){
                 var _sp = $(this)
                     , _p = AutoSelect.getInstance( _sp )
                     , _next = _p._model.next( _sp )
                     , _v = _sp.val()
                     ;
-
-                /*
-                _sp.is( '[selectvalue]' )
-                    && ( _v = _sp.attr('selectvalue') )
-                    && (
-                        _p._model.hasVal( _sp, _v ) && _sp.val( _v )
-                        , _sp.removeAttr( 'selectvalue' )
-                       )
-                    ;
-                alert( _sp.attr('tempix') + ', ' + _v );
-                */
+                if( _ignoreAction ) return;
 
                 JC.log( '_responeChange:', _sp.attr('name'), _v );
 
@@ -454,13 +449,13 @@
 
                 _p.trigger( 'SelectChange', [ _selector ] );
 
+                _selector.trigger( 'change', [ true ] );
                 if( _p._model.isLast( _selector ) ){
                     _p.trigger( 'SelectAllChanged' );
                 }
 
                 if( _next && _next.length ){
-                    JC.log( '_changeCb:', _selector.val(), _next.attr('name'), _selector.attr('name') );
-                    _p._update( _next, _p._firstInitCb, _selector.val() );
+                    _p._update( _next, _p._changeCb, _selector.val() );
                 }
                 return this;
             }
@@ -472,21 +467,19 @@
                 ;
 
                 if( !_p._model.isInited() ){
-                    _p._model.triggerInitChange() && _selector.trigger('change');
+                    _p._model.triggerInitChange() && _selector.trigger('change', [true] );
                 }
 
                 _p.trigger( 'SelectChange', [ _selector ] );
-
+                
                 if( _next && _next.length ){
                     JC.log( '_firstInitCb:', _selector.val(), _next.attr('name'), _selector.attr('name') );
                     _p._update( _next, _p._firstInitCb, _selector.val() );
                 }
 
                 if( _p._model.isLast( _selector ) ){
-                    if( !_p._model.isInited() ){
-                        _p.trigger( 'SelectAllChanged' );
-                        _p.trigger( 'SelectInited' );
-                    }
+                    _p.trigger( 'SelectAllChanged' );
+                    !_p._model.isInited() && _p.trigger( 'SelectInited' );
                 }
 
                 return this;

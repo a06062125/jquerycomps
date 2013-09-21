@@ -108,7 +108,7 @@
             Extends <a href="../classes/JC.BaseMVC.html" class="crosslink">JC.BaseMVC</a>
         </div>
         <div class="foundat">
-            Defined in: <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l3"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:3</code></a>
+            Defined in: <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l2"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:2</code></a>
         </div>
 </div>
 <div class="box intro">
@@ -137,9 +137,23 @@
      <dt>formResetAfterSubmit = bool, default = true</dt>
      <dd>表单提交后, 是否重置内容</dd>
      <dt>formBeforeProcess = function</dt>
-     <dd>表单开始提交时且没开始验证时, 触发的回调, <b>window 变量域</b></dd>
+     <dd>
+         表单开始提交时且没开始验证时, 触发的回调, <b>window 变量域</b>
+<xmp>function formBeforeProcess( _evt, _ins ){
+   var _form = $(this);
+   JC.log( 'formBeforeProcess', new Date().getTime() );
+   //return false;
+}</xmp>
+     </dd>
      <dt>formAfterProcess = function</dt>
-     <dd>表单开始提交时且验证通过后, 触发的回调, <b>window 变量域</b></dd>
+     <dd>
+         表单开始提交时且验证通过后, 触发的回调, <b>window 变量域</b>
+<xmp>function formAfterProcess( _evt, _ins ){
+   var _form = $(this);
+   JC.log( 'formAfterProcess', new Date().getTime() );
+   //return false;
+}</xmp>
+     </dd>
      <dt>formConfirmPopupType = string, default = dialog</dt>
      <dd>定义提示框的类型: dialog, popup</dd>
      <dt>formResetUrl = url</dt>
@@ -163,6 +177,17 @@
      <dd>
          AJAX 提交完成后的回调
          <br />如果没有显式声明, FormLogic将自行处理
+<xmp>function formAjaxDone( _json, _submitButton, _ins ){
+   var _form = $(this);
+   JC.log( 'custom formAjaxDone', new Date().getTime() );
+   if( _json.errorno ){
+       _panel = JC.Dialog.alert( _json.errmsg || '操作失败, 请重新尝试!', 1 );
+   }else{
+       _panel = JC.msgbox( _json.errmsg || '操作成功', _submitButton, 0, function(){
+           reloadPage( "?donetype=custom" );
+       });
+   }
+};</xmp>
      </dd>
      <dt>formAjaxDoneAction = url</dt>
      <dd>声明 ajax 提交完成后的返回路径, 如果没有, 提交完成后将不继续跳转操作</dd>
@@ -209,7 +234,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l3"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:3</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l2"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:2</code></a>
         </p>
     </div>
     <div class="description">
@@ -446,7 +471,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l208"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:208</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l233"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:233</code></a>
         </p>
     </div>
     <div class="description">
@@ -486,7 +511,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l230"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:230</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l255"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:255</code></a>
         </p>
     </div>
     <div class="description">
@@ -630,7 +655,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l251"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:251</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l276"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:276</code></a>
         </p>
     </div>
     <div class="description">
@@ -645,7 +670,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l259"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:259</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l284"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:284</code></a>
         </p>
     </div>
     <div class="description">
@@ -662,7 +687,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l277"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:277</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l302"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:302</code></a>
         </p>
     </div>
     <div class="description">
@@ -677,7 +702,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l269"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:269</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l294"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:294</code></a>
         </p>
     </div>
     <div class="description">

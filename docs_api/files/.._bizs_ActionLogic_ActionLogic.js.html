@@ -639,12 +639,12 @@
                 _p.selector().prop(&#x27;nodeName&#x27;).toLowerCase() == &#x27;a&#x27;
                     &amp;&amp; ( _r = _p.selector().attr(&#x27;href&#x27;) );
                 _p.is( &#x27;[balUrl]&#x27; ) &amp;&amp; ( _r = _p.selector().attr(&#x27;balUrl&#x27;) );
-                return _r;
+                return urlDetect( _r );
             }
         , balDoneUrl:
             function(){
                 var _r = this.stringProp( &#x27;balDoneUrl&#x27; );
-                return _r;
+                return urlDetect( _r );
             }
         , balConfirmMsg:
             function(){
