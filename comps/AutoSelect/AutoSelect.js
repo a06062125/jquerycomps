@@ -265,7 +265,10 @@
                 });
 
                 _p._model.beforeInited() && _p.on( 'SelectBeforeInited', _p._model.beforeInited() );
+
                 _p.on('SelectInited', function(){
+                    if( _p._model.isInited() ) return;
+
                     var _tmp = _p._model.first();
                     while( _p._model.next( _tmp ) ){
                         _tmp.on( 'change', _p._responeChange );
@@ -273,13 +276,14 @@
                     }
                     _p._model.isInited( true );
 
-                    //alert( _p._model.inited() );
-
                     _p._model.inited() && _p._model.inited().call( _p );
                 });
+
                 _p.on('SelectChange', function( _evt, _selector ){
-                    _p._model.change( _selector ) && _p._model.change( _selector ).call( _selector, _evt, _p );
+                    _p._model.change( _selector ) 
+                        && _p._model.change( _selector ).call( _selector, _evt, _p );
                 });
+
                 _p._model.allChanged() && _p.on( 'SelectAllChanged', _p._model.allChanged() );
 
                 _p.trigger('SelectBeforeInited');
@@ -349,6 +353,27 @@
          * @return  JSON
          */
         , data: function( _selector ){ return this._model.data( _selector ); }
+        /**
+         * 更新默认选中列表
+         * @method  update
+         * @param   {array}     id of selected
+         * @return  AutoSelectInstance
+         */
+        , update:
+            function( _ls ){
+                if( !( _ls && _ls.length ) ) return this;
+                var _p = this, _items = _p._model.items();
+                if( !( _items && _items.length ) ) return;
+
+                $.each( _ls, function( _ix, _item ){
+                    if( !_items[ _ix ] ) return;
+                    $( _items[ _ix ] ).attr('selectvalue', _item );
+                });
+
+                _p._update( _p._model.first(), _p._firstInitCb );
+
+                return this;
+            }
 
         , _responeChange:
             function( _evt ){
@@ -366,15 +391,59 @@
                         , _sp.removeAttr( 'selectvalue' )
                        )
                     ;
+                alert( _sp.attr('tempix') + ', ' + _v );
                 */
 
                 JC.log( '_responeChange:', _sp.attr('name'), _v );
 
-                if( !( _next&& _next.length ) ){
+                if( !( _next && _next.length ) ){
                     _p.trigger( 'SelectChange' );
                 }else{
                     _p._update( _next, _p._changeCb, _v );
                 }
+            }
+
+        , _update:
+            function( _selector, _cb, _pid ){
+                if( this._model.isStatic( _selector ) ){
+                    this._updateStatic( _selector, _cb, _pid );
+                }else if( this._model.isAjax( _selector ) ){
+                    this._updateAjax( _selector, _cb, _pid );
+                }else{
+                    this._updateNormal( _selector, _cb, _pid );
+                }
+                return this;
+            }
+
+        , _updateAjax:
+            function( _selector, _cb, _pid ){
+                var _p = this
+                    , _data
+                    , _next = _p._model.next( _selector )
+                    , _url
+                    ;
+                JC.log( 'ajax select' );
+
+                if( _p._model.isFirst( _selector ) ){
+                    typeof _pid == 'undefined' && ( _pid = _p._model.selectparentid( _selector ) || '' );
+                    if( typeof _pid != 'undefined' ){
+                        _url = _p._model.selecturl( _selector, _pid );
+                        $.get( _url, function( _data ){
+                            _data = $.parseJSON( _data );
+                            _p._view.update( _selector, _data );
+                            _cb && _cb.call( _p, _selector, _data );
+                        });
+                    }
+                }else{
+                   _url = _p._model.selecturl( _selector, _pid );
+                    $.get( _url, function( _data ){
+                        JC.log( '_url:', _url, _pid );
+                        _data = $.parseJSON( _data );
+                        _p._view.update( _selector, _data );
+                        _cb && _cb.call( _p, _selector, _data );
+                    });
+                }
+                return this;
             }
 
         , _changeCb:
@@ -402,34 +471,24 @@
                     , _next = _p._model.next( _selector );
                 ;
 
-                _p._model.triggerInitChange() 
-                    && ( JC.log('triggerInitChange', _selector.attr('name')), _selector.trigger('change') );
+                if( !_p._model.isInited() ){
+                    _p._model.triggerInitChange() && _selector.trigger('change');
+                }
 
                 _p.trigger( 'SelectChange', [ _selector ] );
-
-                if( _p._model.isLast( _selector ) ){
-                    _p.trigger( 'SelectAllChanged' );
-                    _p.trigger( 'SelectInited' );
-                }
 
                 if( _next && _next.length ){
                     JC.log( '_firstInitCb:', _selector.val(), _next.attr('name'), _selector.attr('name') );
                     _p._update( _next, _p._firstInitCb, _selector.val() );
                 }
 
-                return this;
-            }
-
-
-        , _update:
-            function( _selector, _cb, _pid ){
-                if( this._model.isStatic( _selector ) ){
-                    this._updateStatic( _selector, _cb, _pid );
-                }else if( this._model.isAjax( _selector ) ){
-                    this._updateAjax( _selector, _cb, _pid );
-                }else{
-                    this._updateNormal( _selector, _cb, _pid );
+                if( _p._model.isLast( _selector ) ){
+                    if( !_p._model.isInited() ){
+                        _p.trigger( 'SelectAllChanged' );
+                        _p.trigger( 'SelectInited' );
+                    }
                 }
+
                 return this;
             }
 
@@ -447,33 +506,6 @@
                 }
                 _p._view.update( _selector, _data );
                 _cb && _cb.call( _p, _selector, _data );
-                return this;
-            }
-
-        , _updateAjax:
-            function( _selector, _cb, _pid ){
-                var _p = this, _data, _next = _p._model.next( _selector ), _url;
-                JC.log( 'ajax select' );
-
-                if( _p._model.isFirst( _selector ) ){
-                    typeof _pid == 'undefined' && ( _pid = _p._model.selectparentid( _selector ) || '' );
-                    if( typeof _pid != 'undefined' ){
-                        _url = _p._model.selecturl( _selector, _pid );
-                        $.get( _url, function( _data ){
-                            _data = $.parseJSON( _data );
-                            _p._view.update( _selector, _data );
-                            _cb && _cb.call( _p, _selector, _data );
-                        });
-                    }
-                }else{
-                   _url = _p._model.selecturl( _selector, _pid );
-                    $.get( _url, function( _data ){
-                        JC.log( '_url:', _url, _pid );
-                        _data = $.parseJSON( _data );
-                        _p._view.update( _selector, _data );
-                        _cb && _cb.call( _p, _selector, _data );
-                    });
-                }
                 return this;
             }
 
@@ -722,7 +754,7 @@
                 var _default = this._model.selectvalue( _selector );
                 _data = this._model.dataFilter( _selector, _data );
                 this._model.data( _selector, _data );
-                
+
                 this._control.trigger( 'SelectItemBeforeUpdate', [ _selector, _data ] );
                 this._removeExists( _selector );
 
