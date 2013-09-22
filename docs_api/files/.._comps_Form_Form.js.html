@@ -69,8 +69,6 @@
             
                 <li><a href="../classes/JC.Dialog.msgbox.html">JC.Dialog.msgbox</a></li>
             
-                <li><a href="../classes/JC.ExampleClass.html">JC.ExampleClass</a></li>
-            
                 <li><a href="../classes/JC.Fixed.html">JC.Fixed</a></li>
             
                 <li><a href="../classes/JC.Form.html">JC.Form</a></li>
@@ -232,6 +230,7 @@
 }(jQuery));
 ;
 
+//TODO: add checkbox support
  ;(function($){
     /**
      * 表单自动填充 URL GET 参数
@@ -269,6 +268,7 @@
 
     function fillForm( _selector, _url ){
         _selector = $(_selector);
+        _url = decode( _url );
         
         _selector.find( &#x27;input[type=text][name],input[type=password][name],textarea[name]&#x27; ).each( function(){
             var _sp = $(this);
@@ -287,6 +287,41 @@
                 }
             }
         });
+
+        /*
+            ?s_startTime=2013-08-28
+                &amp;s_endTime=2013-09-28
+                &amp;kword_type=
+                &amp;kword=
+                &amp;department[]=2
+                &amp;department[]=3
+                &amp;operator[]=328
+                &amp;operator[]=330
+                &amp;operator[]=331
+                &amp;isp=1379841840601_232_161
+        */
+
+        var _keyObj = {};
+        _selector.find( &#x27;input[type=checkbox][name], input[type=radio][name]&#x27; ).each( function(){
+            var _sp = $(this), _key = _sp.attr(&#x27;name&#x27;).trim(), _keys, _v = _sp.val();
+            //alert( _sp.attr(&#x27;name&#x27;) );
+            if( !( _key in _keyObj ) ){
+                _keys = getUrlParams( _url, _key );
+                _keyObj[ _key ] = _keys;
+            }else{
+                _keys = _keyObj[ _key ];
+            }
+
+            if( _keys &amp;&amp; _keys.length ){
+                $.each( _keys, function( _ix, _item ){
+                    if( _item == _v ){
+                        _sp.prop(&#x27;checked&#x27;, true);
+                    }
+                });
+            }
+        });
+
+        window.jcAutoInitComps &amp;&amp; jcAutoInitComps( _selector );
     }
     /**
      * 自定义 URI decode 函数
