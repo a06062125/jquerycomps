@@ -154,17 +154,6 @@
             },
             "namespaces": {}
         },
-        "../comps/ExampleClass/ExampleClass.js": {
-            "name": "../comps/ExampleClass/ExampleClass.js",
-            "modules": {},
-            "classes": {
-                "JC.ExampleClass": 1
-            },
-            "fors": {},
-            "namespaces": {
-                "JC": 1
-            }
-        },
         "../comps/Fixed/Fixed.js": {
             "name": "../comps/Fixed/Fixed.js",
             "modules": {},
@@ -660,33 +649,6 @@
             "description": "日期选择组件\n<br />全局访问请使用 JC.Calendar 或 Calendar\n<br />DOM 加载完毕后\n, Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n<br /><b>require</b>: <a href='.window.html#method_cloneDate'>window.cloneDate</a>\n<br /><b>require</b>: <a href='.window.html#method_parseISODate'>window.parseISODate</a>\n<br /><b>require</b>: <a href='.window.html#method_formatISODate'>window.formatISODate</a>\n<br /><b>require</b>: <a href='.window.html#method_maxDayOfMonth'>window.maxDayOfMonth</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameDay'>window.isSameDay</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameMonth'>window.isSameMonth</a>\n</p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Calendar.html' target='_blank'>API docs</a>\n| <a href='../../comps/Calendar/_demo/' target='_blank'>demo link</a></p>\n<h2> 可用的html attribute, (input|button):(datatype|multidate)=(date|week|month|season) </h2> \n<dl>\n     <dt>defaultdate = ISO Date</dt>\n     <dd>默认显示日期, 如果 value 为空, 则尝试读取 defaultdate 属性</dd>\n\n     <dt>datatype = string</dt>\n     <dd>\n         声明日历控件的类型:\n         <p><b>date:</b> 日期日历</p>\n         <p><b>week:</b> 周日历</p>\n         <p><b>month:</b> 月日历</p>\n         <p><b>season:</b> 季日历</p>\n         <p><b>monthday:</b> 多选日期日历</p>\n     </dd>\n\n     <dt>multidate = string</dt>\n     <dd>\n         与 datatype 一样, 这个是扩展属性, 避免表单验证带来的逻辑冲突\n     </dd>\n\n     <dt>calendarshow = function</dt>\n     <dd>显示日历时的回调</dd>\n\n     <dt>calendarhide = function</dt>\n     <dd>隐藏日历时的回调</dd>\n\n     <dt>calendarlayoutchange = function</dt>\n     <dd>用户点击日历控件操作按钮后, 外观产生变化时触发的回调</dd>\n\n     <dt>calendarupdate = function</dt>\n     <dd>\n         赋值后触发的回调\n         <dl>\n             <dt>参数:</dt>\n             <dd><b>_startDate:</b> 开始日期</dd>\n             <dd><b>_endDate:</b> 结束日期</dd>\n         </dl>\n     </dd>\n\n     <dt>calendarclear = function</dt>\n     <dd>清空日期触发的回调</dd>\n\n     <dt>minvalue = ISO Date</dt>\n     <dd>日期的最小时间, YYYY-MM-DD</dd>\n\n     <dt>maxvalue = ISO Date</dt>\n     <dd>日期的最大时间, YYYY-MM-DD</dd>\n\n     <dt>currentcanselect = bool, default = true</dt>\n     <dd>当前日期是否能选择</dd>\n\n     <dt>multiselect = bool (目前支持 month: default=false, monthday: default = treu)</dt>\n     <dd>是否为多选日历</dd>\n\n     <dt>calendarupdatemultiselect = function</dt>\n     <dd>\n         多选日历赋值后触发的回调\n         <dl>\n             <dt>参数: _data:</dt>\n             <dd>\n                 [{\"start\": Date,\"end\": Date}[, {\"start\": Date,\"end\": Date}... ] ]\n             </dd>\n         </dl>\n     </dd>\n</dl>",
             "version": "dev 0.1, 2013-06-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 team"
-        },
-        "JC.ExampleClass": {
-            "name": "JC.ExampleClass",
-            "shortname": "JC.ExampleClass",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "namespace": "JC",
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 3,
-            "description": "ExampleClass 模板类\n<br />要新建一个组件时, 直接 copy ExampleClass 组件改一下命名就可以开始编码了\n<dl>\n     <dd><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></dd>\n</dl>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.ExampleClass.html' target='_blank'>API docs</a>\n| <a href='../../comps/ExampleClass/_demo' target='_blank'>demo link</a></p>",
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "_selector",
-                    "description": "",
-                    "type": "Selector|string"
-                }
-            ],
-            "version": "dev 0.1",
-            "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
-            "date": "2013-07-20",
-            "example": [
-                ""
-            ]
         },
         "JC.Fixed": {
             "name": "JC.Fixed",
@@ -4112,140 +4074,6 @@
             "line": 222,
             "description": "元旦开始的第一个星期一开始的一周为政治经济上的第一周",
             "class": "JC.Calendar",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 48,
-            "description": "显示 ExampleClass",
-            "itemtype": "method",
-            "name": "show",
-            "return": {
-                "description": "ExampleClassInstance"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 54,
-            "description": "隐藏 ExampleClass",
-            "itemtype": "method",
-            "name": "hide",
-            "return": {
-                "description": "ExampleClassInstance"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 60,
-            "description": "获取 显示 ExampleClass 的触发源选择器, 比如 a 标签",
-            "itemtype": "method",
-            "name": "selector",
-            "return": {
-                "description": "selector"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 66,
-            "description": "获取 ExampleClass 外观的 选择器",
-            "itemtype": "method",
-            "name": "layout",
-            "return": {
-                "description": "selector"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 72,
-            "description": "使用 jquery on 绑定事件",
-            "itemtype": "method",
-            "name": "on",
-            "type": "String",
-            "params": [
-                {
-                    "name": "_evtName",
-                    "description": "",
-                    "type": "String"
-                },
-                {
-                    "name": "_cb",
-                    "description": "",
-                    "type": "Function"
-                }
-            ],
-            "return": {
-                "description": "ExampleClassInstance"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 80,
-            "description": "使用 jquery trigger 绑定事件",
-            "itemtype": "method",
-            "name": "trigger",
-            "type": "String",
-            "params": [
-                {
-                    "name": "_evtName",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "ExampleClassInstance"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 88,
-            "description": "获取或设置 ExampleClass 的实例",
-            "itemtype": "method",
-            "name": "getInstance",
-            "params": [
-                {
-                    "name": "_selector",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "static": 1,
-            "return": {
-                "description": "",
-                "type": "ExampleClass instance"
-            },
-            "class": "JC.ExampleClass",
-            "namespace": "JC"
-        },
-        {
-            "file": "../comps/ExampleClass/ExampleClass.js",
-            "line": 104,
-            "description": "判断 selector 是否可以初始化 ExampleClass",
-            "itemtype": "method",
-            "name": "isExampleClass",
-            "params": [
-                {
-                    "name": "_selector",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "static": 1,
-            "return": {
-                "description": "bool"
-            },
-            "class": "JC.ExampleClass",
             "namespace": "JC"
         },
         {
@@ -13538,14 +13366,6 @@
         {
             "message": "unknown tag: prototype",
             "line": " ../comps/Calendar/JC.Calendar.js:420"
-        },
-        {
-            "message": "unknown tag: version",
-            "line": " ../comps/ExampleClass/ExampleClass.js:3"
-        },
-        {
-            "message": "unknown tag: date",
-            "line": " ../comps/ExampleClass/ExampleClass.js:3"
         },
         {
             "message": "unknown tag: version",
