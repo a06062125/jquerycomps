@@ -156,6 +156,10 @@
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
+                                <a href="#method_getUrlParams">getUrlParams</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_hasUrlParam">hasUrlParam</a>
                                     <span class="flag static">static</span>
                             </li>
@@ -264,11 +268,14 @@
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l82"><code>..&#x2F;common.js:82</code></a>
+        <a href="../files/.._common.js.html#l84"><code>..&#x2F;common.js:84</code></a>
         </p>
     </div>
     <div class="description">
@@ -291,6 +298,12 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    string
+            </div>
         </div>
         <div class="example">
             <h4>Example:</h4>
@@ -316,7 +329,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l295"><code>..&#x2F;common.js:295</code></a>
+        <a href="../files/.._common.js.html#l329"><code>..&#x2F;common.js:329</code></a>
         </p>
     </div>
     <div class="description">
@@ -354,11 +367,14 @@
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l137"><code>..&#x2F;common.js:137</code></a>
+        <a href="../files/.._common.js.html#l170"><code>..&#x2F;common.js:170</code></a>
         </p>
     </div>
     <div class="description">
@@ -380,6 +396,12 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    string
+            </div>
         </div>
         <div class="example">
             <h4>Example:</h4>
@@ -417,7 +439,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l354"><code>..&#x2F;common.js:354</code></a>
+        <a href="../files/.._common.js.html#l388"><code>..&#x2F;common.js:388</code></a>
         </p>
     </div>
     <div class="description">
@@ -507,7 +529,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l251"><code>..&#x2F;common.js:251</code></a>
+        <a href="../files/.._common.js.html#l285"><code>..&#x2F;common.js:285</code></a>
         </p>
     </div>
     <div class="description">
@@ -556,7 +578,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l586"><code>..&#x2F;common.js:586</code></a>
+        <a href="../files/.._common.js.html#l620"><code>..&#x2F;common.js:620</code></a>
         </p>
     </div>
     <div class="description">
@@ -599,7 +621,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l477"><code>..&#x2F;common.js:477</code></a>
+        <a href="../files/.._common.js.html#l511"><code>..&#x2F;common.js:511</code></a>
         </p>
     </div>
     <div class="description">
@@ -641,11 +663,14 @@
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l109"><code>..&#x2F;common.js:109</code></a>
+        <a href="../files/.._common.js.html#l112"><code>..&#x2F;common.js:112</code></a>
         </p>
     </div>
     <div class="description">
@@ -668,10 +693,73 @@
                 </li>
             </ul>
         </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    string
+            </div>
+        </div>
         <div class="example">
             <h4>Example:</h4>
             <div class="example-content">
                 <pre class="code prettyprint"><code>   var defaultTag = getUrlParam(location.href, 'tag');  
+</code></pre>
+            </div>
+        </div>
+</div>
+                    <div id="method_getUrlParams" class="method item">
+    <h3 class="name"><code>getUrlParams</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_url</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._common.js.html#l139"><code>..&#x2F;common.js:139</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>取URL参数的值, 这个方法返回数组
+<br />与 getUrlParam 的区别是可以获取 checkbox 的所有值</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    Array
+            </div>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   var params = getUrlParams(location.href, 'tag');  
 </code></pre>
             </div>
         </div>
@@ -688,11 +776,14 @@
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l59"><code>..&#x2F;common.js:59</code></a>
+        <a href="../files/.._common.js.html#l60"><code>..&#x2F;common.js:60</code></a>
         </p>
     </div>
     <div class="description">
@@ -714,6 +805,12 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    bool
+            </div>
         </div>
         <div class="example">
             <h4>Example:</h4>
@@ -739,7 +836,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l166"><code>..&#x2F;common.js:166</code></a>
+        <a href="../files/.._common.js.html#l200"><code>..&#x2F;common.js:200</code></a>
         </p>
     </div>
     <div class="description">
@@ -783,7 +880,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l303"><code>..&#x2F;common.js:303</code></a>
+        <a href="../files/.._common.js.html#l337"><code>..&#x2F;common.js:337</code></a>
         </p>
     </div>
     <div class="description">
@@ -834,7 +931,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l315"><code>..&#x2F;common.js:315</code></a>
+        <a href="../files/.._common.js.html#l349"><code>..&#x2F;common.js:349</code></a>
         </p>
     </div>
     <div class="description">
@@ -879,7 +976,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l601"><code>..&#x2F;common.js:601</code></a>
+        <a href="../files/.._common.js.html#l635"><code>..&#x2F;common.js:635</code></a>
         </p>
     </div>
     <div class="description">
@@ -927,7 +1024,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l327"><code>..&#x2F;common.js:327</code></a>
+        <a href="../files/.._common.js.html#l361"><code>..&#x2F;common.js:361</code></a>
         </p>
     </div>
     <div class="description">
@@ -968,7 +1065,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l455"><code>..&#x2F;common.js:455</code></a>
+        <a href="../files/.._common.js.html#l489"><code>..&#x2F;common.js:489</code></a>
         </p>
     </div>
     <div class="description">
@@ -1014,7 +1111,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l233"><code>..&#x2F;common.js:233</code></a>
+        <a href="../files/.._common.js.html#l267"><code>..&#x2F;common.js:267</code></a>
         </p>
     </div>
     <div class="description">
@@ -1072,7 +1169,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l503"><code>..&#x2F;common.js:503</code></a>
+        <a href="../files/.._common.js.html#l537"><code>..&#x2F;common.js:537</code></a>
         </p>
     </div>
     <div class="description">
@@ -1127,7 +1224,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l407"><code>..&#x2F;common.js:407</code></a>
+        <a href="../files/.._common.js.html#l441"><code>..&#x2F;common.js:441</code></a>
         </p>
     </div>
     <div class="description">
@@ -1170,7 +1267,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l215"><code>..&#x2F;common.js:215</code></a>
+        <a href="../files/.._common.js.html#l249"><code>..&#x2F;common.js:249</code></a>
         </p>
     </div>
     <div class="description">
@@ -1217,7 +1314,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l265"><code>..&#x2F;common.js:265</code></a>
+        <a href="../files/.._common.js.html#l299"><code>..&#x2F;common.js:299</code></a>
         </p>
     </div>
     <div class="description">
@@ -1250,6 +1347,9 @@
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
@@ -1270,6 +1370,12 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    string
+            </div>
         </div>
         <div class="example">
             <h4>Example:</h4>
@@ -1295,7 +1401,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l283"><code>..&#x2F;common.js:283</code></a>
+        <a href="../files/.._common.js.html#l317"><code>..&#x2F;common.js:317</code></a>
         </p>
     </div>
     <div class="description">
@@ -1339,7 +1445,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l195"><code>..&#x2F;common.js:195</code></a>
+        <a href="../files/.._common.js.html#l229"><code>..&#x2F;common.js:229</code></a>
         </p>
     </div>
     <div class="description">
@@ -1390,7 +1496,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l181"><code>..&#x2F;common.js:181</code></a>
+        <a href="../files/.._common.js.html#l215"><code>..&#x2F;common.js:215</code></a>
         </p>
     </div>
     <div class="description">
@@ -1438,7 +1544,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l571"><code>..&#x2F;common.js:571</code></a>
+        <a href="../files/.._common.js.html#l605"><code>..&#x2F;common.js:605</code></a>
         </p>
     </div>
     <div class="description">
@@ -1472,7 +1578,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l340"><code>..&#x2F;common.js:340</code></a>
+        <a href="../files/.._common.js.html#l374"><code>..&#x2F;common.js:374</code></a>
         </p>
     </div>
     <div class="description">
@@ -1542,7 +1648,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l648"><code>..&#x2F;common.js:648</code></a>
+        <a href="../files/.._common.js.html#l682"><code>..&#x2F;common.js:682</code></a>
         </p>
     </div>
     <div class="description">
@@ -1587,7 +1693,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._common.js.html#l426"><code>..&#x2F;common.js:426</code></a>
+        <a href="../files/.._common.js.html#l460"><code>..&#x2F;common.js:460</code></a>
         </p>
     </div>
     <div class="description">
