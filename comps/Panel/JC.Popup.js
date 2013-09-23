@@ -9,6 +9,7 @@
      * | <a href='../../comps/Panel/_demo' target='_blank'>demo link</a></p>
      * @namespace JC
      * @class   msgbox
+     * @extends JC.Panel
      * @static
      * @constructor
      * @param   {string}    _msg        提示内容
@@ -52,6 +53,7 @@
      * | <a href='../../comps/Panel/_demo' target='_blank'>demo link</a></p>
      * @namespace JC
      * @class   alert
+     * @extends JC.Panel
      * @static
      * @constructor
      * @param   {string}    _msg        提示内容
@@ -87,6 +89,7 @@
      * | <a href='../../comps/Panel/_demo' target='_blank'>demo link</a></p>
      * @namespace JC
      * @class   confirm
+     * @extends JC.Panel
      * @static
      * @constructor
      * @param   {string}    _msg        提示内容
