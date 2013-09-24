@@ -1,6 +1,6 @@
 //TODO: 错误提示 不占用页面宽高, 使用 position = absolute,  date = 2013-08-03
 //TODO: checkbox, radio 错误时, input 添加高亮显示
-//TODO: 添加 uniquelist
+//TODO: 添加 uniquerange
 ;(function($){
     /**
      * <b>表单验证</b> (单例模式)
@@ -200,6 +200,7 @@
      *              <dt>unique: N 个 Control 的值必须保持唯一性, 不能有重复</dt>
      *              <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=unique]</dd>
      *              <dd><b>uniquemsg:</b> 值有重复的提示信息</dd>
+     *              <dd>unique-n 可以指定 N 个为一组的匹配, unique-2 = 2个一组, unique-3: 三个一组</dd>
      *          </dl>
      *      </dd>
      * </dl>
@@ -296,7 +297,7 @@
                         var _sitem = $(this);
                         if( !_p._model.isAvalible( _sitem ) ) return;
                         if( !_p._model.isValid( _sitem ) ) return;
-                        if( Valid.isIgnore( _sitem ) ) return;
+                        if( Valid.ignore( _sitem ) ) return;
 
                         var _dt = _p._model.parseDatatype( _sitem )
                             , _subdt = _p._model.parseSubdatatype( _sitem )
@@ -592,40 +593,35 @@
             return Valid.getInstance().formHasValue.apply( Valid.getInstance(), sliceArgs( arguments ) ); 
         };
     /**
-     * 对一个表单控件添加忽略检查属性[ignoreprocess], 或者删除忽略属性
+     * 判断 表单控件是否为忽略检查 或者 设置 表单控件是否为忽略检查
      * @method  ignore
      * @param   {selector}  _item
-     * @param   {bool}      _delIgnore    是否删除忽略属性, default = false
+     * @param   {bool}      _delIgnore    是否删除忽略属性, 如果为 undefined 将不执行 添加删除操作
+     * @return  bool
      * @static
      */
     Valid.ignore =
         function( _item, _delIgnore ){
             _item = $( _item );
-            if( !( _item && _item.length ) ) return _item;
-            _delIgnore 
-                ? _item.removeAttr('ignoreprocess')
-                : _item.attr('ignoreprocess', true)
-                ;
-            return _item;
-        };
-    /**
-     * 判断表单控制是否忽略检查[ignoreprocess]
-     * <br /><b>如果只有 ignoreprocess 但没有值, 返回 true</b>
-     * @method  isIgnore
-     * @param   {selector}  _item
-     * @static
-     * @return  bool
-     */
-    Valid.isIgnore =
-        function( _item ){
+            if( !( _item && _item.length ) ) return true;
             var _r = false;
-            _item.is( '[ignoreprocess]' ) 
-                && (
-                        ( _item.attr('ignoreprocess') || '' ).trim()
-                        ? ( _r = parseBool( _item.attr('ignoreprocess') ) )
-                        : ( _r = true )
-                   )
-                ;
+
+            if( typeof _delIgnore != 'undefined' ){
+                _delIgnore 
+                    ? _item.removeAttr('ignoreprocess')
+                    : _item.attr('ignoreprocess', true)
+                    ;
+                _r = _delIgnore;
+            }else{
+                
+                _item.is( '[ignoreprocess]' ) 
+                    && (
+                            ( _item.attr('ignoreprocess') || '' ).trim()
+                            ? ( _r = parseBool( _item.attr('ignoreprocess') ) )
+                            : ( _r = true )
+                       )
+                    ;
+            }
             return _r;
         };
     
@@ -1762,6 +1758,7 @@
                 !( _target && _target.length ) && ( _target = _p.samesubtypeitems( _item ) );
 
                 _errLs = [];
+                _corLs = [];
 
                 if( _target && _target.length ){
                     _tmp = {};
@@ -1778,11 +1775,13 @@
                     });
                     for( var _k in _tmp ){
                         _tmp[ _k ].length > 1 
-                            && ( _errLs = _errLs.concat( _tmp[ _k ] ) )
+                            ? ( _errLs = _errLs.concat( _tmp[ _k ] ) )
+                            : ( _corLs = _corLs.concat( _tmp[ _k ] ) )
                             ;
                     }
                 }
 
+                /*
                 var _itemIn = false;
 
                 $.each( _errLs, function( _ix, _sitem ){
@@ -1797,19 +1796,17 @@
                 }else{
                    $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, _item ] );
                 }
+                */
+
+                $.each( _corLs, function( _ix, _sitem ){
+                    Valid.setValid( _sitem );
+                });
 
                 !_r && _errLs.length && $.each( _errLs, function( _ix, _sitem ){ 
                     _sitem = $( _sitem );
-                    if( _item[0] == _sitem[0] ) return;
                     $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _sitem, 'uniquemsg', true ] );
                 } );
 
-                if( _r && _target && _target.length ){
-                    _target.each( function(){
-                        if( _item[0] == this ) return;
-                        $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, $(this) ] );
-                    });
-                }
                 return _r;
             }
 
