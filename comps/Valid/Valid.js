@@ -1781,23 +1781,6 @@
                     }
                 }
 
-                /*
-                var _itemIn = false;
-
-                $.each( _errLs, function( _ix, _sitem ){
-                    if( _item[0] == _sitem[0] ){
-                        _itemIn = true;
-                        return false;
-                    }
-                });
-
-                if( _itemIn ){
-                    !_r && $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item, 'uniquemsg', true ] );
-                }else{
-                   $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, _item ] );
-                }
-                */
-
                 $.each( _corLs, function( _ix, _sitem ){
                     Valid.setValid( _sitem );
                 });

@@ -63,7 +63,7 @@
         <script src="../../../lib.js"></script>
         <script src="../../../comps/AutoSelect/_demo/data/SHENGSHI.js"></script>
         <script>
-            JC.debug = true; JC.use( 'Valid, Calendar, Form' );
+            JC.debug = true; JC.use( 'Valid, Calendar, Form, Bizs.FormLogic' );
 
             $(document).ready( function($evt){
 
@@ -76,21 +76,6 @@
                         return _r;
                     };
 
-            });
-
-            $(document).delegate('form.js-valid', 'submit', function( $evt ){
-                window.console && console.clear && console.clear();
-                    $evt.preventDefault();
-
-                if( !JC.Valid.check( 'form.js-valid' ) ){
-                    $evt.preventDefault();
-                    return false;
-                }
-            });
-
-            $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
-                window.console && console.clear && console.clear();
-                JC.Valid.clearError( 'form.js-valid' );
             });
 
            function selectdata( _id ){
@@ -126,10 +111,10 @@
     </head>    
     <body>
 
-        <form action='' method='get' class="js-valid" >
+        <form action='' method='get' class="js-valid js_bizsFormLogic" >
             <div style="position:fixed; top: 10px; right:10px;">
-                <button type="submit">Save</button>
-                <button type="button" class="js-clear-error">清空错误信息</button>
+                <button type="submit">save</button>
+                <button type="reset">reset</button>
             </div>
 
             <dl class="fm-items">
@@ -322,7 +307,7 @@
                         <dt>subdatatype = unique-2</dt>
                         <dd>
                             <div>
-                                <select name='select1_1' 
+                                <select name='' 
                                     defaultselect 
                                     selectdatacb="selectdata" 
                                     selectparentid="0" 
@@ -333,9 +318,9 @@
                                     datatarget="<dd select"
                                     uniquemsg="不能选择相同的地理信息"
                                     >
-                                    <option value="-1" defaultoption>请选择</option>
+                                    <option value="" defaultoption>请选择</option>
                                 </select>
-                                <select name='select1_2' 
+                                <select name='' 
                                     selectdatacb="selectdata" 
                                     selectvalue="2341" 
 
@@ -343,12 +328,12 @@
                                     datatarget="<dd select"
                                     uniquemsg="不能选择相同的地理信息"
                                     >
-                                    <option value="-1" defaultoption>请选择</option>
+                                    <option value="" defaultoption>请选择</option>
                                 </select>
                                 <em class="error"></em>
                             </div>
                             <div>
-                                <select name='select1_1' 
+                                <select name='' 
                                     defaultselect 
                                     selectdatacb="selectdata" 
                                     selectparentid="0" 
@@ -359,16 +344,16 @@
                                     datatarget="<dd select"
                                     uniquemsg="不能选择相同的地理信息"
                                     >
-                                    <option value="-1" defaultoption>请选择</option>
+                                    <option value="" defaultoption>请选择</option>
                                 </select>
-                                <select name='select1_2' 
+                                <select name='' 
                                     selectdatacb="selectdata" 
 
                                     subdatatype="unique-2"
                                     datatarget="<dd select"
                                     uniquemsg="不能选择相同的地理信息"
                                     >
-                                    <option value="-1" defaultoption>请选择</option>
+                                    <option value="" defaultoption>请选择</option>
                                 </select>
                                 <em class="error"></em>
                             </div>
@@ -378,14 +363,14 @@
                 </dd>
 
                 <dd style="margin-top:20px; padding-left: 400px;">
-                    <button type="submit">Save</button>
-                    <button type="button" class="js-clear-error">清空错误信息</button>
+                    <button type="submit">save</button>
+                    <button type="reset">reset</button>
                 </dd>
              </dl>
 
             <div style="position:fixed; bottom: 10px; right:10px;">
-                <button type="submit">Save</button>
-                <button type="button" class="js-clear-error">清空错误信息</button>
+                <button type="submit">save</button>
+                <button type="reset">reset</button>
             </div>
         </form>
 
