@@ -1928,63 +1928,84 @@
          */
         , &#x27;unique&#x27;:
             function( _item ){
-                var _p = this, _r = true, _target, _tmp
+                var _p = this, _r = true
+                    , _target, _tmp, _group = []
+                    , _len = _p.typeLen( _item.attr(&#x27;subdatatype&#x27;) )[0]
+                    ;
 
-                JC.log( &#x27;unique&#x27; );
+                JC.log( &#x27;unique&#x27;, _len, new Date().getTime() );
 
                 _p.isDatatarget( _item ) &amp;&amp; (_target = _p.datatarget( _item ) );
                 !( _target &amp;&amp; _target.length ) &amp;&amp; ( _target = _p.samesubtypeitems( _item ) );
 
                 _errLs = [];
+                _corLs = [];
 
                 if( _target &amp;&amp; _target.length ){
                     _tmp = {};
-                    _target.each( function(){ 
-                        var _sp = $(this), _v = _sp.val().trim();
-                        if( !_v ) return;
-                        
-                        if( _v in _tmp ){
-                            _tmp[ _v ].push( _sp );
+                    _target.each( function( _ix ){
+                        if( _ix % _len === 0 ){
+                            _group.push( [] );
+                        }
+                        _group[ _group.length - 1 ].push( this ); 
+                    });
+
+
+                    $.each( _group, function( _ix, _items ){
+                        var _tmpAr = [];
+                        $.each( _items, function( _six, _sitem ){
+                            _tmpAr.push( $(_sitem).val().trim() );
+                        });
+                        var _pureVal = _tmpAr.join(&#x27;&#x27;), _compareVal = _tmpAr.join(&#x27;IOU~IOU&#x27;);
+                        if( !_pureVal ) return;
+
+                        if( _compareVal in _tmp ){
+                            _tmp[ _compareVal ].push( _items );
                             _r = false;
                         }else{
-                            _tmp[ _v ] = [ _sp ];
+                            _tmp[ _compareVal ] = [ _items ];
                         }
+
                     });
+
                     for( var _k in _tmp ){
-                        _tmp[ _k ].length &gt; 1 
-                            &amp;&amp; ( _errLs = _errLs.concat( _tmp[ _k ] ) )
-                            ;
+                        if( _tmp[ _k ].length &gt; 1 ){
+                            _r = false;
+                            $.each( _tmp[ _k ], function( _ix, _items ){
+                                _errLs = _errLs.concat( _items ) ;
+                            });
+                        }else{
+                            $.each( _tmp[ _k ], function( _ix, _items ){
+                                _corLs = _corLs.concat( _items ) ;
+                            });
+                        }
                     }
                 }
 
-                var _itemIn = false;
-
-                $.each( _errLs, function( _ix, _sitem ){
-                    if( _item[0] == _sitem[0] ){
-                        _itemIn = true;
-                        return false;
-                    }
+                $.each( _corLs, function( _ix, _sitem ){
+                    Valid.setValid( _sitem );
                 });
-
-                if( _itemIn ){
-                    !_r &amp;&amp; $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item, &#x27;uniquemsg&#x27;, true ] );
-                }else{
-                   $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, _item ] );
-                }
 
                 !_r &amp;&amp; _errLs.length &amp;&amp; $.each( _errLs, function( _ix, _sitem ){ 
                     _sitem = $( _sitem );
-                    if( _item[0] == _sitem[0] ) return;
                     $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _sitem, &#x27;uniquemsg&#x27;, true ] );
                 } );
 
-                if( _r &amp;&amp; _target &amp;&amp; _target.length ){
-                    _target.each( function(){
-                        if( _item[0] == this ) return;
-                        $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, $(this) ] );
-                    });
-                }
                 return _r;
+            }
+
+        , typeLen:
+            function( _type ){
+                var _lenAr = [1];
+                _type 
+                    &amp;&amp; ( _type = _type.replace( /[^\d\.]/g, &#x27;&#x27; ) )
+                    &amp;&amp; ( _lenAr = _type.split(&#x27;.&#x27;) )
+                    &amp;&amp; ( 
+                            _lenAr[0] = parseInt( _lenAr[0], 10 ) || 1
+                            , _lenAr[1] = parseInt( _lenAr[1], 10 ) || 0
+                       )
+                    ;
+                return _lenAr;
             }
 
         , findValidEle:

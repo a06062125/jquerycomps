@@ -10992,7 +10992,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1833,
+            "line": 1854,
             "description": "获取 _selector 对象\n<br />这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
             "itemtype": "method",
             "name": "getElement",
@@ -11011,7 +11011,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1856,
+            "line": 1877,
             "description": "获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
             "itemtype": "method",
             "name": "errorMsg",
@@ -11040,7 +11040,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1891,
+            "line": 1912,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "reqmsg",
@@ -11062,21 +11062,21 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1978,
+            "line": 1999,
             "description": "这里需要优化检查, 目前会重复检查",
             "class": "JC.Valid",
             "namespace": "JC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2068,
+            "line": 2089,
             "description": "验证文件扩展名",
             "class": "JC.Valid",
             "namespace": "JC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2117,
+            "line": 2138,
             "description": "显示正确的视觉效果",
             "itemtype": "method",
             "name": "valid",
@@ -11105,7 +11105,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2174,
+            "line": 2195,
             "description": "显示错误的视觉效果",
             "itemtype": "method",
             "name": "error",
@@ -11134,7 +11134,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2269,
+            "line": 2290,
             "description": "解析错误时触发的时件",
             "itemtype": "event",
             "name": "ValidError",
@@ -11143,7 +11143,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2273,
+            "line": 2294,
             "description": "解析正确时触发的时件",
             "itemtype": "event",
             "name": "ValidCorrect",
@@ -11152,7 +11152,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2277,
+            "line": 2298,
             "description": "响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -11161,7 +11161,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2285,
+            "line": 2306,
             "description": "响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -11170,7 +11170,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2292,
+            "line": 2313,
             "description": "响应表单子对象的 focus 事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
             "access": "private",
             "tagname": "",
@@ -11179,7 +11179,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 2300,
+            "line": 2321,
             "description": "响应表单子对象的 blur事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
             "access": "private",
             "tagname": "",
@@ -13945,27 +13945,27 @@
         },
         {
             "message": "Missing item type\n这里需要优化检查, 目前会重复检查",
-            "line": " ../comps/Valid/Valid.js:1978"
+            "line": " ../comps/Valid/Valid.js:1999"
         },
         {
             "message": "Missing item type\n验证文件扩展名",
-            "line": " ../comps/Valid/Valid.js:2068"
+            "line": " ../comps/Valid/Valid.js:2089"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:2277"
+            "line": " ../comps/Valid/Valid.js:2298"
         },
         {
             "message": "Missing item type\n响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:2285"
+            "line": " ../comps/Valid/Valid.js:2306"
         },
         {
             "message": "Missing item type\n响应表单子对象的 focus 事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
-            "line": " ../comps/Valid/Valid.js:2292"
+            "line": " ../comps/Valid/Valid.js:2313"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 如果有 focusmsg 属性, 则显示对应的提示信息",
-            "line": " ../comps/Valid/Valid.js:2300"
+            "line": " ../comps/Valid/Valid.js:2321"
         },
         {
             "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",

@@ -1750,9 +1750,12 @@
          */
         , 'unique':
             function( _item ){
-                var _p = this, _r = true, _target, _tmp
+                var _p = this, _r = true
+                    , _target, _tmp, _group = []
+                    , _len = _p.typeLen( _item.attr('subdatatype') )[0]
+                    ;
 
-                JC.log( 'unique' );
+                JC.log( 'unique', _len, new Date().getTime() );
 
                 _p.isDatatarget( _item ) && (_target = _p.datatarget( _item ) );
                 !( _target && _target.length ) && ( _target = _p.samesubtypeitems( _item ) );
@@ -1762,22 +1765,42 @@
 
                 if( _target && _target.length ){
                     _tmp = {};
-                    _target.each( function(){ 
-                        var _sp = $(this), _v = _sp.val().trim();
-                        if( !_v ) return;
-                        
-                        if( _v in _tmp ){
-                            _tmp[ _v ].push( _sp );
+                    _target.each( function( _ix ){
+                        if( _ix % _len === 0 ){
+                            _group.push( [] );
+                        }
+                        _group[ _group.length - 1 ].push( this ); 
+                    });
+
+
+                    $.each( _group, function( _ix, _items ){
+                        var _tmpAr = [];
+                        $.each( _items, function( _six, _sitem ){
+                            _tmpAr.push( $(_sitem).val().trim() );
+                        });
+                        var _pureVal = _tmpAr.join(''), _compareVal = _tmpAr.join('IOU~IOU');
+                        if( !_pureVal ) return;
+
+                        if( _compareVal in _tmp ){
+                            _tmp[ _compareVal ].push( _items );
                             _r = false;
                         }else{
-                            _tmp[ _v ] = [ _sp ];
+                            _tmp[ _compareVal ] = [ _items ];
                         }
+
                     });
+
                     for( var _k in _tmp ){
-                        _tmp[ _k ].length > 1 
-                            ? ( _errLs = _errLs.concat( _tmp[ _k ] ) )
-                            : ( _corLs = _corLs.concat( _tmp[ _k ] ) )
-                            ;
+                        if( _tmp[ _k ].length > 1 ){
+                            _r = false;
+                            $.each( _tmp[ _k ], function( _ix, _items ){
+                                _errLs = _errLs.concat( _items ) ;
+                            });
+                        }else{
+                            $.each( _tmp[ _k ], function( _ix, _items ){
+                                _corLs = _corLs.concat( _items ) ;
+                            });
+                        }
                     }
                 }
 
@@ -1791,6 +1814,20 @@
                 } );
 
                 return _r;
+            }
+
+        , typeLen:
+            function( _type ){
+                var _lenAr = [1];
+                _type 
+                    && ( _type = _type.replace( /[^\d\.]/g, '' ) )
+                    && ( _lenAr = _type.split('.') )
+                    && ( 
+                            _lenAr[0] = parseInt( _lenAr[0], 10 ) || 1
+                            , _lenAr[1] = parseInt( _lenAr[1], 10 ) || 0
+                       )
+                    ;
+                return _lenAr;
             }
 
         , findValidEle:
