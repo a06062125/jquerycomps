@@ -323,7 +323,9 @@
                             if( !_p._model[ _dt ]( _sitem ) ){ _r = false; return; }
                         }
                         
-                        if( _subdt && _p._model[ _subdt ] && ( _sitem.val() || _subdt == 'alternative' ) ){
+                        if( _subdt && _p._model[ _subdt ] 
+                                && ( _sitem.val() || _subdt == 'alternative' || _subdt == 'unique' ) 
+                        ){
                             if( !_p._model[ _subdt ]( _sitem ) ){ _r = false; return; }
                         }
 
@@ -345,7 +347,13 @@
                             !_p.parse( $(_item[0][i]) ) && ( _r = false );
                             if( _errorabort && !_r ) break;
                         }
-                    } else _r = _p.parse( _item );
+                    }
+                    else if( Valid.isFormControl( _item ) ) {
+                        !_p.parse( _item ) && ( _r = false );
+                    }
+                    else{
+                        !_p.check( _item.find( Valid._formControls ) ) && ( _r = false );
+                    }
                 });
                 return _r;
             }
@@ -622,6 +630,30 @@
                        )
                     ;
             }
+            return _r;
+        };
+    /**
+     * 定义 form control
+     * @property    _formControls
+     * @param       {selector}  _selector
+     * @return  bool
+     * @static
+     */
+    Valid._formControls = 'input, select, textarea';
+    /**
+     * 判断 _selector 是否为 form control
+     * @method  isFormControl
+     * @param   {selector}  _selector
+     * @return  bool
+     * @static
+     */
+    Valid.isFormControl =
+        function( _selector ){
+            var _r = false;
+            _selector 
+                && ( _selector = $( _selector ) ).length
+                && ( _r = _selector.is( Valid._formControls ) )
+                ;
             return _r;
         };
     
@@ -1765,13 +1797,14 @@
 
                 if( _target && _target.length ){
                     _tmp = {};
+                    var _isReturn = false;
                     _target.each( function( _ix ){
+                        var _sp = $(this);
                         if( _ix % _len === 0 ){
                             _group.push( [] );
                         }
-                        _group[ _group.length - 1 ].push( this ); 
+                        _group[ _group.length - 1 ] && _group[ _group.length - 1 ].push( _sp ); 
                     });
-
 
                     $.each( _group, function( _ix, _items ){
                         var _tmpAr = [];
