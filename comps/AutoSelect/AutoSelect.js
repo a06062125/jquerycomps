@@ -212,7 +212,7 @@
          * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl
          * @property    randomurl
          * @type    bool
-         * @default true
+         * @default false
          * @static
          */
         , randomurl: false
@@ -615,6 +615,16 @@
                     ;
                 return _r;
             }
+
+        , selectignoreinitrequest:
+            function( _selector ){
+                var _r = AutoSelect.ignoreInitRequest;
+                _selector.is('[selectignoreinitrequest]')
+                    && ( _r = parseBool( _selector.attr('selectignoreinitrequest') ) )
+                    ;
+                return _r;
+            }
+
         
         , triggerInitChange:
             function(){
