@@ -324,7 +324,7 @@
                         }
                         
                         if( _subdt && _p._model[ _subdt ] 
-                                && ( _sitem.val() || _subdt == 'alternative' || _subdt == 'unique' ) 
+                                && ( _sitem.val() || _subdt == 'alternative' ) 
                         ){
                             if( !_p._model[ _subdt ]( _sitem ) ){ _r = false; return; }
                         }
@@ -344,11 +344,14 @@
                     if( _p._model.isForm( _item ) ){
                         var _errorabort = _p._model.isErrorAbort( _item ), tmp;
                         for( i = 0, j = _item[0].length; i < j; i++ ){
-                            !_p.parse( $(_item[0][i]) ) && ( _r = false );
+                            var _sitem = $( $(_item[0][i]) );
+                            if( !_p._model.isValid( _sitem ) ) continue;
+                            !_p.parse( _sitem ) && ( _r = false );
                             if( _errorabort && !_r ) break;
                         }
                     }
                     else if( Valid.isFormControl( _item ) ) {
+                        if( !_p._model.isValid( _item ) ) return;
                         !_p.parse( _item ) && ( _r = false );
                     }
                     else{
@@ -1688,19 +1691,36 @@
          */
         , alternative:
             function( _item ){
-                var _p = this, _r = true, _target;
+                var _p = this, _r = true, _target, _KEY = "AlternativeValidTime";
                 JC.log( 'alternative' );
+
+                if( _item.data( _KEY ) ){
+                     if( _p.checkRepeatProcess( _item, _KEY ) ){
+                        _item.data( _KEY, new Date().getTime() );
+                        return false;
+                    }
+                }
 
                 _p.isDatatarget( _item ) && (_target = _p.datatarget( _item ) );
                 !( _target && _target.length ) && ( _target = _p.samesubtypeitems( _item ) );
 
+                var _isReturn = false;
+
                 if( _target.length && !$.trim( _item.val() ) ){
                     var _hasVal = false;
-                    _target.each( function(){ if( $(this).val() ){ _hasVal = true; return false; } } );
+                    _target.each( function(){ 
+                        var _sp = $(this);
+                        if( _p.checkRepeatProcess( _sp, _KEY, true ) ) {
+                            _isReturn = true;
+                            return false;
+                        }
+
+                        if( $(this).val() ){ _hasVal = true; return false; } 
+                    } );
                     _r = _hasVal;
                 }
+                if( _isReturn ) return _r;
 
-                !_r && $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item, 'alternativemsg', true ] );
                 !_r && _target && _target.length 
                     && _target.each( function(){ 
                         if( _item[0] == this ) return;
@@ -1709,10 +1729,14 @@
 
                 if( _r && _target && _target.length ){
                     _target.each( function(){
-                        if( _item[0] == this ) return;
+                        if( item[0] == this ) return;
                         $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, $(this) ] );
                     });
                 }
+                _r 
+                    ?  $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, _item ] )
+                    :  $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item, 'alternativemsg', true ] )
+                    ;
 
                 return _r;
             }
@@ -1748,18 +1772,37 @@
          */
         , reconfirm:
             function( _item ){
-                var _p = this, _r = true, _target;
+                var _p = this, _r = true, _target, _KEY = "ReconfirmValidTime";
 
                 JC.log( 'reconfirm' );
+
+                if( _item.data( _KEY ) ){
+                     if( _p.checkRepeatProcess( _item, _KEY ) ){
+                        _item.data( _KEY, new Date().getTime() );
+                        return false;
+                    }
+                }
 
                 _p.isDatatarget( _item ) && (_target = _p.datatarget( _item ) );
                 !( _target && _target.length ) && ( _target = _p.samesubtypeitems( _item ) );
 
+                var _isReturn = false;
+
                 if( _target && _target.length ){
-                    _target.each( function(){ if( _item.val() != $(this).val() )  _r = false; } );
+                    _target.each( function(){ 
+                        var _sp = $(this);
+                        if( _p.checkRepeatProcess( _sp, _KEY, true ) ) {
+                            _isReturn = true;
+                            return false;
+                        }
+
+                        if( _item.val() != $(this).val() )  _r = false; 
+                    } );
                 }
 
-                !_r && $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item, 'reconfirmmsg', true ] );
+                if( _isReturn ) return _r;
+
+
                 !_r && _target.length && _target.each( function(){ 
                     if( _item[0] == this ) return;
                     $(_p).trigger( Model.TRIGGER, [ Model.ERROR, $(this), 'reconfirmmsg', true ] );
@@ -1771,6 +1814,24 @@
                         $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, $(this) ] );
                     });
                 }
+                _r 
+                    ?  $(_p).trigger( Model.TRIGGER, [ Model.CORRECT, _item ] )
+                    :  $(_p).trigger( Model.TRIGGER, [ Model.ERROR, _item, 'reconfirmmsg', true ] )
+                    ;
+                return _r;
+            }
+        , checkRepeatProcess:
+            function( _item, _key, _setTime, _tm  ){
+                var _time = new Date().getTime(), _r = false;
+                _tm = _tm || 200;
+
+                if( _item.data( _key ) ){
+                    if( (_time - _item.data( _key ) ) < _tm ){
+                        _r = true;
+                        _item.data( _key, _time );
+                    }
+                }
+                _setTime && _item.data( _key, _time );
                 return _r;
             }
         /**
@@ -1785,9 +1846,15 @@
                 var _p = this, _r = true
                     , _target, _tmp, _group = []
                     , _len = _p.typeLen( _item.attr('subdatatype') )[0]
+                    , _KEY = "UniqueValidTime"
                     ;
 
-                JC.log( 'unique', _len, new Date().getTime() );
+                if( _item.data( _KEY ) ){
+                     if( _p.checkRepeatProcess( _item, _KEY ) ){
+                        _item.data( _KEY, new Date().getTime() );
+                        return false;
+                    }
+                }
 
                 _p.isDatatarget( _item ) && (_target = _p.datatarget( _item ) );
                 !( _target && _target.length ) && ( _target = _p.samesubtypeitems( _item ) );
@@ -1795,16 +1862,22 @@
                 _errLs = [];
                 _corLs = [];
 
+                var _isReturn = false;
                 if( _target && _target.length ){
                     _tmp = {};
-                    var _isReturn = false;
                     _target.each( function( _ix ){
                         var _sp = $(this);
+                        if( _p.checkRepeatProcess( _sp, _KEY, true ) ) {
+                            _isReturn = true;
+                            return false;
+                        }
+
                         if( _ix % _len === 0 ){
                             _group.push( [] );
                         }
                         _group[ _group.length - 1 ] && _group[ _group.length - 1 ].push( _sp ); 
                     });
+                    if( _isReturn ) return _r;
 
                     $.each( _group, function( _ix, _items ){
                         var _tmpAr = [];
@@ -1836,6 +1909,8 @@
                         }
                     }
                 }
+
+                if( _isReturn ) return _r;
 
                 $.each( _corLs, function( _ix, _sitem ){
                     Valid.setValid( _sitem );

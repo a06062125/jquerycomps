@@ -83,6 +83,11 @@
                 JC.Valid.clearError( 'form.js_valid' );
             });
 
+            $(document).delegate( 'form.js_valid', 'submit', function( _evt ){
+                _evt.preventDefault();
+                JC.Valid( this );
+            });
+
            function selectdata( _id ){
                var _d = [];
                for( var i = 0, j = SHENGSHI.length; i < j; i++ ){
@@ -122,7 +127,7 @@
     </head>    
     <body>
 
-        <form action='' method='get' class="js_valid js_bizsFormLogic" >
+        <form action='' method='get' class="js_valid " >
             <div style="position:fixed; top: 10px; right:10px;">
                 <button type="submit">save</button>
                 <button type="reset">reset</button>
@@ -462,6 +467,7 @@
                                     reqmsg="类别"
                                     
                                     selectdatacb="selectdata" 
+                                    selectvalue="2343" 
 
                                     subdatatype="unique-3"
                                     datatarget="<dd select"
@@ -480,6 +486,7 @@
                     <button type="submit">save</button>
                     <button type="reset">reset</button>
                     <button type="button" class="js_clear_error">clear error</button>
+                    <a href="?">back</a>
                 </dd>
              </dl>
              <!--
