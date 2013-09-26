@@ -264,7 +264,7 @@
      *
      *      &lt;dt&gt;formAjaxDone = function, default = system defined&lt;/dt&gt;
      *      &lt;dd&gt;
-     *          AJAX 提交完成后的回调
+     *          AJAX 提交完成后的回调, &lt;b&gt;window 变量域&lt;/b&gt;
      *          &lt;br /&gt;如果没有显式声明, FormLogic将自行处理
 &lt;xmp&gt;function formAjaxDone( _json, _submitButton, _ins ){
     var _form = $(this);
@@ -292,6 +292,19 @@
      *
      *      &lt;dt&gt;formSubmitConfirm = string&lt;/dt&gt;
      *      &lt;dd&gt;提交表单时进行二次确认的提示信息&lt;/dt&gt;
+     *
+     *      &lt;dt&gt;formConfirmCheckSelector = selector&lt;/dt&gt;
+     *      &lt;dd&gt;提交表单时, 进行二次确认的条件判断&lt;/dt&gt;
+     *
+     *      &lt;dt&gt;formConfirmCheckCallback = function&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          提交表单时, 进行二次确认的条件判断, &lt;b&gt;window 变量域&lt;/b&gt;
+&lt;xmp&gt;function formConfirmCheckCallback( _trigger, _evt, _ins ){
+    var _form = $(this);
+    JC.log( &#x27;formConfirmCheckCallback&#x27;, new Date().getTime() );
+    return _form.find(&#x27;td.js_ckField input[value=0]:checked&#x27;).length;
+}&lt;/xmp&gt;
+     *      &lt;/dt&gt;
      * &lt;/dl&gt;
      *
      * &lt;h2&gt;reset button 可用的 html 属性&lt;/h2&gt;
@@ -948,10 +961,26 @@
     JC.BaseMVC.build( FormLogic, &#x27;Bizs&#x27; );
 
     $(document).delegate( &#x27;input[formSubmitConfirm], button[formSubmitConfirm]&#x27;, &#x27;click&#x27;, function( _evt ){
-        var _p = $(this), _fm = getJqParent( _p, &#x27;form&#x27; );
-        _fm &amp;&amp; _fm.length 
-            &amp;&amp; _fm.data( FormLogic.Model.SUBMIT_CONFIRM_BUTTON, _p )
+        var _p = $(this)
+            , _fm = getJqParent( _p, &#x27;form&#x27; )
+            , _ins = FormLogic.getInstance( _fm )
+            , _tmp 
             ;
+        if( _fm &amp;&amp; _fm.length ){
+            if( _ins ){
+                if( _p.is(&#x27;[formConfirmCheckSelector]&#x27;) ){
+                    _tmp = parentSelector( _p, _p.attr(&#x27;formConfirmCheckSelector&#x27;) );
+                    if( !( _tmp &amp;&amp; _tmp.length ) ) return;
+                }
+                else if( _p.is( &#x27;[formConfirmCheckCallback]&#x27;) ){
+                    _tmp = window[ _p.attr(&#x27;formConfirmCheckCallback&#x27;) ];
+                    if( _tmp ){
+                        if( ! _tmp.call( _fm, _p, _evt, _ins ) ) return;
+                    }
+                }
+            }
+            _fm.data( FormLogic.Model.SUBMIT_CONFIRM_BUTTON, _p )
+        }
     });
 
     $(document).delegate( &#x27;input[formResetConfirm], button[formResetConfirm]&#x27;, &#x27;click&#x27;, function( _evt ){
