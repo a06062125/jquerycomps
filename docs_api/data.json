@@ -558,7 +558,7 @@
             "namespace": "JC",
             "file": "../comps/AjaxUpload/AjaxUpload.js",
             "line": 2,
-            "description": "Ajax 文件上传\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.AjaxUpload.html' target='_blank'>API docs</a>\n| <a href='../../comps/AjaxUpload/_demo' target='_blank'>demo link</a></p>\n<p>\n     <b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n     <br /><b>require</b>: plugins.jquery.form\n</p>\n<h2>可用的 html attribute</h2>\n<dl>\n</dl>",
+            "description": "Ajax 文件上传\n<p>\n     <a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n     | <a href='http://jc.openjavascript.org/docs_api/classes/JC.AjaxUpload.html' target='_blank'>API docs</a>\n     | <a href='../../comps/AjaxUpload/res' target='_blank'>avaliable style</a>\n     | <a href='../../comps/AjaxUpload/_demo' target='_blank'>demo link</a>\n</p>\n<p>\n     <b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n     <br /><b>require</b>: plugins.jquery.form\n</p>\n<h2>可用的 html attribute</h2>\n<dl>\n</dl>",
             "is_constructor": 1,
             "params": [
                 {
@@ -2293,7 +2293,7 @@
         },
         {
             "file": "../comps/AjaxUpload/AjaxUpload.js",
-            "line": 35,
+            "line": 38,
             "description": "获取或设置 AjaxUpload 的实例",
             "itemtype": "method",
             "name": "getInstance",

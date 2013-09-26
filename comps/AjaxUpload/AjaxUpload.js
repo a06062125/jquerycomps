@@ -1,9 +1,12 @@
  ;(function($){
     /**
      * Ajax 文件上传
-     * <p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>
-     * | <a href='http://jc.openjavascript.org/docs_api/classes/JC.AjaxUpload.html' target='_blank'>API docs</a>
-     * | <a href='../../comps/AjaxUpload/_demo' target='_blank'>demo link</a></p>
+     * <p>
+     *      <a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>
+     *      | <a href='http://jc.openjavascript.org/docs_api/classes/JC.AjaxUpload.html' target='_blank'>API docs</a>
+     *      | <a href='../../comps/AjaxUpload/res' target='_blank'>avaliable style</a>
+     *      | <a href='../../comps/AjaxUpload/_demo' target='_blank'>demo link</a>
+     * </p>
      * <p>
      *      <b>require</b>: <a href='window.jQuery.html'>jQuery</a>
      *      <br /><b>require</b>: plugins.jquery.form
