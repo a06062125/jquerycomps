@@ -73,6 +73,17 @@
                 "window.Bizs": 1
             }
         },
+        "../comps/AjaxUpload/AjaxUpload.js": {
+            "name": "../comps/AjaxUpload/AjaxUpload.js",
+            "modules": {},
+            "classes": {
+                "JC.AjaxUpload": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "JC": 1
+            }
+        },
         "../comps/AutoChecked/AutoChecked.js": {
             "name": "../comps/AutoChecked/AutoChecked.js",
             "modules": {},
@@ -535,6 +546,30 @@
             "tagname": "",
             "version": "dev 0.1 2013-09-03",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team"
+        },
+        "JC.AjaxUpload": {
+            "name": "JC.AjaxUpload",
+            "shortname": "JC.AjaxUpload",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "JC",
+            "file": "../comps/AjaxUpload/AjaxUpload.js",
+            "line": 2,
+            "description": "Ajax 文件上传\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.AjaxUpload.html' target='_blank'>API docs</a>\n| <a href='../../comps/AjaxUpload/_demo' target='_blank'>demo link</a></p>\n<p>\n     <b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n     <br /><b>require</b>: plugins.jquery.form\n</p>\n<h2>可用的 html attribute</h2>\n<dl>\n</dl>",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 team",
+            "date": "2013-09-26"
         },
         "JC.AutoChecked": {
             "name": "JC.AutoChecked",
@@ -2257,6 +2292,27 @@
             "namespace": "window.Bizs"
         },
         {
+            "file": "../comps/AjaxUpload/AjaxUpload.js",
+            "line": 35,
+            "description": "获取或设置 AjaxUpload 的实例",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "AjaxUploadInstance"
+            },
+            "class": "JC.AjaxUpload",
+            "namespace": "JC"
+        },
+        {
             "file": "../comps/AutoChecked/AutoChecked.js",
             "line": 101,
             "description": "初始化 _selector 的所有 input[checktype][checkfor]",
@@ -2729,7 +2785,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 756,
+            "line": 763,
             "description": "判断下拉框的option里是否有给定的值",
             "params": [
                 {
@@ -2748,7 +2804,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 826,
+            "line": 833,
             "description": "初始化之事的事件",
             "itemtype": "event",
             "name": "SelectBeforeInited",
@@ -2757,7 +2813,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 830,
+            "line": 837,
             "description": "初始化后的事件",
             "itemtype": "event",
             "name": "SelectInited",
@@ -2766,7 +2822,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 834,
+            "line": 841,
             "description": "响应每个 select 的 change 事件",
             "itemtype": "event",
             "name": "SelectChange",
@@ -2775,7 +2831,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 838,
+            "line": 845,
             "description": "最后一个 select change 后的事件",
             "itemtype": "event",
             "name": "SelectAllChanged",
@@ -2784,7 +2840,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 842,
+            "line": 849,
             "description": "select 更新数据之前触发的事件",
             "itemtype": "event",
             "name": "SelectItemBeforeUpdate",
@@ -2793,7 +2849,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 846,
+            "line": 853,
             "description": "select 更新数据之后触发的事件",
             "itemtype": "event",
             "name": "SelectItemUpdated",
@@ -2802,7 +2858,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 850,
+            "line": 857,
             "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "JC.AutoSelect",
             "namespace": "JC"
@@ -13464,6 +13520,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../comps/AjaxUpload/AjaxUpload.js:2"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/AjaxUpload/AjaxUpload.js:2"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../comps/AutoChecked/AutoChecked.js:2"
         },
         {
@@ -13876,11 +13940,11 @@
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
-            "line": " ../comps/AutoSelect/AutoSelect.js:756"
+            "line": " ../comps/AutoSelect/AutoSelect.js:763"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/AutoSelect/AutoSelect.js:850"
+            "line": " ../comps/AutoSelect/AutoSelect.js:857"
         },
         {
             "message": "Missing item type\n保存所有类型的 Calendar 日期实例 \n<br />目前有 date, week, month, season 四种类型的实例\n<br />每种类型都是单例模式",

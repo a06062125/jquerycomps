@@ -43,6 +43,8 @@
             
                 <li><a href="../classes/.window.html">.window</a></li>
             
+                <li><a href="../classes/JC.AjaxUpload.html">JC.AjaxUpload</a></li>
+            
                 <li><a href="../classes/JC.alert.html">JC.alert</a></li>
             
                 <li><a href="../classes/JC.AutoChecked.html">JC.AutoChecked</a></li>
@@ -829,13 +831,25 @@
 
         , _innerAjaxDone:
             function( _json, _btn, _p ){
-                var _form = $(this), _panel;
+                var _form = $(this)
+                    , _panel
+                    , _url = &#x27;&#x27;
+                    ;
+
+                _json.data 
+                    &amp;&amp; _json.data.returnurl
+                    &amp;&amp; ( _url = _json.data.returnurl )
+                    ;
+                _json.url 
+                    &amp;&amp; ( _url = _json.url )
+                    ;
+
                 if( _json.errorno ){
                     _panel = JC.Dialog.alert( _json.errmsg || &#x27;操作失败, 请重新尝试!&#x27;, 1 );
                 }else{
                     _panel = JC.Dialog.msgbox( _json.errmsg || &#x27;操作成功&#x27;, 0, function(){
                         _p._model.formAjaxDoneAction()
-                            &amp;&amp; reloadPage( _p._model.formAjaxDoneAction() );
+                            &amp;&amp; reloadPage( _url || _p._model.formAjaxDoneAction() );
                     }, _p._model.formPopupCloseMs() );
                 }
             }
