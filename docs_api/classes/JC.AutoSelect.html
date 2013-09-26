@@ -104,7 +104,7 @@
                         <h1>JC.AutoSelect Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l2"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:2</code></a>
+            Defined in: <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l3"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:3</code></a>
         </div>
 </div>
 <div class="box intro">
@@ -124,6 +124,11 @@
      <dd>下拉框的默认选中值</dd>
      <dt>selecturl = AJAX 数据请求的URL</dt>
      <dd>下拉框的数据请求接口, 符号 {0} 代表下拉框值的占位符</dd>
+     <dt>selectignoreinitrequest = bool, default = false</dt>
+     <dd>
+         首次初始化时, 是否需要请求新数据
+         <br />有时 联动框太多, 载入页面时, 后端直接把初始数据输出, 避免请求过多
+     </dd>
      <dt>selecttarget = selector</dt>
      <dd>下一级下拉框的选择器语法</dd>
      <dt>selectdatacb = 静态数据请求回调</dt>
@@ -229,6 +234,10 @@
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
+                                <a href="#property_ignoreInitRequest">ignoreInitRequest</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_inited">inited</a>
                                     <span class="flag static">static</span>
                             </li>
@@ -287,7 +296,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l349"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:349</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l371"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:371</code></a>
         </p>
     </div>
     <div class="description">
@@ -320,7 +329,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l310"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:310</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l332"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:332</code></a>
         </p>
     </div>
     <div class="description">
@@ -352,7 +361,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l227"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:227</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l243"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:243</code></a>
         </p>
     </div>
     <div class="description">
@@ -397,7 +406,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l328"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:328</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l350"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:350</code></a>
         </p>
     </div>
     <div class="description">
@@ -436,7 +445,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l342"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:342</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l364"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:364</code></a>
         </p>
     </div>
     <div class="description">
@@ -475,7 +484,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l335"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:335</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l357"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:357</code></a>
         </p>
     </div>
     <div class="description">
@@ -515,7 +524,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l113"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:113</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l120"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:120</code></a>
         </p>
     </div>
     <div class="description">
@@ -548,7 +557,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l322"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:322</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l344"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:344</code></a>
         </p>
     </div>
     <div class="description">
@@ -570,7 +579,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l316"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:316</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l338"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:338</code></a>
         </p>
     </div>
     <div class="description">
@@ -601,7 +610,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l295"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:295</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l317"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:317</code></a>
         </p>
     </div>
     <div class="description">
@@ -646,7 +655,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l303"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:303</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l325"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:325</code></a>
         </p>
     </div>
     <div class="description">
@@ -685,7 +694,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l356"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:356</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l378"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:378</code></a>
         </p>
     </div>
     <div class="description">
@@ -720,7 +729,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l191"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:191</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l198"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:198</code></a>
         </p>
     </div>
     <div class="description">
@@ -736,7 +745,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l164"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:164</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l171"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:171</code></a>
         </p>
     </div>
     <div class="description">
@@ -752,7 +761,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l182"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:182</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l189"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:189</code></a>
         </p>
     </div>
     <div class="description">
@@ -768,7 +777,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l141"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:141</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l148"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:148</code></a>
         </p>
     </div>
     <div class="description">
@@ -803,7 +812,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l130"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:130</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l137"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:137</code></a>
         </p>
     </div>
     <div class="description">
@@ -819,6 +828,22 @@
             </div>
         </div>
 </div>
+                    <div id="property_ignoreInitRequest" class="property item">
+    <h3 class="name"><code>ignoreInitRequest</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l234"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:234</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>首次初始化时, 是否需要请求新数据
+<br />有时 联动框太多, 载入页面时, 后端直接把初始数据输出, 避免请求过多</p>
+    </div>
+        <p><strong>Default:</strong> false</p>
+</div>
                     <div id="property_inited" class="property item">
     <h3 class="name"><code>inited</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
@@ -826,7 +851,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l173"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:173</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l180"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:180</code></a>
         </p>
     </div>
     <div class="description">
@@ -842,7 +867,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l218"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:218</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l225"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:225</code></a>
         </p>
     </div>
     <div class="description">
@@ -858,14 +883,14 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l209"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:209</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l216"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:216</code></a>
         </p>
     </div>
     <div class="description">
         <p>ajax 请求数据时, 是否添加随机参数防止缓存
 <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl</p>
     </div>
-        <p><strong>Default:</strong> true</p>
+        <p><strong>Default:</strong> false</p>
 </div>
                     <div id="property_triggerInitChange" class="property item">
     <h3 class="name"><code>triggerInitChange</code></h3>
@@ -874,7 +899,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l200"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:200</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l207"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:207</code></a>
         </p>
     </div>
     <div class="description">
@@ -892,7 +917,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l795"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:795</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l838"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:838</code></a>
         </p>
     </div>
     <div class="description">
@@ -905,7 +930,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l783"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:783</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l826"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:826</code></a>
         </p>
     </div>
     <div class="description">
@@ -918,7 +943,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l791"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:791</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l834"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:834</code></a>
         </p>
     </div>
     <div class="description">
@@ -931,7 +956,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l787"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:787</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l830"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:830</code></a>
         </p>
     </div>
     <div class="description">
@@ -944,7 +969,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l799"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:799</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l842"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:842</code></a>
         </p>
     </div>
     <div class="description">
@@ -957,7 +982,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l803"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:803</code></a>
+        <a href="../files/.._comps_AutoSelect_AutoSelect.js.html#l846"><code>..&#x2F;comps&#x2F;AutoSelect&#x2F;AutoSelect.js:846</code></a>
         </p>
     </div>
     <div class="description">
