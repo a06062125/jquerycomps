@@ -124,7 +124,7 @@
 <xmp>function formConfirmCheckCallback( _trigger, _evt, _ins ){
     var _form = $(this);
     JC.log( 'formConfirmCheckCallback', new Date().getTime() );
-    return _form.find('td.js_ckField input[value=0]:checked').length;
+    return _form.find('td.js_confirmCheck input[value=0]:checked').length;
 }</xmp>
      *      </dt>
      * </dl>
@@ -365,8 +365,15 @@
                  */
                 _p.on('AjaxDone', function( _evt, _data ){
 
+                    /**
+                     * 这是个神奇的BUG
+                     * chrome 如果没有 reset button, 触发 reset 会导致页面刷新
+                     */
+                    var _resetBtn = _p._model.selector().find('button[type=reset], input[type=reset]');
+
                     _p._model.formResetAfterSubmit() 
                         && !_p._model.userFormAjaxDone()
+                        && _resetBtn.length
                         && _p.selector().trigger('reset');
 
                     _p._model.formSubmitDisable() && _p.trigger( 'EnableSubmit' );
@@ -375,11 +382,12 @@
                     try{ _json = $.parseJSON( _data ); }catch(ex){}
 
                     _json 
-                    && 'errorno' in _json 
-                    && !parseInt( _json.errorno, 10 )
-                    && _p._model.formResetAfterSubmit() 
-                    && _p.selector().trigger('reset')
-                    ;
+                        && 'errorno' in _json 
+                        && !parseInt( _json.errorno, 10 )
+                        && _p._model.formResetAfterSubmit() 
+                        && _resetBtn.length
+                        && _p.selector().trigger('reset')
+                        ;
 
                     _json = _json || _data || {};
                     _p._model.formAjaxDone()

@@ -78,7 +78,12 @@
      *      <dd>验证内容的最大值, 但不验证为空的值</dd>
      *
      *      <dt>validitemcallback = function name</dt>
-     *      <dd>对一个 control 作检查后的回调, 无论正确与否都会触发</dt>
+     *      <dd>
+     *          对一个 control 作检查后的回调, 无论正确与否都会触发, <b>window 变量域</b>
+<xmp>function validItemCallback( _item, _isValid){
+    JC.log( _item.attr('name'), _isValid );
+}</xmp>
+     *      </dd>
      *
      *      <dt>datatype: 常用数据类型</dt>
      *      <dd><b>n:</b> 检查是否为正确的数字</dd>

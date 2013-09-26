@@ -34,7 +34,7 @@
             function formConfirmCheckCallback( _trigger, _evt, _ins ){
                 var _form = $(this);
                 JC.log( 'formConfirmCheckCallback', new Date().getTime() );
-                return _form.find('td.js_ckField input[value=0]:checked').length;
+                return _form.find('td.js_confirmCheck input[value=0]:checked').length;
             }
 
         </script>
@@ -57,7 +57,7 @@
                             <tbody>
                                 <tr>
                                     <th>审批操作：</th>
-                                    <td class="js_ckField">
+                                    <td class="js_confirmCheck">
                                         <input type="radio" name="is_passed" value="1" checked="">&nbsp;通过
                                         <input type="radio" name="is_passed" value="0">&nbsp;拒绝
                                     </td>
@@ -73,7 +73,7 @@
                                     <td>
                                         <button type="submit" class="btn btn-1" 
                                             formsubmitconfirm="是否执行审批操作?"
-                                            formConfirmCheckSelector="<form td.js_ckField input[value=0]:checked"
+                                            formConfirmCheckSelector="<form td.js_confirmCheck input[value=0]:checked"
                                          >提交</button>
                                         <button type="button" class="btn btn-2" buttonreturnurl="?custom=cancel">取消</button>
                                     </td>
@@ -101,7 +101,7 @@
                             <tbody>
                                 <tr>
                                     <th>审批操作：</th>
-                                    <td class="js_ckField">
+                                    <td class="js_confirmCheck">
                                         <input type="radio" name="is_passed" value="1" checked="">&nbsp;通过
                                         <input type="radio" name="is_passed" value="0">&nbsp;拒绝
                                     </td>
