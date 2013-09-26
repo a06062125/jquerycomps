@@ -651,13 +651,25 @@
 
         , _innerAjaxDone:
             function( _json, _btn, _p ){
-                var _form = $(this), _panel;
+                var _form = $(this)
+                    , _panel
+                    , _url = ''
+                    ;
+
+                _json.data 
+                    && _json.data.returnurl
+                    && ( _url = _json.data.returnurl )
+                    ;
+                _json.url 
+                    && ( _url = _json.url )
+                    ;
+
                 if( _json.errorno ){
                     _panel = JC.Dialog.alert( _json.errmsg || '操作失败, 请重新尝试!', 1 );
                 }else{
                     _panel = JC.Dialog.msgbox( _json.errmsg || '操作成功', 0, function(){
                         _p._model.formAjaxDoneAction()
-                            && reloadPage( _p._model.formAjaxDoneAction() );
+                            && reloadPage( _url || _p._model.formAjaxDoneAction() );
                     }, _p._model.formPopupCloseMs() );
                 }
             }
