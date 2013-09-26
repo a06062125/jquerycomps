@@ -180,7 +180,7 @@
      *          </dl>
      *      </dd>
      *
-     *      <dt>subdatatype: 特殊数据类型</dt>
+     *      <dt>subdatatype: 特殊数据类型, 以逗号分隔多个属性</dt>
      *      <dd>
      *          <dl>
      *              <dt>alternative: N 个 Control 必须至少有一个非空的值</dt>
@@ -332,6 +332,7 @@
                                 if( _sdt && _p._model[ _sdt ] && ( _sitem.val() || _sdt == 'alternative' ) ){
                                     if( !_p._model[ _sdt ]( _sitem ) ){ 
                                         _r = false; 
+                                        return false;
                                     }
                                 }
                             });

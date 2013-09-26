@@ -358,7 +358,7 @@
      *          &lt;/dl&gt;
      *      &lt;/dd&gt;
      *
-     *      &lt;dt&gt;subdatatype: 特殊数据类型&lt;/dt&gt;
+     *      &lt;dt&gt;subdatatype: 特殊数据类型, 以逗号分隔多个属性&lt;/dt&gt;
      *      &lt;dd&gt;
      *          &lt;dl&gt;
      *              &lt;dt&gt;alternative: N 个 Control 必须至少有一个非空的值&lt;/dt&gt;
@@ -510,6 +510,7 @@
                                 if( _sdt &amp;&amp; _p._model[ _sdt ] &amp;&amp; ( _sitem.val() || _sdt == &#x27;alternative&#x27; ) ){
                                     if( !_p._model[ _sdt ]( _sitem ) ){ 
                                         _r = false; 
+                                        return false;
                                     }
                                 }
                             });
