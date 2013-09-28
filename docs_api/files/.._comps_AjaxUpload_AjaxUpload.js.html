@@ -268,7 +268,41 @@
                  * 文件扩展名错误
                  */
                 _p.on( &#x27;ERR_FILE_EXT&#x27;, function( _evt, _flPath ){
-                    _p._model.errFileExt( _flPath );
+                    _p._view.errFileExt( _flPath );
+                    _p._view.updateChange();
+                });
+                /**
+                 * 上传前触发的事件
+                 */
+                _p.on( &#x27;BeforeUpload&#x27;, function( _d ){
+                    _p._view.beforeUpload();
+                });
+                /**
+                 * 上传完毕触发的事件
+                 */
+                _p.on( &#x27;UploadDone&#x27;, function( _evt, _d ){
+                    JC.log( _d );
+                    var _err = false, _od = _d;
+                    try{ _d = $.parseJSON( _d ); } catch( ex ){ _d = {}; _err = true; }
+                    //_err = true;
+                    //_d.errorno = 1;
+                    //_d.errmsg = &quot;test error&quot;
+                    if( _err ){
+                        _p._view.errFatalError( _od );
+                        _p._view.updateChange();
+                    }else{
+                        if( _d.errorno ){
+                            _p._view.errUpload( _d );
+                            _p._view.updateChange();
+                        }else{
+                            _p._view.updateChange( _d );
+                        }
+                        _p._model.cauUploadDoneCallback()
+                            &amp;&amp; _p._model.cauUploadDoneCallback.call( _p, _d
+                                                                    , _p._model.selector()
+                                                                    , _p._model.frame() 
+                                                                    );
+                    }
                 });
             }
         , _inited:
@@ -287,23 +321,38 @@
                 JC.log( &#x27;AjaxUpload.Model.init:&#x27;, new Date().getTime() );
             }
 
+        , cauStyle: function(){ return this.attrProp(&#x27;cauStyle&#x27;) || &#x27;g1&#x27;; }
         , cauUrl: function(){ return this.attrProp( &#x27;cauUrl&#x27; ); }
 
         , cauFileExt: function(){ return this.stringProp( &#x27;cauFileExt&#x27; ); }
 
-        , errFileExt: 
-            function( _flPath ){
-                var _p = this, _cb = _p.callbackProp( &#x27;cauFileExtErrCallback&#x27; );
-                if( _cb ){
-                    _cb.call( _p.selector(), _p.frame(), _p.cauFileExt(), _flPath );
-                }else{
-                    var _msg = &#x27;类型错误, 允许上传的文件类型: &#x27; + _p.cauFileExt();
+        , cauFileName: function(){ return this.attrProp(&#x27;cauFileName&#x27;) || &#x27;file&#x27;; }
 
-                    JC.Dialog 
-                        ? JC.Dialog.alert( _msg, 1 )
-                        : alert( _msg )
-                        ;
+        , cauLabelKey: function(){ return this.attrProp( &#x27;cauLabelKey&#x27; ) || &#x27;name&#x27;; }
+        , cauValueKey: function(){ return this.attrProp( &#x27;cauValueKey&#x27; ) || &#x27;url&#x27;; }
+
+        , cauStatusLabel: function(){ return this.selectorProp( &#x27;cauStatusLabel&#x27; ); }
+        , cauDisplayLabel: function(){ return this.selectorProp( &#x27;cauDisplayLabel&#x27; ); }
+
+        , cauUploadDoneCallback:
+            function(){
+                return this.callbackProp( &#x27;cauUploadDoneCallback&#x27; );
+            }
+
+        , cauValue:
+            function( _d ){
+                var _p = this, _displayLabel = _p.cauDisplayLabel(), _label = &#x27;&#x27;
+                if( typeof _d != &#x27;undefined&#x27; ){
+                    var _value = _d.data[ _p.cauValueKey() ];
+                    _label = _d.data[ _p.cauLabelKey() ];
+                    _p.selector().val( _value )
+
                 }
+                _displayLabel 
+                    &amp;&amp; _displayLabel.length
+                    &amp;&amp; _displayLabel.html( _label ) 
+                    ;
+                return _p.selector().val();
             }
 
         , framePath:
@@ -349,7 +398,7 @@
                 JC.log( &#x27;AjaxUpload.View.init:&#x27;, new Date().getTime() );
                 var _p = this;
 
-                _p._model.selector().prop(&#x27;disabled&#x27;, true);
+                //_p._model.selector().prop(&#x27;disabled&#x27;, true);
             }
 
         , loadFrame:
@@ -365,17 +414,105 @@
                     $(_p).trigger( &#x27;TriggerEvent&#x27;, &#x27;FrameLoad&#x27; );
                 });
 
-                _p._model.selector().hide();
+                //_p._model.selector().hide();
 
-                _p._model.selector().after( _frame );
+                _p._model.selector().before( _frame );
             }
+
+        , beforeUpload:
+            function(){
+                var _p = this, _statusLabel = _p._model.cauStatusLabel();
+                JC.log( &#x27;AjaxUpload view#beforeUpload&#x27;, new Date().getTime() );
+
+                this.updateChange( null, true );
+
+                if( _statusLabel &amp;&amp; _statusLabel.length ){
+                    _p._model.selector().hide();
+                    _p._model.frame().hide();
+                    _statusLabel.show();
+                }
+            }
+
+        , updateChange:
+            function( _d, _noLabelAction ){
+                var _p = this
+                    , _statusLabel = _p._model.cauStatusLabel()
+                    , _displayLabel = _p._model.cauDisplayLabel()
+                    ;
+                //JC.log( &#x27;AjaxUpload view#updateChange&#x27;, new Date().getTime() );
+
+                if( _statusLabel &amp;&amp; _statusLabel.length &amp;&amp; !_noLabelAction ){
+                    _p._model.selector().show();
+                    _p._model.frame().show();
+                    _statusLabel.hide();
+                }
+
+                _p._model.selector().val( &#x27;&#x27; );
+                if( _d &amp;&amp; ( &#x27;errorno&#x27; in _d ) &amp;&amp; !_d.errorno ){
+                    _p._model.cauValue( _d );
+
+                    if( _displayLabel &amp;&amp; _displayLabel.length ){
+                        _p._model.selector().hide();
+                        _p._model.frame().hide();
+                        _displayLabel.show();
+                        return;
+                    }
+                }
+            }
+
+        , errUpload:
+            function( _d ){
+                var _p = this, _cb = _p._model.callbackProp( &#x27;cauUploadErrCallback&#x27; );
+                if( _cb ){
+                    _cb.call( _p._model.selector(), _d, _p._model.frame() );
+                }else{
+                    var _msg = _d &amp;&amp; _d.errmsg ? _d.errmsg : &#x27;上传失败, 请重试!&#x27;;
+                    JC.Dialog 
+                        ? JC.Dialog.alert( _msg, 1 )
+                        : alert( _msg )
+                        ;
+                }
+            }
+
+        , errFileExt: 
+            function( _flPath ){
+                var _p = this, _cb = _p._model.callbackProp( &#x27;cauFileExtErrCallback&#x27; );
+                if( _cb ){
+                    _cb.call( _p._model.selector(), _p._model.cauFileExt(), _flPath, _p._model.frame() );
+                }else{
+                    var _msg = printf( &#x27;类型错误, 允许上传的文件类型: {0} &lt;p class=&quot;auExtErr&quot; style=&quot;color:red&quot;&gt;{1}&lt;/p&gt;&#x27;
+                                        , _p._model.cauFileExt(), _flPath );
+                    JC.Dialog 
+                        ? JC.Dialog.alert( _msg, 1 )
+                        : alert( _msg )
+                        ;
+                }
+            }
+
+        , errFatalError: 
+            function( _d ){
+                var _p = this, _cb = _p._model.callbackProp( &#x27;cauFatalErrorCallback&#x27; );
+                if( _cb ){
+                    _cb.call( _p._model.selector(), _d, _p._model.frame() );
+                }else{
+                    var _msg = printf( &#x27;服务端错误, 无法解析返回数据: &lt;p class=&quot;auExtErr&quot; style=&quot;color:red&quot;&gt;{0}&lt;/p&gt;&#x27;
+                                        , _d );
+                    JC.Dialog 
+                        ? JC.Dialog.alert( _msg, 1 )
+                        : alert( _msg )
+                        ;
+                }
+            }
+
     };
 
     BaseMVC.build( AjaxUpload );
 
     AjaxUpload.frameTpl =
-        &#x27;&lt;iframe src=&quot;about:blank&quot; frameborder=&quot;0&quot;&#x27;
-            + &#x27; style=&quot;width: 84px; height: 24px;cursor: pointer; vertical-align: middle;&quot;&gt;&lt;/iframe&gt;&#x27;
+        printf(
+                &#x27;&lt;iframe src=&quot;about:blank&quot; frameborder=&quot;0&quot; class=&quot;AUIframe&quot; style=&quot;{0}&quot;&gt;&lt;/iframe&gt;&#x27;
+                , &#x27;width: 84px; height: 24px;cursor: pointer; vertical-align: middle;&#x27;
+              );
             ;
 
     $(document).ready( function(){

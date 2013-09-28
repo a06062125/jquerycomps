@@ -2327,6 +2327,20 @@
             "namespace": "JC"
         },
         {
+            "file": "../comps/AjaxUpload/AjaxUpload.js",
+            "line": 94,
+            "description": "上传前触发的事件",
+            "class": "JC.AjaxUpload",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/AjaxUpload/AjaxUpload.js",
+            "line": 100,
+            "description": "上传完毕触发的事件",
+            "class": "JC.AjaxUpload",
+            "namespace": "JC"
+        },
+        {
             "file": "../comps/AutoChecked/AutoChecked.js",
             "line": 101,
             "description": "初始化 _selector 的所有 input[checktype][checkfor]",
@@ -13959,6 +13973,14 @@
         {
             "message": "Missing item type\n文件扩展名错误",
             "line": " ../comps/AjaxUpload/AjaxUpload.js:87"
+        },
+        {
+            "message": "Missing item type\n上传前触发的事件",
+            "line": " ../comps/AjaxUpload/AjaxUpload.js:94"
+        },
+        {
+            "message": "Missing item type\n上传完毕触发的事件",
+            "line": " ../comps/AjaxUpload/AjaxUpload.js:100"
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",

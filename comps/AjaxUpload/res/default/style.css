@@ -67,6 +67,7 @@
 }
 
 .AUBtn-g1:hover {    
+    height: 24px; 
     background-position: 0 -33px; 
     color: #fff; 
 }

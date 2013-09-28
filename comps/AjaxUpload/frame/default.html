@@ -10,11 +10,23 @@
                 overflow: hidden; 
             }
 
+            body{
+                width 200px;
+            }
+
             .file {
                 top: 0; left: 0;
                 position: absolute;
+                z-index: 100;
+                margin-left:-155px;
+                height: 40px;
                 opacity: 0;
                 filter: alpha( opacity = 0 );
+            }
+
+            .btn {
+                white-space: nowrap;
+                word-break: keep-all;
             }
         </style>
         <link href='../res/default/style.css' rel='stylesheet' />
@@ -25,6 +37,7 @@
             var _pw = window.parent
                 , _fm
                 , _flBtn
+                , _disBtn
                 , _auIns
                 ;
 
@@ -37,6 +50,11 @@
                 $(document).ready( function(){
                     _fm = $('form');
                     _flBtn = _fm.find('input.js_file');
+                    _disBtn = _fm.find('button.js_btn');
+
+                    $( [ _flBtn, _disBtn ] ).on( 'focus', function(){
+                        $(this).blur();
+                    });
 
                     _fm.ajaxForm({
                         beforeSubmit:
@@ -62,6 +80,15 @@
                             }
                     });
 
+                    _disBtn.on('click', function( _evt ){
+                        _evt.stopPropagation();
+                        _flBtn.trigger('click');
+                    });
+
+                    _flBtn.on('click', function( _evt ){
+                        _evt.stopPropagation();
+                    });
+
                     _flBtn.on('change', function( _evt ){
                         var _p = $(this);
                         _fm.trigger('submit');
@@ -81,6 +108,34 @@
                 _model.cauFileExt() && _flBtn.attr( 'fileExt', _model.cauFileExt() );
 
                 _model.cauFileName() && _flBtn.attr( 'name', _model.cauFileName() );
+
+                var _updateLayout = false;
+
+                _model.cauStyle() 
+                    && _disBtn
+                        .removeClass('AUBtn-g1')
+                        .addClass( 'AUBtn-' + _model.cauStyle() )
+                    && ( _updateLayout = true )
+                    ;
+                _model.cauButtonText()
+                    && _disBtn.html( _model.cauButtonText() )
+                    && ( _updateLayout = true )
+                    ;
+
+                _updateLayout
+                    && _disBtn.css( 'line-height', _disBtn.prop('offsetHeight') + 'px' )
+                    && setTimeout( function(){ 
+                        JC.log(  );
+                        _ins.trigger( 'AUUpdateLayout'
+                                        , [ 
+                                                _disBtn.prop('offsetWidth')
+                                                , _disBtn.prop('offsetHeight')
+                                                , _disBtn 
+                                          ] 
+                                    ); 
+                    }, 1 );
+
+                //alert( _updateLayout + ', ' + _disBtn.html() );
             }
             /**
              * 验证文件扩展名是否可用

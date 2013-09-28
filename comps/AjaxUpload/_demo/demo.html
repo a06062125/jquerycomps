@@ -70,6 +70,19 @@
             $(document).ready(function(){
                 JC.AjaxUpload.randomFrame = true;
             });
+
+            $(document).delegate( 'button.js_updateData', 'click', function( _evt ){
+                var _p = $(this)
+                    , _selector = getJqParent( _p, 'dd').find('.js_compAjaxUpload')
+                    , _ins = JC.AjaxUpload.getInstance( _selector )
+                    , _newData = parseBool( _p.attr('newdata') )
+                    , _d = _newData
+                        ? {"errorno":0,"errmsg":"","data":{"name":"testxx.jpg"
+                            ,"url":"\/ignore\/JQueryComps_dev\/comps\/AjaxUpload\/_demo\/data\/images\/test.jpg?testxx"}}
+                        : null
+                    ;
+                _ins.update( _d );
+            });
         </script>
     </head>    
     <body>
@@ -80,7 +93,6 @@
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
 
                 <input type="hidden" class="js_compAjaxUpload" value=""
-                    cauStyle="g1"
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
@@ -98,7 +110,6 @@
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
 
                 <input type="text" class="js_compAjaxUpload" value=""
-                    cauStyle="g1"
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
@@ -115,10 +126,11 @@
         <dl class="defdl">
             <dt> JC.AjaxUpload 示例, with hidden && label</dt>
             <dd>
-                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+                <button type="button" class="AUBtn AUBtn-g1">placehoder test</button>
 
                 <input type="hidden" class="js_compAjaxUpload" value=""
-                    cauStyle="g1"
+                    cauStyle="w1"
+                    cauButtonText="上传资质文件"
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
@@ -130,9 +142,35 @@
                 <label class="js_fileLabel" style="display:none"></label>
                 <label class="js_statusLabel" style="display:none">正在上传...</label>
 
-                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+                <button type="button" class="AUBtn AUBtn-g1 js_updateData">JC.AjaxUpload#update for clear</button>
             </dd>
         </dl>
+
+        <dl class="defdl">
+            <dt> JC.AjaxUpload 示例, with hidden && label</dt>
+            <dd>
+                <button type="button" class="AUBtn AUBtn-g1">placehoder test</button>
+
+                <input type="hidden" class="js_compAjaxUpload" value=""
+                    cauStyle="w1"
+                    cauButtonText="上传资质文件"
+                    cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
+                    cauFileExt=".jpg, .jpeg, .png, .gif"
+                    cauFileName="file"
+                    cauLabelKey="name"
+                    cauValueKey="url"
+                    cauStatusLabel="/label.js_statusLabel"
+                    cauDisplayLabel="/label.js_fileLabel"
+                    />
+                <label class="js_fileLabel" style="display:none"></label>
+                <label class="js_statusLabel" style="display:none">正在上传...</label>
+
+                <button type="button" class="AUBtn AUBtn-g1 js_updateData" newdata="true" >
+                    JC.AjaxUpload#update for new data
+                </button>
+            </dd>
+        </dl>
+
 
     </body>
 </html>

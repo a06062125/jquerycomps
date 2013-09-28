@@ -103,7 +103,9 @@
                 _p.on( 'UploadDone', function( _evt, _d ){
                     JC.log( _d );
                     var _err = false, _od = _d;
-                    try{ _d = $.parseJSON( _d ); } catch( ex ){ _d = {}; _err = true; }
+                    try{ 
+                        typeof _d == 'string' && ( _d = $.parseJSON( _d ) );
+                    } catch( ex ){ _d = {}; _err = true; }
                     //_err = true;
                     //_d.errorno = 1;
                     //_d.errmsg = "test error"
@@ -124,12 +126,29 @@
                                                                     );
                     }
                 });
+                /**
+                 * frame 的按钮样式改变后触发的事件
+                 * 需要更新 frame 的宽高
+                 */
+                _p.on( 'AUUpdateLayout', function( _evt, _width, _height, _btn ){
+                    _p._view.updateLayout( _width, _height, _btn );
+                });
             }
         , _inited:
             function(){
                 var _p = this;
                 JC.log( 'AjaxUpload _inited', new Date().getTime() );
                 _p._view.loadFrame();
+                AjaxUpload.getInstance( _p._model.frame(), _p );
+
+                _p.trigger( 'AUInited' );
+            }
+        , update:
+            function( _d ){
+                var _p = this;
+                $( _p._view ).trigger('UpdateDefaultStatus')
+                _d && _p.trigger('UploadDone', [ _d ] );
+                return this;
             }
     };
 
@@ -141,17 +160,21 @@
                 JC.log( 'AjaxUpload.Model.init:', new Date().getTime() );
             }
 
+        , cauStyle: function(){ return this.attrProp('cauStyle'); }
+        , cauButtonText: function(){ return this.attrProp('cauButtonText'); }
+
         , cauUrl: function(){ return this.attrProp( 'cauUrl' ); }
 
         , cauFileExt: function(){ return this.stringProp( 'cauFileExt' ); }
 
-        , cauFileName: function(){ return this.attrProp('cauFileName') || 'file'; }
+        , cauFileName: function(){ return this.attrProp('cauFileName'); }
 
         , cauLabelKey: function(){ return this.attrProp( 'cauLabelKey' ) || 'name'; }
         , cauValueKey: function(){ return this.attrProp( 'cauValueKey' ) || 'url'; }
 
         , cauStatusLabel: function(){ return this.selectorProp( 'cauStatusLabel' ); }
         , cauDisplayLabel: function(){ return this.selectorProp( 'cauDisplayLabel' ); }
+        , cauDisplayLabelCallback: function(){ return this.callbackProp( 'cauDisplayLabelCallback' ); }
 
         , cauUploadDoneCallback:
             function(){
@@ -165,8 +188,16 @@
                     var _value = _d.data[ _p.cauValueKey() ];
                     _label = _d.data[ _p.cauLabelKey() ];
                     _p.selector().val( _value )
-
                 }
+
+                if( _p.cauDisplayLabelCallback() ){
+                    _label = _p.cauDisplayLabelCallback().call( _p.selector(), _d );
+                }else if( _label != _value ){
+                    _label = printf( '<a href="{0}" class="green js_auLink" target="_blank">{1}</a>', _value, _label);
+                }
+
+                //$( _p ).trigger( 'AUUpdateDisplayLabel', [ _label ] );
+
                 _displayLabel 
                     && _displayLabel.length
                     && _displayLabel.html( _label ) 
@@ -216,8 +247,19 @@
             function(){
                 JC.log( 'AjaxUpload.View.init:', new Date().getTime() );
                 var _p = this;
+                /**
+                 * 恢复默认状态
+                 */
+                $( _p ).on( 'UpdateDefaultStatus', function( _evt ){
+                    var _statusLabel = _p._model.cauStatusLabel()
+                        , _displayLabel = _p._model.cauDisplayLabel()
+                    ;
 
-                //_p._model.selector().prop('disabled', true);
+                    _p.updateChange();
+
+                    _statusLabel && _statusLabel.length && _statusLabel.hide();
+                    _displayLabel && _displayLabel.length && _displayLabel.hide();
+                });
             }
 
         , loadFrame:
@@ -265,6 +307,9 @@
                     _p._model.frame().show();
                     _statusLabel.hide();
                 }
+                if( _displayLabel && _displayLabel.length ){
+                    _displayLabel.html( '' );
+                }
 
                 _p._model.selector().val( '' );
                 if( _d && ( 'errorno' in _d ) && !_d.errorno ){
@@ -277,6 +322,17 @@
                         return;
                     }
                 }
+            }
+
+        , updateLayout:
+            function( _width, _height, _btn ){
+                if( !( _width && _height ) ) return;
+                var _p = this;
+                JC.log( 'AjaxUpload @event UpdateLayout', new Date().getTime(), _width, _height );
+                _p._model.frame().css({
+                    'width': _width + 'px'
+                    , 'height': _height + 'px'
+                });
             }
 
         , errUpload:
