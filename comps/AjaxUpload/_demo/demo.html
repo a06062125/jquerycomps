@@ -8,20 +8,103 @@
                 margin: 20px 40px;
             }
 
+            .cclear{zoom:1;}
+            .cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+            .error{ color: red; }
+            input.error, select.error, textarea.error{ 
+                background-color: #F0DC82;!important;
+                box-shadow: 0 none;
+            }
+            input[type=text], input[type=password]{ width: 200px; }
+
+
+            dd.odd {
+                background: #ececec;
+            }
+
+            dt{
+                font-weight: bold;
+            }
+
+            input, select, textarea {
+                border: 1px solid #b9b9b9
+            }
+
+            input, select {
+                height: 23px;
+                line-height: 23px;
+            }
+
+            input[type=checkbox], input[type=radio], input.UXC{
+                height: auto;
+                line-height: auto;
+            }
+
+            select[multiple]{
+                height: 80px;
+            }
+
             dt { font-weight: bold; margin: 10px auto; }
             dd { line-height: 24px; }
+
+            input, button{    
+                display: inline-block; 
+                height: 22px; 
+                vertical-align: middle; 
+                color: #000; 
+            }
+            button, input[type=file]{ course: pointer; }
+
+            .AUIframe {
+                margin-right: 2px;
+            }
         </style>
+        <link href='../../AjaxUpload/res/default/style.css' rel='stylesheet' />
+        <link href='../../Panel/res/default/style.css' rel='stylesheet' />
         <script src="../../../lib.js"></script>
         <script>
+            JC.debug = true;
+            JC.use( 'AjaxUpload, Panel' );
+
+            $(document).ready(function(){
+                JC.AjaxUpload.randomFrame = true;
+            });
         </script>
     </head>    
     <body>
 
         <dl class="defdl">
-            <dt> JC.AjaxUpload 示例</dt>
+            <dt> JC.AjaxUpload 示例, with hidden</dt>
             <dd>
-            <input type="button" class="js_compAjaxUpload" value="加载中"
-            />
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+
+                <input type="hidden" class="js_compAjaxUpload" value=""
+                cauStyle="g1"
+                cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
+                cauFileExt=".jpg, .jpeg, .png, .gif"
+                cauFileName="file"
+                />
+                
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+            </dd>
+        </dl>
+
+        <dl class="defdl">
+            <dt> JC.AjaxUpload 示例, with textbox</dt>
+            <dd>
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+
+                <input type="text" class="js_compAjaxUpload" value=""
+                cauStyle="g1"
+                cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
+                cauFileExt=".jpg, .jpeg, .png, .gif"
+                cauFileName="file"
+                cauLabelKey="name"
+                cauValueKey="url"
+                />
+
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
             </dd>
         </dl>
 

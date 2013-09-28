@@ -202,7 +202,6 @@
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 team
      * @date    2013-09-26
      */
-
     JC.AjaxUpload = AjaxUpload;
 
     function AjaxUpload( _selector ){
@@ -212,6 +211,8 @@
 
         this._model = new AjaxUpload.Model( _selector );
         this._view = new AjaxUpload.View( this._model );
+
+        JC.log( &#x27;AjaxUpload init&#x27;, new Date().getTime() );
 
         this._init();
     }
@@ -232,17 +233,49 @@
             return _selector.data( AjaxUpload.Model._instanceName );
         };
 
+    AjaxUpload.init =
+        function( _selector ){
+            _selector = $( _selector || document );
+            _selector.find(&#x27;input.js_compAjaxUpload, button.js_compAjaxUpload&#x27;).each( function(){
+                new AjaxUpload( $(this) )
+            });
+        };
+
+    AjaxUpload._FRAME_DIR = &quot;comps/AjaxUpload/frame/&quot;;
+    AjaxUpload.frameFileName = &#x27;default.html&#x27;;
+    AjaxUpload.randomFrame = false;
+    AjaxUpload.INS_COUNT = 1;
+
     AjaxUpload.prototype = {
         _beforeInit:
             function(){
+                var _p = this;
                 JC.log( &#x27;AjaxUpload _beforeInit&#x27;, new Date().getTime() );
+                
             }
         , _initHanlderEvent:
             function(){
+                var _p = this;
+                /**
+                 * iframe 加载完毕后触发的事件, 执行初始化操作
+                 */
+                _p.on( &#x27;FrameLoad&#x27;, function(_evt){
+                    var _w = _p._model.frame().prop( &#x27;contentWindow&#x27; );
+                    if( !( _w &amp;&amp; _w.initPage ) ) return;
+                    _w.initPage( _p, _p._model );
+                });
+                /**
+                 * 文件扩展名错误
+                 */
+                _p.on( &#x27;ERR_FILE_EXT&#x27;, function( _evt, _flPath ){
+                    _p._model.errFileExt( _flPath );
+                });
             }
         , _inited:
             function(){
+                var _p = this;
                 JC.log( &#x27;AjaxUpload _inited&#x27;, new Date().getTime() );
+                _p._view.loadFrame();
             }
     };
 
@@ -253,6 +286,60 @@
             function(){
                 JC.log( &#x27;AjaxUpload.Model.init:&#x27;, new Date().getTime() );
             }
+
+        , cauUrl: function(){ return this.attrProp( &#x27;cauUrl&#x27; ); }
+
+        , cauFileExt: function(){ return this.stringProp( &#x27;cauFileExt&#x27; ); }
+
+        , errFileExt: 
+            function( _flPath ){
+                var _p = this, _cb = _p.callbackProp( &#x27;cauFileExtErrCallback&#x27; );
+                if( _cb ){
+                    _cb.call( _p.selector(), _p.frame(), _p.cauFileExt(), _flPath );
+                }else{
+                    var _msg = &#x27;类型错误, 允许上传的文件类型: &#x27; + _p.cauFileExt();
+
+                    JC.Dialog 
+                        ? JC.Dialog.alert( _msg, 1 )
+                        : alert( _msg )
+                        ;
+                }
+            }
+
+        , framePath:
+            function(){
+                var _fl = this.attrProp(&#x27;cauFrameFileName&#x27;) || AjaxUpload.frameFileName
+                    , _r = printf( &#x27;{0}{1}{2}&#x27;, JC.PATH, AjaxUpload._FRAME_DIR, _fl )
+                    ;
+                this.randomFrame() 
+                    &amp;&amp; ( _r = addUrlParams( _r, { &#x27;rnd&#x27;: new Date().getTime() } ) )
+                    ;
+                return _r;
+            }
+        , randomFrame:
+            function(){
+                var _r = AjaxUpload.randomFrame;
+                this.selector().is( &#x27;[cauRandomFrame]&#x27; )
+                    &amp;&amp; ( _r = this.boolProp( &#x27;cauRandomFrame&#x27;) )
+                    ;
+                return _r;
+            }
+
+        , frame:
+            function(){
+                if( !this._iframe ){
+                    var _tpl = AjaxUpload.frameTpl;
+                    if( this.selector().is(&#x27;[cauFrameScriptTpl]&#x27;) ){
+                        _tpl = scriptContent( parentSelector( 
+                                                            this.selector()
+                                                            , this.selector().attr(&#x27;cauFrameScriptTpl&#x27;) 
+                                                            ) 
+                                );
+                    }
+                    this._iframe = $( AjaxUpload.frameTpl );
+                }
+                return this._iframe;
+            }
     };
 
     BaseMVC.buildView( AjaxUpload );
@@ -260,17 +347,39 @@
         init:
             function(){
                 JC.log( &#x27;AjaxUpload.View.init:&#x27;, new Date().getTime() );
+                var _p = this;
+
+                _p._model.selector().prop(&#x27;disabled&#x27;, true);
+            }
+
+        , loadFrame:
+            function(){
+                var _p = this, _path = _p._model.framePath()
+                    , _frame = _p._model.frame()
+                    ;
+
+                JC.log( _path );
+
+                _frame.attr( &#x27;src&#x27;, _path );
+                _frame.on( &#x27;load&#x27;, function(){
+                    $(_p).trigger( &#x27;TriggerEvent&#x27;, &#x27;FrameLoad&#x27; );
+                });
+
+                _p._model.selector().hide();
+
+                _p._model.selector().after( _frame );
             }
     };
 
     BaseMVC.build( AjaxUpload );
 
+    AjaxUpload.frameTpl =
+        &#x27;&lt;iframe src=&quot;about:blank&quot; frameborder=&quot;0&quot;&#x27;
+            + &#x27; style=&quot;width: 84px; height: 24px;cursor: pointer; vertical-align: middle;&quot;&gt;&lt;/iframe&gt;&#x27;
+            ;
+
     $(document).ready( function(){
-        $(&#x27;input.js_compAjaxUpload&#x27;).each( function(){
-            AjaxUpload.autoInit
-                &amp;&amp; new AjaxUpload( $(this) )
-                ;
-        });
+        AjaxUpload.autoInit &amp;&amp; AjaxUpload.init();
     });
 
 }(jQuery));
