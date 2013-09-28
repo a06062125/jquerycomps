@@ -35,6 +35,7 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
                 <li><a href="../classes/.window.html">.window</a></li>
+                <li><a href="../classes/JC.AjaxUpload.html">JC.AjaxUpload</a></li>
                 <li><a href="../classes/JC.alert.html">JC.alert</a></li>
                 <li><a href="../classes/JC.AutoChecked.html">JC.AutoChecked</a></li>
                 <li><a href="../classes/JC.AutoSelect.html">JC.AutoSelect</a></li>
@@ -183,7 +184,7 @@
      <dd>ajax 的提交URL, 如果没有显式声明, 将视为 form 的 action 属性</dd>
      <dt>formAjaxDone = function, default = system defined</dt>
      <dd>
-         AJAX 提交完成后的回调
+         AJAX 提交完成后的回调, <b>window 变量域</b>
          <br />如果没有显式声明, FormLogic将自行处理
 <xmp>function formAjaxDone( _json, _submitButton, _ins ){
    var _form = $(this);
@@ -207,6 +208,17 @@
      </dd>
      <dt>formSubmitConfirm = string</dt>
      <dd>提交表单时进行二次确认的提示信息</dt>
+     <dt>formConfirmCheckSelector = selector</dt>
+     <dd>提交表单时, 进行二次确认的条件判断</dt>
+     <dt>formConfirmCheckCallback = function</dt>
+     <dd>
+         提交表单时, 进行二次确认的条件判断, <b>window 变量域</b>
+<xmp>function formConfirmCheckCallback( _trigger, _evt, _ins ){
+   var _form = $(this);
+   JC.log( 'formConfirmCheckCallback', new Date().getTime() );
+   return _form.find('td.js_confirmCheck input[value=0]:checked').length;
+}</xmp>
+     </dt>
 </dl>
 <h2>reset button 可用的 html 属性</h2>
 <dl>
@@ -397,7 +409,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__beforeInit">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1133"><code>..&#x2F;lib.js:1133</code></a>
+        <a href="../files/.._lib.js.html#l1137"><code>..&#x2F;lib.js:1137</code></a>
         </p>
     </div>
     <div class="description">
@@ -417,7 +429,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__init">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1104"><code>..&#x2F;lib.js:1104</code></a>
+        <a href="../files/.._lib.js.html#l1108"><code>..&#x2F;lib.js:1108</code></a>
         </p>
     </div>
     <div class="description">
@@ -442,7 +454,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__inited">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1149"><code>..&#x2F;lib.js:1149</code></a>
+        <a href="../files/.._lib.js.html#l1153"><code>..&#x2F;lib.js:1153</code></a>
         </p>
     </div>
     <div class="description">
@@ -456,7 +468,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method__initHanlderEvent">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1141"><code>..&#x2F;lib.js:1141</code></a>
+        <a href="../files/.._lib.js.html#l1145"><code>..&#x2F;lib.js:1145</code></a>
         </p>
     </div>
     <div class="description">
@@ -479,7 +491,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l244"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:244</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l257"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:257</code></a>
         </p>
     </div>
     <div class="description">
@@ -519,7 +531,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l266"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:266</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l279"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:279</code></a>
         </p>
     </div>
     <div class="description">
@@ -562,7 +574,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method_on">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1163"><code>..&#x2F;lib.js:1163</code></a>
+        <a href="../files/.._lib.js.html#l1167"><code>..&#x2F;lib.js:1167</code></a>
         </p>
     </div>
     <div class="description">
@@ -601,7 +613,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method_selector">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1157"><code>..&#x2F;lib.js:1157</code></a>
+        <a href="../files/.._lib.js.html#l1161"><code>..&#x2F;lib.js:1161</code></a>
         </p>
     </div>
     <div class="description">
@@ -629,7 +641,7 @@
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/JC.BaseMVC.html#method_trigger">JC.BaseMVC</a>:
-        <a href="../files/.._lib.js.html#l1171"><code>..&#x2F;lib.js:1171</code></a>
+        <a href="../files/.._lib.js.html#l1175"><code>..&#x2F;lib.js:1175</code></a>
         </p>
     </div>
     <div class="description">
@@ -663,7 +675,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l287"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:287</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l300"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:300</code></a>
         </p>
     </div>
     <div class="description">
@@ -678,7 +690,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l295"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:295</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l308"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:308</code></a>
         </p>
     </div>
     <div class="description">
@@ -695,7 +707,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l313"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:313</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l326"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:326</code></a>
         </p>
     </div>
     <div class="description">
@@ -710,7 +722,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l305"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:305</code></a>
+        <a href="../files/.._bizs_FormLogic_FormLogic.js.html#l318"><code>..&#x2F;bizs&#x2F;FormLogic&#x2F;FormLogic.js:318</code></a>
         </p>
     </div>
     <div class="description">
