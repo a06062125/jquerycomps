@@ -80,11 +80,13 @@
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
 
                 <input type="hidden" class="js_compAjaxUpload" value=""
-                cauStyle="g1"
-                cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
-                cauFileExt=".jpg, .jpeg, .png, .gif"
-                cauFileName="file"
-                />
+                    cauStyle="g1"
+                    cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
+                    cauFileExt=".jpg, .jpeg, .png, .gif"
+                    cauFileName="file"
+                    cauLabelKey="name"
+                    cauValueKey="url"
+                    />
                 
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
             </dd>
@@ -96,13 +98,37 @@
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
 
                 <input type="text" class="js_compAjaxUpload" value=""
-                cauStyle="g1"
-                cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
-                cauFileExt=".jpg, .jpeg, .png, .gif"
-                cauFileName="file"
-                cauLabelKey="name"
-                cauValueKey="url"
-                />
+                    cauStyle="g1"
+                    cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
+                    cauFileExt=".jpg, .jpeg, .png, .gif"
+                    cauFileName="file"
+                    cauLabelKey="name"
+                    cauValueKey="url"
+                    cauStatusLabel="/label.js_statusLabel"
+                    />
+                <label class="js_statusLabel" style="display:none">正在上传...</label>
+
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+            </dd>
+        </dl>
+
+        <dl class="defdl">
+            <dt> JC.AjaxUpload 示例, with hidden && label</dt>
+            <dd>
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
+
+                <input type="hidden" class="js_compAjaxUpload" value=""
+                    cauStyle="g1"
+                    cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
+                    cauFileExt=".jpg, .jpeg, .png, .gif"
+                    cauFileName="file"
+                    cauLabelKey="name"
+                    cauValueKey="url"
+                    cauStatusLabel="/label.js_statusLabel"
+                    cauDisplayLabel="/label.js_fileLabel"
+                    />
+                <label class="js_fileLabel" style="display:none"></label>
+                <label class="js_statusLabel" style="display:none">正在上传...</label>
 
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
             </dd>

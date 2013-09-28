@@ -48,10 +48,16 @@
                                     _auIns.trigger( 'ERR_FILE_EXT', [ _flPath ] );
                                     return false;
                                 }
+
+                                setTimeout( function(){ _flBtn.prop('disabled', true); }, 2 );
+
+                                _auIns.trigger( 'BeforeUpload' );
+                                //return false;
                             }
                         , success:
                             function( _d ){
                                 //JC.log( _d );
+                                _flBtn.prop('disabled', false);
                                 _auIns.trigger( 'UploadDone', [ _d ] );
                             }
                     });

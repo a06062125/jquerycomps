@@ -92,17 +92,36 @@
                     _p._view.updateChange();
                 });
                 /**
-                 * 上传完毕
+                 * 上传前触发的事件
+                 */
+                _p.on( 'BeforeUpload', function( _d ){
+                    _p._view.beforeUpload();
+                });
+                /**
+                 * 上传完毕触发的事件
                  */
                 _p.on( 'UploadDone', function( _evt, _d ){
                     JC.log( _d );
                     var _err = false, _od = _d;
                     try{ _d = $.parseJSON( _d ); } catch( ex ){ _d = {}; _err = true; }
                     //_err = true;
+                    //_d.errorno = 1;
+                    //_d.errmsg = "test error"
                     if( _err ){
                         _p._view.errFatalError( _od );
-                    }else if( _d.errorno ){
+                        _p._view.updateChange();
                     }else{
+                        if( _d.errorno ){
+                            _p._view.errUpload( _d );
+                            _p._view.updateChange();
+                        }else{
+                            _p._view.updateChange( _d );
+                        }
+                        _p._model.cauUploadDoneCallback()
+                            && _p._model.cauUploadDoneCallback.call( _p, _d
+                                                                    , _p._model.selector()
+                                                                    , _p._model.frame() 
+                                                                    );
                     }
                 });
             }
@@ -127,6 +146,33 @@
         , cauFileExt: function(){ return this.stringProp( 'cauFileExt' ); }
 
         , cauFileName: function(){ return this.attrProp('cauFileName') || 'file'; }
+
+        , cauLabelKey: function(){ return this.attrProp( 'cauLabelKey' ) || 'name'; }
+        , cauValueKey: function(){ return this.attrProp( 'cauValueKey' ) || 'url'; }
+
+        , cauStatusLabel: function(){ return this.selectorProp( 'cauStatusLabel' ); }
+        , cauDisplayLabel: function(){ return this.selectorProp( 'cauDisplayLabel' ); }
+
+        , cauUploadDoneCallback:
+            function(){
+                return this.callbackProp( 'cauUploadDoneCallback' );
+            }
+
+        , cauValue:
+            function( _d ){
+                var _p = this, _displayLabel = _p.cauDisplayLabel(), _label = ''
+                if( typeof _d != 'undefined' ){
+                    var _value = _d.data[ _p.cauValueKey() ];
+                    _label = _d.data[ _p.cauLabelKey() ];
+                    _p.selector().val( _value )
+
+                }
+                _displayLabel 
+                    && _displayLabel.length
+                    && _displayLabel.html( _label ) 
+                    ;
+                return _p.selector().val();
+            }
 
         , framePath:
             function(){
@@ -192,18 +238,66 @@
                 _p._model.selector().before( _frame );
             }
 
-        , updateChange:
+        , beforeUpload:
             function(){
-                var _p = this;
+                var _p = this, _statusLabel = _p._model.cauStatusLabel();
+                JC.log( 'AjaxUpload view#beforeUpload', new Date().getTime() );
 
-                JC.log( 'AjaxUpload view#updateChange', new Date().getTime() );
+                this.updateChange( null, true );
+
+                if( _statusLabel && _statusLabel.length ){
+                    _p._model.selector().hide();
+                    _p._model.frame().hide();
+                    _statusLabel.show();
+                }
+            }
+
+        , updateChange:
+            function( _d, _noLabelAction ){
+                var _p = this
+                    , _statusLabel = _p._model.cauStatusLabel()
+                    , _displayLabel = _p._model.cauDisplayLabel()
+                    ;
+                //JC.log( 'AjaxUpload view#updateChange', new Date().getTime() );
+
+                if( _statusLabel && _statusLabel.length && !_noLabelAction ){
+                    _p._model.selector().show();
+                    _p._model.frame().show();
+                    _statusLabel.hide();
+                }
+
+                _p._model.selector().val( '' );
+                if( _d && ( 'errorno' in _d ) && !_d.errorno ){
+                    _p._model.cauValue( _d );
+
+                    if( _displayLabel && _displayLabel.length ){
+                        _p._model.selector().hide();
+                        _p._model.frame().hide();
+                        _displayLabel.show();
+                        return;
+                    }
+                }
+            }
+
+        , errUpload:
+            function( _d ){
+                var _p = this, _cb = _p._model.callbackProp( 'cauUploadErrCallback' );
+                if( _cb ){
+                    _cb.call( _p._model.selector(), _d, _p._model.frame() );
+                }else{
+                    var _msg = _d && _d.errmsg ? _d.errmsg : '上传失败, 请重试!';
+                    JC.Dialog 
+                        ? JC.Dialog.alert( _msg, 1 )
+                        : alert( _msg )
+                        ;
+                }
             }
 
         , errFileExt: 
             function( _flPath ){
-                var _p = this, _cb = _p.callbackProp( 'cauFileExtErrCallback' );
+                var _p = this, _cb = _p._model.callbackProp( 'cauFileExtErrCallback' );
                 if( _cb ){
-                    _cb.call( _p.selector(), _p._model.cauFileExt(), _flPath, _p.frame() );
+                    _cb.call( _p._model.selector(), _p._model.cauFileExt(), _flPath, _p._model.frame() );
                 }else{
                     var _msg = printf( '类型错误, 允许上传的文件类型: {0} <p class="auExtErr" style="color:red">{1}</p>'
                                         , _p._model.cauFileExt(), _flPath );
@@ -216,9 +310,9 @@
 
         , errFatalError: 
             function( _d ){
-                var _p = this, _cb = _p.callbackProp( 'cauFatalErrorCallback' );
+                var _p = this, _cb = _p._model.callbackProp( 'cauFatalErrorCallback' );
                 if( _cb ){
-                    _cb.call( _p.selector(), _d, _p.frame() );
+                    _cb.call( _p._model.selector(), _d, _p._model.frame() );
                 }else{
                     var _msg = printf( '服务端错误, 无法解析返回数据: <p class="auExtErr" style="color:red">{0}</p>'
                                         , _d );
@@ -234,8 +328,10 @@
     BaseMVC.build( AjaxUpload );
 
     AjaxUpload.frameTpl =
-        '<iframe src="about:blank" frameborder="0" class="AUIframe"'
-            + ' style="width: 84px; height: 24px;cursor: pointer; vertical-align: middle;"></iframe>'
+        printf(
+                '<iframe src="about:blank" frameborder="0" class="AUIframe" style="{0}"></iframe>'
+                , 'width: 84px; height: 24px;cursor: pointer; vertical-align: middle;'
+              );
             ;
 
     $(document).ready( function(){
