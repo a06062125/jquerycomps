@@ -171,6 +171,28 @@
             </dd>
         </dl>
 
+        <dl class="defdl">
+            <dt> JC.AjaxUpload 示例, with hidden && label, 真实上传实例, 仅对 host = git.me.btbtd.org 生效</dt>
+            <dd>
+                <button type="button" class="AUBtn AUBtn-g1">placehoder test</button>
+
+                <input type="hidden" class="js_compAjaxUpload" value=""
+                    cauStyle="w1"
+                    cauButtonText="上传资质文件"
+                    cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/upload.php"
+                    cauFileExt=".jpg, .jpeg, .png, .gif"
+                    cauFileName="file"
+                    cauLabelKey="name"
+                    cauValueKey="url"
+                    cauStatusLabel="/label.js_statusLabel"
+                    cauDisplayLabel="/label.js_fileLabel"
+                    />
+                <label class="js_fileLabel" style="display:none"></label>
+                <label class="js_statusLabel" style="display:none">正在上传...</label>
+
+                <button type="button" class="AUBtn AUBtn-g1 js_updateData">JC.AjaxUpload#update for clear</button>
+            </dd>
+        </dl>
 
     </body>
 </html>

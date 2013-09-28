@@ -120,9 +120,10 @@
                             _p._view.updateChange( _d );
                         }
                         _p._model.cauUploadDoneCallback()
-                            && _p._model.cauUploadDoneCallback.call( _p, _d
-                                                                    , _p._model.selector()
-                                                                    , _p._model.frame() 
+                            && _p._model.cauUploadDoneCallback.call(    _p
+                                                                        , _d
+                                                                        , _p._model.selector()
+                                                                        , _p._model.frame() 
                                                                     );
                     }
                 });
