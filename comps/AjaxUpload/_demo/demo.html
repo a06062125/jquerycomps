@@ -83,6 +83,11 @@
                     ;
                 _ins.update( _d );
             });
+
+            function cauUploadDoneCallback( _json, _selector, _frame ){
+                var _ins = this;
+                //alert( _json ); //object object
+            }
         </script>
     </head>    
     <body>
@@ -96,8 +101,8 @@
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
-                    cauLabelKey="name"
                     cauValueKey="url"
+                    cauLabelKey="name"
                     />
                 
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
@@ -113,11 +118,11 @@
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
-                    cauLabelKey="name"
                     cauValueKey="url"
+                    cauLabelKey="name"
                     cauStatusLabel="/label.js_statusLabel"
                     />
-                <label class="js_statusLabel" style="display:none">正在上传...</label>
+                <label class="js_statusLabel" style="display:none">文件上传中, 请稍候...</label>
 
                 <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
             </dd>
@@ -126,23 +131,23 @@
         <dl class="defdl">
             <dt> JC.AjaxUpload 示例, with hidden && label</dt>
             <dd>
-                <button type="button" class="AUBtn AUBtn-g1">placehoder test</button>
+                <button type="button" class="AUBtn AUBtn-w1">placehoder test</button>
 
                 <input type="hidden" class="js_compAjaxUpload" value=""
-                    cauStyle="w1"
+                    cauStyle="g1"
                     cauButtonText="上传资质文件"
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
-                    cauLabelKey="name"
                     cauValueKey="url"
+                    cauLabelKey="name"
                     cauStatusLabel="/label.js_statusLabel"
                     cauDisplayLabel="/label.js_fileLabel"
                     />
                 <label class="js_fileLabel" style="display:none"></label>
-                <label class="js_statusLabel" style="display:none">正在上传...</label>
+                <label class="js_statusLabel" style="display:none">文件上传中, 请稍候...</label>
 
-                <button type="button" class="AUBtn AUBtn-g1 js_updateData">JC.AjaxUpload#update for clear</button>
+                <button type="button" class="AUBtn AUBtn-w1 js_updateData">JC.AjaxUpload#update for clear</button>
             </dd>
         </dl>
 
@@ -157,17 +162,18 @@
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
-                    cauLabelKey="name"
                     cauValueKey="url"
+                    cauLabelKey="name"
                     cauStatusLabel="/label.js_statusLabel"
                     cauDisplayLabel="/label.js_fileLabel"
                     />
                 <label class="js_fileLabel" style="display:none"></label>
-                <label class="js_statusLabel" style="display:none">正在上传...</label>
+                <label class="js_statusLabel" style="display:none">文件上传中, 请稍候...</label>
 
                 <button type="button" class="AUBtn AUBtn-g1 js_updateData" newdata="true" >
                     JC.AjaxUpload#update for new data
                 </button>
+                <button type="button" class="AUBtn AUBtn-g1 js_updateData">JC.AjaxUpload#update for clear</button>
             </dd>
         </dl>
 
@@ -182,13 +188,14 @@
                     cauUrl="/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/upload.php"
                     cauFileExt=".jpg, .jpeg, .png, .gif"
                     cauFileName="file"
-                    cauLabelKey="name"
                     cauValueKey="url"
+                    cauLabelKey="name"
                     cauStatusLabel="/label.js_statusLabel"
                     cauDisplayLabel="/label.js_fileLabel"
+                    cauUploadDoneCallback="cauUploadDoneCallback"
                     />
                 <label class="js_fileLabel" style="display:none"></label>
-                <label class="js_statusLabel" style="display:none">正在上传...</label>
+                <label class="js_statusLabel" style="display:none">文件上传中, 请稍候...</label>
 
                 <button type="button" class="AUBtn AUBtn-g1 js_updateData">JC.AjaxUpload#update for clear</button>
             </dd>

@@ -32,24 +32,23 @@
         <link href='../res/default/style.css' rel='stylesheet' />
         <script type='text/javascript' src="../../../lib.js"></script>
         <script>
+            JC.debug = true;
             
             var _pw = window.parent
                 , _fm
-                , _iframe
                 , _flBtn
                 , _disBtn
                 , _auIns
                 ;
 
             if( _pw && _pw != this ){
-                JC.debug = _pw.JC.debug;
-
                 JC.PATH = _pw.JC.PATH;
                 window.name = 'AJAX_UPLOAD_WIN_' + ( _pw.JC.AjaxUpload._INS_COUNT++ )
 
+                JC.use( 'plugins.jquery.form' );
+
                 $(document).ready( function(){
                     _fm = $('form');
-                    _iframe = $('#js_frame');
                     _flBtn = _fm.find('input.js_file');
                     _disBtn = _fm.find('button.js_btn');
 
@@ -57,29 +56,30 @@
                         $(this).blur();
                     });
 
-                    _iframe.on( 'load', function( _evt ){
-                        var _w = _iframe.prop('contentWindow')
-                            , _wb = _w.document.body
-                            , _d = $.trim( _wb.innerHTML )
-                            ;
+                    _fm.ajaxForm({
+                        beforeSubmit:
+                            function(){
+                                var _flPath = _flBtn.val().trim();
+                                if( !_flPath ) return false;
 
-                        _flBtn.prop('disabled', false);
-                        _auIns.trigger( 'UploadDone', [ _d ] );
-                    });
+                                if( !validFileExt( _flPath, _flBtn.attr('fileExt') ) ) {
+                                    _auIns.trigger( 'ERR_FILE_EXT', [ _flPath ] );
+                                    return false;
+                                }
 
-                    _fm.on( 'submit', function( _evt ){
-                        var _flPath = _flBtn.val().trim();
-                        if( !_flPath ) return prevent( _evt );
+                                setTimeout( function(){ _flBtn.prop('disabled', true); }, 2 );
 
-                        if( !validFileExt( _flPath, _flBtn.attr('fileExt') ) ) {
-                            _auIns.trigger( 'ERR_FILE_EXT', [ _flPath ] );
-                            return prevent( _evt );
-                        }
-
-                        setTimeout( function(){ _flBtn.prop('disabled', true); }, 2 );
-
-                        _auIns.trigger( 'BeforeUpload' );
-
+                                _auIns.trigger( 'BeforeUpload' );
+                                //return false;
+                            }
+                        , success:
+                            function( _d ){
+                                //JC.log( _d );
+                                alert( _d );
+                                return;
+                                _flBtn.prop('disabled', false);
+                                _auIns.trigger( 'UploadDone', [ _d ] );
+                            }
                     });
 
                     _disBtn.on('click', function( _evt ){
@@ -163,20 +163,14 @@
 
                 return _r;
             }
-
-            function prevent( _evt ){
-                _evt && _evt.preventDefault();
-                return false;
-            }
         </script>
     </head>    
     <body>
-        <form action="?test" method="POST" enctype="multipart/form-data" style="display:inline" target="UPLOAD_IFRAME">
+        <form action="?test" method="POST" enctype="multipart/form-data" style="display:inline">
             <button type="button" class="btn AUBtn AUBtn-g1 js_btn">上传文件</button>
             <input type="file" name="file" class="file js_file" style="cursor:pointer!important;" />
             <input type="submit" class="js_submit" value="submit" style="display:none" />
         </form>
-        <iframe src="about:blank" name="UPLOAD_IFRAME" id="js_frame" style="display:none"></iframe>
     </body>
 </html>
 

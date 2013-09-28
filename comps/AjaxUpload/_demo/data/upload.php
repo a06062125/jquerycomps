@@ -2,6 +2,8 @@
 
 header("Content-type: text/html; charset=utf-8");
 //header("Content-type: text/plain; charset=utf-8");
+//
+//var_dump( $_FILES );
 
 $fileKeyName = 'file';
 

@@ -184,15 +184,57 @@
      * &lt;p&gt;
      *      &lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
      *      | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.AjaxUpload.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
-     *      | &lt;a href=&#x27;../../comps/AjaxUpload/res&#x27; target=&#x27;_blank&#x27;&gt;avaliable style&lt;/a&gt;
      *      | &lt;a href=&#x27;../../comps/AjaxUpload/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;
      * &lt;/p&gt;
      * &lt;p&gt;
      *      &lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;
-     *      &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: plugins.jquery.form
      * &lt;/p&gt;
      * &lt;h2&gt;可用的 html attribute&lt;/h2&gt;
      * &lt;dl&gt;
+     *      &lt;dt&gt;cauStyle = string, default = g1&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          按钮显示的样式, &lt;a href=&#x27;../../comps/AjaxUpload/res/default/style.html&#x27; target=&#x27;_blank&#x27;&gt;可选样式&lt;/a&gt;:
+     *          &lt;dl&gt;
+     *              &lt;dt&gt;绿色按钮&lt;/dt&gt;
+     *              &lt;dd&gt;g1, g2, g3&lt;/dd&gt;
+     *
+     *              &lt;dt&gt;白色/银色按钮&lt;/dt&gt;
+     *              &lt;dd&gt;w1, w2, w3&lt;/dd&gt;
+     *          &lt;/dl&gt;
+     *      &lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauButtonText = string, default = 上传文件&lt;/dt&gt;
+     *      &lt;dd&gt;定义上传按钮的显示文本&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauUrl = url, require&lt;/dt&gt;
+     *      &lt;dd&gt;上传文件的接口地址&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauFileExt = file ext, optional&lt;/dt&gt;
+     *      &lt;dd&gt;允许上传的文件扩展名, 例: &quot;.jpg, .jpeg, .png, .gif&quot;&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauFileName = string, default = file&lt;/dt&gt;
+     *      &lt;dd&gt;上传文件的 name 属性&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauValueKey = string, default = url&lt;/dt&gt;
+     *      &lt;dd&gt;返回数据用于赋值给 hidden/textbox 的字段&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauLabelKey = string, default = name&lt;/dt&gt;
+     *      &lt;dd&gt;返回数据用于显示的字段&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauStatusLabel = selector, optional&lt;/dt&gt;
+     *      &lt;dd&gt;开始上传时, 用于显示状态的 selector&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauDisplayLabel = selector, optional&lt;/dt&gt;
+     *      &lt;dd&gt;上传完毕后, 用于显示文件名的 selector&lt;/dd&gt;
+     *
+     *      &lt;dt&gt;cauUploadDoneCallback = function&lt;/dt&gt;
+     *      &lt;dd&gt;
+     *          文件上传完毕时, 触发的回调
+&lt;xmp&gt;function cauUploadDoneCallback( _json, _selector, _frame ){
+    var _ins = this;
+    //alert( _json ); //object object
+}&lt;/xmp&gt;
+     *      &lt;/dd&gt;
      * &lt;/dl&gt;
      * @namespace JC
      * @class AjaxUpload
@@ -201,11 +243,44 @@
      * @version dev 0.1
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 team
      * @date    2013-09-26
+     * @example
+            &lt;div&gt;
+                &lt;input type=&quot;hidden&quot; class=&quot;js_compAjaxUpload&quot; value=&quot;&quot;
+                    cauStyle=&quot;w1&quot;
+                    cauButtonText=&quot;上传资质文件&quot;
+                    cauUrl=&quot;/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/handler.php&quot;
+                    cauFileExt=&quot;.jpg, .jpeg, .png, .gif&quot;
+                    cauFileName=&quot;file&quot;
+                    cauLabelKey=&quot;name&quot;
+                    cauValueKey=&quot;url&quot;
+                    cauStatusLabel=&quot;/label.js_statusLabel&quot;
+                    cauDisplayLabel=&quot;/label.js_fileLabel&quot;
+                    /&gt;
+                &lt;label class=&quot;js_fileLabel&quot; style=&quot;display:none&quot;&gt;&lt;/label&gt;
+                &lt;label class=&quot;js_statusLabel&quot; style=&quot;display:none&quot;&gt;文件上传中, 请稍候...&lt;/label&gt;
+            &lt;/div&gt;
+
+            POST 数据:
+                ------WebKitFormBoundaryb1Xd1FMBhVgBoEKD
+                Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;disk.jpg&quot;
+                Content-Type: image/jpeg
+
+            返回数据:
+                {
+                    &quot;errorno&quot;: 0, 
+                    &quot;data&quot;:
+                    {
+                        &quot;url&quot;: &quot;/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/images/test.jpg&quot;, 
+                        &quot;name&quot;: &quot;test.jpg&quot;
+                    }, 
+                    &quot;errmsg&quot;: &quot;&quot;
+                }
      */
     JC.AjaxUpload = AjaxUpload;
 
     function AjaxUpload( _selector ){
         if( AjaxUpload.getInstance( _selector ) ) return AjaxUpload.getInstance( _selector );
+        if( !_selector.hasClass(&#x27;js_compAjaxUpload&#x27; ) ) return AjaxUpload.init( _selector );
         AjaxUpload.getInstance( _selector, this );
         //JC.log( AjaxUpload.Model._instanceName );
 
@@ -220,8 +295,8 @@
      * 获取或设置 AjaxUpload 的实例
      * @method  getInstance
      * @param   {selector}      _selector
-     * @static
      * @return  {AjaxUploadInstance}
+     * @static
      */
     AjaxUpload.getInstance =
         function( _selector, _setter ){
@@ -232,19 +307,60 @@
 
             return _selector.data( AjaxUpload.Model._instanceName );
         };
-
+    /**
+     * 初始化可识别的组件
+     * @method  init
+     * @param   {selector}      _selector
+     * @return  {array}         instance array
+     * @static
+     */
     AjaxUpload.init =
         function( _selector ){
+            var _r = [];
             _selector = $( _selector || document );
-            _selector.find(&#x27;input.js_compAjaxUpload, button.js_compAjaxUpload&#x27;).each( function(){
-                new AjaxUpload( $(this) )
-            });
+            if( _selector.hasClass( &#x27;js_compAjaxUpload&#x27; ) ){
+                    _r.push( new AjaxUpload( _selector ) );
+            }else{
+                _selector.find(&#x27;input.js_compAjaxUpload, button.js_compAjaxUpload&#x27;).each( function(){
+                    _r.push( new AjaxUpload( $(this) ) );
+                });
+            }
+            return _r;
         };
-
-    AjaxUpload._FRAME_DIR = &quot;comps/AjaxUpload/frame/&quot;;
+    /**
+     * frame 文件名
+     * @property    frameFileName
+     * @type        string
+     * @default     &quot;default.html&quot;
+     * @static
+     */
     AjaxUpload.frameFileName = &#x27;default.html&#x27;;
+    /**
+     * 载入 frame 文件时, 是否添加随机数防止缓存
+     * @property    randomFrame
+     * @type        bool
+     * @default     false
+     * @static
+     */
     AjaxUpload.randomFrame = false;
-    AjaxUpload.INS_COUNT = 1;
+    /**
+     * frame 文件夹位于库的位置
+     * @property    _FRAME_DIR
+     * @type        string
+     * @default     &quot;comps/AjaxUpload/frame/&quot;
+     * @static
+     * @private
+     */
+    AjaxUpload._FRAME_DIR = &quot;comps/AjaxUpload/frame/&quot;;
+    /**
+     * 初始化 frame 时递增的统计变量
+     * @property    _INS_COUNT
+     * @type        int
+     * @default     1
+     * @protected
+     * @static
+     */
+    AjaxUpload._INS_COUNT = 1;
 
     AjaxUpload.prototype = {
         _beforeInit:
@@ -283,7 +399,9 @@
                 _p.on( &#x27;UploadDone&#x27;, function( _evt, _d ){
                     JC.log( _d );
                     var _err = false, _od = _d;
-                    try{ _d = $.parseJSON( _d ); } catch( ex ){ _d = {}; _err = true; }
+                    try{ 
+                        typeof _d == &#x27;string&#x27; &amp;&amp; ( _d = $.parseJSON( _d ) );
+                    } catch( ex ){ _d = {}; _err = true; }
                     //_err = true;
                     //_d.errorno = 1;
                     //_d.errmsg = &quot;test error&quot;
@@ -298,11 +416,19 @@
                             _p._view.updateChange( _d );
                         }
                         _p._model.cauUploadDoneCallback()
-                            &amp;&amp; _p._model.cauUploadDoneCallback.call( _p, _d
-                                                                    , _p._model.selector()
-                                                                    , _p._model.frame() 
+                            &amp;&amp; _p._model.cauUploadDoneCallback().call(    _p
+                                                                        , _d
+                                                                        , _p._model.selector()
+                                                                        , _p._model.frame() 
                                                                     );
                     }
+                });
+                /**
+                 * frame 的按钮样式改变后触发的事件
+                 * 需要更新 frame 的宽高
+                 */
+                _p.on( &#x27;AUUpdateLayout&#x27;, function( _evt, _width, _height, _btn ){
+                    _p._view.updateLayout( _width, _height, _btn );
                 });
             }
         , _inited:
@@ -310,6 +436,32 @@
                 var _p = this;
                 JC.log( &#x27;AjaxUpload _inited&#x27;, new Date().getTime() );
                 _p._view.loadFrame();
+                AjaxUpload.getInstance( _p._model.frame(), _p );
+
+                _p.trigger( &#x27;AUInited&#x27; );
+            }
+        /**
+         * 手动更新数据
+         * @method  update
+         * @param   {object}    _d
+         * @return  AjaxUploadInstance
+         * @example
+                JC.AjaxUpload.getInstance( _selector ).update( {
+                    &quot;errorno&quot;: 0, 
+                    &quot;data&quot;:
+                    {
+                        &quot;url&quot;: &quot;/ignore/JQueryComps_dev/comps/AjaxUpload/_demo/data/images/test.jpg&quot;, 
+                        &quot;name&quot;: &quot;test.jpg&quot;
+                    }, 
+                    &quot;errmsg&quot;: &quot;&quot;
+                });
+         */
+        , update:
+            function( _d ){
+                var _p = this;
+                $( _p._view ).trigger(&#x27;UpdateDefaultStatus&#x27;)
+                _d &amp;&amp; _p.trigger(&#x27;UploadDone&#x27;, [ _d ] );
+                return this;
             }
     };
 
@@ -321,18 +473,21 @@
                 JC.log( &#x27;AjaxUpload.Model.init:&#x27;, new Date().getTime() );
             }
 
-        , cauStyle: function(){ return this.attrProp(&#x27;cauStyle&#x27;) || &#x27;g1&#x27;; }
+        , cauStyle: function(){ return this.attrProp(&#x27;cauStyle&#x27;); }
+        , cauButtonText: function(){ return this.attrProp(&#x27;cauButtonText&#x27;); }
+
         , cauUrl: function(){ return this.attrProp( &#x27;cauUrl&#x27; ); }
 
         , cauFileExt: function(){ return this.stringProp( &#x27;cauFileExt&#x27; ); }
 
-        , cauFileName: function(){ return this.attrProp(&#x27;cauFileName&#x27;) || &#x27;file&#x27;; }
+        , cauFileName: function(){ return this.attrProp(&#x27;cauFileName&#x27;); }
 
         , cauLabelKey: function(){ return this.attrProp( &#x27;cauLabelKey&#x27; ) || &#x27;name&#x27;; }
         , cauValueKey: function(){ return this.attrProp( &#x27;cauValueKey&#x27; ) || &#x27;url&#x27;; }
 
         , cauStatusLabel: function(){ return this.selectorProp( &#x27;cauStatusLabel&#x27; ); }
         , cauDisplayLabel: function(){ return this.selectorProp( &#x27;cauDisplayLabel&#x27; ); }
+        , cauDisplayLabelCallback: function(){ return this.callbackProp( &#x27;cauDisplayLabelCallback&#x27; ); }
 
         , cauUploadDoneCallback:
             function(){
@@ -346,8 +501,17 @@
                     var _value = _d.data[ _p.cauValueKey() ];
                     _label = _d.data[ _p.cauLabelKey() ];
                     _p.selector().val( _value )
-
                 }
+
+                if( _p.cauDisplayLabelCallback() ){
+                    _label = _p.cauDisplayLabelCallback().call( _p.selector(), _d );
+                //}else if( _label != _value ){
+                }else{
+                    _label = printf( &#x27;&lt;a href=&quot;{0}&quot; class=&quot;green js_auLink&quot; target=&quot;_blank&quot;&gt;{1}&lt;/a&gt;&#x27;, _value, _label);
+                }
+
+                //$( _p ).trigger( &#x27;AUUpdateDisplayLabel&#x27;, [ _label ] );
+
                 _displayLabel 
                     &amp;&amp; _displayLabel.length
                     &amp;&amp; _displayLabel.html( _label ) 
@@ -397,8 +561,19 @@
             function(){
                 JC.log( &#x27;AjaxUpload.View.init:&#x27;, new Date().getTime() );
                 var _p = this;
+                /**
+                 * 恢复默认状态
+                 */
+                $( _p ).on( &#x27;UpdateDefaultStatus&#x27;, function( _evt ){
+                    var _statusLabel = _p._model.cauStatusLabel()
+                        , _displayLabel = _p._model.cauDisplayLabel()
+                    ;
 
-                //_p._model.selector().prop(&#x27;disabled&#x27;, true);
+                    _p.updateChange();
+
+                    _statusLabel &amp;&amp; _statusLabel.length &amp;&amp; _statusLabel.hide();
+                    _displayLabel &amp;&amp; _displayLabel.length &amp;&amp; _displayLabel.hide();
+                });
             }
 
         , loadFrame:
@@ -446,6 +621,9 @@
                     _p._model.frame().show();
                     _statusLabel.hide();
                 }
+                if( _displayLabel &amp;&amp; _displayLabel.length ){
+                    _displayLabel.html( &#x27;&#x27; );
+                }
 
                 _p._model.selector().val( &#x27;&#x27; );
                 if( _d &amp;&amp; ( &#x27;errorno&#x27; in _d ) &amp;&amp; !_d.errorno ){
@@ -458,6 +636,17 @@
                         return;
                     }
                 }
+            }
+
+        , updateLayout:
+            function( _width, _height, _btn ){
+                if( !( _width &amp;&amp; _height ) ) return;
+                var _p = this;
+                JC.log( &#x27;AjaxUpload @event UpdateLayout&#x27;, new Date().getTime(), _width, _height );
+                _p._model.frame().css({
+                    &#x27;width&#x27;: _width + &#x27;px&#x27;
+                    , &#x27;height&#x27;: _height + &#x27;px&#x27;
+                });
             }
 
         , errUpload:

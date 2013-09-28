@@ -824,7 +824,7 @@ function funcName(_func){
  * &lt;dl&gt;
  *      &lt;dt&gt;可识别的组件&lt;/dt&gt;
  *      &lt;dd&gt;
- *          JC.AutoSelect, JC.Calendar, JC.AutoChecked
+ *          JC.AutoSelect, JC.Calendar, JC.AutoChecked, JC.AjaxUpload
  *          &lt;br /&gt;Bizs.DisableLogic, Bizs.FormLogic
  *      &lt;/dd&gt;
  * &lt;/d&gt;
@@ -848,6 +848,10 @@ function jcAutoInitComps( _selector ){
      * 全选反选
      */
     JC.AutoChecked &amp;&amp; JC.AutoChecked( _selector );
+    /**
+     * Ajax 上传
+     */
+    JC.AjaxUpload &amp;&amp; JC.AjaxUpload.init( _selector );
 
     if( !window.Bizs ) return;
     /**
