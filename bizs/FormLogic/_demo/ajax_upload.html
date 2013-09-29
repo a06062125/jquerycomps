@@ -64,7 +64,7 @@
                     <form action="./data/upload.php" method="POST"
                             class="js_bizsFormLogic"
                             formType="ajax"
-                            formAjaxDoneAction="?donetype=system"
+                            formAjaxDoneAction="?upload=normal1"
                         >
                         <dl>
                             <dd>
@@ -114,9 +114,10 @@
                 <dl>
                     <iframe src="about:blank" id="POST_IFRAME_1" name="POST_IFRAME_1" style="display:none;"></iframe>
                     <form action="./data/upload.php" method="POST"
+                            target="POST_IFRAME_1"
                             class="js_bizsFormLogic"
                             formType="ajax"
-                            target="POST_IFRAME_1"
+                            formAjaxDoneAction="?upload=normal2"
                         >
                         <dl>
                             <dd>
@@ -168,6 +169,7 @@
                     <form action="./data/upload.php" method="POST"
                             class="js_bizsFormLogic"
                             formType="ajax"
+                            formAjaxDoneAction="?upload=multipart"
                         >
                         <dl>
                             <dd>
