@@ -1,4 +1,5 @@
 //TODO: 表单重置时, 不要触发 select 的 change 事件
+//TODO: AJAX 提交改为 iframe 提交, 避免上传文件的兼容问题
 ;(function($){
     /**
      * <h2>提交表单控制逻辑</h2>
