@@ -257,6 +257,9 @@
      * @param   {string}    _msg        提示内容
      * @param   {int}       _status     显示弹框的状态, 0: 成功, 1: 错误, 2: 警告
      * @param   {function}  _cb         弹框自动关闭后的的回调, &lt;b&gt;如果 _cb 为 int 值, 将视为 _closeMs&lt;/b&gt;
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
      * @param   {int}       _closeMs    自动关闭的间隔, 单位毫秒, 默认 2000
      * @return  &lt;a href=&#x27;JC.Panel.html&#x27;&gt;JC.Panel&lt;/a&gt;
      */
@@ -298,6 +301,9 @@
      * @param   {string}    _msg        提示内容
      * @param   {int}       _status     显示弹框的状态, 0: 成功, 1: 错误, 2: 警告
      * @param   {function}  _cb         点击弹框确定按钮的回调
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
      * @return  &lt;a href=&#x27;JC.Panel.html&#x27;&gt;JC.Panel&lt;/a&gt;
      */
     JC.Dialog.alert = 
@@ -336,10 +342,17 @@
      * @param   {string}    _msg        提示内容
      * @param   {int}       _status     显示弹框的状态, 0: 成功, 1: 错误, 2: 警告
      * @param   {function}  _cb         点击弹框确定按钮的回调
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
+     * @param   {function}  _cancelCb   点击弹框取消按钮的回调
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
      * @return  &lt;a href=&#x27;JC.Panel.html&#x27;&gt;JC.Panel&lt;/a&gt;
      */
     JC.Dialog.confirm = 
-        function(_msg, _status, _cb){
+        function(_msg, _status, _cb, _cancelCb ){
             if( !_msg ) return;
             var _tpl = ( JC.Dialog.confirm.tpl || _logic.tpls.confirm )
                         .replace(/\{msg\}/g, _msg)
@@ -347,6 +360,7 @@
             var _ins = JC.Dialog(_tpl);
             _logic.fixWidth( _msg, _ins );
             _cb &amp;&amp; _ins.on(&#x27;confirm&#x27;, _cb);
+            _cancelCb &amp;&amp; _ins.on( &#x27;cancel&#x27;, _cancelCb );
 
             return _ins;
         };

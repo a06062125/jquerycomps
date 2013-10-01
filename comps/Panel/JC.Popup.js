@@ -16,6 +16,9 @@
      * @param   {selector}  _popupSrc   触发弹框的事件源 selector, 不为空显示 缓动效果, 为空居中显示
      * @param   {int}       _status     显示弹框的状态, 0: 成功, 1: 错误, 2: 警告
      * @param   {function}  _cb         弹框自动关闭后的的回调, <b>如果 _cb 为 int 值, 将视为 _closeMs</b>
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
      * @param   {int}       _closeMs    自动关闭的间隔, 单位毫秒, 默认 2000
      * @return  <a href='JC.Panel.html'>JC.Panel</a>
      */
@@ -60,6 +63,9 @@
      * @param   {selector}  _popupSrc   触发弹框的事件源 selector, 不为空显示 缓动效果, 为空居中显示
      * @param   {int}       _status     显示弹框的状态, 0: 成功, 1: 错误, 2: 警告
      * @param   {function}  _cb         点击弹框确定按钮的回调
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
      * @return  <a href='JC.Panel.html'>JC.Panel</a>
      */
     JC.alert = 
@@ -96,15 +102,24 @@
      * @param   {selector}  _popupSrc   触发弹框的事件源 selector, 不为空显示 缓动效果, 为空居中显示
      * @param   {int}       _status     显示弹框的状态, 0: 成功, 1: 错误, 2: 警告
      * @param   {function}  _cb         点击弹框确定按钮的回调
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
+     * @param   {function}  _cancelCb   点击弹框取消按钮的回调
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
      * @return  <a href='JC.Panel.html'>JC.Panel</a>
      */
     JC.confirm = 
-        function( _msg, _popupSrc, _status, _cb ){
+        function( _msg, _popupSrc, _status, _cb, _cancelCb ){
             if( typeof _popupSrc == 'number' ){
                 _status = _popupSrc;
                 _popupSrc = null;
             }
-            return _logic.popup( JC.confirm.tpl || _logic.tpls.confirm, _msg, _popupSrc, _status, _cb );
+            var _ins = _logic.popup( JC.confirm.tpl || _logic.tpls.confirm, _msg, _popupSrc, _status, _cb );
+            _ins && _cancelCb && _ins.on( 'cancel', _cancelCb );
+            return _ins;
         };
     /**
      * 自定义 JC.confirm 的显示模板

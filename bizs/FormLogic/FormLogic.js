@@ -1,4 +1,4 @@
-//TODO: 表单重置时, 不要触发 select 的 change 事件
+//TODO: 添加 disabled bind hidden 操作
 ;(function($){
     /**
      * <h2>提交表单控制逻辑</h2>

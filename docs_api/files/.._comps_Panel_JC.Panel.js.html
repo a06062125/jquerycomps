@@ -178,8 +178,6 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-//TODO: 扩展的 popup 和 dialog 添加 extends 扩展声明
-//TODO: confirm 添加 cancel 回调
 ;(function($){
     window.Panel = JC.Panel = Panel;
     /**
@@ -220,13 +218,28 @@
      *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;panelcallback = function&lt;/dt&gt;
-     *      &lt;dd&gt;点击确定按钮的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *      &lt;dd&gt;
+     *          点击确定按钮的回调, &lt;b&gt;window 变量域&lt;/b&gt;
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
+     *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;panelcancelcallback = function&lt;/dt&gt;
-     *      &lt;dd&gt;点击取消按钮的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *      &lt;dd&gt;
+     *          点击取消按钮的回调, &lt;b&gt;window 变量域&lt;/b&gt;
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
+     *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;panelclosecallback = function&lt;/dt&gt;
-     *      &lt;dd&gt;弹框关闭时的回调, &lt;b&gt;window 变量域&lt;/b&gt;&lt;/dd&gt;
+     *      &lt;dd&gt;
+     *          弹框关闭时的回调, &lt;b&gt;window 变量域&lt;/b&gt;
+&lt;xmp&gt;function( _evtName, _panelIns ){
+    var _btn = $(this);
+}&lt;/xmp&gt;
+     *      &lt;/dd&gt;
      *
      *      &lt;dt&gt;panelbutton = int, default = 0&lt;/dt&gt;
      *      &lt;dd&gt;

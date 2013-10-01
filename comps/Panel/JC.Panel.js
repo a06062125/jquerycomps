@@ -1,5 +1,3 @@
-//TODO: 扩展的 popup 和 dialog 添加 extends 扩展声明
-//TODO: confirm 添加 cancel 回调
 ;(function($){
     window.Panel = JC.Panel = Panel;
     /**
@@ -40,13 +38,28 @@
      *      </dd>
      *
      *      <dt>panelcallback = function</dt>
-     *      <dd>点击确定按钮的回调, <b>window 变量域</b></dd>
+     *      <dd>
+     *          点击确定按钮的回调, <b>window 变量域</b>
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
+     *      </dd>
      *
      *      <dt>panelcancelcallback = function</dt>
-     *      <dd>点击取消按钮的回调, <b>window 变量域</b></dd>
+     *      <dd>
+     *          点击取消按钮的回调, <b>window 变量域</b>
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
+     *      </dd>
      *
      *      <dt>panelclosecallback = function</dt>
-     *      <dd>弹框关闭时的回调, <b>window 变量域</b></dd>
+     *      <dd>
+     *          弹框关闭时的回调, <b>window 变量域</b>
+<xmp>function( _evtName, _panelIns ){
+    var _btn = $(this);
+}</xmp>
+     *      </dd>
      *
      *      <dt>panelbutton = int, default = 0</dt>
      *      <dd>
