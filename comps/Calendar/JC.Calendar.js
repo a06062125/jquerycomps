@@ -704,7 +704,17 @@
 
                 ( _tmp = _p.val().trim() )
                     && ( _tmp = dateDetect( _tmp ) )
-                    && _p.val( formatISODate( _tmp ) );
+                    && _p.val( formatISODate( _tmp ) )
+                    ; 
+
+                ( _tmp = ( _p.attr('minvalue') || '' ) )
+                    && ( _tmp = dateDetect( _tmp ) )
+                    && _p.attr( 'minvalue', formatISODate( _tmp ) )
+                    ; 
+
+                ( _tmp = ( _p.attr('maxvalue') || '' ) )
+                    && ( _tmp = dateDetect( _tmp ) )
+                    && _p.attr( 'maxvalue', formatISODate( _tmp ) )
                     ; 
 
                 if( ( _p.attr('datatype') || '' ).toLowerCase() == 'monthday'

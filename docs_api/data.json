@@ -3984,7 +3984,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 744,
+            "line": 759,
             "description": "克隆 Calendar 默认 Model, View 的原型属性",
             "itemtype": "method",
             "name": "clone",
@@ -4005,7 +4005,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1367,
+            "line": 1382,
             "description": "捕获用户更改年份 \n<p>监听 年份下拉框</p>",
             "itemtype": "event",
             "name": "year change",
@@ -4016,7 +4016,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1377,
+            "line": 1392,
             "description": "捕获用户更改年份 \n<p>监听 下一年按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -4027,7 +4027,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1387,
+            "line": 1402,
             "description": "捕获用户更改年份 \n<p>监听 上一年按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -4038,7 +4038,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1397,
+            "line": 1412,
             "description": "增加或者减少一年\n<p>监听 年份map</p>",
             "itemtype": "event",
             "name": "year map click",
@@ -4049,7 +4049,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1411,
+            "line": 1426,
             "description": "增加或者减少一个月\n<p>监听 月份map</p>",
             "itemtype": "event",
             "name": "month map click",
@@ -4060,7 +4060,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1425,
+            "line": 1440,
             "description": "捕获用户更改月份 \n<p>监听 下一月按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -4071,7 +4071,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1435,
+            "line": 1450,
             "description": "捕获用户更改月份\n<p>监听 上一月按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -4082,7 +4082,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1446,
+            "line": 1461,
             "description": "日期点击事件",
             "itemtype": "event",
             "name": "date click",
@@ -4093,7 +4093,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1459,
+            "line": 1474,
             "description": "选择当前日期\n<p>监听确定按钮</p>",
             "itemtype": "event",
             "name": "confirm click",
@@ -4104,7 +4104,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1469,
+            "line": 1484,
             "description": "清除文本框内容\n<p>监听 清空按钮</p>",
             "itemtype": "event",
             "name": "clear click",
@@ -4115,7 +4115,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1479,
+            "line": 1494,
             "description": "取消日历组件, 相当于隐藏\n<p>监听 取消按钮</p>",
             "itemtype": "event",
             "name": "cancel click",
@@ -4126,7 +4126,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1489,
+            "line": 1504,
             "description": "日历组件按钮点击事件",
             "itemtype": "event",
             "name": "calendar button click",
@@ -4137,7 +4137,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1504,
+            "line": 1519,
             "description": "日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏",
             "itemtype": "event",
             "name": "UXCCalendar click",
@@ -4148,7 +4148,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1513,
+            "line": 1528,
             "description": "DOM 加载完毕后, 初始化日历组件相关事件",
             "itemtype": "event",
             "name": "dom ready",
@@ -4159,14 +4159,14 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1519,
+            "line": 1534,
             "description": "延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "class": "JC.Calendar",
             "namespace": "JC"
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1527,
+            "line": 1542,
             "description": "监听窗口滚动和改变大小, 实时变更日历组件显示位置",
             "itemtype": "event",
             "name": "window scroll, window resize",
@@ -4177,7 +4177,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1536,
+            "line": 1551,
             "description": "dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件",
             "itemtype": "event",
             "name": "dom click",
@@ -4188,7 +4188,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1565,
+            "line": 1580,
             "description": "日历组件文本框获得焦点",
             "itemtype": "event",
             "name": "input focus",
@@ -14085,7 +14085,7 @@
         },
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
-            "line": " ../comps/Calendar/JC.Calendar.js:1519"
+            "line": " ../comps/Calendar/JC.Calendar.js:1534"
         },
         {
             "message": "Missing item type\n如果 atd 为空, 那么是 全选按钮触发的事件",
