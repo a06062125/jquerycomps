@@ -1,3 +1,4 @@
+//TODO: minvalue, maxvalue 添加默认日期属性识别属性
 ;(function($){
     /**
      * 日期选择组件
