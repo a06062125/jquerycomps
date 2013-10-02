@@ -683,7 +683,7 @@
     Calendar.initTrigger = 
         function( _selector ){
            _selector.each( function(){
-                var _p = $(this), _nodeName = (_p.prop('nodeName')||'').toLowerCase();
+                var _p = $(this), _nodeName = (_p.prop('nodeName')||'').toLowerCase(), _tmp;
 
                 if( _nodeName != 'input' && _nodeName != 'textarea' ){ 
                     Calendar.initTrigger( _selector.find( 'input[type=text], textarea' ) ); 
@@ -701,6 +701,11 @@
                 if( !_btn.length ){
                     _p.after( _btn = $('<input type="button" class="UXCCalendar_btn"  />') );
                 }
+
+                ( _tmp = _p.val().trim() )
+                    && ( _tmp = dateDetect( _tmp ) )
+                    && _p.val( formatISODate( _tmp ) );
+                    ; 
 
                 if( ( _p.attr('datatype') || '' ).toLowerCase() == 'monthday'
                     || ( _p.attr('multidate') || '' ).toLowerCase() == 'monthday' ){
@@ -1580,4 +1585,3 @@
             Calendar.pickDate( this );
     });
 }(jQuery));
-

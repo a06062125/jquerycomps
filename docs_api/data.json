@@ -663,7 +663,7 @@
             "extension_for": [],
             "namespace": "JC",
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 2,
+            "line": 3,
             "description": "日期选择组件\n<br />全局访问请使用 JC.Calendar 或 Calendar\n<br />DOM 加载完毕后\n, Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n<br /><b>require</b>: <a href='.window.html#method_cloneDate'>window.cloneDate</a>\n<br /><b>require</b>: <a href='.window.html#method_parseISODate'>window.parseISODate</a>\n<br /><b>require</b>: <a href='.window.html#method_formatISODate'>window.formatISODate</a>\n<br /><b>require</b>: <a href='.window.html#method_maxDayOfMonth'>window.maxDayOfMonth</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameDay'>window.isSameDay</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameMonth'>window.isSameMonth</a>\n</p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Calendar.html' target='_blank'>API docs</a>\n| <a href='../../comps/Calendar/_demo/' target='_blank'>demo link</a></p>\n<h2> 可用的html attribute, (input|button):(datatype|multidate)=(date|week|month|season) </h2> \n<dl>\n     <dt>defaultdate = ISO Date</dt>\n     <dd>默认显示日期, 如果 value 为空, 则尝试读取 defaultdate 属性</dd>\n\n     <dt>datatype = string</dt>\n     <dd>\n         声明日历控件的类型:\n         <p><b>date:</b> 日期日历</p>\n         <p><b>week:</b> 周日历</p>\n         <p><b>month:</b> 月日历</p>\n         <p><b>season:</b> 季日历</p>\n         <p><b>monthday:</b> 多选日期日历</p>\n     </dd>\n\n     <dt>multidate = string</dt>\n     <dd>\n         与 datatype 一样, 这个是扩展属性, 避免表单验证带来的逻辑冲突\n     </dd>\n\n     <dt>calendarshow = function</dt>\n     <dd>显示日历时的回调</dd>\n\n     <dt>calendarhide = function</dt>\n     <dd>隐藏日历时的回调</dd>\n\n     <dt>calendarlayoutchange = function</dt>\n     <dd>用户点击日历控件操作按钮后, 外观产生变化时触发的回调</dd>\n\n     <dt>calendarupdate = function</dt>\n     <dd>\n         赋值后触发的回调\n         <dl>\n             <dt>参数:</dt>\n             <dd><b>_startDate:</b> 开始日期</dd>\n             <dd><b>_endDate:</b> 结束日期</dd>\n         </dl>\n     </dd>\n\n     <dt>calendarclear = function</dt>\n     <dd>清空日期触发的回调</dd>\n\n     <dt>minvalue = ISO Date</dt>\n     <dd>日期的最小时间, YYYY-MM-DD</dd>\n\n     <dt>maxvalue = ISO Date</dt>\n     <dd>日期的最大时间, YYYY-MM-DD</dd>\n\n     <dt>currentcanselect = bool, default = true</dt>\n     <dd>当前日期是否能选择</dd>\n\n     <dt>multiselect = bool (目前支持 month: default=false, monthday: default = treu)</dt>\n     <dd>是否为多选日历</dd>\n\n     <dt>calendarupdatemultiselect = function</dt>\n     <dd>\n         多选日历赋值后触发的回调\n         <dl>\n             <dt>参数: _data:</dt>\n             <dd>\n                 [{\"start\": Date,\"end\": Date}[, {\"start\": Date,\"end\": Date}... ] ]\n             </dd>\n         </dl>\n     </dd>\n</dl>",
             "version": "dev 0.1, 2013-06-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 team"
@@ -1535,7 +1535,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../JC.js",
-            "line": 3,
+            "line": 4,
             "description": "JC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 JC 或 window.JC\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.JC.html' target='_blank'>API docs</a>\n| <a href='../../_demo' target='_blank'>demo link</a></p>",
             "static": 1,
             "example": [
@@ -1554,7 +1554,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../JC.js",
-            "line": 290,
+            "line": 291,
             "description": "UXC 是 JC 的别名\n<br />存在这个变量是为了向后兼容\n<br />20130804 之前的命名空间是 UXC, 这个命名空间在一段时间后将会清除, 请使用 JC 命名空间\n<p><b>see</b>: <a href='window.JC.html'>JC</a></p>",
             "static": 1,
             "date": "2013-05-22"
@@ -1569,7 +1569,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../JC.js",
-            "line": 309,
+            "line": 310,
             "description": "<h2>业务逻辑命名空间</h2>\n<br />这个命名空间的组件主要为满足业务需求, 不是通用组件~\n<br />但在某个项目中应该是常用组件~\n<dl>\n     <dt>业务组件的存放位置:</dt>\n     <dd>libpath/bizs/</dd>\n\n     <dt>使用业务组件</dt>\n     <dd> JC.use( 'Bizs.BizComps' ); //  libpath/bizs/BizComps/BizComps.js </dd>\n\n     <dt>使用业务文件</dt>\n     <dd> JC.use( 'bizs.BizFile' ); //   libpath/bizs/BizFile.js </dd>\n</dl>",
             "static": 1
         },
@@ -3432,7 +3432,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 138,
+            "line": 139,
             "description": "内部初始化函数",
             "itemtype": "method",
             "name": "_init",
@@ -3443,7 +3443,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 163,
+            "line": 164,
             "description": "初始化相关操作事件",
             "itemtype": "method",
             "name": "_initHanlderEvent",
@@ -3454,7 +3454,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 245,
+            "line": 246,
             "description": "显示 Calendar",
             "itemtype": "method",
             "name": "show",
@@ -3466,7 +3466,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 258,
+            "line": 259,
             "description": "隐藏 Calendar",
             "itemtype": "method",
             "name": "hide",
@@ -3478,7 +3478,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 269,
+            "line": 270,
             "description": "获取 显示 Calendar 的触发源选择器, 比如 a 标签",
             "itemtype": "method",
             "name": "selector",
@@ -3490,7 +3490,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 275,
+            "line": 276,
             "description": "获取 Calendar 外观的 选择器",
             "itemtype": "method",
             "name": "layout",
@@ -3502,7 +3502,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 281,
+            "line": 282,
             "description": "使用 jquery on 绑定事件",
             "itemtype": "method",
             "name": "on",
@@ -3527,7 +3527,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 289,
+            "line": 290,
             "description": "使用 jquery trigger 绑定事件",
             "itemtype": "method",
             "name": "trigger",
@@ -3547,7 +3547,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 296,
+            "line": 297,
             "description": "用户操作日期控件时响应改变",
             "itemtype": "method",
             "name": "updateLayout",
@@ -3556,7 +3556,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 305,
+            "line": 306,
             "description": "切换到不同日期控件源时, 更新对应的控件源",
             "itemtype": "method",
             "name": "updateSelector",
@@ -3572,7 +3572,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 316,
+            "line": 317,
             "description": "用户改变年份时, 更新到对应的年份",
             "itemtype": "method",
             "name": "updateYear",
@@ -3588,7 +3588,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 327,
+            "line": 328,
             "description": "用户改变月份时, 更新到对应的月份",
             "itemtype": "method",
             "name": "updateMonth",
@@ -3604,7 +3604,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 338,
+            "line": 339,
             "description": "把选中的值赋给控件源\n<br />用户点击日期/确定按钮",
             "itemtype": "method",
             "name": "updateSelected",
@@ -3620,7 +3620,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 350,
+            "line": 351,
             "description": "显示日历外观到对应的控件源",
             "itemtype": "method",
             "name": "updatePosition",
@@ -3629,7 +3629,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 359,
+            "line": 360,
             "description": "清除控件源内容",
             "itemtype": "method",
             "name": "clear",
@@ -3638,7 +3638,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 370,
+            "line": 371,
             "description": "用户点击取消按钮时隐藏日历外观",
             "itemtype": "method",
             "name": "cancel",
@@ -3647,7 +3647,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 380,
+            "line": 381,
             "description": "返回日历外观是否可见",
             "itemtype": "method",
             "name": "visible",
@@ -3659,7 +3659,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 394,
+            "line": 395,
             "description": "获取控件源的初始日期对象",
             "itemtype": "method",
             "name": "defaultDate",
@@ -3675,7 +3675,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 404,
+            "line": 405,
             "description": "获取或设置 Calendar 的实例",
             "itemtype": "method",
             "name": "getInstance",
@@ -3696,7 +3696,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 420,
+            "line": 421,
             "description": "保存所有类型的 Calendar 日期实例 \n<br />目前有 date, week, month, season 四种类型的实例\n<br />每种类型都是单例模式",
             "prototype": "_ins",
             "type": "object",
@@ -3709,7 +3709,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 431,
+            "line": 432,
             "description": "获取控件源的实例类型\n<br />目前有 date, week, month, season 四种类型的实例",
             "itemtype": "method",
             "name": "type",
@@ -3729,7 +3729,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 457,
+            "line": 458,
             "description": "判断选择器是否为日历组件的对象",
             "itemtype": "method",
             "name": "isCalendar",
@@ -3746,14 +3746,14 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 491,
+            "line": 492,
             "description": "请使用 isCalendar, 这个方法是为了向后兼容",
             "class": "JC.Calendar",
             "namespace": "JC"
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 495,
+            "line": 496,
             "description": "弹出日期选择框",
             "itemtype": "method",
             "name": "pickDate",
@@ -3773,7 +3773,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 533,
+            "line": 534,
             "description": "设置是否在 DOM 加载完毕后, 自动初始化所有日期控件",
             "itemtype": "property",
             "name": "autoInit",
@@ -3785,7 +3785,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 542,
+            "line": 543,
             "description": "设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年",
             "itemtype": "property",
             "name": "defaultDateSpan",
@@ -3797,7 +3797,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 551,
+            "line": 552,
             "description": "最后一个显示日历组件的文本框",
             "itemtype": "property",
             "name": "lastIpt",
@@ -3808,7 +3808,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 558,
+            "line": 559,
             "description": "自定义日历组件模板\n<p>默认模板为_logic.tpl</p>\n<p>如果用户显示定义JC.Calendar.tpl的话, 将采用用户的模板</p>",
             "itemtype": "property",
             "name": "tpl",
@@ -3820,7 +3820,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 568,
+            "line": 569,
             "description": "初始化外观后的回调函数",
             "itemtype": "property",
             "name": "layoutInitedCallback",
@@ -3832,7 +3832,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 576,
+            "line": 577,
             "description": "显示为可见时的回调",
             "itemtype": "property",
             "name": "layoutShowCallback",
@@ -3844,7 +3844,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 584,
+            "line": 585,
             "description": "日历隐藏后的回调函数",
             "itemtype": "property",
             "name": "layoutHideCallback",
@@ -3856,7 +3856,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 592,
+            "line": 593,
             "description": "DOM 点击的过滤函数\n<br />默认 dom 点击时, 判断事件源不为 input[datatype=date|daterange] 会隐藏 Calendar\n<br /> 通过该回调可自定义过滤, 返回 false 不执行隐藏操作",
             "itemtype": "property",
             "name": "domClickFilter",
@@ -3868,7 +3868,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 602,
+            "line": 603,
             "description": "隐藏日历组件",
             "itemtype": "method",
             "name": "hide",
@@ -3881,7 +3881,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 619,
+            "line": 620,
             "description": "获取初始日期对象\n<p style=\"bold\">这个方法将要废除, 请使用 instance.defaultDate()</p>",
             "itemtype": "method",
             "name": "getDate",
@@ -3898,7 +3898,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 631,
+            "line": 632,
             "description": "每周的中文对应数字",
             "itemtype": "property",
             "name": "cnWeek",
@@ -3910,7 +3910,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 639,
+            "line": 640,
             "description": "100以内的中文对应数字",
             "itemtype": "property",
             "name": "cnUnit",
@@ -3922,7 +3922,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 647,
+            "line": 648,
             "description": "转换 100 以内的数字为中文数字",
             "itemtype": "method",
             "name": "getCnNum",
@@ -3942,7 +3942,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 661,
+            "line": 662,
             "description": "设置日历组件的显示位置",
             "itemtype": "method",
             "name": "position",
@@ -3959,14 +3959,14 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 672,
+            "line": 673,
             "description": "这个方法后续版本不再使用, 请使用 Calendar.position",
             "class": "JC.Calendar",
             "namespace": "JC"
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 676,
+            "line": 677,
             "description": "初始化日历组件的触发按钮",
             "itemtype": "method",
             "name": "_logic.initTrigger",
@@ -3984,7 +3984,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 743,
+            "line": 744,
             "description": "克隆 Calendar 默认 Model, View 的原型属性",
             "itemtype": "method",
             "name": "clone",
@@ -4005,7 +4005,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1366,
+            "line": 1367,
             "description": "捕获用户更改年份 \n<p>监听 年份下拉框</p>",
             "itemtype": "event",
             "name": "year change",
@@ -4016,7 +4016,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1376,
+            "line": 1377,
             "description": "捕获用户更改年份 \n<p>监听 下一年按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -4027,7 +4027,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1386,
+            "line": 1387,
             "description": "捕获用户更改年份 \n<p>监听 上一年按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -4038,7 +4038,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1396,
+            "line": 1397,
             "description": "增加或者减少一年\n<p>监听 年份map</p>",
             "itemtype": "event",
             "name": "year map click",
@@ -4049,7 +4049,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1410,
+            "line": 1411,
             "description": "增加或者减少一个月\n<p>监听 月份map</p>",
             "itemtype": "event",
             "name": "month map click",
@@ -4060,7 +4060,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1424,
+            "line": 1425,
             "description": "捕获用户更改月份 \n<p>监听 下一月按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -4071,7 +4071,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1434,
+            "line": 1435,
             "description": "捕获用户更改月份\n<p>监听 上一月按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -4082,7 +4082,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1445,
+            "line": 1446,
             "description": "日期点击事件",
             "itemtype": "event",
             "name": "date click",
@@ -4093,7 +4093,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1458,
+            "line": 1459,
             "description": "选择当前日期\n<p>监听确定按钮</p>",
             "itemtype": "event",
             "name": "confirm click",
@@ -4104,7 +4104,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1468,
+            "line": 1469,
             "description": "清除文本框内容\n<p>监听 清空按钮</p>",
             "itemtype": "event",
             "name": "clear click",
@@ -4115,7 +4115,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1478,
+            "line": 1479,
             "description": "取消日历组件, 相当于隐藏\n<p>监听 取消按钮</p>",
             "itemtype": "event",
             "name": "cancel click",
@@ -4126,7 +4126,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1488,
+            "line": 1489,
             "description": "日历组件按钮点击事件",
             "itemtype": "event",
             "name": "calendar button click",
@@ -4137,7 +4137,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1503,
+            "line": 1504,
             "description": "日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏",
             "itemtype": "event",
             "name": "UXCCalendar click",
@@ -4148,7 +4148,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1512,
+            "line": 1513,
             "description": "DOM 加载完毕后, 初始化日历组件相关事件",
             "itemtype": "event",
             "name": "dom ready",
@@ -4159,14 +4159,14 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1518,
+            "line": 1519,
             "description": "延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "class": "JC.Calendar",
             "namespace": "JC"
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1526,
+            "line": 1527,
             "description": "监听窗口滚动和改变大小, 实时变更日历组件显示位置",
             "itemtype": "event",
             "name": "window scroll, window resize",
@@ -4177,7 +4177,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1535,
+            "line": 1536,
             "description": "dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件",
             "itemtype": "event",
             "name": "dom click",
@@ -4188,7 +4188,7 @@
         },
         {
             "file": "../comps/Calendar/JC.Calendar.js",
-            "line": 1564,
+            "line": 1565,
             "description": "日历组件文本框获得焦点",
             "itemtype": "event",
             "name": "input focus",
@@ -12615,7 +12615,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 19,
+            "line": 20,
             "description": "JC组件库所在路径",
             "itemtype": "property",
             "name": "PATH",
@@ -12626,7 +12626,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 29,
+            "line": 30,
             "description": "是否显示调试信息",
             "itemtype": "property",
             "name": "debug",
@@ -12637,7 +12637,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 36,
+            "line": 37,
             "description": "导入JC组件",
             "itemtype": "method",
             "name": "use",
@@ -12667,7 +12667,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 143,
+            "line": 144,
             "description": "调用依赖的类\n<br />这个方法的存在是因为有一些类调整了结构, 但是原有的引用因为向后兼容的需要, 暂时不能去掉",
             "itemtype": "method",
             "name": "_usePatch",
@@ -12696,7 +12696,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 165,
+            "line": 166,
             "description": "输出调试信息, 可通过 JC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -12713,7 +12713,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 172,
+            "line": 173,
             "description": "定义输出路径的 v 参数, 以便控制缓存",
             "itemtype": "property",
             "name": "pathPostfix",
@@ -12725,7 +12725,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 180,
+            "line": 181,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
@@ -12737,7 +12737,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 188,
+            "line": 189,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
@@ -12749,7 +12749,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 197,
+            "line": 198,
             "description": "资源路径映射对象\n<br />设置 JC.use 逗号(',') 分隔项的 对应URL路径",
             "itemtype": "property",
             "name": "FILE_MAP",
@@ -12764,7 +12764,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 235,
+            "line": 236,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -12783,7 +12783,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 263,
+            "line": 264,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -12802,7 +12802,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 280,
+            "line": 281,
             "description": "保存 use 过的资源路径, 以便进行唯一性判断, 避免重复加载",
             "itemtype": "property",
             "name": "_USE_CACHE",
@@ -12816,7 +12816,7 @@
         },
         {
             "file": "../JC.js",
-            "line": 301,
+            "line": 302,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -13567,6 +13567,29 @@
             "class": ".window"
         },
         {
+            "file": "../common.js",
+            "line": 725,
+            "description": "日期占位符识别功能",
+            "itemtype": "method",
+            "name": "dateDetect",
+            "params": [
+                {
+                    "name": "_dateStr",
+                    "description": "如果 起始字符为 NOW, 那么将视为当前日期",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Date|null"
+            },
+            "static": 1,
+            "example": [
+                "\n     dateDetect( 'now' ); //2014-10-02\n     dateDetect( 'now,3d' ); //2013-10-05\n     dateDetect( 'now,-3d' ); //2013-09-29\n     dateDetect( 'now,2w' ); //2013-10-16\n     dateDetect( 'now,-2m' ); //2013-08-02\n     dateDetect( 'now,4y' ); //2017-10-02\n\n     dateDetect( 'now,1d,1w,1m,1y' ); //2014-11-10"
+            ],
+            "class": ".window"
+        },
+        {
             "file": "../lib.js",
             "line": 2,
             "description": "取当前脚本标签的 src路径",
@@ -13634,15 +13657,15 @@
         },
         {
             "message": "unknown tag: version",
-            "line": " ../comps/Calendar/JC.Calendar.js:2"
+            "line": " ../comps/Calendar/JC.Calendar.js:3"
         },
         {
             "message": "unknown tag: version",
-            "line": " ../comps/Calendar/JC.Calendar.js:2"
+            "line": " ../comps/Calendar/JC.Calendar.js:3"
         },
         {
             "message": "unknown tag: prototype",
-            "line": " ../comps/Calendar/JC.Calendar.js:420"
+            "line": " ../comps/Calendar/JC.Calendar.js:421"
         },
         {
             "message": "unknown tag: version",
@@ -13946,11 +13969,11 @@
         },
         {
             "message": "unknown tag: date",
-            "line": " ../JC.js:3"
+            "line": " ../JC.js:4"
         },
         {
             "message": "unknown tag: date",
-            "line": " ../JC.js:290"
+            "line": " ../JC.js:291"
         },
         {
             "message": "unknown tag: require",
@@ -14050,19 +14073,19 @@
         },
         {
             "message": "Missing item type\n保存所有类型的 Calendar 日期实例 \n<br />目前有 date, week, month, season 四种类型的实例\n<br />每种类型都是单例模式",
-            "line": " ../comps/Calendar/JC.Calendar.js:420"
+            "line": " ../comps/Calendar/JC.Calendar.js:421"
         },
         {
             "message": "Missing item type\n请使用 isCalendar, 这个方法是为了向后兼容",
-            "line": " ../comps/Calendar/JC.Calendar.js:491"
+            "line": " ../comps/Calendar/JC.Calendar.js:492"
         },
         {
             "message": "Missing item type\n这个方法后续版本不再使用, 请使用 Calendar.position",
-            "line": " ../comps/Calendar/JC.Calendar.js:672"
+            "line": " ../comps/Calendar/JC.Calendar.js:673"
         },
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
-            "line": " ../comps/Calendar/JC.Calendar.js:1518"
+            "line": " ../comps/Calendar/JC.Calendar.js:1519"
         },
         {
             "message": "Missing item type\n如果 atd 为空, 那么是 全选按钮触发的事件",
@@ -14614,7 +14637,7 @@
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../JC.js:301"
+            "line": " ../JC.js:302"
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
