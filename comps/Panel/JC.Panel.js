@@ -1,3 +1,4 @@
+//TODO: html popup add trigger ref
 ;(function($){
     window.Panel = JC.Panel = Panel;
     /**
