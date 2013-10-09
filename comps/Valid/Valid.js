@@ -2577,6 +2577,7 @@
         _sp.data( 'DataValidInited', true );
 
         _sp.on( 'blur', function( _evt, _ignoreProcess ){
+            JC.log( 'datavalid', new Date().getTime() );
             if( _ignoreProcess ) return;
             var _v = _sp.val().trim(), _tmp, _strData, _url = _sp.attr('datavalidurl');
             if( !_v ) return;
