@@ -521,7 +521,8 @@
                 _selector.attr( 'datavalid', _settter );
                 if( !_noStatus ){
                     if( _settter ){
-                        Valid.setValid( _selector );
+                        //Valid.setValid( _selector );
+                        _selector.trigger('blur', [true]);
                     }else{
                         _customMsg && ( _msg = ' ' + _customMsg );
                         Valid.setError( _selector, _msg, true );
@@ -2575,13 +2576,14 @@
         if( _sp.data( 'DataValidInited' ) ) return;
         _sp.data( 'DataValidInited', true );
 
-        _sp.on( 'blur', function( _evt ){
+        _sp.on( 'blur', function( _evt, _ignoreProcess ){
+            if( _ignoreProcess ) return;
             var _v = _sp.val().trim(), _tmp, _strData, _url = _sp.attr('datavalidurl');
             if( !_v ) return;
             if( !_url ) return;
 
 
-            setTimeout( function( _evt ){
+            setTimeout( function(){
                 _v = _sp.val().trim();
                 if( !_v ) return;
                 _url = printf( _url, _v );
