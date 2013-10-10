@@ -295,7 +295,9 @@ function cmtplfiltercallback( _tpl, _cmitem, _boxParent ){
             function(){
                 var _r = '', _tmp;
                 this.selector() 
-                    && ( _tmp = this.selector().attr('cmtemplate') || this.selector().attr('cmtpl') )
+                    && ( _tmp = parentSelector( this.selector(), this.selector().attr('cmtemplate') ) 
+                            || parentSelector( this.selector(), this.selector().attr('cmtpl') )
+                        )
                     && ( _r = scriptContent( _tmp ) )
                     ;
                 return _r;
