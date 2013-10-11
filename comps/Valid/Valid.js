@@ -1,5 +1,6 @@
 //TODO: 错误提示 不占用页面宽高, 使用 position = absolute,  date = 2013-08-03
 //TODO: checkbox, radio 错误时, input 添加高亮显示
+//TODO: subdatatype = alternative, 需要 处理 区号 + 电话号码 && 手机号码这样的逻辑
 ;(function($){
     /**
      * <b>表单验证</b> (单例模式)
@@ -2583,27 +2584,31 @@
             if( !_v ) return;
             if( !_url ) return;
 
+            _sp.data( 'DataValidTm' ) && clearTimeout( _sp.data( 'DataValidTm') );
 
-            setTimeout( function(){
-                _v = _sp.val().trim();
-                if( !_v ) return;
-                _url = printf( _url, _v );
-                _sp.attr('datavalidUrlFilter')
-                    && ( _tmp = window[ _sp.attr('datavalidUrlFilter') ] )
-                    && ( _url = _tmp.call( _sp, _url ) )
-                    ;
-                $.get( _url ).done( function( _d ){
-                    _strData = _d;
-                    try{ _d = $.parseJSON( _d ); } catch( ex ){ _d = { errorno: 1 }; }
-                    _v === 'suchestest' && (  _d.errorno = 0 );
-                    Valid.dataValid( _sp, !_d.errorno, false, _d.errmsg );
-
-                    _sp.attr('datavalidCallback')
-                        && ( _tmp = window[ _sp.attr('datavalidCallback') ] )
-                        && _tmp.call( _sp, _d, _strData )
+            _sp.data( 'DataValidTm'
+                , setTimeout( function(){
+                    _v = _sp.val().trim();
+                    if( !_v ) return;
+                    if( _sp.hasClass('error') ) return;
+                    _url = printf( _url, _v );
+                    _sp.attr('datavalidUrlFilter')
+                        && ( _tmp = window[ _sp.attr('datavalidUrlFilter') ] )
+                        && ( _url = _tmp.call( _sp, _url ) )
                         ;
-                });
-            }, 200);
+                    $.get( _url ).done( function( _d ){
+                        _strData = _d;
+                        try{ _d = $.parseJSON( _d ); } catch( ex ){ _d = { errorno: 1 }; }
+                        _v === 'suchestest' && (  _d.errorno = 0 );
+                        Valid.dataValid( _sp, !_d.errorno, false, _d.errmsg );
+
+                        _sp.attr('datavalidCallback')
+                            && ( _tmp = window[ _sp.attr('datavalidCallback') ] )
+                            && _tmp.call( _sp, _d, _strData )
+                            ;
+                    });
+                }, 200)
+            );
             
         });
     });
