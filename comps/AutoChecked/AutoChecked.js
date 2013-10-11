@@ -209,7 +209,7 @@
      */
     AutoChecked.getInstance =
         function( _selector, _setter ){
-            if( typeof _selector == 'string' && Model.parentNodeRe.test( _selector ) ) 
+            if( typeof _selector == 'string' && !/</.test( _selector ) ) 
                     _selector = $(_selector);
             if( !(_selector && _selector.length ) || ( typeof _selector == 'string' ) ) return;
             typeof _setter != 'undefined' && _selector.data( 'AutoCheckedIns', _setter );

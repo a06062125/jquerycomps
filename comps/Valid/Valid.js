@@ -192,6 +192,9 @@
      *              <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=alternative]</dd>
      *              <dd><b>alternativedatatarget:</b> 与 datatarget相同, 区别是优先级高于 datatarget</dd>
      *              <dd><b>alternativemsg:</b> N 选一的错误提示</dd>
+     *
+     *              <dd><b>alternativeReqTarget:</b> 为 alternative node 指定一个不能为空的 node</dd>
+     *              <dd><b>alternativeReqmsg:</b> alternativeReqTarget 目标 node 的html属性, 错误时显示的提示信息</dd>
      *          </dl>
      *      </dd>
      *      <dd>
@@ -1847,7 +1850,9 @@
                             _isReturn = true;
                         }
 
-                        if( $(this).val() ){ _hasVal = true; return false; } 
+                        if( $(this).val() ){ 
+                            _hasVal = true; return false; 
+                        } 
                     } );
                     _r = _hasVal;
                 }
@@ -1871,6 +1876,51 @@
                         }
                     });
                 }
+
+                if( _r && _target && _target.length ){
+                    var _hasReqTarget = false, _reqErrList = [];
+                    _target.each( function(){
+                        if( _item[0] == this ) return;
+                        var _sp = $(this), _reqTarget;
+                        if( _sp.is( '[alternativeReqTarget]' ) ){
+                            _reqTarget = parentSelector( _sp, _sp.attr('alternativeReqTarget') );
+                            if( _reqTarget && _reqTarget.length ){
+                                _reqTarget.each( function(){
+                                    var _ssp = $(this), _v = _ssp.val().trim();
+                                    if( !_v ){
+                                        _reqErrList.push( _ssp );
+                                        _hasReqTarget = true;
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+                    if( _item.is( '[alternativeReqTarget]' ) ){
+                        _reqTarget = parentSelector( _item, _item.attr('alternativeReqTarget') );
+                        if( _reqTarget && _reqTarget.length ){
+                            _reqTarget.each( function(){
+                                var _ssp = $(this), _v = _ssp.val().trim();
+                                if( !_v ){
+                                    _reqErrList.push( _ssp );
+                                    _hasReqTarget = true;
+                                }
+                            });
+                        }
+                    }
+
+                    //alert( _hasReqTarget + ', ' + _reqErrList.length );
+
+                    if( _hasReqTarget && _reqErrList.length ){
+                        _r = false;
+                        $.each( _reqErrList, function( _ix, _sitem ){
+                            _sitem = $( _sitem );
+                            $( _p ).trigger( Model.TRIGGER, [ Model.ERROR, _sitem, 'alternativeReqmsg', true ] );
+                        });
+                        return _r;
+                    }
+                }
+
                 if( _r ){
                     if( _dt && _p[ _dt ] && _item.val() ){
                         _p[ _dt ]( _item );
