@@ -427,45 +427,6 @@
                 return this;
             }
         , isValid: function( _selector ){ return this._model.isValid( _selector ); }
-        , formHasValue:
-            function( _fm, _ignoreSelector ){
-               var _r = false, _item, _nt;
-                _fm && ( _fm = $( _fm ) );
-
-                if( _fm && _fm.length ){
-                    for( var i = 0, j = _fm[0].length; i < j; i++ ){
-                        _item = $(_fm[0][i]);
-                        if( _item.is('[disabled]') ) continue;
-                        _nt = _item.prop('nodeName').toLowerCase();
-
-                        if( _ignoreSelector && _item.is( _ignoreSelector ) ) continue;
-                                        
-                        switch( _item.prop('type').toLowerCase() ){
-
-                            case 'select-multiple':
-                            case 'select-one':
-                            case 'select':
-                            case 'file': 
-                            case 'textarea':
-                            case 'password':
-                            case 'hidden':
-                            case 'text': 
-                                {
-                                    if( $.trim( _item.val() ).length ) return true;
-                                    break;
-                                }
-
-                           case 'checkbox':
-                            case 'radio':
-                                {
-                                    if( _item.prop('checked') ) return true;
-                                    break;
-                                }
-                        }
-                    }
-                }
-                return _r;
-            }
     }
 
     /**
@@ -656,34 +617,6 @@
             });
      */
     Valid.itemCallback;
-
-    /**
-     * 检查一个表单是否有内容
-     * @method  formHasValue
-     * @param   {selector}      _fm
-     * @param   {selector}      _ignoreSelector
-     * @return  bool
-     * @static
-     * @example
-             $('form.js-valid').on('submit', function( $evt ){
-                var _p = $(this);
-
-                if( !JC.Valid.formHasValue( _p ) ){
-                    $evt.preventDefault();
-                    JC.alert( '表单内容为空, 不能提交!', _p.find('button[type=submit]'), 1 );
-                    return false;
-                }
-
-                if( !JC.Valid.check( _p ) ){
-                    $evt.preventDefault();
-                    return false;
-                }
-            });
-     */
-    Valid.formHasValue =
-        function(){ 
-            return Valid.getInstance().formHasValue.apply( Valid.getInstance(), sliceArgs( arguments ) ); 
-        };
     /**
      * 判断 表单控件是否为忽略检查 或者 设置 表单控件是否为忽略检查
      * @method  ignore
@@ -2386,6 +2319,7 @@
             function( _item, _tm, _noStyle ){
                 _item && ( _item = $(_item) );
                 var _p = this, _tmp;
+                _item.data( 'JCValidStatus', true );
                 //if( !_p._model.isValid( _item ) ) return false;
                 setTimeout(function(){
                     _item.removeClass( Model.CSS_ERROR );
@@ -2445,6 +2379,7 @@
                 var _p = this, arg = arguments; 
                 //if( !_p._model.isValid( _item ) ) return true;
                 if( _item.is( '[validnoerror]' ) ) return true;
+                _item.data( 'JCValidStatus', false );
 
                 setTimeout(function(){
                     var _msg = _p._model.errorMsg.apply( _p._model, sliceArgs( arg ) )
@@ -2590,7 +2525,7 @@
                 , setTimeout( function(){
                     _v = _sp.val().trim();
                     if( !_v ) return;
-                    if( _sp.hasClass('error') ) return;
+                    if( !_sp.data('JCValidStatus') ) return;
                     _url = printf( _url, _v );
                     _sp.attr('datavalidUrlFilter')
                         && ( _tmp = window[ _sp.attr('datavalidUrlFilter') ] )
@@ -2607,7 +2542,7 @@
                             && _tmp.call( _sp, _d, _strData )
                             ;
                     });
-                }, 200)
+                }, 151)
             );
             
         });
