@@ -2035,7 +2035,7 @@
                 if( /^\^$/.test( _selector ) ){
                     _subselector = _subselector || Model.SELECTOR_ERROR;
                     _selector = $( _item.parent().find( _subselector ) );
-                }else if( /^[\/\|\<]/.test( _selector ) ) {
+                }else if( /^[\/\|\<\(]/.test( _selector ) ) {
                     _selector = parentSelector( _item, _selector );
                 }else if( /\./.test( _selector ) ) {
                     return $( _selector );
