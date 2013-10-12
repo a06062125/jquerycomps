@@ -937,7 +937,7 @@
                     ;
 
                 _btn &amp;&amp; ( _btn = $( _btn ) ).length
-                    &amp;&amp; ( _r = _p.stringProp( _btn, &#x27;formResetUrl&#x27; ) || _r )
+                    &amp;&amp; ( _r = _p.attrProp( _btn, &#x27;formResetUrl&#x27; ) || _r )
                     ;
 
                 return urlDetect( _r );
