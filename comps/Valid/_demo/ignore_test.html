@@ -51,7 +51,9 @@
         <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
         <link href='../../../comps/Valid/res/default/style.css' rel='stylesheet' />
 
-        <script src="../../../lib.js"></script>
+        <script src="../../../jquery.js"></script>
+        <script src="../../../common.js"></script>
+
         <script>
             JC.debug = true; JC.use( 'Valid, Calendar, Form' );
 
@@ -70,7 +72,7 @@
                 $('button.js_isIgnore').trigger('click');
             });
 
-            $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
+            $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
                 window.console && console.clear && console.clear();
                 JC.Valid.clearError( 'form.js-valid' );
             });
@@ -110,7 +112,7 @@
         <form action='' method='get' class="js-valid" >
             <div style="position:fixed; top: 10px; right:10px;">
                 <button type="submit">Save</button>
-                <button type="button" class="js-clear-error">清空错误信息</button>
+                <button type="button" class="js_clear_error">清空错误信息</button>
             </div>
 
             <dl class="fm-items">
@@ -134,14 +136,14 @@
 
                 <dd style="margin-top:20px; padding-left: 400px;">
                     <button type="submit">Save</button>
-                    <button type="button" class="js-clear-error">清空错误信息</button>
+                    <button type="button" class="js_clear_error">清空错误信息</button>
                 </dd>
              </dl>
 
 
             <div style="position:fixed; bottom: 10px; right:10px;">
                 <button type="submit">Save</button>
-                <button type="button" class="js-clear-error">清空错误信息</button>
+                <button type="button" class="js_clear_error">清空错误信息</button>
             </div>
         </form>
 

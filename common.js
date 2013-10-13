@@ -16,7 +16,8 @@ if( !window.console ) window.console = { log:function(){
  * 声明主要命名空间, 方便迁移
  */
 window.JC = window.JC || {
-    log: function(){ JC.debug && window.console && console.log( sliceArgs( arguments ).join(' ') ); }
+    log: function(){ JC.debug && console.log( sliceArgs( arguments ).join(' ') ); }
+    , use: function(){}
 };
 window.Bizs = window.Bizs || {};
 /**
