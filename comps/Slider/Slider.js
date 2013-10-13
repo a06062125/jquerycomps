@@ -76,7 +76,7 @@
             <script src="../../../lib.js"></script>
             <script>
                 JC.debug = true;
-                JC.use( 'Slider' );
+                requirejs( 'Slider' );
 
                 function sliderinitedcb(){
                     var _sliderIns = this;

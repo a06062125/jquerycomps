@@ -56,7 +56,7 @@
             <script src="../../../lib.js"></script>
             <script>
                 JC.debug = 1;
-                JC.use( 'Tab' );
+                requirejs( 'Tab' );
 
                 httpRequire();
 

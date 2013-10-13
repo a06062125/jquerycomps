@@ -39,7 +39,7 @@
      * @example
             <script src="../../../lib.js"></script>
             <script>
-                JC.use( 'Tips' );
+                requirejs( 'Tips' );
                 $(document).ready( function(_evt){
                     //默认是自动初始化, 也就是只要导入 JC.Tips 就会自己初始化 带 title/tipsData 属性的标签
                     //下面示例是手动初始化
@@ -178,7 +178,7 @@
      * @example
             <script src="../../../lib.js"></script>
             <script>
-                JC.use( 'Tips' );
+                requirejs( 'Tips' );
                 $(document).ready( function(_evt){
                     JC.Tips.autoInit = false;
                     JC.Tips.init( $( 'a' ) ); 

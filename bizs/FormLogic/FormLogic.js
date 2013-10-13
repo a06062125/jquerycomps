@@ -166,7 +166,7 @@
      * @example
             <script>
                 JC.debug = true;
-                JC.use( 'Bizs.FormLogic, Calendar, plugins.json2' );
+                requirejs( 'Bizs.FormLogic, Calendar, plugins.json2' );
 
                 function formBeforeProcess( _evt, _ins ){
                     var _form = $(this);
@@ -267,10 +267,10 @@
             return _selector.data('FormLogicIns');
         };
 
-    !JC.Valid && JC.use( 'Valid' );
-    !JC.Form && JC.use( 'Form' );
-    !JC.Panel && JC.use( 'Panel' );
-    !$(document).ajaxForm && JC.use( 'plugins.jquery.form' );
+    !JC.Valid && requirejs( 'Valid' );
+    !JC.Form && requirejs( 'Form' );
+    !JC.Panel && requirejs( 'Panel' );
+    !$(document).ajaxForm && requirejs( 'plugins.jquery.form' );
 
     /**
      * 处理 form 或者 _selector 的所有form.js_bizsFormLogic

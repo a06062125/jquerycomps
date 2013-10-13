@@ -45,7 +45,7 @@
                 JC.PATH = _pw.JC.PATH;
                 window.name = 'AJAX_UPLOAD_WIN_' + ( _pw.JC.AjaxUpload._INS_COUNT++ )
 
-                JC.use( 'plugins.jquery.form' );
+                requirejs( 'plugins.jquery.form' );
 
                 $(document).ready( function(){
                     _fm = $('form');

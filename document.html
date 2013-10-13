@@ -64,7 +64,7 @@
 <script src="./lib.js"></script>
 <script>
     JC.debug = true;
-    JC.use( 'Tree' );
+    requirejs( 'Tree' );
 
     $(document).ready(function(){
         var treeData = {
@@ -178,7 +178,7 @@
     //JC.PATH = '/jcjs/';                   
 
     JC.debug = true;                       //是否显示调试信息
-    JC.use( 'Calendar, Valid, Panel' );    //导入常用组件
+    requirejs( 'Calendar, Valid, Panel' );    //导入常用组件
 
     $(document).ready(function(){
         //在这里可以开始使用导入的组件
@@ -190,7 +190,7 @@
                                 </li>
                                 <li>
                                     <dl>
-                                        <dt>JC.use 资源管理器的使用</dt>
+                                        <dt>requirejs 资源管理器的使用</dt>
                                         <dd>
                                             <p><label>本地演示:</label> <a href="_demo" target="_blank">_demo</a></p>
                                             <p><label>公网演示:</label> <a href="http://jc.openjavascript.org/_demo" target="_blank">http://jc.openjavascript.org/_demo</a></p>

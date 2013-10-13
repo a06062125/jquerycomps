@@ -45,11 +45,11 @@
         <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
         <link href='../../../comps/Valid/res/default/style.css' rel='stylesheet' />
 
-        <script src="../../../jquery.js"></script>
-        <script src="../../../common.js"></script>
+        <script src="../../../require.js"></script>
+        <script src="../../../config.js"></script>
 
         <script>
-            JC.debug = true; JC.use( 'Valid, Calendar, Bizs.FormLogic' );
+            JC.debug = true; requirejs( 'Valid, Calendar, Bizs.FormLogic' );
 
             $(document).ready( function($evt){
                 $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){

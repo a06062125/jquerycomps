@@ -19,7 +19,7 @@
             <link href='../../../comps/Tree/res/default/style.css' rel='stylesheet' />
             <script src="../../../lib.js"></script>
             <script>
-                JC.use( 'Tree' );
+                requirejs( 'Tree' );
                 $(document).ready( function(){
                     var treeData = {
                         data: {"24":[["25","\u4e8c\u7ec4\u4e00\u961f"],["26","\u4e8c\u7ec4\u4e8c\u961f"],["27","\u4e8c\u7ec4\u4e09\u961f"]],"23":[["28","\u9500\u552e\u4e8c\u7ec4"],["24","\u552e\u524d\u5ba1\u6838\u7ec4"]]},

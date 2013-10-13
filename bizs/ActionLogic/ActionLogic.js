@@ -112,7 +112,7 @@
         this._init();
     }
 
-    !JC.Panel && JC.use( 'Panel' );
+    !JC.Panel && requirejs( 'Panel' );
 
     /**
      * 获取或设置 ActionLogic 的实例

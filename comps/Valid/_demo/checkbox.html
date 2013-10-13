@@ -45,42 +45,38 @@
         <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
         <link href='../../../comps/Valid/res/default/style.css' rel='stylesheet' />
 
-        <script src="../../../jquery.js"></script>
-        <script src="../../../common.js"></script>
-
-        <script src="../../../comps/Valid/Valid.js"></script>
-        <script src="../../../comps/Calendar/Calendar.js"></script>
+        <script src="../../../require.js"></script>
+        <script src="../../../config.js"></script>
 
         <script>
-            JC.debug = true; 
-            JC.use( 'Valid, Calendar' );
+            requirejs( ['JC.Valid', 'JC.Calendar'], function(){
+                $(document).ready( function($evt){
 
-            $(document).ready( function($evt){
-
-                $('form.js_valid')
-                .on('submit', function( _evt ){
-                    window.console && console.clear && console.clear();
-                    _evt.preventDefault();
-
-                    if( !JC.Valid.check( 'form.js_valid' ) ){
+                    $('form.js_valid')
+                    .on('submit', function( _evt ){
+                        window.console && console.clear && console.clear();
                         _evt.preventDefault();
-                        return false;
-                    }
 
-                    JC.log( 'form process valid', new Date().getTime() );
-                })
-                .on('reset', function( _evt ){
-                    window.console && console.clear && console.clear();
-                    JC.Valid.clearError( 'form.js_valid' );
-                })
-                ;
+                        if( !JC.Valid.check( 'form.js_valid' ) ){
+                            _evt.preventDefault();
+                            return false;
+                        }
 
-                $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
-                    window.console && console.clear && console.clear();
-                    JC.Valid.clearError( 'form.js_valid' );
+                        JC.log( 'form process valid', new Date().getTime() );
+                    })
+                    .on('reset', function( _evt ){
+                        window.console && console.clear && console.clear();
+                        JC.Valid.clearError( 'form.js_valid' );
+                    })
+                    ;
+
+                    $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
+                        window.console && console.clear && console.clear();
+                        JC.Valid.clearError( 'form.js_valid' );
+                    });
+
+                    $( 'dl.fm-items > dd:odd').addClass( 'odd' );
                 });
-
-                $( 'dl.fm-items > dd:odd').addClass( 'odd' );
             });
 
         </script>

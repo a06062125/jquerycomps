@@ -18,7 +18,7 @@
         <script>
             JC.debug = true;
 
-            JC.use( 'Panel, Bizs.FormLogic, Calendar, plugins.json2' );
+            requirejs( 'Panel, Bizs.FormLogic, Calendar, plugins.json2' );
 
             function formBeforeProcess( _evt, _ins ){
                 var _form = $(this);

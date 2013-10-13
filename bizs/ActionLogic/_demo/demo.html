@@ -17,7 +17,7 @@
     <script src="../../../lib.js"></script>
     <script>
         JC.debug = true;
-        JC.use( 'Bizs.ActionLogic, Bizs.FormLogic, Calendar, Valid' );
+        requirejs( 'Bizs.ActionLogic, Bizs.FormLogic, Calendar, Valid' );
 
         function balPanelInitCb( _panelIns ){
             var _trigger = $(this);

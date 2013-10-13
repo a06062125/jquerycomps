@@ -60,13 +60,13 @@
         <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
         <link href='../../../comps/Valid/res/default/style.css' rel='stylesheet' />
 
-        <script src="../../../jquery.js"></script>
-        <script src="../../../common.js"></script>
+        <script src="../../../require.js"></script>
+        <script src="../../../config.js"></script>
 
         <script src="../../../comps/AutoSelect/_demo/data/SHENGSHI.js"></script>
         <script>
             JC.debug = true; 
-            JC.use( 'Valid, Bizs.FormLogic' );
+            requirejs( 'Valid, Bizs.FormLogic' );
 
             $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
                 window.console && console.clear && console.clear();

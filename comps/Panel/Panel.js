@@ -106,7 +106,7 @@
      * @date    2013-06-04
      * @example
             <script src="../../../lib.js"></script>
-            <script>JC.use( 'Panel' ); </script>
+            <script>requirejs( 'Panel' ); </script>
             <script>
                 var btnstr = [
                     '<div style="text-align:center" class="UButton">'
