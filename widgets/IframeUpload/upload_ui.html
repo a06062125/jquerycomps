@@ -38,13 +38,13 @@ var fm = document.getElementById( 'upload_form' )
 , btn = document.getElementById('btn');
 ;
 
-var infoBtnval = (get_url_param( 'infoBtn' ) || get_url_param( 'info' ) )
-, uploadurl = get_url_param( 'url' )
-, uploadname = get_url_param( 'name' )
-, btntext = get_url_param( 'btntext' )
-, styles = get_url_param( 'style' )
-, callback = get_url_param( 'cb' ) || 'IFRAME_UPLOAD'
-, filetype = get_url_param('filetype')
+var infoBtnval = (getUrlParam( 'infoBtn' ) || getUrlParam( 'info' ) )
+, uploadurl = getUrlParam( 'url' )
+, uploadname = getUrlParam( 'name' )
+, btntext = getUrlParam( 'btntext' )
+, styles = getUrlParam( 'style' )
+, callback = getUrlParam( 'cb' ) || 'IFRAME_UPLOAD'
+, filetype = getUrlParam('filetype')
 ;
 
 filetype = filetype.replace(/[\s]+/g, '').toLowerCase();
@@ -127,14 +127,14 @@ function add_url_params( $url, $params ){
 /**
  * 取URL参数的值
  * x@btbtd.org  2012/4/24 
- * @method  get_url_param
+ * @method  getUrlParam
  * @param   {string}    $url
  * @param   {string}    $key
  * @require del_url_param 
  * @example
-        var defaultTag = get_url_param(location.href, 'tag');  
+        var defaultTag = getUrlParam(location.href, 'tag');  
  */ 
-function get_url_param( $url, $key ){
+function getUrlParam( $url, $key ){
     var result = '', paramAr, i, items;
     !$key && ( $key = $url, $url = location.href );
     $url.indexOf('#') > -1 && ( $url = $url.split('#')[0] );
