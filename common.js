@@ -294,7 +294,7 @@ function pad_char_f( _str, _len, _char ){ return padChar.apply( null, sliceArgs(
  */
 function formatISODate( _date, _split ){
 	_date = _date || new Date(); typeof _split == 'undefined' && ( _split = '-' );
-	return [ _date.getFullYear(), pad_char_f( _date.getMonth() + 1 ), pad_char_f( _date.getDate() ) ].join(_split);
+	return [ _date.getFullYear(), padChar( _date.getMonth() + 1 ), padChar( _date.getDate() ) ].join(_split);
 }
 /**
  * 从 ISODate 字符串解析日期对象
