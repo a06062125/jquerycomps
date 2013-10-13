@@ -1,5 +1,5 @@
 /**
- * JC Project config.js for requirejs
+ * requirejs config.js for JC Project
  */
 requirejs.config( {
     baseUrl: '../../../'
