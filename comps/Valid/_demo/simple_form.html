@@ -55,32 +55,26 @@
         <script src="../../../config.js"></script>
 
         <script>
-            requirejs( ['JC.Valid', 'JC.Calendar' ], function(){
-                //do something when comps loaded
+            requirejs( ['JC.Valid', 'JC.Calendar' ] );
+
+            requirejs( ['domReady'], function(){
                 JC.debug = true; 
 
-                $(document).ready( function(_evt){
-                    $(document).delegate( 'button.js_clear_error', 'click', function( _evt ){
-                        window.console && console.clear && console.clear();
-                        JC.Valid.clearError( 'form.js_valid' );
-                    });
+                $(document).delegate( 'button.js_clear_error', 'click', function( _evt ){
+                    window.console && console.clear && console.clear();
+                    JC.Valid.clearError( 'form.js_valid' );
+                });
 
-                    $('form.js_valid').on('submit', function( _evt ){
-                        window.console && console.clear && console.clear();
+                $('form.js_valid').on('submit', function( _evt ){
+                    window.console && console.clear && console.clear();
+                    _evt.preventDefault();
+
+                    if( !JC.Valid.check( 'form.js_valid' ) ){
                         _evt.preventDefault();
-
-                        if( !JC.Valid.check( 'form.js_valid' ) ){
-                            _evt.preventDefault();
-                            return false;
-                        }
-                    });
+                        return false;
+                    }
                 });
             });
-            /**
-             * jqloaded function for page init, when jquery.js and common.js loaded
-             */
-            function jqloaded(){
-            }
         </script>
     </head>    
     <body>

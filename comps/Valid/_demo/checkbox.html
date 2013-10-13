@@ -49,34 +49,33 @@
         <script src="../../../config.js"></script>
 
         <script>
-            requirejs( ['JC.Valid', 'JC.Calendar'], function(){
-                $(document).ready( function($evt){
+            requirejs( ['JC.Valid', 'JC.Calendar'] );
 
-                    $('form.js_valid')
-                    .on('submit', function( _evt ){
-                        window.console && console.clear && console.clear();
+            requirejs( ['domReady'], function(){
+                $('form.js_valid')
+                .on('submit', function( _evt ){
+                    window.console && console.clear && console.clear();
+                    _evt.preventDefault();
+
+                    if( !JC.Valid.check( 'form.js_valid' ) ){
                         _evt.preventDefault();
+                        return false;
+                    }
 
-                        if( !JC.Valid.check( 'form.js_valid' ) ){
-                            _evt.preventDefault();
-                            return false;
-                        }
+                    JC.log( 'form process valid', new Date().getTime() );
+                })
+                .on('reset', function( _evt ){
+                    window.console && console.clear && console.clear();
+                    JC.Valid.clearError( 'form.js_valid' );
+                })
+                ;
 
-                        JC.log( 'form process valid', new Date().getTime() );
-                    })
-                    .on('reset', function( _evt ){
-                        window.console && console.clear && console.clear();
-                        JC.Valid.clearError( 'form.js_valid' );
-                    })
-                    ;
-
-                    $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
-                        window.console && console.clear && console.clear();
-                        JC.Valid.clearError( 'form.js_valid' );
-                    });
-
-                    $( 'dl.fm-items > dd:odd').addClass( 'odd' );
+                $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
+                    window.console && console.clear && console.clear();
+                    JC.Valid.clearError( 'form.js_valid' );
                 });
+
+                $( 'dl.fm-items > dd:odd').addClass( 'odd' );
             });
 
         </script>

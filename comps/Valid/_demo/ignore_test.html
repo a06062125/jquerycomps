@@ -55,22 +55,20 @@
         <script src="../../../config.js"></script>
 
         <script>
-            requirejs( ['JC.Valid', 'JC.Calendar', 'JC.Form'], function(){
+            requirejs( ['JC.Valid', 'JC.Calendar', 'JC.Form'] );
 
-                $(document).ready( function($evt){
+            requirejs( ['domReady'], function(){
+                $('form.js_valid').on('submit', function( $evt ){
+                    window.console && console.clear && console.clear();
+                        $evt.preventDefault();
 
-                    $('form.js_valid').on('submit', function( $evt ){
-                        window.console && console.clear && console.clear();
-                            $evt.preventDefault();
-
-                        if( !JC.Valid.check( 'form.js_valid' ) ){
-                            $evt.preventDefault();
-                            return false;
-                        }
-                    });
-
-                    $('button.js_isIgnore').trigger('click');
+                    if( !JC.Valid.check( 'form.js_valid' ) ){
+                        $evt.preventDefault();
+                        return false;
+                    }
                 });
+
+                $('button.js_isIgnore').trigger('click');
 
                 $(document).delegate( 'button.js_clear_error', 'click', function( $evt ){
                     window.console && console.clear && console.clear();
@@ -104,7 +102,6 @@
                     getJqParent( _p, 'dd' ).find('em.js_isIgnoreEm').html( _r.join() ).show();
 
                 });
-
             });
 
         </script>

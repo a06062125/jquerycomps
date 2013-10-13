@@ -6,6 +6,7 @@ requirejs.config( {
     , paths: {
                 'jquery': 'jquery'
                 , 'common': 'common'
+                , 'domReady': 'plugins/domReady'
 
                 , 'JC.BaseMVC': 'comps/BaseMVC/BaseMVC'
 
@@ -18,7 +19,4 @@ requirejs.config( {
             }
 });
 
-requirejs( ['jquery', 'common' ], function( _evt ){
-    window.jqloaded && window.jqloaded();
-    JC.debug = true; 
-});
+requirejs( ['jquery', 'common' ] );
