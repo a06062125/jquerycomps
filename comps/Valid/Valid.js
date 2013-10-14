@@ -1,6 +1,7 @@
 //TODO: 错误提示 不占用页面宽高, 使用 position = absolute,  date = 2013-08-03
 //TODO: checkbox, radio 错误时, input 添加高亮显示
 //TODO: subdatatype = alternative, 需要 处理 区号 + 电话号码 && 手机号码这样的逻辑
+//TODO: subdatatype 添加一个类型 reqtarget, 如果 源的值不为空, reqtarget的值也不能为空
 ;(function($){
     /**
      * <b>表单验证</b> (单例模式)
