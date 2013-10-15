@@ -2601,6 +2601,7 @@
 
         var _isDatavalid = /datavalid/i.test( _sp.attr('subdatatype') );
         if( !_isDatavalid ) return;
+        if( _sp.prop('disabled') || _sp.prop('readonly') ) return;
 
         Valid.dataValid( _sp, false, true );
         var _keyUpCb;
