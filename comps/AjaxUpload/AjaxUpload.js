@@ -1,3 +1,4 @@
+//TODO: 更改 cauValue 处理逻辑
  ;(function($){
     /**
      * Ajax 文件上传
@@ -346,7 +347,7 @@
                 }
 
                 if( _p.cauDisplayLabelCallback() ){
-                    _label = _p.cauDisplayLabelCallback().call( _p.selector(), _d );
+                    _label = _p.cauDisplayLabelCallback().call( _p.selector(), _d, _label, _value );
                 //}else if( _label != _value ){
                 }else{
                     _label = printf( '<a href="{0}" class="green js_auLink" target="_blank">{1}</a>', _value, _label);
@@ -410,8 +411,9 @@
                     var _statusLabel = _p._model.cauStatusLabel()
                         , _displayLabel = _p._model.cauDisplayLabel()
                     ;
-
+                    
                     _p.updateChange();
+                    _p._model.frame().show();
 
                     _statusLabel && _statusLabel.length && _statusLabel.hide();
                     _displayLabel && _displayLabel.length && _displayLabel.hide();
