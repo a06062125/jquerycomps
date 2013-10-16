@@ -65,6 +65,20 @@
     //alert( _json ); //object object
 }</xmp>
      *      </dd>
+     *
+     *      <dt>cauDisplayLabelCallback = function, optional, return = string</dt>
+     *      <dd>
+     *          自定义上传完毕后显示的内容 模板
+<xmp>function cauDisplayLabelCallback( _json, _label, _value ){
+    var _selector = this
+        , _label = printf( '<a href="{0}" class="green js_auLink" target="_blank">{1}</a>{2}'
+                        , _value, _label
+                        ,  '&nbsp;<a href="javascript:" class="btn btn-cls2 js_cleanCauData"></a>&nbsp;&nbsp;'
+                    )
+        ;
+    return _label;
+}</xmp>
+     *      </dd>
      * </dl>
      * @namespace JC
      * @class AjaxUpload
@@ -210,6 +224,15 @@
                     var _w = _p._model.frame().prop( 'contentWindow' );
                     if( !( _w && _w.initPage ) ) return;
                     _w.initPage( _p, _p._model );
+
+                    if( _p._model.INITED ) return;
+                    _p._model.INITED = true;
+                    if( _p._model.cauDefaultHide() ){
+                        setTimeout( function(){
+                            _p._model.frame().hide();
+                            _p._model.selector().hide();
+                        }, 1);
+                    }
                 });
                 /**
                  * 文件扩展名错误
@@ -327,6 +350,11 @@
         , cauDisplayLabel: function(){ return this.selectorProp( 'cauDisplayLabel' ); }
         , cauDisplayLabelCallback: function(){ return this.callbackProp( 'cauDisplayLabelCallback' ); }
 
+        , cauDefaultHide:
+            function(){
+                return this.boolProp( 'cauDefaultHide' );
+            }
+
         , cauUploadDoneCallback:
             function(){
                 return this.callbackProp( 'cauUploadDoneCallback' );
@@ -417,6 +445,10 @@
 
                     _statusLabel && _statusLabel.length && _statusLabel.hide();
                     _displayLabel && _displayLabel.length && _displayLabel.hide();
+
+                    ( _p._model.selector().attr('type') || '' ).toLowerCase() != 'hidden'
+                        && _p._model.selector().show()
+                        ;
                 });
             }
 
