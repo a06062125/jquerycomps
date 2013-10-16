@@ -334,7 +334,7 @@
      * @default     null
      * @static
      */
-    FormLogic.processErrorCb = true;
+    FormLogic.processErrorCb;
 
     FormLogic.prototype = {
         _beforeInit:
