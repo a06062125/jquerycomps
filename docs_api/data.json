@@ -4253,7 +4253,7 @@
                 },
                 {
                     "name": "_dayOffset",
-                    "description": "每周的默认开始为周几, 默认0(周日)",
+                    "description": "每周的默认开始为周几, 默认0(周一)",
                     "type": "Int"
                 }
             ],
