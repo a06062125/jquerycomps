@@ -505,6 +505,12 @@
                 if( _d && ( 'errorno' in _d ) && !_d.errorno ){
                     _p._model.cauValue( _d );
 
+                    _p._model.selector().val() 
+                        && _p._model.selector().is(':visible')
+                        && _p._model.selector().prop('type').toLowerCase() == 'text'
+                        && _p._model.selector().trigger('blur')
+                        ;
+
                     if( _displayLabel && _displayLabel.length ){
                         _p._model.selector().hide();
                         _p._model.frame().hide();

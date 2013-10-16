@@ -685,6 +685,12 @@
                 if( _d &amp;&amp; ( &#x27;errorno&#x27; in _d ) &amp;&amp; !_d.errorno ){
                     _p._model.cauValue( _d );
 
+                    _p._model.selector().val() 
+                        &amp;&amp; _p._model.selector().is(&#x27;:visible&#x27;)
+                        &amp;&amp; _p._model.selector().prop(&#x27;type&#x27;).toLowerCase() == &#x27;text&#x27;
+                        &amp;&amp; _p._model.selector().trigger(&#x27;blur&#x27;)
+                        ;
+
                     if( _displayLabel &amp;&amp; _displayLabel.length ){
                         _p._model.selector().hide();
                         _p._model.frame().hide();
