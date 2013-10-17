@@ -313,7 +313,7 @@
                                 datatype="n" 
                                 reqmsg="正整数"  
                                 />
-                                </div>
+                            </div>
                             <div>
                                 <label>-1000000 ~ 1000000:</label>
                                 <input type="text" name="company_n" 
@@ -337,6 +337,16 @@
                                 <input type="text" name="company_n2" 
                                 errmsg="0.01 ~ 9999999.99" 
                                 datatype="n-7.2" 
+                                />
+                            </div>
+                            <div>
+                                <label>0.00 ~ 999999999999.99:</label>
+                                <input type="text" name="company_n" 
+                                value="999999999999.99"
+                                errmsg="请填写正确的正整数" 
+                                datatype="n-12.2" 
+                                reqmsg="数字"  
+                                placeholder="0.00 ~ 999999999999.99"
                                 />
                             </div>
                         </dd>

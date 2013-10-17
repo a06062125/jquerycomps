@@ -968,7 +968,8 @@
                     , _valStr = _item.val()
                     , _val = +_valStr
                     ,_min = 0
-                    , _max = Math.pow( 10, 10 )
+                    , _pow = 10
+                    , _max = Math.pow( 10, _pow )
                     , _n, _f, _tmp;
 
                 _p.isMinvalue( _item ) && ( _min = _p.minvalue( _item, /\./.test( _item.attr('minvalue') ) ) || _min );
@@ -976,8 +977,9 @@
                 if( !isNaN( _val ) && _val >= _min ){
                     _item.attr('datatype').replace( /^n[^\-]*\-(.*)$/, function( $0, $1 ){
                         _tmp = $1.split('.');
-                        _n = _tmp[0];
-                        _f = _tmp[1];
+                        _n = parseInt( _tmp[0] );
+                        _f = parseInt( _tmp[1] );
+                        _n > _pow && ( _max = Math.pow( 10, _n ) );
                     });
 
                     _p.isMaxvalue( _item ) && ( _max = _p.maxvalue( _item, /\./.test( _item.attr('maxvalue') ) ) || _max );
