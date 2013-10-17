@@ -2385,7 +2385,7 @@
         },
         {
             "file": "../comps/AjaxUpload/AjaxUpload.js",
-            "line": 435,
+            "line": 438,
             "description": "恢复默认状态",
             "class": "JC.AjaxUpload",
             "namespace": "JC"
@@ -14283,7 +14283,7 @@
         },
         {
             "message": "Missing item type\n恢复默认状态",
-            "line": " ../comps/AjaxUpload/AjaxUpload.js:435"
+            "line": " ../comps/AjaxUpload/AjaxUpload.js:438"
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
