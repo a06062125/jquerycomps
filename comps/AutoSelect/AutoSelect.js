@@ -459,19 +459,20 @@
                     if( typeof _oldToken != 'undefined' && _oldToken != _p._model.token() ){
                         return;
                     }
+                    /*
                     setTimeout( function(){
-                        _url = _p._model.selecturl( _selector, _pid );
-                        $.get( _url, function( _data ){
-                            if( typeof _oldToken != 'undefined' && _oldToken != _p._model.token() ){
-                                return;
-                            }
-                            JC.log( '_url:', _url, _pid );
-                            _data = $.parseJSON( _data );
-                            _p._view.update( _selector, _data );
-                            _cb && _cb.call( _p, _selector, _data, _oldToken );
-                        });
-
                     }, Math.random() * 1000 );
+                    */
+                    _url = _p._model.selecturl( _selector, _pid );
+                    $.get( _url, function( _data ){
+                        if( typeof _oldToken != 'undefined' && _oldToken != _p._model.token() ){
+                            return;
+                        }
+                        JC.log( '_url:', _url, _pid );
+                        _data = $.parseJSON( _data );
+                        _p._view.update( _selector, _data );
+                        _cb && _cb.call( _p, _selector, _data, _oldToken );
+                    });
                 }
                 return this;
             }
