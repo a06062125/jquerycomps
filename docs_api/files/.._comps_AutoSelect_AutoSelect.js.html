@@ -91,6 +91,8 @@
             
                 <li><a href="../classes/JC.Panel.View.html">JC.Panel.View</a></li>
             
+                <li><a href="../classes/JC.Placeholder.html">JC.Placeholder</a></li>
+            
                 <li><a href="../classes/JC.Slider.html">JC.Slider</a></li>
             
                 <li><a href="../classes/JC.Slider.Model.html">JC.Slider.Model</a></li>
@@ -639,19 +641,20 @@
                     if( typeof _oldToken != &#x27;undefined&#x27; &amp;&amp; _oldToken != _p._model.token() ){
                         return;
                     }
+                    /*
                     setTimeout( function(){
-                        _url = _p._model.selecturl( _selector, _pid );
-                        $.get( _url, function( _data ){
-                            if( typeof _oldToken != &#x27;undefined&#x27; &amp;&amp; _oldToken != _p._model.token() ){
-                                return;
-                            }
-                            JC.log( &#x27;_url:&#x27;, _url, _pid );
-                            _data = $.parseJSON( _data );
-                            _p._view.update( _selector, _data );
-                            _cb &amp;&amp; _cb.call( _p, _selector, _data, _oldToken );
-                        });
-
                     }, Math.random() * 1000 );
+                    */
+                    _url = _p._model.selecturl( _selector, _pid );
+                    $.get( _url, function( _data ){
+                        if( typeof _oldToken != &#x27;undefined&#x27; &amp;&amp; _oldToken != _p._model.token() ){
+                            return;
+                        }
+                        JC.log( &#x27;_url:&#x27;, _url, _pid );
+                        _data = $.parseJSON( _data );
+                        _p._view.update( _selector, _data );
+                        _cb &amp;&amp; _cb.call( _p, _selector, _data, _oldToken );
+                    });
                 }
                 return this;
             }
@@ -881,7 +884,14 @@
 
         , hideempty:
             function( _selector ){
-                var _r = AutoSelect.hideEmpty;
+                var _r = AutoSelect.hideEmpty, _first = this.first();
+
+                _first 
+                    &amp;&amp; _first.length
+                    &amp;&amp; _first.is(&#x27;[selecthideempty]&#x27;)
+                    &amp;&amp; ( _r = parseBool( _first.attr(&#x27;selecthideempty&#x27;) ) )
+                    ;
+
                 _selector 
                     &amp;&amp; _selector.length
                     &amp;&amp; _selector.is(&#x27;[selecthideempty]&#x27;)

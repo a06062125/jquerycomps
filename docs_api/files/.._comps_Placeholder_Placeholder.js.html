@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../comps/Form/JC.Form.initAutoFill.js - jquery components</title>
+    <title>../comps/Placeholder/Placeholder.js - jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -176,143 +176,124 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../comps/Form/JC.Form.initAutoFill.js</h1>
+                        <h1 class="file-heading">File: ../comps/Placeholder/Placeholder.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
- ;(function($){
+/**
+ * Placeholder 占位符提示功能
+ * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
+ * | &lt;a href=&#x27;http://jc.openjavascript.org/docs_api/classes/JC.Placeholder.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+ * | &lt;a href=&#x27;../../comps/Placeholder/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+ * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+ * &lt;h2&gt;可用的 HTML attribute&lt;/h2&gt;
+ * &lt;dl&gt;
+  * &lt;/dl&gt;
+ * @namespace JC
+ * @class Placeholder
+ * @extends JC.BaseMVC
+ * @constructor
+ * @param   {selector|string}   _selector   
+ * @version dev 0.1
+ * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 Team
+ * @date    2013-10-19
+ */
+;(function($){
+
+    JC.Placeholder = Placeholder;
+
+    function Placeholder( _selector ){
+
+        if( Placeholder.getInstance( _selector ) ) return Placeholder.getInstance( _selector );
+        Placeholder.getInstance( _selector, this );
+        //JC.log( Placeholder.Model._instanceName );
+
+        this._model = new Placeholder.Model( _selector );
+        this._view = new Placeholder.View( this._model );
+
+        this._init();
+    }
     /**
-     * 表单自动填充 URL GET 参数
-     * &lt;br /&gt;只要引用本脚本, DOM 加载完毕后, 页面上所有带 class js_autoFillUrlForm 的 form 都会自动初始化默认值
-     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
-     * &lt;p&gt;&lt;a href=&#x27;https://github.com/openjavascript/jquerycomps&#x27; target=&#x27;_blank&#x27;&gt;JC Project Site&lt;/a&gt;
-     * | &lt;a href=&#x27;http://jc.openjavascript.org/docs/docs_api/classes/JC.Form.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
-     * @method  initAutoFill
+     * 获取或设置 Placeholder 的实例
+     * @method  getInstance
+     * @param   {selector}      _selector
      * @static
-     * @for JC.Form
-     * @version dev 0.1
-     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 75 team
-     * @date    2013-06-13
-     * @param   {selector|url string}   _selector   显示指定要初始化的区域, 默认为 document
-     * @param   {string}                _url        显示指定, 取初始化值的 URL, 默认为 location.href
-     * @example
-     *      JC.Form.initAutoFill( myCustomSelector, myUrl );
+     * @return  {PlaceholderInstance}
      */
-     JC.Form.initAutoFill =
-        function( _selector, _url ){
-            if( !(_selector &amp;&amp; _selector.length ) ) _selector = $(document);
-            _url = _url || location.href;
+    Placeholder.getInstance =
+        function( _selector, _setter ){
+            if( typeof _selector == &#x27;string&#x27; &amp;&amp; !/&lt;/.test( _selector ) ) 
+                    _selector = $(_selector);
+            if( !(_selector &amp;&amp; _selector.length ) || ( typeof _selector == &#x27;string&#x27; ) ) return;
+            typeof _setter != &#x27;undefined&#x27; &amp;&amp; _selector.data( Placeholder.Model._instanceName, _setter );
 
-            JC.log( &#x27;JC.Form.initAutoFill&#x27; );
-
-            if( _selector.prop( &#x27;nodeName&#x27; ).toLowerCase() == &#x27;form&#x27; ){
-                fillForm( _selector, _url );
-            }else{
-                _selector.find(&#x27;form.js_autoFillUrlForm&#x27;).each( function(){
-                    fillForm( this, _url );
-                });
-            }
-
+            return _selector.data( Placeholder.Model._instanceName );
         };
+    /**
+     * 初始化可识别的 Placeholder 实例
+     * @method  init
+     * @param   {selector}      _selector
+     * @static
+     * @return  {Array of PlaceholderInstance}
+     */
+    Placeholder.init =
+        function( _selector ){
+            var _r = [];
+            _selector = $( _selector || document );
 
-    function fillForm( _selector, _url ){
-        _selector = $(_selector);
-        _url = decode( _url );
-        
-        _selector.find( &#x27;input[type=text][name],input[type=password][name],textarea[name]&#x27; ).each( function(){
-            var _sp = $(this);
-            if( hasUrlParam( _url, _sp.attr(&#x27;name&#x27;) ) ){
-                _sp.val( decode( getUrlParam( _url, _sp.attr(&#x27;name&#x27;) ).replace(/[\+]/g, &#x27; &#x27; ) ) );
-            }
-        });
-
-        _selector.find( &#x27;select[name]&#x27; ).each( function(){
-            var _sp = $(this), _uval = decode( getUrlParam( _url, _sp.attr(&#x27;name&#x27;) ).replace(/[\+]/g, &#x27; &#x27; ) ) ;
-            if( hasUrlParam( _url, _sp.attr(&#x27;name&#x27;) ) ){
-                if( selectHasVal( _sp, _uval ) ){
-                    _sp.removeAttr(&#x27;selectignoreinitrequest&#x27;);
-                    _sp.val( getUrlParam( _url, _sp.attr(&#x27;name&#x27;) ) );
+            if( _selector &amp;&amp; _selector.length ){
+                if( _selector.hasClass( &#x27;.js_compPlaceholder&#x27; )  ){
+                    _r.push( new Placeholder( _selector ) );
                 }else{
-                    _sp.attr( &#x27;selectvalue&#x27;, _uval );
+                    _selector.find( &#x27;div.js_compPlaceholder&#x27; ).each( function(){
+                        _r.push( new Placeholder( this ) );
+                    });
                 }
             }
-        });
+            return _r;
+        };
 
-        /*
-            ?s_startTime=2013-08-28
-                &amp;s_endTime=2013-09-28
-                &amp;kword_type=
-                &amp;kword=
-                &amp;department[]=2
-                &amp;department[]=3
-                &amp;operator[]=328
-                &amp;operator[]=330
-                &amp;operator[]=331
-                &amp;isp=1379841840601_232_161
-        */
-
-        var _keyObj = {};
-        _selector.find( &#x27;input[type=checkbox][name], input[type=radio][name]&#x27; ).each( function(){
-            var _sp = $(this), _key = _sp.attr(&#x27;name&#x27;).trim(), _keys, _v = _sp.val();
-            //alert( _sp.attr(&#x27;name&#x27;) );
-            if( !( _key in _keyObj ) ){
-                _keys = getUrlParams( _url, _key );
-                _keyObj[ _key ] = _keys;
-            }else{
-                _keys = _keyObj[ _key ];
+    Placeholder.prototype = {
+        _beforeInit:
+            function(){
+                JC.log( &#x27;Placeholder _beforeInit&#x27;, new Date().getTime() );
             }
-
-            if( _keys &amp;&amp; _keys.length ){
-                $.each( _keys, function( _ix, _item ){
-                    if( _item == _v ){
-                        _sp.prop(&#x27;checked&#x27;, true);
-                    }
-                });
+        , _initHanlderEvent:
+            function(){
             }
-        });
-
-        window.jcAutoInitComps &amp;&amp; jcAutoInitComps( _selector );
-    }
-    /**
-     * 自定义 URI decode 函数
-     * @property    initAutoFill.decodeFunc
-     * @static
-     * @for JC.Form
-     * @type    function
-     * @default null
-     */
-    JC.Form.initAutoFill.decodeFunc;
-
-    function decode( _val ){
-        try{
-            _val = (JC.Form.initAutoFill.decodeFunc || decodeURIComponent)( _val );
-        }catch(ex){}
-        return _val;
-    }
-    /**
-     * 判断下拉框的option里是否有给定的值
-     * @method  initAutoFill.selectHasVal
-     * @private
-     * @static
-     * @param   {selector}  _select
-     * @param   {string}    _val    要查找的值
-     */
-    function selectHasVal( _select, _val ){
-        var _r = false, _val = _val.toString();
-        _select.find(&#x27;option&#x27;).each( function(){
-            var _tmp = $(this);
-            if( _tmp.val() == _val ){
-                _r = true;
-                return false;
+        , _inited:
+            function(){
+                JC.log( &#x27;Placeholder _inited&#x27;, new Date().getTime() );
             }
-        });
-        return _r;
-    }
+    };
 
-    $(document).ready( function( _evt ){ JC.Form.initAutoFill(); });
+    BaseMVC.buildModel( Placeholder );
+    Placeholder.Model._instanceName = &#x27;Placeholder&#x27;;
+    Placeholder.Model.prototype = {
+        init:
+            function(){
+                JC.log( &#x27;Placeholder.Model.init:&#x27;, new Date().getTime() );
+            }
+    };
+
+    BaseMVC.buildView( Placeholder );
+    Placeholder.View.prototype = {
+        init:
+            function(){
+                JC.log( &#x27;Placeholder.View.init:&#x27;, new Date().getTime() );
+            }
+    };
+
+    BaseMVC.build( Placeholder );
+
+    $(document).ready( function(){
+        var _insAr = 0;
+        Placeholder.autoInit
+            &amp;&amp; ( _insAr = Placeholder.init() )
+            ;
+    });
 
 }(jQuery));
-
 
     </pre>
 </div>

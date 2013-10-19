@@ -287,6 +287,17 @@
                 "JC": 1
             }
         },
+        "../comps/Placeholder/Placeholder.js": {
+            "name": "../comps/Placeholder/Placeholder.js",
+            "modules": {},
+            "classes": {
+                "JC.Placeholder": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "JC": 1
+            }
+        },
         "../comps/Slider/Slider.js": {
             "name": "../comps/Slider/Slider.js",
             "modules": {},
@@ -1246,6 +1257,31 @@
             "return": {
                 "description": "<a href='JC.Panel.html'>JC.Panel</a>"
             }
+        },
+        "JC.Placeholder": {
+            "name": "JC.Placeholder",
+            "shortname": "JC.Placeholder",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "JC",
+            "file": "../comps/Placeholder/Placeholder.js",
+            "line": 1,
+            "description": "Placeholder 占位符提示功能\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/JC.Placeholder.html' target='_blank'>API docs</a>\n| <a href='../../comps/Placeholder/_demo' target='_blank'>demo link</a></p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<h2>可用的 HTML attribute</h2>\n<dl>\n</dl>",
+            "extends": "JC.BaseMVC",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector|string"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
+            "date": "2013-10-19"
         },
         "JC.Slider": {
             "name": "JC.Slider",
@@ -2863,7 +2899,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 788,
+            "line": 796,
             "description": "判断下拉框的option里是否有给定的值",
             "params": [
                 {
@@ -2882,7 +2918,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 858,
+            "line": 866,
             "description": "初始化之事的事件",
             "itemtype": "event",
             "name": "SelectBeforeInited",
@@ -2891,7 +2927,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 862,
+            "line": 870,
             "description": "初始化后的事件",
             "itemtype": "event",
             "name": "SelectInited",
@@ -2900,7 +2936,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 866,
+            "line": 874,
             "description": "响应每个 select 的 change 事件",
             "itemtype": "event",
             "name": "SelectChange",
@@ -2909,7 +2945,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 870,
+            "line": 878,
             "description": "最后一个 select change 后的事件",
             "itemtype": "event",
             "name": "SelectAllChanged",
@@ -2918,7 +2954,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 874,
+            "line": 882,
             "description": "select 更新数据之前触发的事件",
             "itemtype": "event",
             "name": "SelectItemBeforeUpdate",
@@ -2927,7 +2963,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 878,
+            "line": 886,
             "description": "select 更新数据之后触发的事件",
             "itemtype": "event",
             "name": "SelectItemUpdated",
@@ -2936,7 +2972,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 882,
+            "line": 890,
             "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "JC.AutoSelect",
             "namespace": "JC"
@@ -6987,6 +7023,48 @@
             "line": 571,
             "description": "响应窗口改变大小",
             "class": "JC.alert",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Placeholder/Placeholder.js",
+            "line": 34,
+            "description": "获取或设置 Placeholder 的实例",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "PlaceholderInstance"
+            },
+            "class": "JC.Placeholder",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/Placeholder/Placeholder.js",
+            "line": 50,
+            "description": "初始化可识别的 Placeholder 实例",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "Array of PlaceholderInstance"
+            },
+            "class": "JC.Placeholder",
             "namespace": "JC"
         },
         {
@@ -13931,6 +14009,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../comps/Placeholder/Placeholder.js:1"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/Placeholder/Placeholder.js:1"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../comps/Slider/Slider.js:3"
         },
         {
@@ -14287,11 +14373,11 @@
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
-            "line": " ../comps/AutoSelect/AutoSelect.js:788"
+            "line": " ../comps/AutoSelect/AutoSelect.js:796"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/AutoSelect/AutoSelect.js:882"
+            "line": " ../comps/AutoSelect/AutoSelect.js:890"
         },
         {
             "message": "Missing item type\n保存所有类型的 Calendar 日期实例 \n<br />目前有 date, week, month, season 四种类型的实例\n<br />每种类型都是单例模式",
