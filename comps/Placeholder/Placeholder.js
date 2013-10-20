@@ -32,7 +32,7 @@
 
         this._init();
 
-        JC.log( 'Placeholder.init:', new Date().getTime() );
+        JC.log( 'Placeholder:', new Date().getTime() );
     }
     /**
      * 获取或设置 Placeholder 的实例
@@ -85,7 +85,7 @@
             return _r;
         };
 
-    Placeholder.className = 'placeholder';
+    Placeholder.className = 'xplaceholder';
 
     Placeholder.prototype = {
         _beforeInit:
@@ -136,12 +136,37 @@
                 //JC.log( 'Placeholder.Model.init:', new Date().getTime() );
             }
 
+        , className:
+            function(){
+                var _r = this.attrProp( 'cphClassName' ) || Placeholder.className;
+                return _r;
+            }
+
+        , text:
+            function(){
+                var _r = this.attrProp( 'xplaceholder' ) || this.attrProp( 'placeholder' ) || '';
+                return _r;
+            }
+
         , placeholder:
             function(){
-                !this._placeholder 
-                    && ( this._placeholder = this.attrProp('placeholder') || this.attrProp('xplaceholder') )
-                    ;
+                if( !this._placeholder ){
+                    this._placeholder = $( printf( '<div class="{0}"></div>'
+                                , this.className() 
+                            ) )
+                            .appendTo( this.placeholderBox() );
+                }
+                this._placeholder.html( this.text() );
                 return this._placeholder;
+            }
+
+        , placeholderBox:
+            function(){
+                var _r = $( '#XPlaceHolderBox' );
+                if( !( _r && _r.length ) ){
+                    _r = $( '<div id="XPlaceHolderBox"></div>' ).appendTo( document.body );
+                }
+                return _r;
             }
     };
 
@@ -154,12 +179,27 @@
 
         , update:
             function(){
-                var _p = this, _v = _p._model.selector().val();
+                var _p = this
+                    , _v = _p._model.selector().val()
+                    , _holder = _p._model.placeholder()
+                    ;
                 if( _v ){
-                }else{
-                    _p._model.selector().val( _p._model.placeholder() );
-                    _p._model.selector().addClass( Placeholder.className );
+                    _holder.hide();
+                    return;
                 }
+
+                var _offset = _p._model.selector().offset()
+                    , _h = _p._model.selector().prop('offsetHeight')
+                    , _hh = _holder.prop( 'offsetHeight' )
+                    , _ptop = 1
+                    ;
+
+                _hh > _h && ( _ptop = Math.ceil( ( _hh - _h ) / 2 ) + 1 );
+                //alert( _h + ', ' + _hh + ', ' + _ptop );
+
+                _holder.css( { 'left': _offset.left + 'px', 'top': _offset.top + _ptop + 'px' } );
+
+                _holder.show();
             }
     };
 
