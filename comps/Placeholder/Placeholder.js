@@ -4,9 +4,6 @@
  * | <a href='http://jc.openjavascript.org/docs_api/classes/JC.Placeholder.html' target='_blank'>API docs</a>
  * | <a href='../../comps/Placeholder/_demo' target='_blank'>demo link</a></p>
  * <p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>
- * <h2>可用的 HTML attribute</h2>
- * <dl>
-  * </dl>
  * @namespace JC
  * @class Placeholder
  * @extends JC.BaseMVC
@@ -21,8 +18,13 @@
     JC.Placeholder = Placeholder;
 
     function Placeholder( _selector ){
-        if( Placeholder.Model.isSupport ) return;
         _selector && ( _selector = $( _selector ) );
+        if( Placeholder.isSupport ) {
+            _selector 
+                && _selector.is('[xplaceholder]')
+                && _selector.attr('placeholder', _selector.attr('xplaceholder') );
+            return;
+        }
         if( Placeholder.getInstance( _selector ) ) return Placeholder.getInstance( _selector );
         Placeholder.getInstance( _selector, this );
         //JC.log( Placeholder.Model._instanceName );
@@ -60,7 +62,7 @@
     Placeholder.init =
         function( _selector ){
             var _r = [], _nodeName;
-            if( Placeholder.Model.isSupport ) return;
+            Placeholder.update();
             _selector = $( _selector || document );
 
             if( _selector 
@@ -68,9 +70,14 @@
                     && ( _nodeName = _selector.prop('nodeName').toLowerCase() ) 
             ){
                 if( _nodeName == 'text' || _nodeName == 'textarea' ){
-                    _selector.is('[placeholder]') 
-                        && _r.push( new Placeholder( _selector ) )
-                        ;
+                    if( Placeholder.isSupport ){
+                        _selector.is('[xplaceholder]')
+                            && _selector.attr('placeholder', _selector.attr('xplaceholder') );
+                    }else{
+                        _selector.is('[placeholder]') 
+                            && _r.push( new Placeholder( _selector ) )
+                            ;
+                    }
                 }else{
                     _selector.find( [ 
                                         'input[type=text][placeholder]'
@@ -78,14 +85,49 @@
                                         , 'input[type=text][xplaceholder]'
                                         , 'textarea[xplaceholder]'
                     ].join(',') ).each( function(){
-                        _r.push( new Placeholder( this ) );
+                        var _sp = $(this);
+                        if( Placeholder.isSupport ){
+                            _sp.is('[xplaceholder]')
+                                && _sp.attr('placeholder', _sp.attr('xplaceholder') );
+                        }else{
+                            _r.push( new Placeholder( _sp ) );
+                        }
                     });
                 }
             }
             return _r;
         };
-
+    /**
+     * 更新所有 placeholder 实现的状态
+     * @method  update
+     * @static
+     */
+    Placeholder.update =
+        function(){
+            var _items = $( printf( '#{0} > div', Placeholder.Model._boxId ) );
+            if( !_items.length ) return;
+            _items.each( function(){
+                var _p = $(this), _ins = _p.data( 'CPHIns' );
+                if( !_ins ) return;
+                _ins.update();
+            });
+        };
+    /**
+     * 设置 Placeholder 的默认 className
+     * @property    className
+     * @type        string
+     * @default     xplaceholder
+     * @static
+     */
     Placeholder.className = 'xplaceholder';
+    /**
+     * 判断 input/textarea 默认是否支持 placeholder 功能
+     * @property    isSupport
+     * @type        bool
+     * @static
+     */
+    //Placeholder.isSupport = false;
+    Placeholder.isSupport = 'placeholder' in $('<input type="text" />')[0];
 
     Placeholder.prototype = {
         _beforeInit:
@@ -97,38 +139,55 @@
                 var _p = this;
 
                 _p._model.selector().on( 'focus', function( _evt ){
-                    _p._view.clear();
+                    _p._view.hide();
                 });
 
-                _p._model.selector().on( 'keypress', function( _evt ){
-                    JC.log( 'keypress', new Date().getTime() );
+                _p._model.selector().on( 'blur', function( _evt ){
+                    _p._view.show();
                 });
 
-                _p._model.selector().on( 'keydown', function( _evt ){
-                    JC.log( 'keydown', new Date().getTime() );
+                _p._model.selector().on( 'placeholder_remove', function( _evt ){
+                    _p._model.placeholder().remove();
+                    Placeholder.Model._removeTm && clearTimeout( Placeholder.Model._removeTm );
+
+                    Placeholder.Model._removeTm = 
+                        setTimeout( function(){
+                            Placeholder.update();
+                        }, 1 );
                 });
 
-                _p._model.selector().on( 'keyup', function( _evt ){
-                    JC.log( 'keyup', new Date().getTime() );
-                });
-
-                _p.on( 'CPUpdate', function( _evt ){
+                _p.on( 'CPHUpdate', function( _evt ){
                     _p._view.update();
+                });
+
+                _p.on( 'CPHInitedPlaceholder', function( _evt ){
+                    var _ph = _p._model.placeholder();
+                    _ph.on( 'click', function( _sevt ){
+                        _p._model.selector().trigger( 'focus' );
+                        set_cursor( _p._model.selector()[0], _p._model.selector().val().length );
+                    });
+                    _ph.data( 'CPHIns', _p );
                 });
             }
         , _inited:
             function(){
                 //JC.log( 'Placeholder _inited', new Date().getTime() );
                 var _p = $(this);
-                _p.trigger( 'CPUpdate' );
+                _p.trigger( 'CPHUpdate' );
+            }
+        /**
+         * 更新 placeholder 状态
+         * @method update
+         */
+        , update:
+            function(){
+                this._view.update();
             }
     };
 
     BaseMVC.buildModel( Placeholder );
     Placeholder.Model._instanceName = 'Placeholder';
-
-    //Placeholder.Model.isSupport = 'placeholder' in $('<input type="text" />')[0];
-    Placeholder.Model.isSupport = false;
+    Placeholder.Model._boxId = 'XPlaceHolderBox';
 
     Placeholder.Model.prototype = {
         init:
@@ -155,6 +214,8 @@
                                 , this.className() 
                             ) )
                             .appendTo( this.placeholderBox() );
+
+                    $( this ).trigger( 'TriggerEvent', [ 'CPHInitedPlaceholder' ] );
                 }
                 this._placeholder.html( this.text() );
                 return this._placeholder;
@@ -162,9 +223,9 @@
 
         , placeholderBox:
             function(){
-                var _r = $( '#XPlaceHolderBox' );
+                var _r = $( '#' + Placeholder.Model._boxId );
                 if( !( _r && _r.length ) ){
-                    _r = $( '<div id="XPlaceHolderBox"></div>' ).appendTo( document.body );
+                    _r = $( printf( '<div id="{0}"></div>', Placeholder.Model._boxId ) ).appendTo( document.body );
                 }
                 return _r;
             }
@@ -180,7 +241,7 @@
         , update:
             function(){
                 var _p = this
-                    , _v = _p._model.selector().val()
+                    , _v = _p._model.selector().val().trim()
                     , _holder = _p._model.placeholder()
                     ;
                 if( _v ){
@@ -191,20 +252,88 @@
                 var _offset = _p._model.selector().offset()
                     , _h = _p._model.selector().prop('offsetHeight')
                     , _hh = _holder.prop( 'offsetHeight' )
-                    , _ptop = 1
                     ;
 
-                _hh > _h && ( _ptop = Math.ceil( ( _hh - _h ) / 2 ) + 1 );
-                //alert( _h + ', ' + _hh + ', ' + _ptop );
+                //JC.log( _h + ', ' + _hh );
 
-                _holder.css( { 'left': _offset.left + 'px', 'top': _offset.top + _ptop + 'px' } );
+                _holder.css( { 'left': _offset.left + 'px'
+                                , 'top': _offset.top + 1 + 'px' 
+                                , 'line-height': _h + 'px' 
+                            } );
 
                 _holder.show();
+            }
+
+        , hide: 
+            function(){
+                var _p = this;
+                _p._model.placeholder().hide();
+            }
+
+        , show:
+            function(){
+                var _p = this
+                    , _v = _p._model.selector().val().trim()
+                    ;
+                if( _v ) return;
+                this.update();
+                _p._model.placeholder().show();
             }
     };
 
     BaseMVC.build( Placeholder );
+    
+    $.event.special.placeholder_remove = {
+        remove: 
+            function(o) {
+                if (o.handler) {
+                    o.handler()
+                }
+            }
+    };
 
+    $(window).on( 'resize', function(){
+        Placeholder.update();
+    });
+
+    /**
+     * 设置 控件 光标位置
+     * x@btbtd.org  2012-3-1 
+     */   
+    function set_cursor(ctrl, pos)
+    {
+        if(ctrl.setSelectionRange)
+        {
+            ctrl.focus();
+            ctrl.setSelectionRange(pos,pos);
+        }
+        else if (ctrl.createTextRange) 
+        {
+            var tro = ctrl.createTextRange();   
+            var LStart = pos;   
+            var LEnd = pos;   
+            var start = 0;   
+            var end = 0;   
+            var value = ctrl.value;
+               
+            for(var i=0; i<value.length && i<LStart; i++)
+            {   
+              var c = value.charAt(i);   
+              if(c!='\n') start++;  
+            }
+               
+            for(var i=value.length-1; i>=LEnd && i>=0; i--)
+            {   
+              var c = value.charAt(i);   
+              if(c!='\n') end++;  
+            }   
+            tro.moveStart('character', start);   
+            tro.moveEnd('character', -end);   
+            tro.select();   
+            ctrl.focus();   
+        }
+    }
+ 
     $(document).ready( function(){
         var _insAr = 0;
         Placeholder.autoInit
