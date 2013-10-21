@@ -440,8 +440,6 @@
                     , _next = _p._model.next( _selector )
                     , _url, _token
                     ;
-                JC.log( 'ajax select' );
-
 
                 if( _p._model.isFirst( _selector ) ){
                     typeof _pid == 'undefined' && ( _pid = _p._model.selectparentid( _selector ) || '' );
@@ -450,16 +448,20 @@
                         _token = _p._model.token( true );
 
                         if( Model.ajaxCache( _url ) ){
-                            _data = Model.ajaxCache( _url );
-                            _p._view.update( _selector, _data );
-                            _cb && _cb.call( _p, _selector, _data, _token );
-                        }else{
-                            $.get( _url, function( _data ){
-                                _data = $.parseJSON( _data );
-                                Model.ajaxCache( _url, _data );
+                            setTimeout( function(){
+                                _data = Model.ajaxCache( _url );
                                 _p._view.update( _selector, _data );
                                 _cb && _cb.call( _p, _selector, _data, _token );
-                            });
+                            }, 10 );
+                        }else{
+                            setTimeout( function(){
+                                $.get( _url, function( _data ){
+                                    _data = $.parseJSON( _data );
+                                    Model.ajaxCache( _url, _data );
+                                    _p._view.update( _selector, _data );
+                                    _cb && _cb.call( _p, _selector, _data, _token );
+                                });
+                            }, 10 );
                         }
                     }
                 }else{
@@ -483,11 +485,13 @@
         , _processData:
             function( _oldToken, _selector, _cb, _data ){
                 var _p = this;
-                if( typeof _oldToken != 'undefined' && _oldToken != _p._model.token() ){
-                    return;
-                }
-                _p._view.update( _selector, _data );
-                _cb && _cb.call( _p, _selector, _data, _oldToken );
+                setTimeout( function(){
+                    if( typeof _oldToken != 'undefined' && _oldToken != _p._model.token() ){
+                        return;
+                    }
+                    _p._view.update( _selector, _data );
+                    _cb && _cb.call( _p, _selector, _data, _oldToken );
+                }, 10 );
             }
 
         , _changeCb:
