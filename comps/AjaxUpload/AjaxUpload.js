@@ -530,4 +530,4 @@
     });
 
 }(jQuery));
-
+; loaderDetect( [ 'JC.Panel' ], JC.AjaxUpload );
