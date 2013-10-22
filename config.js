@@ -4,8 +4,7 @@
 requirejs.config( {
     baseUrl: '../../../'
     , paths: {
-        'jquery': 'jquery'
-        , 'common': 'common'
+        'common': 'common'
         , 'domReady': 'plugins/domReady'
 
         , 'JC.BaseMVC': 'comps/BaseMVC/BaseMVC'
@@ -18,5 +17,3 @@ requirejs.config( {
         , 'JC.AutoSelect': 'comps/AutoSelect/AutoSelect'
     }
 });
-
-requirejs( ['jquery', 'common' ] );

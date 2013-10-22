@@ -289,3 +289,4 @@
         JC.Form.initNumericStepper( $(document) );
     });
 }(jQuery));
+; loaderDetect( [ 'JC.AutoSelect', 'JC.AutoChecked' ], JC.Form );

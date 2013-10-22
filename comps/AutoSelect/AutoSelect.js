@@ -862,4 +862,4 @@
     });
 
 }(jQuery));
-
+; loaderDetect( JC.AutoSelect );

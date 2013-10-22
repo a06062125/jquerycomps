@@ -2598,4 +2598,5 @@
         });
     });
 
-}(jQuery))
+}(jQuery));
+; loaderDetect( JC.Valid );

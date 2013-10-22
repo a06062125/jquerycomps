@@ -395,4 +395,4 @@
     });
 
 }(jQuery));
-
+; loaderDetect( JC.AutoChecked );
