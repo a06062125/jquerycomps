@@ -459,7 +459,7 @@
             "namespace": "window.Bizs",
             "file": "../bizs/CommonModify/CommonModify.js",
             "line": 1,
-            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>[cmtpl | cmtemplate] = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 当前的具体父节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>\n     添加或删除完后会触发的回调, <b>window 变量域</b>\n<xmp>function cmdonecallback( _ins, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmdonecallback', new Date().getTime() );\n}</xmp>\n     </dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>\n     模板内容过滤回调, <b>window 变量域</b>\n<xmp>window.COUNT = 1;\nfunction cmtplfiltercallback( _tpl, _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmtplfiltercallback', new Date().getTime() );\n   _tpl = printf( _tpl, COUNT++ );\n\n   return _tpl;\n}</xmp>\n     </dd>\n\n     <dt>cmbeforeaddcallabck = function</dt>\n     <dd>\n     添加之前的回调, 如果返回 false, 将不执行添加操作, <b>window 变量域</b>\n<xmp>function cmbeforeaddcallabck( _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmbeforeaddcallabck', new Date().getTime() );\n   //return false;\n}</xmp>\n     </dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>\n     添加完成的回调, <b>window 变量域</b>\n<xmp>function cmaddcallback( _ins, _newItem, _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmaddcallback', new Date().getTime() );\n}</xmp>\n     </dd>\n\n     <dt>cmbeforedelcallback = function</dt>\n     <dd>\n     删除之前的回调, 如果返回 false, 将不执行删除操作, <b>window 变量域</b>\n<xmp>function cmbeforedelcallback( _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmbeforedelcallback', new Date().getTime() );\n   //return false;\n}</xmp>\n     </dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>\n     删除完成的回调, <b>window 变量域</b>\n<xmp>function cmdelcallback( _ins, _boxParent ){\n   JC.log( 'cmdelcallback', new Date().getTime() );\n}</xmp>\n     </dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: before, after, appendTo</dd>\n</dl>",
+            "description": "<h2>Dom 通用 添加删除 逻辑</h2>\n<br/>应用场景\n<br/>需要动态添加删除内容的地方可以使用这个类\n\n<p><a href='https://github.com/openjavascript/jquerycomps' target='_blank'>JC Project Site</a>\n| <a href='http://jc.openjavascript.org/docs_api/classes/window.Bizs.CommonModify.html' target='_blank'>API docs</a>\n| <a href='../../bizs/CommonModify/_demo' target='_blank'>demo link</a></p>\n\na|button 需要 添加 class=\"js_autoCommonModify\"\n\n<h2>可用的 HTML 属性</h2>\n<dl>\n     <dt>[cmtpl | cmtemplate] = script selector</dt>\n     <dd>指定保存模板的 script 标签</dd>\n\n     <dt>cmitem = selector</dt>\n     <dd>添加时, 目标位置的 父节点/兄弟节点</dd>\n\n     <dt>cmaction = string, [add, del], default = add</dt>\n     <dd>操作类型</dd>\n\n     <dt>cmappendtype = string, default = after</dt>\n     <dd>指定 node 添加 dom 的方法, 可选类型: before, after, appendTo</dd>\n\n     <dt>cmdonecallback = function</dt>\n     <dd>\n     添加或删除完后会触发的回调, <b>window 变量域</b>\n<xmp>function cmdonecallback( _ins, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmdonecallback', new Date().getTime() );\n}</xmp>\n     </dd>\n\n     <dt>cmtplfiltercallback = function</dt>\n     <dd>\n     模板内容过滤回调, <b>window 变量域</b>\n<xmp>window.COUNT = 1;\nfunction cmtplfiltercallback( _tpl, _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmtplfiltercallback', new Date().getTime() );\n   _tpl = printf( _tpl, COUNT++ );\n\n   return _tpl;\n}</xmp>\n     </dd>\n\n     <dt>cmbeforeaddcallabck = function</dt>\n     <dd>\n     添加之前的回调, 如果返回 false, 将不执行添加操作, <b>window 变量域</b>\n<xmp>function cmbeforeaddcallabck( _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmbeforeaddcallabck', new Date().getTime() );\n   //return false;\n}</xmp>\n     </dd>\n\n     <dt>cmaddcallback = function</dt>\n     <dd>\n     添加完成的回调, <b>window 变量域</b>\n<xmp>function cmaddcallback( _ins, _newItem, _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmaddcallback', new Date().getTime() );\n}</xmp>\n     </dd>\n\n     <dt>cmbeforedelcallback = function</dt>\n     <dd>\n     删除之前的回调, 如果返回 false, 将不执行删除操作, <b>window 变量域</b>\n<xmp>function cmbeforedelcallback( _cmitem, _boxParent ){\n   var _trigger = $(this);\n   JC.log( 'cmbeforedelcallback', new Date().getTime() );\n   //return false;\n}</xmp>\n     </dd>\n\n     <dt>cmdelcallback = function</dt>\n     <dd>\n     删除完成的回调, <b>window 变量域</b>\n<xmp>function cmdelcallback( _ins, _boxParent ){\n   JC.log( 'cmdelcallback', new Date().getTime() );\n}</xmp>\n     </dd>\n</dl>",
             "is_constructor": 1,
             "version": "dev 0.1 2013-09-04",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
@@ -13909,6 +13909,35 @@
             "static": 1,
             "example": [
                 "\n     dateDetect( 'now' ); //2014-10-02\n     dateDetect( 'now,3d' ); //2013-10-05\n     dateDetect( 'now,-3d' ); //2013-09-29\n     dateDetect( 'now,2w' ); //2013-10-16\n     dateDetect( 'now,-2m' ); //2013-08-02\n     dateDetect( 'now,4y' ); //2017-10-02\n\n     dateDetect( 'now,1d,1w,1m,1y' ); //2014-11-10"
+            ],
+            "class": ".window"
+        },
+        {
+            "file": "../common.js",
+            "line": 787,
+            "description": "模块加载器自动识别函数\n<br />目前可识别 requirejs\n<br />计划支持的加载器 seajs",
+            "itemtype": "method",
+            "name": "loaderDetect",
+            "params": [
+                {
+                    "name": "_require",
+                    "description": "",
+                    "type": "Array of dependency|class"
+                },
+                {
+                    "name": "_class",
+                    "description": "",
+                    "type": "Class|callback"
+                },
+                {
+                    "name": "_cb",
+                    "description": "",
+                    "type": "Callback"
+                }
+            ],
+            "static": 1,
+            "example": [
+                "\n     loaderDetect( JC.AutoSelect );\n     loaderDetect( [ 'JC.AutoSelect', 'JC.AutoChecked' ], JC.Form );"
             ],
             "class": ".window"
         },
