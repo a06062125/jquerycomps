@@ -710,6 +710,7 @@
                         _url = _url || _p._model.formAjaxDoneAction();
                         if( _url ){
                             try{_url = decodeURIComponent( _url ); } catch(ex){}
+                            /^URL/.test( _url) && ( urlDetect( _url ) );
                             reloadPage( _url );
                         }
                     }, _p._model.formPopupCloseMs() );
