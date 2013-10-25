@@ -265,6 +265,19 @@
                             , _r = _selector.data('SelectIns') );
                 return _r;
             }
+        /**
+         * 清除 select 的 所有 option, 带有属性 defaultoption 例外
+         * @method  removeItems
+         * @param   {selector}  _selector
+         * @return  {int}   deleted items number
+         * @static
+         */
+        , removeItems:
+            function( _selector ){
+                var _items = _selector.find('> option:not([defaultoption])'), _len = _items.length;
+                    _items.remove();
+                return _len;
+            }
     };
     for( var k in AutoSelectProp ) AutoSelect[k] = AutoSelectProp[k];
 
@@ -867,7 +880,7 @@
                 this._model.data( _selector, _data );
 
                 this._control.trigger( 'SelectItemBeforeUpdate', [ _selector, _data ] );
-                this._removeExists( _selector );
+                AutoSelect.removeItems( _selector );
 
                 if( !_data.length ){
                     if( this._model.hideempty( _selector ) ){
@@ -890,11 +903,6 @@
                     _selector.val( _default );
                 }
                 this._control.trigger( 'SelectItemUpdated', [ _selector, _data ] );
-            }
-
-        , _removeExists:
-            function( _selector ){
-                _selector.find('> option:not([defaultoption])').remove();
             }
 
         , hideItem:

@@ -2723,7 +2723,28 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 328,
+            "line": 268,
+            "description": "清除 select 的 所有 option, 带有属性 defaultoption 例外",
+            "itemtype": "method",
+            "name": "removeItems",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "deleted items number",
+                "type": "Int"
+            },
+            "static": 1,
+            "class": "JC.AutoSelect",
+            "namespace": "JC"
+        },
+        {
+            "file": "../comps/AutoSelect/AutoSelect.js",
+            "line": 341,
             "description": "使用 jquery on 绑定事件",
             "itemtype": "method",
             "name": "on",
@@ -2748,7 +2769,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 336,
+            "line": 349,
             "description": "使用 jquery trigger 绑定事件",
             "itemtype": "method",
             "name": "trigger",
@@ -2768,7 +2789,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 343,
+            "line": 356,
             "description": "获取第一个 select",
             "itemtype": "method",
             "name": "first",
@@ -2780,7 +2801,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 349,
+            "line": 362,
             "description": "获取最后一个 select",
             "itemtype": "method",
             "name": "last",
@@ -2792,7 +2813,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 355,
+            "line": 368,
             "description": "获取所有 select",
             "itemtype": "method",
             "name": "items",
@@ -2804,7 +2825,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 361,
+            "line": 374,
             "description": "是否为第一个 select",
             "itemtype": "method",
             "name": "isFirst",
@@ -2823,7 +2844,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 368,
+            "line": 381,
             "description": "是否为最后一个 select",
             "itemtype": "method",
             "name": "isLast",
@@ -2842,7 +2863,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 375,
+            "line": 388,
             "description": "是否已经初始化过",
             "itemtype": "method",
             "name": "isInited",
@@ -2861,7 +2882,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 382,
+            "line": 395,
             "description": "获取 select 的数据",
             "itemtype": "method",
             "name": "data",
@@ -2880,7 +2901,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 389,
+            "line": 402,
             "description": "更新默认选中列表",
             "itemtype": "method",
             "name": "update",
@@ -2899,7 +2920,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 831,
+            "line": 844,
             "description": "判断下拉框的option里是否有给定的值",
             "params": [
                 {
@@ -2918,7 +2939,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 909,
+            "line": 917,
             "description": "初始化之事的事件",
             "itemtype": "event",
             "name": "SelectBeforeInited",
@@ -2927,7 +2948,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 913,
+            "line": 921,
             "description": "初始化后的事件",
             "itemtype": "event",
             "name": "SelectInited",
@@ -2936,7 +2957,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 917,
+            "line": 925,
             "description": "响应每个 select 的 change 事件",
             "itemtype": "event",
             "name": "SelectChange",
@@ -2945,7 +2966,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 921,
+            "line": 929,
             "description": "最后一个 select change 后的事件",
             "itemtype": "event",
             "name": "SelectAllChanged",
@@ -2954,7 +2975,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 925,
+            "line": 933,
             "description": "select 更新数据之前触发的事件",
             "itemtype": "event",
             "name": "SelectItemBeforeUpdate",
@@ -2963,7 +2984,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 929,
+            "line": 937,
             "description": "select 更新数据之后触发的事件",
             "itemtype": "event",
             "name": "SelectItemUpdated",
@@ -2972,7 +2993,7 @@
         },
         {
             "file": "../comps/AutoSelect/AutoSelect.js",
-            "line": 933,
+            "line": 941,
             "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "JC.AutoSelect",
             "namespace": "JC"
@@ -14462,11 +14483,11 @@
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
-            "line": " ../comps/AutoSelect/AutoSelect.js:831"
+            "line": " ../comps/AutoSelect/AutoSelect.js:844"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/AutoSelect/AutoSelect.js:933"
+            "line": " ../comps/AutoSelect/AutoSelect.js:941"
         },
         {
             "message": "Missing item type\n保存所有类型的 Calendar 日期实例 \n<br />目前有 date, week, month, season 四种类型的实例\n<br />每种类型都是单例模式",
